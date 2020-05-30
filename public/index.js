@@ -1,7 +1,7 @@
 // Este é o ponto de entrada de sua aplicação
-import home from './pages/home/index.js';
-import geek from './pages/geek/index.js';
-import autocuidado from './pages/autocuidado/index.js';
+import home from './pages/home/main.js';
+import geek from './pages/geek/main.js';
+import autocuidado from './pages/autocuidado/main.js';
 
 const main = document.querySelector("#root");
 const init = () => {
