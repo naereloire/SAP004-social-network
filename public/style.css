@@ -154,7 +154,7 @@
 .post-box {
     align-items: center;
     background-color: #94858F;
-    border: solid black;
+    border: solid gray;
     display: flex;
     flex-direction: column;
     height: 90%;
@@ -172,7 +172,7 @@
 
 .textarea-style {
     background-color: #E7E6FF;
-    border: double black;
+    border: double gray;
     height: 100%;
     text-align: justify;
     width: 95%;
