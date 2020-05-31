@@ -5,7 +5,7 @@ export default () => {
 
     const template = `
     <div class="feed-style">
-    <h1>HOME</h1>
+    <h1>[girlyHub]</h1>
     </div>
     `;
     container.innerHTML = template;
