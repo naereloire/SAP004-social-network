@@ -1,0 +1,62 @@
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffe4c4;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.side-nav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s
+}
+
+.side-nav a:hover, .offcanvas a:focus {
+    color: red;
+}
+
+.side-nav .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#close-sidebar {
+    color: #ff0000;
+}
+
+.top-nav {
+    background-color: #ffe4c4;
+    overflow: hidden;
+}
+
+.top-nav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.top-nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.top-nav a.active {
+    background-color: #4CAF50;
+    color: yellow;
+}

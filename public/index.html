@@ -5,32 +5,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
   <title>[girlyHub]</title>
 </head>
 
 <body>
   <header>
-    <nav>
-      <ul>
-        <li><a href="/#">Home</a></li>
-        <li> <a href="/#geek">Geek</a></li>
-        <li> <a href="/#tech">Tech</a></li>
-        <li><a href="/#autocuidado">Autocuidado</a></li>
-        <li> <a href="/#seguranca">Segurança</a></li>
-        <li> <a href="/#oportunidades">Oportunidades</a></li>
-      </ul>
+    <div id="side-navigation" class="side-nav">
+      <a href="#" id="close-sidebar" class="close-btn">&times;</a>
+      <a href="#">Perfil</a>
+      <a href="#">Configurações</a>
+      <a href="#">Sobre</a>
+      <a href="#">Sair</a>
+    </div>
+    <nav class="top-nav">
+      <a href="#" id="open-sidebar">
+        <i class="fa fa-bars"></i>
+      </a>
     </nav>
   </header>
-  <main id="root">
-
-  </main>
-  <footer>Desenvolvimento
-    <a href="https://github.com/daianevieira07/SAP004-social-network">Daiane Vieira,</a>
-    <a href="https://github.com/EvellynThamires/SAP004-social-network">Evellyn Thamires e</a>
-    <a href="https://github.com/naereloire/SAP004-social-network">Naere Loire</a>
+  <main id="root"></main>
+  <footer>
+    <section class="logged-nav">
+      <nav>
+        <ul>
+          <li><a href="/#">Home</a></li>
+          <li> <a href="/#geek">Geek</a></li>
+          <li> <a href="/#tech">Tech</a></li>
+          <li><a href="/#autocuidado">Autocuidado</a></li>
+          <li> <a href="/#seguranca">Segurança</a></li>
+          <li> <a href="/#oportunidades">Oportunidades</a></li>
+        </ul>
+      </nav>
+      <section>
+        Desenvolvimento
+        <a href="https://github.com/daianevieira07/SAP004-social-network">Daiane Vieira,</a>
+        <a href="https://github.com/EvellynThamires/SAP004-social-network">Evellyn Thamires e</a>
+        <a href="https://github.com/naereloire/SAP004-social-network">Naere Loire</a>
   </footer>
   <script type="module" src="index.js"></script>
+  <script src="https://kit.fontawesome.com/2ab419e357.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

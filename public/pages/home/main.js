@@ -4,10 +4,10 @@ export default () => {
     const container = document.createElement("div");
 
     const template = `
-    <h1>[girlyHub]</h1>
-    <p>
-    Bem vinda!
-    </p> `;
+    <div class="feed-style">
+    <h1>HOME</h1>
+    </div>
+    `;
     container.innerHTML = template;
     return container
 }
