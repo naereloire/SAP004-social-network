@@ -1,45 +1,18 @@
- import routes from './routes.js'; 
+import routes from "./routes.js";
 
-const main = document.querySelector('#root').appendChild(routes["login"]);
+const main = document.querySelector("#root");
+const init = () => window.addEventListener("hashchange", renderPage)
+const renderPage = () => {
+    main.innerHTML = " ";
+    const page = validateHash(window.location.hash)
+    main.appendChild(routes[page]);
+}
 
+const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
 
-
-const init = () => {
-    window.addEventListener("hashchange", () => {/* console.log(window.location.hash) */
-     
-            main.innerHTML = " ";
-
-           switch (window.location.hash) {
-                case " ": 
-                     main.appendChild(routes["home"]);
-             
-                    break;
-
-                case "#tech":
-                    main.appendChild(routes["tech"])
-                    break;
-
-                case "#autocuidado":
-                    main.appendChild(routes["autocuidado"])
-                    break;
-
-                case "#segurança":
-                    main.appendChild(routes["segurança"])
-                    break;
- 
-                case "#oportunidades":
-                    main.appendChild(routes["oportunidades"])
-                    break;
-
-                    default:
-                        main.appendChild(routes["home"]);
+window.addEventListener("load", () => {
+    renderPage();
+    init();
+})
 
 
-            } 
-        }
-    )}
-
-    window.addEventListener("load", () => {
-        main.appendChild(routes["login"]);
-        init()
-    })

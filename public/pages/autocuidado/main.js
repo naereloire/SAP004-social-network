@@ -1,15 +1,11 @@
 export default () => {
-  const container = document.createElement('div');
+    const container = document.createElement("div");
 
-const template =  `
-<h2> AUTOCUIDADO</h2>
-<p>bxkcb khdbc  axjcnl;xdac4
-x zcb nx cx;bc x
-xz.cb k;sc nxc cxnc xjn z</p>
-
-`;
-
-container.innerHTML = template;
-return container;
-
+    const template = `
+    <h2>[Autocuidado]</h2>
+    <p>
+    Sobre autocuidado.
+    </p> `;
+    container.innerHTML = template;
+    return container
 }
