@@ -2,9 +2,9 @@ export default () => {
     const container = document.createElement("div");
 
     const template = `
-    <h1>[girlyHub]</h1>
+    <h2>[Mundo geek]</h2>
     <p>
-    Bem vinda!
+    Sobre geek.
     </p> `;
     container.innerHTML = template;
     return container
