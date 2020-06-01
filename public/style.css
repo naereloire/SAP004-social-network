@@ -4,19 +4,6 @@
     width: 100%;
 }
 
-.main-style {
-    margin-top: 60px;
-}
-
-.ul-style {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    margin-top: 0;
-    padding: 0;
-    text-align: center;
-}
-
 .side-nav {
     background-color: #C3C0ED;
     height: 100%;
@@ -50,12 +37,6 @@
     top: 0;
 }
 
-.close-post-btn {
-    color: #ff0000;
-    font-size: 36px;
-    text-decoration: none;
-}
-
 .top-nav {
     background-color: #C3C0ED;
     display: flex;
@@ -64,22 +45,6 @@
     position: fixed;
     width: 100%;
     top: 0;
-}
-
-.nav-style {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.span-style {
-    text-align: center;
-    font-size: 1.70em;
-}
-
-.figure-style {
-    margin: 0;
-    width: 50%;
 }
 
 .top-nav a {
@@ -97,6 +62,26 @@
     color: black;
 }
 
+.nav-style {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.figure-style {
+    margin: 0;
+    width: 50%;
+}
+
+.span-style {
+    font-size: 1.70em;
+    text-align: center;
+}
+
+.main-style {
+    margin-top: 60px;
+}
+
 .bottom-nav {
     background-color: #C3C0ED;
     bottom: 0;
@@ -111,15 +96,24 @@
 .bottom-nav a {
     color: black;
     flex-direction: column;
+    font-size: 0.800em;
     height: 100%;
     margin: 2px;
     text-decoration: none;
-    font-size: 0.800em;
+}
+
+.ul-style {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+    text-align: center;
 }
 
 .feed-style {
-    display: flex;
     align-items: center;
+    display: flex;
     flex-direction: column;
 }
 
@@ -128,8 +122,8 @@
 }
 
 .img-perfil {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
     width: 40%;
 }
@@ -138,9 +132,8 @@
     width: 90%;
 }
 
-.text-style {
-    margin: 0;
-    text-align: justify;
+.circular-square {
+    border-radius: 50%;
 }
 
 .bio-infos {
@@ -149,6 +142,11 @@
     flex-direction: column;
     justify-content: center;
     width: 60%;
+}
+
+.text-style {
+    margin: 0;
+    text-align: justify;
 }
 
 .post-box {
@@ -163,6 +161,14 @@
     width: 80%;
 }
 
+.textarea-style {
+    background-color: #E7E6FF;
+    border: double gray;
+    height: 100%;
+    text-align: justify;
+    width: 95%;
+}
+
 .btn-container {
     display: flex;
     justify-content: space-between;
@@ -170,12 +176,52 @@
     margin: 5px;
 }
 
-.textarea-style {
-    background-color: #E7E6FF;
-    border: double gray;
+.btn-style {
+    padding: 1em 2em;
+    background: rgb(224, 211, 248);
+    border: 2px solid rgb(200, 191, 202);
+    border-radius: 1em;
+    margin: 5px;
+    transform-style: preserve-3d;
+    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+}
+
+.btn-style::before {
+    background: rgb(186, 127, 194);
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px rgb(166, 157, 216);
     height: 100%;
+    transform: translate3d(0, 0.75em, -1em);
+    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+    width: 100%;
+}
+
+.btn-style:hover {
+    background: rgb(166, 157, 216);
+    transform: translate(0, 0.375em);
+}
+
+.btn-style:active {
+    transform: translate(0em, 0.75em);
+}
+
+.publication-box {
+    background-color: #FFFFFF;
+    border: solid gray;
+    display: flex;
+    flex-direction: column;
     text-align: justify;
-    width: 95%;
+    width: 90%;
+}
+
+.publication-title {
+    justify-content: space-between;
+}
+
+.close-post-btn {
+    color: #ff0000;
+    font-size: 36px;
+    text-decoration: none;
 }
 
 .publi-area {
@@ -191,19 +237,6 @@
     width: 100%;
 }
 
-.publication-title {
-    justify-content: space-between;
-}
-
-.publication-box {
-    background-color: #FFFFFF;
-    border: solid gray;
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
-    width: 90%;
-}
-
 .footer-style {
     display: flex;
     flex: 1;
@@ -212,37 +245,4 @@
     text-align: center;
     margin-bottom: 60px;
     margin-top: 15%;
-}
-
-.circular-square {
-    border-radius: 50%;
-}
-
-.btn-style {
-    padding: 1em 2em;
-    border: 2px solid rgb(200, 191, 202);
-    border-radius: 1em;
-    background: rgb(224, 211, 248);
-    transform-style: preserve-3d;
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
-    margin: 5px;
-}
-
-.btn-style::before {
-    width: 100%;
-    height: 100%;
-    background: rgb(186, 127, 194);
-    border-radius: inherit;
-    box-shadow: 0 0 0 2px rgb(166, 157, 216);
-    transform: translate3d(0, 0.75em, -1em);
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
-}
-
-.btn-style:hover {
-    background: rgb(166, 157, 216);
-    transform: translate(0, 0.375em);
-}
-
-.btn-style:active {
-    transform: translate(0em, 0.75em);
 }
