@@ -296,4 +296,13 @@
     .btn-style {
         padding: 2%;
     }
+    .bottom-nav, .ul-style a {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+    }
+    .ul-style li {
+        display: flex;
+        justify-content: space-between;
+    }
 }
