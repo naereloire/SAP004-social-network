@@ -258,11 +258,11 @@
         font-size: 1.8em;
     }
     #open-sidebar {
+        align-items: center;
         display: flex;
         justify-content: center;
-        align-items: center;
-        padding: 0;
         margin: 15px;
+        padding: 0;
     }
     .img-perfil {
         justify-content: flex-end;
@@ -270,12 +270,12 @@
     img {
         width: 130%;
     }
-    .span-style{
+    .span-style {
         font-size: 2.40em;
     }
     .foto-style {
-        width: 40%;
         padding: 1.5em;
+        width: 40%;
     }
     .bio-infos {
         align-items: flex-start;
@@ -286,9 +286,6 @@
     }
     .publication-box {
         width: 54%;
-    }
-    .publication-title {
-        display: flex;
     }
     .publi-title-span {
         text-align: center;
@@ -302,7 +299,7 @@
     .btn-style {
         padding: 2%;
     }
-    .ul-style a {
+    .publication-title, .ul-style a {
         display: flex;
     }
     .ul-style {
