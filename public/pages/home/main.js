@@ -6,7 +6,7 @@ export default () => {
 <div class="feed-style">
  <section class="bio-style">
   <div class="img-perfil">
-   <img class="foto-style circular-square" src="./img/batata.jpeg">
+   <img class="foto-style circular-square" src="./img/diana.jpeg">
   </div>
   <div class="bio-infos">
    <h1 class="text-style">Diana de Themyscira</h1>
@@ -22,7 +22,7 @@ export default () => {
  </section>
  <section class="publication-box">
   <div class="publication-title">
-   <p>Publicado por Zatanna</p>
+   <span class="publi-title-span"><p>Publicado por Zatanna</p></span>
    <a href="#" class="close-post-btn">&times;</a>
   </div>
   <div class="publi-area" >

@@ -246,3 +246,54 @@
     margin-bottom: 60px;
     margin-top: 15%;
 }
+
+@media only screen and (min-width:768px) and (max-width:1024px) {
+    .main-style {
+        margin-top: 150px;
+    }
+    .span-style {
+        padding: 1em;
+    }
+    .fa-bars:before {
+        font-size: 1.8em;
+    }
+    #open-sidebar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 15px;
+    }
+    .img-perfil {
+        justify-content: flex-end;
+    }
+    .foto-style {
+        width: 40%;
+        padding: 1.5em;
+    }
+    .bio-infos {
+        align-items: flex-start;
+        width: 60%;
+    }
+    .post-box {
+        width: 50%;
+    }
+    .publication-box {
+        width: 54%;
+    }
+    .publication-title {
+        display: flex;
+    }
+    .publi-title-span {
+        text-align: center;
+        width: 90%;
+    }
+    .footer-style {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .btn-style {
+        padding: 2%;
+    }
+}
