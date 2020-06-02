@@ -315,39 +315,53 @@
         font-size: 2em;
     }
     .feed-style {
+        align-content: flex-start;
+        align-items: stretch;
         display: flex;
-        flex-wrap: nowrap;
-        flex: 1;
+        flex-flow: row wrap;
     }
     .img-perfil {
+        width: 15%;
+        flex: 1;
+    }
+    .feed-container {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        align-items: center;
+    }
+    .bio-container {
+        flex: 1;
         width: 20%;
+    }
+    .bio-style {
+        border: solid black;
+        margin-top: 2em;
+        width: 50%;
     }
     .bio-infos {
         width: 30%;
+        flex: 1;
     }
     .post-box {
-        width: 30%;
+        width: 70%;
     }
     .publication-box {
-        width: 34%;
+        width: 77%;
     }
     .btn-style {
-        padding: 1%;
-    }
-    .publication-title, .ul-style a {
-        display: flex;
+        padding: 2px;
     }
     .ul-style {
         justify-content: space-evenly;
     }
-    .bottom-nav{
-       top: 0;
-       height: auto;
-       bottom:auto ;
-       background-color:none;
-       left: 30%;
-       width: 70%;
-       
+    .bottom-nav {
+        background-color: none;
+        bottom: auto;
+        height: auto;
+        left: 30%;
+        top: 0;
+        width: 70%;
     }
     .footer-style {
         display: flex;

@@ -4,6 +4,7 @@ export default () => {
     const container = document.createElement("div");
     const template = `
 <div class="feed-style">
+<div class="bio-container">
  <section class="bio-style">
   <div class="img-perfil">
    <img class="foto-style circular-square" src="./img/diana.jpeg">
@@ -13,6 +14,8 @@ export default () => {
    <p class="text-style">Princesa e Heroína</p>
   </div>
  </section>
+ </div>
+ <div class="feed-container">
  <section class="post-box">
    <textarea id="post" name="post" class="textarea-style" rows="5" cols="10" placeholder="Escreva uma mensagem."></textarea>
   <div class="btn-container">
@@ -33,6 +36,7 @@ export default () => {
    <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
   </div>
  </section>
+ </div>
 </div>
     `;
     container.innerHTML = template;
