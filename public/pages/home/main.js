@@ -2,8 +2,9 @@
 
 export default () => {
     const container = document.createElement("div");
+    container.className="feed-style"
     const template = `
-<div class="feed-style">
+
 <div class="bio-container">
  <section class="bio-style">
   <div class="img-perfil">
@@ -37,7 +38,7 @@ export default () => {
   </div>
  </section>
  </div>
-</div>
+
     `;
     container.innerHTML = template;
     return container

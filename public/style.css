@@ -111,6 +111,12 @@
     text-align: center;
 }
 
+.feed-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
 .feed-style {
     align-items: center;
     display: flex;
@@ -248,6 +254,11 @@
 }
 
 @media only screen and (min-width:768px) and (max-width:900px) {
+    body {
+        background-image: url(./img/hash-hands.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .main-style {
         margin-top: 150px;
     }
@@ -281,6 +292,9 @@
         align-items: flex-start;
         width: 60%;
     }
+    .feed-container {
+        width: 90%;
+    }
     .post-box {
         width: 50%;
     }
@@ -310,37 +324,45 @@
 @media only screen and (min-width:901px) {
     body {
         background-image: url(./img/hash-hands.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .main-style {
+        display: flex;
+        justify-content: center;
+    }
+    .text-style {
+        text-align: center;
     }
     .span-style {
         font-size: 2em;
     }
     .feed-style {
-        align-content: flex-start;
-        align-items: stretch;
+        align-items: flex-start;
         display: flex;
         flex-flow: row wrap;
+        width: 70%;
+        justify-content: center;
     }
     .img-perfil {
-        width: 15%;
-        flex: 1;
+        width: 50%;
     }
     .feed-container {
         display: flex;
         flex-direction: column;
-        width: 40%;
+        width: 60%;
         align-items: center;
     }
     .bio-container {
+        align-items: center;
         flex: 1;
-        width: 20%;
+        margin: 1em;
     }
     .bio-style {
         border: solid black;
         margin-top: 2em;
-        width: 50%;
     }
     .bio-infos {
-        width: 30%;
         flex: 1;
     }
     .post-box {
@@ -351,6 +373,9 @@
     }
     .btn-style {
         padding: 2px;
+    }
+    .ul-style a {
+        display: flex;
     }
     .ul-style {
         justify-content: space-evenly;
