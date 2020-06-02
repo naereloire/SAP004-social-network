@@ -247,7 +247,7 @@
     margin-top: 15%;
 }
 
-@media only screen and (min-width:768px) and (max-width:1024px) {
+@media only screen and (min-width:768px) and (max-width:900px) {
     .main-style {
         margin-top: 150px;
     }
@@ -291,11 +291,6 @@
         text-align: center;
         width: 90%;
     }
-    .footer-style {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
     .btn-style {
         padding: 2%;
     }
@@ -303,6 +298,60 @@
         display: flex;
     }
     .ul-style {
+        justify-content: space-evenly;
+    }
+    .footer-style {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+@media only screen and (min-width:901px) {
+    body {
+        background-image: url(./img/hash-hands.jpg);
+    }
+    .span-style {
+        font-size: 2em;
+    }
+    .feed-style {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1;
+    }
+    .img-perfil {
+        width: 20%;
+    }
+    .bio-infos {
+        width: 30%;
+    }
+    .post-box {
+        width: 30%;
+    }
+    .publication-box {
+        width: 34%;
+    }
+    .btn-style {
+        padding: 1%;
+    }
+    .publication-title, .ul-style a {
+        display: flex;
+    }
+    .ul-style {
+        justify-content: space-evenly;
+    }
+    .bottom-nav{
+       top: 0;
+       height: auto;
+       bottom:auto ;
+       background-color:none;
+       left: 30%;
+       width: 70%;
+       
+    }
+    .footer-style {
+        display: flex;
+        flex-direction: row;
         justify-content: space-evenly;
     }
 }
