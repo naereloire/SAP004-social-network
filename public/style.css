@@ -67,7 +67,7 @@
 
 
 .body-style {
-    background-color: #E7E6FF;
+    /* background-color: #E7E6FF; */
     margin: 0;
     width: 100%;
 }
@@ -327,7 +327,7 @@
 
 @media only screen and (min-width:768px) and (max-width:900px) {
     body {
-        background-image: url(./img/hash-hands.jpg);
+        /* background-image: url(./img/hash-hands.jpg); */
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -395,7 +395,7 @@
 
 @media only screen and (min-width:901px) {
     body {
-        background-image: url(./img/hash-hands.jpg);
+        /* background-image: url(./img/hash-hands.jpg); */
         background-repeat: no-repeat;
         background-size: cover;
     }
