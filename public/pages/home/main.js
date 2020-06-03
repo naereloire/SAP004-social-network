@@ -21,13 +21,16 @@ export default () => {
   </div>
   <div class="feed-container">
     <section class="post-box">
+     <form id="post-form">
       <textarea id="post" name="post" class="textarea-style" rows="5" cols="10"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
         <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
         <button type="submit" class="btn-style">Compartilhar</button>
       </div>
+      </form>
     </section>
+    
     <section class="publication-box">
       <div class="publication-title">
         <span class="publi-title-span">
