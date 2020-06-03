@@ -1,9 +1,9 @@
-// import { greeting } from './data.js';
+import { savePost } from './data.js';
 
 export default () => {
-    const container = document.createElement("div");
-    container.className = "feed-style"
-    const template = `
+  const container = document.createElement("div");
+  container.className = "feed-style"
+  const template = `
 
     <div class="bio-container">
     <section class="bio-style">
@@ -22,7 +22,7 @@ export default () => {
   <div class="feed-container">
     <section class="post-box">
      <form id="post-form">
-      <textarea id="post" name="post" class="textarea-style" rows="5" cols="10"
+      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
         <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
@@ -49,6 +49,18 @@ export default () => {
   </div>
 
     `;
-    container.innerHTML = template;
-    return container
+  container.innerHTML = template;
+  return container
+}
+
+
+export const addEventButtons = (page) => {
+  if (page === "home") {
+    document.getElementById("post-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const post = document.getElementById("post-text").value
+      savePost(post)
+    })
+  }
+
 }
