@@ -23,3 +23,5 @@ const sidebarAction = (event) => {
 
 document.getElementById("close-sidebar").addEventListener("click", sidebarAction)
 document.getElementById("open-sidebar").addEventListener("click", sidebarAction)
+
+

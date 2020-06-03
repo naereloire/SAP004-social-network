@@ -25,7 +25,7 @@ export default () => {
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
         <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
-        <button class="btn-style">Compartilhar</button>
+        <button type="submit" class="btn-style">Compartilhar</button>
       </div>
     </section>
     <section class="publication-box">
