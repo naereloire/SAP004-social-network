@@ -1,5 +1,73 @@
+.container-login {
+    border: 10px;
+    height: 500px;
+    margin-top: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-img {
+    max-width: 300px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+
+}
+.google-logo{
+    max-width: 30px; 
+      }
+
+.google-box{
+    width: 160px;
+    height: 20px;
+    border: 2px;
+    border-style: solid;
+    border-color: #09cabb;  
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.title {
+    color: #09cabb;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 20px;
+    display: inline-flex;
+}
+
+.email-input,
+.password-input {
+    width: 200px;
+    border-color: #FF2A7F;
+    border-radius: 30px;
+    height: 30px;
+    margin: 5px 0 5px 0;
+
+
+}
+
+
+.login-btn {
+    width: 150px;
+    height: 30px;
+    border-color: #fffa00;
+    background-color: #fffa00; 
+    border-radius: 30px;
+}
+
+
 .body-style {
-    background-color: #E7E6FF;
+    /* background-color: #E7E6FF; */
     margin: 0;
     width: 100%;
 }
@@ -109,6 +177,12 @@
     margin-top: 0;
     padding: 0;
     text-align: center;
+}
+
+.feed-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .feed-style {
@@ -237,6 +311,10 @@
     width: 100%;
 }
 
+.capa-style {
+    display: none;
+}
+
 .footer-style {
     display: flex;
     flex: 1;
@@ -246,3 +324,161 @@
     margin-bottom: 60px;
     margin-top: 15%;
 }
+
+@media only screen and (min-width:768px) and (max-width:900px) {
+    body {
+        /* background-image: url(./img/hash-hands.jpg); */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .main-style {
+        margin-top: 150px;
+    }
+    .span-style {
+        padding: 1em;
+    }
+    .fa-bars:before {
+        font-size: 1.8em;
+    }
+    #open-sidebar {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+        padding: 0;
+    }
+    .img-perfil {
+        justify-content: flex-end;
+    }
+    img {
+        width: 130%;
+    }
+    .span-style {
+        font-size: 2.40em;
+    }
+    .foto-style {
+        padding: 1.5em;
+        width: 40%;
+    }
+    .bio-infos {
+        align-items: flex-start;
+        width: 60%;
+    }
+    .feed-container {
+        width: 90%;
+    }
+    .post-box {
+        width: 50%;
+    }
+    .publication-box {
+        width: 54%;
+    }
+    .publi-title-span {
+        text-align: center;
+        width: 90%;
+    }
+    .btn-style {
+        padding: 2%;
+    }
+    .publication-title, .ul-style a {
+        display: flex;
+    }
+    .ul-style {
+        justify-content: space-evenly;
+    }
+    .footer-style {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+@media only screen and (min-width:901px) {
+    body {
+        /* background-image: url(./img/hash-hands.jpg); */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .main-style {
+        display: flex;
+        justify-content: center;
+    }
+    .text-style {
+        text-align: center;
+    }
+    .span-style {
+        font-size: 2em;
+    }
+    .feed-style {
+        align-items: flex-start;
+        display: flex;
+        flex-flow: row wrap;
+        width: 70%;
+        justify-content: center;
+    }
+    .capa-style {
+        display: flex;
+        width: 100%;
+    }
+    .img-capa {
+        width: 100%;
+        height: 85%;
+        border-bottom:solid black;
+        
+    }
+    .img-perfil {
+        width: 50%;
+    }
+    .feed-container {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        align-items: center;
+    }
+    .bio-container {
+        align-items: center;
+        flex: 1;
+    }
+    .bio-style {
+        display: flex;
+        flex-wrap: wrap;
+        border: solid black;
+        margin-top: 2em;
+    }
+    .bio-infos {
+        flex: 1;
+    }
+    .post-box {
+        width: 70%;
+    }
+    .publication-box {
+        width: 77%;
+    }
+    .btn-style {
+        padding: 2px;
+    }
+    .ul-style a {
+        display: flex;
+    }
+    .ul-style {
+        justify-content: space-evenly;
+    }
+    .bottom-nav {
+        background-color: none;
+        bottom: auto;
+        height: auto;
+        left: 30%;
+        top: 0;
+        width: 70%;
+    }
+    .footer-style {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+
+
+
+
+
