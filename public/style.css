@@ -30,7 +30,7 @@
     height: 20px;
     border: 2px;
     border-style: solid;
-    border-color:  #305d6b;
+    border-color: #305d6b;
     border-radius: 5px;
     display: inline-flex;
     align-items: center;
@@ -55,8 +55,8 @@
 .login-btn {
     width: 150px;
     height: 30px;
-    border-color:  #8BD3f8;
-    background-color: #8BD3f8; 
+    border-color: #8BD3f8;
+    background-color: #8BD3f8;
     border-radius: 30px;
 }
 
@@ -101,8 +101,9 @@
 
 .top-nav {
     background-color: #C3C0ED;
+    /* display: none; */
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
     width: 100%;
@@ -130,27 +131,29 @@
     justify-content: center;
 }
 
-/* .figure-style {
+.figure-style {
+    flex: 1;
     margin: 0;
+    width: 40%;
 }
 
-img-logo-style {
-    width: 1em;
-    flex: 1;
-} */
+#girly-img {
+    width: 100%;
+}
 
 .span-style {
     font-size: 1.70em;
-    text-align: center;
+    width: 80%;
 }
 
 .main-style {
-    margin-top: 60px;
+    margin-top: 90px;
 }
 
 .bottom-nav {
     background-color: #C3C0ED;
     bottom: 0;
+    /* display: none; */
     margin: 0;
     overflow: hidden;
     padding-bottom: 5px;
@@ -223,7 +226,7 @@ img-logo-style {
 
 .post-box {
     align-items: center;
-    background-color: #94858F;
+    background-color: rgb(149, 212, 231);
     border: solid gray;
     display: flex;
     flex-direction: column;
@@ -234,7 +237,7 @@ img-logo-style {
 }
 
 .textarea-style {
-    background-color: #E7E6FF;
+    /* background-color: #E7E6FF; */
     border: double gray;
     height: 100%;
     text-align: justify;
@@ -250,7 +253,7 @@ img-logo-style {
 
 .btn-style {
     padding: 1em 2em;
-    background: rgb(224, 211, 248);
+    background: rgb(217, 215, 223);
     border: 2px solid rgb(200, 191, 202);
     border-radius: 1em;
     margin: 5px;
@@ -297,13 +300,13 @@ img-logo-style {
 }
 
 .publi-area {
-    background-color: #E7E6FF;
+    /* background-color: #E7E6FF; */
     padding-top: 3em;
     padding-top: 3em;
 }
 
 .publication-title, .publication-btns {
-    background-color: #94858F;
+    background-color: rgb(149, 212, 231);
     display: flex;
     text-align: justify;
     width: 100%;
@@ -388,13 +391,11 @@ img-logo-style {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-       
     }
 }
 
 @media only screen and (min-width:901px) {
     body {
-        /* background-image: url(./img/hash-hands.jpg); */
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -469,23 +470,19 @@ img-logo-style {
         top: 0;
         width: 70%;
     }
-    .footer-style {
+    /* .footer-style {
+        align-items: center;
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        bottom:auto;
-    }
-
+        margin: 0;
+    } */
     .container-login {
-                        border: 10px;
-            width: 500px;
-            height: 400px;
-            padding: 25px;
-            
-            position: fixed;
-            right: 20px;
-        }
-
+        border: 10px;
+        width: 500px;
+        height: 400px;
+        padding: 25px;
+        position: fixed;
+        right: 20px;
+    }
     .logo-img {
         max-width: 1200px;
         max-height: 2000px;
@@ -494,52 +491,38 @@ img-logo-style {
         position: fixed;
         left: 30px;
         flex-direction: row;
-
-        }
-       
-       
-.title {
-    color: #305d6b;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 50px;
-    display: inline-flex;
-    margin-top: 60px;
-    margin-bottom: 20px;
-    font-size: 40px;
+    }
+    .title {
+        color: #305d6b;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        height: 50px;
+        display: inline-flex;
+        margin-top: 60px;
+        margin-bottom: 20px;
+        font-size: 40px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    .email-input, .password-input {
+        width: 200px;
+        border-color: rgb(186, 127, 194);
+        border-radius: 30px;
+        height: 30px;
+        margin: 5px 0 5px 0;
+    }
+    .login-btn {
+        width: 150px;
+        height: 30px;
+        border-color: #8bd3f8;
+        background-color: #8bd3f8;
+        border-radius: 30px;
+    }
+    .footer-style {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        bottom: 0px;
+        position: fixed;
+    }
 }
-
-h3 {
-    font-size: 20px;
-
-}
-.email-input,
-.password-input {
-    width: 200px;
-    border-color: rgb(186, 127, 194);
-    border-radius: 30px;
-    height: 30px;
-    margin: 5px 0 5px 0;
-}
-
-
-.login-btn {
-    width: 150px;
-    height: 30px;
-    border-color: #8bd3f8;
-    background-color: #8bd3f8;
-    border-radius: 30px;
-}
-
-.footer-style {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    bottom: 0px;   
-    position: fixed;
-}
-}
-
-
-
-
-
