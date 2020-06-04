@@ -1,13 +1,42 @@
 import routes from "./routes.js";
+import auth from "./authentication/main.js"
 
+const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
+
+btnLogout.addEventListener('click', function(){
+    auth.logout()
+    renderPage()
+})
+
 const init = () => window.addEventListener("hashchange", renderPage)
+
 const renderPage = () => {
     main.innerHTML = " ";
-    const page = validateHash(window.location.hash)
-    main.appendChild(routes[page]);
+    let page = validateHash(window.location.hash)
+    //Busca se existe um usuário logado ou deslogado.
+    firebase.auth().onAuthStateChanged((usuario) => {
+        if(!usuario){
+            main.appendChild(routes['login']);
+            auth.createBtnAuth()
+            const btnLogIn = document.querySelector("#login-btn");
+            btnLogIn.addEventListener('click', function(event){
+                event.preventDefault()
+                auth.loginEmail()
+            })
+            
+        }
+        else {
+            if(page == 'login'){
+                page = 'home'
+            } 
+            
+            main.appendChild(routes[page]);
+        }
+    })
 }
 
+window.addEventListener("hashchange", renderPage)
 const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
 
 window.addEventListener("load", () => {
