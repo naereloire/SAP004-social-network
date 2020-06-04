@@ -35,7 +35,6 @@ export default {
             window.location.href = "/#"
         }).catch(erro => {
             alert("Usuário ou Senha incorreta")
-        })
+        });;
     }
-
 }
