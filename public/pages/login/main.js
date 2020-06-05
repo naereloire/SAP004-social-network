@@ -1,11 +1,11 @@
-export default () => {
+export default() => {
   const container = document.createElement('div');
 
   container.innerHTML = `
       <div class="container-login">
 
     <section class='login-img'>
-    <img class="logo-img"src="./img/logo.jpg" alt="imagem do logo">
+    <img class="logo-img"src="./img/login.png" alt="imagem do logo">
   </section>
   
           <h1 class='title'>[girlyHub]</h1>
@@ -15,11 +15,12 @@ export default () => {
           <input id= 'password' type='password' class= 'password-input' placeholder= '  Senha'>
           <button id='login-btn' class=' login-btn' >Log in</button><br/>
           </form>
-          <label class="google-box"><img class="google-logo"src="./img/google.png" alt="logo google"> Entrar com Google </label><br/><br/>
-          
+          <hr>
           <p>Ainda não tem uma conta? <link rel="" href=""> Crie agora </p></>
-        
-        <div>`;
-  
-    return container;
-  };
+          <hr>
+          <div id="firebaseui-auth"></div>
+        <div>
+        `;
+
+  return container;
+};
