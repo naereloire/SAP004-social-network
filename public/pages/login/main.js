@@ -5,7 +5,7 @@ export default() => {
       <div class="container-login">
 
     <section class='login-img'>
-    <img class="logo-img"src="./img/login.png" alt="imagem do logo">
+    <img class="logo-img"src="./img/girly-logo.png" alt="imagem do logo">
   </section>
   
           <h1 class='title'>[girlyHub]</h1>
