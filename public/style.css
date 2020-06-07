@@ -1,11 +1,16 @@
+.hidden-bar {
+    display: none;
+}
+
 .container-login {
     border: 10px;
-    height: 500px;
+    height: auto;
     margin-top: 5px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .login-form {
@@ -19,24 +24,23 @@
     max-height: 150px;
     width: auto;
     height: auto;
-
 }
-.google-logo{
-    max-width: 30px; 
-      }
 
-.google-box{
+.google-logo {
+    max-width: 30px;
+}
+
+.google-box {
     width: 160px;
     height: 20px;
     border: 2px;
     border-style: solid;
-    border-color:  #305d6b;
+    border-color: #305d6b;
     border-radius: 5px;
     display: inline-flex;
     align-items: center;
     margin-top: 10px;
 }
-
 
 .title {
     color: #305d6b;
@@ -45,28 +49,23 @@
     display: inline-flex;
 }
 
-.email-input,
-.password-input {
+.email-input, .password-input {
     width: 200px;
     border-color: #ba7fc2;
     border-radius: 30px;
     height: 30px;
     margin: 5px 0 5px 0;
-
-
 }
-
 
 .login-btn {
     width: 150px;
     height: 30px;
-    border-color:  #8BD3f8;
-    background-color: #8BD3f8; 
+    border-color: #8BD3f8;
+    background-color: #8BD3f8;
     border-radius: 30px;
 }
 
 .body-style {
-    /* background-color: #E7E6FF; */
     margin: 0;
     width: 100%;
 }
@@ -106,7 +105,6 @@
 
 .top-nav {
     background-color: #C3C0ED;
-    display: flex;
     flex-wrap: wrap;
     overflow: hidden;
     position: fixed;
@@ -326,7 +324,6 @@
 
 @media only screen and (min-width:768px) and (max-width:900px) {
     body {
-        /* background-image: url(./img/hash-hands.jpg); */
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -389,16 +386,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-       
     }
 }
 
 @media only screen and (min-width:901px) {
-    body {
-        /* background-image: url(./img/hash-hands.jpg); */
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
     .main-style {
         display: flex;
         justify-content: center;
@@ -423,8 +414,7 @@
     .img-capa {
         width: 100%;
         height: 85%;
-        border-bottom:solid black;
-        
+        border-bottom: solid black;
     }
     .img-perfil {
         width: 50%;
@@ -475,73 +465,46 @@
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        bottom:auto;
+        bottom: auto;
     }
-
     .container-login {
-                        border: 10px;
-            width: 500px;
-            height: 400px;
-            padding: 25px;
-            
-            position: fixed;
-            right: 20px;
-        }
-
+        border: 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        flex-direction: row;
+        text-align: center;
+    }
     .logo-img {
         max-width: 1200px;
         max-height: 2000px;
         width: 400px;
         height: auto;
-        position: fixed;
-        left: 30px;
-        flex-direction: row;
-
-        }
-       
-       
-.title {
-    color: #305d6b;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 50px;
-    display: inline-flex;
-    margin-top: 60px;
-    margin-bottom: 20px;
-    font-size: 40px;
+    }
+    .title {
+        color: #305d6b;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        height: 50px;
+        display: inline-flex;
+        margin-top: 60px;
+        margin-bottom: 20px;
+        font-size: 40px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    .email-input, .password-input {
+        width: 200px;
+        border-color: rgb(186, 127, 194);
+        border-radius: 30px;
+        height: 30px;
+        margin: 5px 0 5px 0;
+    }
+    .login-btn {
+        width: 150px;
+        height: 30px;
+        border-color: #8bd3f8;
+        background-color: #8bd3f8;
+        border-radius: 30px;
+    }
 }
-
-h3 {
-    font-size: 20px;
-
-}
-.email-input,
-.password-input {
-    width: 200px;
-    border-color: rgb(186, 127, 194);
-    border-radius: 30px;
-    height: 30px;
-    margin: 5px 0 5px 0;
-}
-
-
-.login-btn {
-    width: 150px;
-    height: 30px;
-    border-color: #8bd3f8;
-    background-color: #8bd3f8;
-    border-radius: 30px;
-}
-
-.footer-style {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    bottom: 0px;   
-    position: fixed;
-}
-}
-
-
-
-
-
