@@ -222,7 +222,7 @@
 
 .post-box {
     align-items: center;
-    background-color: #94858F;
+    background-color: rgb(149, 212, 231);
     border: solid gray;
     display: flex;
     flex-direction: column;
@@ -233,7 +233,6 @@
 }
 
 .textarea-style {
-    background-color: #E7E6FF;
     border: double gray;
     height: 100%;
     text-align: justify;
@@ -249,7 +248,7 @@
 
 .btn-style {
     padding: 1em 2em;
-    background: rgb(224, 211, 248);
+    background: rgb(217, 215, 223);
     border: 2px solid rgb(200, 191, 202);
     border-radius: 1em;
     margin: 5px;
@@ -296,13 +295,12 @@
 }
 
 .publi-area {
-    background-color: #E7E6FF;
     padding-top: 3em;
     padding-top: 3em;
 }
 
 .publication-title, .publication-btns {
-    background-color: #94858F;
+    background-color: rgb(149, 212, 231);
     display: flex;
     text-align: justify;
     width: 100%;
