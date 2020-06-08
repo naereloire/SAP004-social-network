@@ -1,5 +1,6 @@
 import routes from "./routes.js";
 import auth from "./authentication/main.js"
+import profile from "./authentication/profile.js"
 
 const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
