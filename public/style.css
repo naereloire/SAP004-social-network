@@ -228,6 +228,9 @@
     margin: 0;
     text-align: justify;
 }
+.title-align{
+    text-align: center;
+}
 
 .post-box {
     align-items: center;

@@ -1,13 +1,10 @@
-// import { greeting } from './data.js';
+// import {} from '../data.js';
 
 export default () => {
     const container = document.createElement("div");
 
     const template = `
-    <h1>[girlTech]</h1>
-    <p>
-    Sobre tech.
-    </p> `;
+    <h2 class="title-align">[Tech][Pagina em construção.]</h2> `;
     container.innerHTML = template;
     return container
 }
