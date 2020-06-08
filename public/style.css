@@ -1,24 +1,33 @@
+#hidden-bar-top {
+    display: none;
+}
+
+#hidden-bar-bottom {
+    display: none;
+}
+
 .container-login {
+    align-items: center;
     border: 10px;
-    height: 500px;
-    margin-top: 5px;
-    padding: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: auto;
+    margin-top: 5px;
+    padding: 5px;
+    text-align: center;
 }
 
 .login-form {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .logo-img {
-    max-width: 200px;
     max-height: 150px;
-    width: auto;
+    max-width: 200px;
     height: auto;
+    width: auto;
 }
 
 .google-logo {
@@ -26,42 +35,41 @@
 }
 
 .google-box {
-    width: 160px;
-    height: 20px;
+    align-items: center;
+    display: inline-flex;
     border: 2px;
-    border-style: solid;
     border-color: #305d6b;
     border-radius: 5px;
-    display: inline-flex;
-    align-items: center;
+    border-style: solid;
+    height: 20px;
     margin-top: 10px;
+    width: 160px;
 }
 
 .title {
     color: #305d6b;
+    display: inline-flex;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 20px;
-    display: inline-flex;
 }
 
 .email-input, .password-input {
-    width: 200px;
     border-color: #ba7fc2;
     border-radius: 30px;
     height: 30px;
     margin: 5px 0 5px 0;
+    width: 200px;
 }
 
 .login-btn {
-    width: 150px;
-    height: 30px;
-    border-color: #8BD3f8;
     background-color: #8BD3f8;
+    border-color: #8BD3f8;
     border-radius: 30px;
+    height: 30px;
+    width: 150px;
 }
 
 .body-style {
-    /* background-color: #E7E6FF; */
     margin: 0;
     width: 100%;
 }
@@ -101,8 +109,6 @@
 
 .top-nav {
     background-color: #C3C0ED;
-    /* display: none; */
-    display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
@@ -153,7 +159,6 @@
 .bottom-nav {
     background-color: #C3C0ED;
     bottom: 0;
-    /* display: none; */
     margin: 0;
     overflow: hidden;
     padding-bottom: 5px;
@@ -237,7 +242,6 @@
 }
 
 .textarea-style {
-    /* background-color: #E7E6FF; */
     border: double gray;
     height: 100%;
     text-align: justify;
@@ -300,8 +304,6 @@
 }
 
 .publi-area {
-    /* background-color: #E7E6FF; */
-    padding-top: 3em;
     padding-top: 3em;
 }
 
@@ -327,11 +329,6 @@
 }
 
 @media only screen and (min-width:768px) and (max-width:900px) {
-    body {
-        /* background-image: url(./img/hash-hands.jpg); */
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
     .main-style {
         margin-top: 150px;
     }
@@ -351,10 +348,14 @@
     .img-perfil {
         justify-content: flex-end;
     }
-    img {
-        width: 130%;
+    .figure-style {
+        width: 100%;
+    }
+    #girly-img {
+        width: 80%;
     }
     .span-style {
+        width: 50%;
         font-size: 2.40em;
     }
     .foto-style {
@@ -385,7 +386,7 @@
         display: flex;
     }
     .ul-style {
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
     .footer-style {
         display: flex;
@@ -395,10 +396,6 @@
 }
 
 @media only screen and (min-width:901px) {
-    body {
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
     .main-style {
         display: flex;
         justify-content: center;
@@ -421,27 +418,27 @@
         width: 100%;
     }
     .img-capa {
-        width: 100%;
-        height: 85%;
         border-bottom: solid black;
+        height: 85%;
+        width: 100%;
     }
     .img-perfil {
         width: 50%;
     }
     .feed-container {
+        align-items: center;
         display: flex;
         flex-direction: column;
         width: 60%;
-        align-items: center;
     }
     .bio-container {
         align-items: center;
         flex: 1;
     }
     .bio-style {
+        border: solid black;
         display: flex;
         flex-wrap: wrap;
-        border: solid black;
         margin-top: 2em;
     }
     .bio-infos {
@@ -459,70 +456,76 @@
     .ul-style a {
         display: flex;
     }
-    .ul-style {
+    .ul-style a {
         justify-content: space-evenly;
+        margin: 10px;
+    }
+    .top-nav {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    .nav-style {
+        width: 40%;
+    }
+    #hidden-nav-top {
+        justify-content: space-between;
+        width: 50%;
     }
     .bottom-nav {
         background-color: none;
         bottom: auto;
         height: auto;
+        justify-content: space-evenly;
         left: 30%;
         top: 0;
         width: 70%;
-    }
-    /* .footer-style {
-        align-items: center;
-        display: flex;
-        margin: 0;
-    } */
-    .container-login {
-        border: 10px;
-        width: 500px;
-        height: 400px;
-        padding: 25px;
-        position: fixed;
-        right: 20px;
-    }
-    .logo-img {
-        max-width: 1200px;
-        max-height: 2000px;
-        width: 400px;
-        height: auto;
-        position: fixed;
-        left: 30px;
-        flex-direction: row;
-    }
-    .title {
-        color: #305d6b;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        height: 50px;
-        display: inline-flex;
-        margin-top: 60px;
-        margin-bottom: 20px;
-        font-size: 40px;
-    }
-    h3 {
-        font-size: 20px;
-    }
-    .email-input, .password-input {
-        width: 200px;
-        border-color: rgb(186, 127, 194);
-        border-radius: 30px;
-        height: 30px;
-        margin: 5px 0 5px 0;
-    }
-    .login-btn {
-        width: 150px;
-        height: 30px;
-        border-color: #8bd3f8;
-        background-color: #8bd3f8;
-        border-radius: 30px;
     }
     .footer-style {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        bottom: 0px;
-        position: fixed;
+        bottom: auto;
+    }
+    .container-login {
+        border: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        text-align: center;
+        width: 100%;
+    }
+    .logo-img {
+        height: auto;
+        max-height: 2000px;
+        max-width: 1200px;
+        width: 400px;
+    }
+    .title {
+        color: #305d6b;
+        display: inline-flex;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 40px;
+        height: 50px;
+        margin-bottom: 20px;
+        margin-top: 60px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    .email-input, .password-input {
+        border-color: rgb(186, 127, 194);
+        border-radius: 30px;
+        height: 30px;
+        margin: 5px 0 5px 0;
+        width: 200px;
+    }
+    .login-btn {
+        background-color: #8bd3f8;
+        border-color: #8bd3f8;
+        border-radius: 30px;
+        height: 30px;
+        width: 150px;
     }
 }
