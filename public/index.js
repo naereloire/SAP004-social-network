@@ -35,11 +35,12 @@ const renderPage = () => {
             document.getElementById("hidden-bar-bottom").style.display = "flex"
             main.appendChild(routes[page]);
         }
+        addEventButtons(page);
     })
-    addEventButtons(page);
 }
 
 window.addEventListener("hashchange", renderPage)
+
 const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
 
 window.addEventListener("load", () => {
