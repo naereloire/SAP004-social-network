@@ -30,7 +30,8 @@ const renderPage = () => {
             if(page == 'login'){
                 page = 'home'
             } 
-            
+            document.getElementById("hidden-bar-top").style.display="flex"
+            document.getElementById("hidden-bar-bottom").style.display="flex"
             main.appendChild(routes[page]);
         }
     })
