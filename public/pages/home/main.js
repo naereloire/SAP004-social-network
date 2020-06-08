@@ -1,4 +1,4 @@
-import { savePost } from './data.js';
+import { savePost } from '../data.js';
 
 export default () => {
   const container = document.createElement("div");

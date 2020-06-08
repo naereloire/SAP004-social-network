@@ -1,7 +1,3 @@
-
-// export const greeting = name => `Oi ${name}! Que bom ver você aqui!`;
-
-
 export function savePost(textPost) {
     const post = {
         text: textPost,

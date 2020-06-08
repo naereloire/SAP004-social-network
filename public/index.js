@@ -1,11 +1,11 @@
 import routes from "./routes.js";
-import {addEventButtons} from "./pages/home/main.js"
+import { addEventButtons } from "./pages/home/main.js"
 import auth from "./authentication/main.js"
 
 const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
 
-btnLogout.addEventListener('click', function(){
+btnLogout.addEventListener('click', function () {
     auth.logout()
     renderPage()
 })
@@ -17,25 +17,26 @@ const renderPage = () => {
     let page = validateHash(window.location.hash)
     //Busca se existe um usuário logado ou deslogado.
     firebase.auth().onAuthStateChanged((usuario) => {
-        if(!usuario){
+        if (!usuario) {
             main.appendChild(routes['login']);
             auth.createBtnAuth()
             const btnLogIn = document.querySelector("#login-btn");
-            btnLogIn.addEventListener('click', function(event){
+            btnLogIn.addEventListener('click', function (event) {
                 event.preventDefault()
                 auth.loginEmail()
             })
-            
+
         }
         else {
-            if(page == 'login'){
+            if (page == 'login') {
                 page = 'home'
-            } 
-            document.getElementById("hidden-bar-top").style.display="flex"
-            document.getElementById("hidden-bar-bottom").style.display="flex"
+            }
+            document.getElementById("hidden-bar-top").style.display = "flex"
+            document.getElementById("hidden-bar-bottom").style.display = "flex"
             main.appendChild(routes[page]);
         }
     })
+    addEventButtons(page);
 }
 
 window.addEventListener("hashchange", renderPage)
