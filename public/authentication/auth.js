@@ -20,7 +20,8 @@ export default {
     },
     
     logout: function(){
-        firebase.auth().signOut().then(() => {
+        firebase.auth().signOut()
+        .then(() => {
         window.location.href = "/#login"
     }).catch(erro => {
         return erro
@@ -30,10 +31,25 @@ export default {
         let email = document.querySelector("#email").value;
         let password = document.querySelector("#password").value;
 
-        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
             window.location.href = "/#"
         }).catch(erro => {
             alert("Usuário ou Senha incorreta")
         });;
+    },
+
+    createLogin: function(){
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(user => {
+            alert("Usuário criado com sucesso!")
+            window.location.href = "/#"
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }

@@ -2,18 +2,16 @@ export default () => {
     const container = document.createElement("div");
 
     const template = `
-    <div>
-        <h1 class="text-profile">Preencha os campos abaixo</h1>
+        <h1 class="text-profile">Preencha os campos abaixo:</h1>
         <form class="form-profile">
-            <input id="name" class="input-profile" type="text" placeholder="Nome">Nome</input>
-            <input id="last-name" type="text" placeholder="Sobrenome">Sobrenome</input>
-            <input id="email-profile" type="email" placeholder="Preencha o email">Email</input>
-            <input id="password-profile" type="password">Senha</input>
-            <input id= "date-profile" type="date">Data de Nascimento</input>
-            <input id="local-profile" type="text">Cidade</input>
-            <input type="button">Enviar</input>
+            <input class="register" type="text" placeholder="Nome *" required>
+            <input class="register" type="text" placeholder="Sobrenome *" required>
+            <input class="register" type="date" placeholder="Data de nascimento *" required>
+            <input id="email" class="register" type="email" placeholder="Email *" required>
+            <input id="password" class="register" type="password" placeholder="Senha *" required>
+            <input class="register" type="text" placeholder="Cidade *" required>
+            <input id="btn-register" class="register" type="submit">
         </form>
-    </div>
     `
     container.innerHTML = template;
     return container

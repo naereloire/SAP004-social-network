@@ -19,6 +19,11 @@ const renderPage = () => {
         if(!usuario){
             if(page === "register") {
                 main.appendChild(routes['register']);
+                const btnRegister = document.querySelector("#btn-register");
+                btnRegister.addEventListener("click", function (event) {
+                    event.preventDefault()
+                    auth.createLogin()
+                })
             }
             else {
                 main.appendChild(routes['login']);
