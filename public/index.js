@@ -12,7 +12,7 @@ btnLogout.addEventListener('click', function () {
 
 const init = () => window.addEventListener("hashchange", renderPage)
 
-const renderPage = () => {
+const renderPage = (event) => {
     main.innerHTML = " ";
     let page = validateHash(window.location.hash)
     //Busca se existe um usuário logado ou deslogado.
@@ -32,13 +32,14 @@ const renderPage = () => {
                 page = 'home'
             }
             const navStyle = document.getElementsByClassName("hidden-nav")
-            for (let element of navStyle){
+            for (let element of navStyle) {
                 element.style.display = "flex"
             }
 
             main.appendChild(routes[page]);
+            addEventButtons(page);
         }
-        addEventButtons(page);
+
     })
 }
 
@@ -46,8 +47,8 @@ window.addEventListener("hashchange", renderPage)
 
 const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
 
-window.addEventListener("load", () => {
-    renderPage();
+window.addEventListener("load", (event) => {
+    renderPage(event);
     init();
 })
 

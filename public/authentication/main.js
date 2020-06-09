@@ -21,15 +21,17 @@ export default {
     },
 
     logout: function () {
-        const navStyle = document.getElementsByClassName("hidden-nav")
-        for (let element of navStyle) {
-            element.style.display = "none"
-        }
         firebase.auth().signOut().then(() => {
+            const navStyle = document.getElementsByClassName("hidden-nav")
+            for (let element of navStyle){
+                element.style.display = "none"
+            }
+            document.getElementById("side-navigation").style.width = "0";
             window.location.href = "/#login"
         }).catch(erro => {
             return erro
         })
+
     },
 
     loginEmail: function () {

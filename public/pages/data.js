@@ -1,4 +1,4 @@
-export function savePost(textPost) {
+export function savePost(textPost){
     const post = {
         text: textPost,
         user_id: "Diana"
