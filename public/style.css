@@ -462,17 +462,18 @@
     }
     .top-nav {
         align-items: center;
-        display: flex;
+        /* display: flex; */
         flex-direction: row;
         flex-wrap: nowrap;
     }
     .nav-style {
         width: 40%;
     }
-    /* #hidden-nav-top {
-        justify-content: space-between;
-        width: 50%;
-    } */
+    .hidden-nav{
+        display: flex;
+        /* justify-content: space-between;
+        width: 50%; */
+    }
     .bottom-nav {
         background-color: none;
         bottom: auto;
