@@ -31,8 +31,11 @@ const renderPage = () => {
             if (page == 'login') {
                 page = 'home'
             }
-            document.getElementById("hidden-bar-top").style.display = "flex"
-            document.getElementById("hidden-bar-bottom").style.display = "flex"
+            const navStyle = document.getElementsByClassName("hidden-nav")
+            for (let element of navStyle){
+                element.style.display = "flex"
+            }
+
             main.appendChild(routes[page]);
         }
         addEventButtons(page);

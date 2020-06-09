@@ -1,8 +1,4 @@
-#hidden-bar-top {
-    display: none;
-}
-
-#hidden-bar-bottom {
+.hidden-nav {
     display: none;
 }
 
@@ -228,7 +224,8 @@
     margin: 0;
     text-align: justify;
 }
-.title-align{
+
+.title-align {
     text-align: center;
 }
 
@@ -472,10 +469,10 @@
     .nav-style {
         width: 40%;
     }
-    #hidden-nav-top {
+    /* #hidden-nav-top {
         justify-content: space-between;
         width: 50%;
-    }
+    } */
     .bottom-nav {
         background-color: none;
         bottom: auto;
