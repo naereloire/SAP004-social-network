@@ -13,7 +13,7 @@ export default() => {
       <button id='login-btn' class=' login-btn'>Log in</button><br />
     </form>
     <hr>
-    <p>Ainda não tem uma conta? <a href="/#perfil" id="create-account">Crie agora</a></p>
+    <p>Ainda não tem uma conta? <a href="/#register" id="create-account">Crie agora</a></p>
     <div id="firebaseui-auth"></div>
     </section>
     <div>
