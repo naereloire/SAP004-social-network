@@ -36,7 +36,7 @@ export default () => {
 export const addEventButtons = (page) => {
   if (page === "home") {
     loadPosts(showPosts)
-    setTimeout(()=>{document.getElementById("post-form").addEventListener("submit", btnPost)}, 1000)
+    setTimeout(()=>{document.getElementById("post-form").addEventListener("submit", btnPost)}, 2000)
   }
 }
 
