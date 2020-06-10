@@ -1,4 +1,4 @@
-import { savePost } from '../data.js';
+import { createPost, loadPosts } from '../data.js';
 
 export default () => {
   const container = document.createElement("div");
@@ -53,17 +53,18 @@ export default () => {
   return container
 }
 
+function btnPost(event) {
+  event.preventDefault();
+  const post = document.getElementById("post-text").value
+  if (post) {
+    createPost(post)
+    document.getElementById("post-text").value = ""
+  }
+}
 
 export const addEventButtons = (page) => {
   if (page === "home") {
-    document.getElementById("post-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-      const post = document.getElementById("post-text").value
-      if (post) {
-        savePost(post)
-        document.getElementById("post-text").value = ""
-      }
-    })
+    document.getElementById("post-form").addEventListener("submit", btnPost);
+    loadPosts()
   }
-
 }
