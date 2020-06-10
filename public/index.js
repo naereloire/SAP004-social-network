@@ -1,6 +1,6 @@
 import routes from "./routes.js";
 import { addEventButtons } from "./pages/home/main.js"
-import auth from "./authentication/main.js"
+import auth from "./authentication/auth.js"
 
 const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
@@ -17,15 +17,24 @@ const renderPage = (event) => {
     let page = validateHash(window.location.hash)
     //Busca se existe um usuário logado ou deslogado.
     firebase.auth().onAuthStateChanged((usuario) => {
-        if (!usuario) {
-            main.appendChild(routes['login']);
-            auth.createBtnAuth()
-            const btnLogIn = document.querySelector("#login-btn");
-            btnLogIn.addEventListener('click', function (event) {
-                event.preventDefault()
-                auth.loginEmail()
-            })
-
+        if(!usuario){
+            if(page === "register") {
+                main.appendChild(routes['register']);
+                const btnRegister = document.querySelector("#btn-register");
+                btnRegister.addEventListener("click", function (event) {
+                    event.preventDefault()
+                    auth.createLogin()
+                })
+            }
+            else {
+                main.appendChild(routes['login']);
+                auth.createBtnAuth()
+                const btnLogIn = document.querySelector("#login-btn");
+                btnLogIn.addEventListener('click', function(event){
+                    event.preventDefault()
+                    auth.loginEmail()
+                })
+            }
         }
         else {
             if (page == 'login') {
