@@ -413,6 +413,9 @@
         width: 70%;
         justify-content: center;
     }
+    #girly-img {
+        width: 75%;
+    }
     .capa-style {
         display: flex;
         width: 100%;
@@ -453,31 +456,34 @@
     .btn-style {
         padding: 2px;
     }
+    .ul-style li {
+        width: 100%;
+    }
     .ul-style a {
         display: flex;
     }
     .ul-style a {
-        justify-content: space-evenly;
+        justify-content: space-between;
         margin: 10px;
     }
     .top-nav {
         align-items: center;
-        /* display: flex; */
         flex-direction: row;
         flex-wrap: nowrap;
+        height: 8%;
+        padding-bottom: 5px;
+        padding-top: 10px;
     }
     .nav-style {
         width: 40%;
     }
-    .hidden-nav{
-        display: flex;
-        /* justify-content: space-between;
-        width: 50%; */
+    .hidden-nav {
+        display: none;
     }
     .bottom-nav {
         background-color: none;
         bottom: auto;
-        height: auto;
+        height: 8%;
         justify-content: space-evenly;
         left: 30%;
         top: 0;
