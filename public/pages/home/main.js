@@ -56,10 +56,13 @@ export default () => {
 
 export const addEventButtons = (page) => {
   if (page === "home") {
-      document.getElementById("post-form").addEventListener("submit", function (event) {
+    document.getElementById("post-form").addEventListener("submit", function (event) {
       event.preventDefault();
       const post = document.getElementById("post-text").value
-      savePost(post)
+      if (post) {
+        savePost(post)
+        document.getElementById("post-text").value = ""
+      }
     })
   }
 
