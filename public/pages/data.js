@@ -8,6 +8,7 @@ const currentDate = () => {
 export const createPost = (textPost) => {
     let user = firebase.auth().currentUser;
     const post = {
+        name: user.displayName,
         user_id: user.uid,
         text: textPost,
         date: currentDate(),
@@ -16,15 +17,17 @@ export const createPost = (textPost) => {
 
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post)
+    postsCollection.add(post).then(()=>{
+            window.location.reload()
+        }
+    )
 }
 
-export const loadPosts = () => {
+export const loadPosts = (callbackPosts) => {
     const postsCollection = firebase.firestore().collection("posts")
     postsCollection.get().then((snap) => { // snap é um parametro/lista de posts
         snap.forEach((docs) => {
-            console.log(docs.data())
+            callbackPosts(docs)
         })
     })
-
 } 

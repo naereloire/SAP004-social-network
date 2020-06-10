@@ -4,7 +4,6 @@ export default () => {
   const container = document.createElement("div");
   container.className = "feed-style"
   const template = `
-
     <div class="bio-container">
     <section class="bio-style">
       <div class="capa-style">
@@ -19,7 +18,7 @@ export default () => {
       </div>
     </section>
   </div>
-  <div class="feed-container">
+  <div id="feed-id" class="feed-container">
     <section class="post-box">
      <form id="post-form">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
@@ -30,41 +29,46 @@ export default () => {
       </div>
       </form>
     </section>
-    
-    <section class="publication-box">
-      <div class="publication-title">
-        <span class="publi-title-span">
-          <p>Publicado por Zatanna</p>
-        </span>
-        <a href="#" class="close-post-btn">&times;</a>
-      </div>
-      <div class="publi-area">
-        <p class="text-style">Publicação de Zatanna</p>
-      </div>
-      <div class="publication-btns">
-        <button class="btn-style"><i class="fas fa-hand-spock fa-2x"></i></button>
-        <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
-      </div>
-    </section>
-  </div>
-
-    `;
+  </div>`;
   container.innerHTML = template;
   return container
 }
-
-function btnPost(event) {
-  event.preventDefault();
-  const post = document.getElementById("post-text").value
-  if (post) {
-    createPost(post)
-    document.getElementById("post-text").value = ""
+export const addEventButtons = (page) => {
+  if (page === "home") {
+    loadPosts(showPosts)
+    setTimeout(()=>{document.getElementById("post-form").addEventListener("submit", btnPost)}, 1000)
   }
 }
 
-export const addEventButtons = (page) => {
-  if (page === "home") {
-    document.getElementById("post-form").addEventListener("submit", btnPost);
-    loadPosts()
+
+const btnPost = (event) => {
+  event.preventDefault();
+  const postText = document.getElementById("post-text").value
+  if (postText) {
+    createPost(postText)
+    document.getElementById("post-text").value = ""
   }
+
+}
+
+const showPosts = (post) => {
+  const feddContainer = document.getElementById("feed-id");
+  const template_feed = `
+    <section id="${post.id}" class="publication-box">
+    <div class="publication-title">
+      <span class="publi-title-span">
+        <p>Publicado por ${post.data().name}</p>
+      </span>
+      <a href="#" class="close-post-btn">&times;</a>
+    </div>
+    <div class="publi-area">
+      <p class="text-style">${post.data().text}</p>
+      <p>${post.data().date}</p>
+    </div>
+    <div class="publication-btns">
+      <button class="btn-style"><i class="fas fa-hand-spock fa-2x"></i></button>
+      <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
+    </div>
+    </section>`;
+  feddContainer.innerHTML += template_feed;
 }
