@@ -1,17 +1,18 @@
 import routes from "./routes.js";
+import { addEventButtons } from "./pages/home/main.js"
 import auth from "./authentication/auth.js"
 
 const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
 
-btnLogout.addEventListener('click', function(){
+btnLogout.addEventListener('click', function () {
     auth.logout()
     renderPage()
 })
 
 const init = () => window.addEventListener("hashchange", renderPage)
 
-const renderPage = () => {
+const renderPage = (event) => {
     main.innerHTML = " ";
     let page = validateHash(window.location.hash)
     //Busca se existe um usuário logado ou deslogado.
@@ -36,21 +37,27 @@ const renderPage = () => {
             }
         }
         else {
-            if(page == 'login'){
+            if (page == 'login') {
                 page = 'home'
-            } 
-            document.getElementById("hidden-bar-top").style.display="flex"
-            document.getElementById("hidden-bar-bottom").style.display="flex"
+            }
+            const navStyle = document.getElementsByClassName("hidden-nav")
+            for (let element of navStyle) {
+                element.style.display = "flex"
+            }
+
             main.appendChild(routes[page]);
+            addEventButtons(page);
         }
+
     })
 }
 
 window.addEventListener("hashchange", renderPage)
+
 const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
 
-window.addEventListener("load", () => {
-    renderPage();
+window.addEventListener("load", (event) => {
+    renderPage(event);
     init();
 })
 
@@ -62,3 +69,10 @@ const sidebarAction = (event) => {
 
 document.getElementById("close-sidebar").addEventListener("click", sidebarAction)
 document.getElementById("open-sidebar").addEventListener("click", sidebarAction)
+
+
+
+
+
+
+

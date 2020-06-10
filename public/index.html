@@ -6,18 +6,14 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-
   <title>[girlyHub]</title>
 </head>
 
 <body class="body-style">
   <header>
-
     <div id="side-navigation" class="side-nav">
       <a id="close-sidebar" class="close-btn">&times;</a>
       <a href="#">Perfil</a>
@@ -25,7 +21,7 @@
       <a href="#">Sobre</a>
       <a href="#" id="logout">Sair</a>
     </div>
-    <nav id="hidden-bar-top" class="top-nav">
+    <nav class="hidden-nav top-nav">
       <a href="#" id="open-sidebar"><i class="fa fa-bars fa-lg"></i></a>
       <div class="nav-style">
         <figure class="figure-style">
@@ -36,7 +32,7 @@
     </nav>
   </header>
   <main id="root" class="main-style"></main>
-  <section id="hidden-bar-bottom" class="bottom-nav">
+  <section class="bottom-nav hidden-nav">
     <nav>
       <ul class="ul-style">
         <li><a href="/#"><i class="fas fa-home fa-2x"></i>Home</a></li>
@@ -55,6 +51,8 @@
     <a href="https://github.com/EvellynThamires/SAP004-social-network">Evellyn Thamires</a>
     <a href="https://github.com/naereloire/SAP004-social-network">Naere Loire</a>
   </footer>
+  <script type="module" src="index.js"></script>
+  <script src="https://kit.fontawesome.com/2ab419e357.js" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/3.5.1/firebase-ui-auth__pt.js"></script>
   <script defer src="/__/firebase/7.14.6/firebase-app.js"></script>
   <script defer src="/__/firebase/7.14.6/firebase-auth.js"></script>
@@ -62,9 +60,6 @@
   <script defer src="/__/firebase/7.14.6/firebase-messaging.js"></script>
   <script defer src="/__/firebase/7.14.6/firebase-storage.js"></script>
   <script defer src="/__/firebase/init.js"></script>
-  <script type="module" src="index.js"></script>
-  <script src="https://kit.fontawesome.com/2ab419e357.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
-

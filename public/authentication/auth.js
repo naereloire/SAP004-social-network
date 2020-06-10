@@ -1,10 +1,10 @@
 export default {
-    createBtnAuth: function() {
+    createBtnAuth: function () {
         let ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        
+
         let config = {
             callbacks: {
-                signInSuccessWithAuthResult: function(authResult, redirectUrl){
+                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
                     window.location.href = "/#"
                     return true
                 }
@@ -18,16 +18,22 @@ export default {
 
         ui.start('#firebaseui-auth', config)
     },
-    
-    logout: function(){
-        firebase.auth().signOut()
-        .then(() => {
-        window.location.href = "/#login"
-    }).catch(erro => {
-        return erro
-    })},
 
-    loginEmail: function(){
+    logout: function () {
+        firebase.auth().signOut().then(() => {
+            const navStyle = document.getElementsByClassName("hidden-nav")
+            for (let element of navStyle){
+                element.style.display = "none"
+            }
+            document.getElementById("side-navigation").style.width = "0";
+            window.location.href = "/#login"
+        }).catch(erro => {
+            return erro
+        })
+
+    },
+
+    loginEmail: function () {
         let email = document.querySelector("#email").value;
         let password = document.querySelector("#password").value;
 
