@@ -1,5 +1,3 @@
-// import { greeting } from './data.js';
-
 export default () => {
     const container = document.createElement("div");
 

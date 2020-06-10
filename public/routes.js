@@ -5,6 +5,7 @@ import tech from './pages/tech/main.js';
 import autocuidado from './pages/autocuidado/main.js';
 import seguranca from './pages/seguranca/main.js';
 import oportunidades from './pages/oportunidades/main.js';
+import register from "./pages/registro/main.js"
 
 export default {
     home:home(),
@@ -13,6 +14,7 @@ export default {
     tech:tech(),
     autocuidado:autocuidado(),
     seguranca:seguranca(),
-    oportunidades:oportunidades()
+    oportunidades:oportunidades(),
+    register:register()
 
 }
