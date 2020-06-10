@@ -14,27 +14,6 @@ const init = () => window.addEventListener("hashchange", renderPage)
 
 const renderPage = (event) => {
     main.innerHTML = " ";
-    authentication()
-}
-
-window.addEventListener("hashchange", renderPage)
-const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
-
-window.addEventListener("load", () => {
-    renderPage();
-    init();
-})
-
-const sidebarAction = (event) => {
-    event.currentTarget.id === "open-sidebar" ?
-        document.getElementById("side-navigation").style.width = "250px" :
-        document.getElementById("side-navigation").style.width = "0";
-}
-
-document.getElementById("close-sidebar").addEventListener("click", sidebarAction)
-document.getElementById("open-sidebar").addEventListener("click", sidebarAction)
-
-function authentication () {
     let page = validateHash(window.location.hash)
     firebase.auth().onAuthStateChanged((usuario) => {
         if(!usuario){
@@ -76,3 +55,21 @@ function authentication () {
 
     })
 }
+
+window.addEventListener("hashchange", renderPage)
+const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
+
+window.addEventListener("load", () => {
+    renderPage();
+    init();
+})
+
+const sidebarAction = (event) => {
+    event.currentTarget.id === "open-sidebar" ?
+        document.getElementById("side-navigation").style.width = "250px" :
+        document.getElementById("side-navigation").style.width = "0";
+}
+
+document.getElementById("close-sidebar").addEventListener("click", sidebarAction)
+document.getElementById("open-sidebar").addEventListener("click", sidebarAction)
+
