@@ -97,7 +97,19 @@
     width: 100%;
 }
 
+#btn-display {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .form-profile input[type=submit] {
+    background-color: #8bd3f8;
+    border-color: #8bd3f8;
+    color: #fff;
+    width: 120px;
+}
+
+.form-profile input[type=button] {
     background-color: #8bd3f8;
     border-color: #8bd3f8;
     color: #fff;
