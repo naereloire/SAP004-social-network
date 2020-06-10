@@ -451,6 +451,13 @@
     .post-box {
         width: 70%;
     }
+    .form-style {
+        width: 100%;
+    }
+    .textarea-style {
+        padding: 1em;
+        width: 90%;
+    }
     .publication-box {
         width: 77%;
     }
