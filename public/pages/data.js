@@ -1,10 +1,11 @@
-export const createPost = (textPost) => {
+export const createPost = (textPost,tagOption) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
     const post = {
         name: user.displayName,
         user_id: user.uid,
         text: textPost,
+        tag:tagOption,
         date: date.toLocaleString(),
         timestamp: date.getTime(),
         coments: [],

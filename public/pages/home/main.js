@@ -20,6 +20,14 @@ export default () => {
   </div>
   <div id="feed-id" class="feed-container">
     <section class="post-box">
+    <select id="select-id"class="select-style">
+    <option value="">Tag</option> 
+    <option value="geek">Geek</option> 
+    <option value="tech">Tech</option> 
+    <option value="autocuidado">Autocuidado</option> 
+    <option value="seguranca">Segurança</option> 
+    <option value="oportunidades">Oportunidades</option> 
+    </select>
      <form id="post-form" class="form-style">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
         placeholder="Escreva uma mensagem."></textarea>
@@ -36,7 +44,7 @@ export default () => {
 export const addEventButtons = (page) => {
   if (page === "home") {
     loadPosts(showPosts)
-    setTimeout(()=>{document.getElementById("post-form").addEventListener("submit", btnPost)}, 2000)
+    setTimeout(() => { document.getElementById("post-form").addEventListener("submit", btnPost) }, 2000)
   }
 }
 
@@ -44,8 +52,10 @@ export const addEventButtons = (page) => {
 const btnPost = (event) => {
   event.preventDefault();
   const postText = document.getElementById("post-text").value
+  const tag = document.getElementById("select-id")
+  const tagValue = tag.options[tag.selectedIndex].value
   if (postText) {
-    createPost(postText)
+    createPost(postText,tagValue)
     document.getElementById("post-text").value = ""
   }
 
