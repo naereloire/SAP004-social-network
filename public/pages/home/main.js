@@ -20,39 +20,62 @@ export default () => {
   </div>
   <div id="feed-id" class="feed-container">
     <section class="post-box">
-     <form id="post-form">
+    <div class="select-container">
+    <select id="select-id">
+    <option value="">Tag</option> 
+    <option value="geek">Geek</option> 
+    <option value="tech">Tech</option> 
+    <option value="autocuidado">Autocuidado</option> 
+    <option value="seguranca">Segurança</option> 
+    <option value="oportunidades">Oportunidades</option> 
+    </select>
+    <div>
+     <form id="post-form" class="form-style">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
         <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
-        <button type="submit" class="btn-style">Compartilhar</button>
+        <button type="submit" class="btn-style">Publicar</button>
       </div>
       </form>
     </section>
+    <div id="all-posts-container"></div>
   </div>`;
   container.innerHTML = template;
   return container
 }
 export const addEventButtons = (page) => {
   if (page === "home") {
-    loadPosts(showPosts)
-    setTimeout(()=>{document.getElementById("post-form").addEventListener("submit", btnPost)}, 2000)
+    loadPosts(showPosts, "")
+    setTimeout(() => { document.getElementById("post-form").addEventListener("submit", btnPost) }, 2000)
+    document.getElementById("ul-id").addEventListener("click", tagFilter)
   }
+}
+
+const tagFilter = (event) => {
+  let tagValue = event.target.name
+  if (tagValue === undefined) {
+    tagValue = event.target.parentElement.name
+  }
+  document.getElementById("all-posts-container").innerHTML = ""
+  loadPosts(showPosts, tagValue)
 }
 
 
 const btnPost = (event) => {
   event.preventDefault();
   const postText = document.getElementById("post-text").value
+  const tag = document.getElementById("select-id")
+  const tagValue = tag.options[tag.selectedIndex].value
   if (postText) {
-    createPost(postText)
+    createPost(postText, tagValue)
     document.getElementById("post-text").value = ""
   }
 
 }
 
 const showPosts = (post) => {
-  const feddContainer = document.getElementById("feed-id");
+  const feddContainer = document.getElementById("all-posts-container");
   const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
