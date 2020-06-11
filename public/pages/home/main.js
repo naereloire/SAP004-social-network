@@ -21,7 +21,7 @@ export default () => {
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="select-container">
-    <select id="select-id">
+    <select id="select-id" class="btn-style">
     <option value="">Tag</option> 
     <option value="geek">Geek</option> 
     <option value="tech">Tech</option> 
