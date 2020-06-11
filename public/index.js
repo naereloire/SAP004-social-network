@@ -15,7 +15,6 @@ const init = () => window.addEventListener("hashchange", renderPage)
 const renderPage = (event) => {
     main.innerHTML = " ";
     let page = validateHash(window.location.hash)
-    //Busca se existe um usuário logado ou deslogado.
     firebase.auth().onAuthStateChanged((usuario) => {
         if(!usuario){
             if(page === "register") {
@@ -24,6 +23,11 @@ const renderPage = (event) => {
                 btnRegister.addEventListener("click", function (event) {
                     event.preventDefault()
                     auth.createLogin()
+                })
+                const backBtn = document.querySelector("#back-btn");
+                backBtn.addEventListener("click", function(event) {
+                    event.preventDefault()
+                    window.location.href ="/#login"
                 })
             }
             else {
@@ -53,11 +57,10 @@ const renderPage = (event) => {
 }
 
 window.addEventListener("hashchange", renderPage)
-
 const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
 
-window.addEventListener("load", (event) => {
-    renderPage(event);
+window.addEventListener("load", () => {
+    renderPage();
     init();
 })
 
@@ -69,10 +72,4 @@ const sidebarAction = (event) => {
 
 document.getElementById("close-sidebar").addEventListener("click", sidebarAction)
 document.getElementById("open-sidebar").addEventListener("click", sidebarAction)
-
-
-
-
-
-
 

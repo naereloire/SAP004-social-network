@@ -7,13 +7,13 @@ export default () => {
       <section >
       <h1 class='title'>[girlyHub]</h1>
       <h3 class='subtitle'>Bem vinda!</h3>
-     <form class="login-form">
+    <form class="login-form">
       <input id='email' type='email' class='email-input' , placeholder='  Email'>
       <input id='password' type='password' class='password-input' placeholder='  Senha'>
       <button id='login-btn' class=' login-btn'>Log in</button><br />
     </form>
     <hr>
-    <p>Ainda não tem uma conta? <link rel="" href=""> Crie agora </p>
+    <p>Ainda não tem uma conta? <a href="/#register" id="create-account">Crie agora</a></p>
     <div id="firebaseui-auth"></div>
     </section>
     <div>
