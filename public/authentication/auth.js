@@ -55,7 +55,7 @@ export default {
             window.location.href = "/#"
         })
         .catch(error => {
-            console.log(error)
+            alert("Email já cadastrado")
         })
     }
 }

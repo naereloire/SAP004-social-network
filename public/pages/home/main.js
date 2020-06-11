@@ -20,7 +20,7 @@ export default () => {
   </div>
   <div id="feed-id" class="feed-container">
     <section class="post-box">
-     <form id="post-form">
+    <form id="post-form">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
@@ -39,7 +39,6 @@ export const addEventButtons = (page) => {
     setTimeout(()=>{document.getElementById("post-form").addEventListener("submit", btnPost)}, 2000)
   }
 }
-
 
 const btnPost = (event) => {
   event.preventDefault();

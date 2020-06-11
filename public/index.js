@@ -44,6 +44,9 @@ const renderPage = (event) => {
             if (page == 'login') {
                 page = 'home'
             }
+            if(page == 'profile') {
+                console.log(usuario.uid)
+            }
             const navStyle = document.getElementsByClassName("hidden-nav")
             for (let element of navStyle) {
                 element.style.display = "flex"

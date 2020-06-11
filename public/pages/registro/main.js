@@ -10,7 +10,7 @@ export default () => {
             <input id="email" type="email" placeholder="Email *" required>
             <input id="password" type="password" placeholder="Senha *" required>
             <input type="text" placeholder="Cidade *" required>
-            <div id="btn-display">
+            <div class="btn-display">
                 <input id="back-btn" type="button" value="Voltar">
                 <input id="btn-register" type="submit">
             </div>

@@ -67,7 +67,7 @@
 
 .text-profile {
     font-size: 28px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Bellota', cursive;
     font-weight: bold;
     margin-bottom: 17px;
     text-align: center;
@@ -93,11 +93,14 @@
     width: 100%;
 }
 
-#btn-display {
+.btn-display {
     display: flex;
     justify-content: space-evenly;
 }
 
+#back-btn {
+    margin-right: 5px;
+}
 .form-profile input[type=submit] {
     background-color: #8bd3f8;
     border-color: #8bd3f8;
