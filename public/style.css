@@ -339,6 +339,7 @@
     border: solid gray;
     display: flex;
     flex-direction: column;
+    margin: 1em;
     text-align: justify;
     width: 90%;
 }
@@ -366,6 +367,13 @@
 
 .capa-style {
     display: none;
+}
+
+.select-container {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    flex-direction: column;
 }
 
 .footer-style {
@@ -499,6 +507,13 @@
     }
     .post-box {
         width: 70%;
+    }
+    .form-style {
+        width: 100%;
+    }
+    .textarea-style {
+        padding: 1em;
+        width: 90%;
     }
     .publication-box {
         width: 77%;
