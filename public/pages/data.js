@@ -1,11 +1,11 @@
-export const createPost = (textPost,tagOption) => {
+export const createPost = (textPost, tagOption) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
     const post = {
         name: user.displayName,
         user_id: user.uid,
         text: textPost,
-        tag:tagOption,
+        tag: tagOption,
         date: date.toLocaleString(),
         timestamp: date.getTime(),
         coments: [],
@@ -19,8 +19,14 @@ export const createPost = (textPost,tagOption) => {
     )
 }
 
-export const loadPosts = (callbackPosts) => {
-    const postsCollection = firebase.firestore().collection("posts").orderBy("timestamp","desc")
+export const loadPosts = (callbackPosts, tagFilter) => {
+    let postsCollection
+    if (!tagFilter) {
+        postsCollection = firebase.firestore().collection("posts").orderBy("timestamp", "desc")
+    }
+    else {
+        postsCollection = firebase.firestore().collection("posts").where("tag", "==", tagFilter).orderBy("timestamp", "desc")
+    }
     postsCollection.get().then((snap) => {
         snap.forEach((docs) => {
             callbackPosts(docs)

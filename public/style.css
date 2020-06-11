@@ -319,6 +319,13 @@
     display: none;
 }
 
+.select-container {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
 .footer-style {
     display: flex;
     flex: 1;
