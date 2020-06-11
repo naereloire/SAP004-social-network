@@ -79,14 +79,14 @@ const showPosts = (post) => {
   const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
-      <span class="publi-title-span">
+      <span class="publi-title-span"><br>
         <p>Publicado por ${post.data().name}</p>
       </span>
       <a href="#" class="close-post-btn">&times;</a>
     </div>
     <div class="publi-area">
       <p class="text-style">${post.data().text}</p>
-      <p>${post.data().date}</p>
+      <p>${post.data().date}</p><hr>
     </div>
     <div class="publication-btns">
       <button class="btn-style"><i class="fas fa-hand-spock fa-2x"></i></button>
