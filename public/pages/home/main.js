@@ -46,10 +46,15 @@ export default () => {
 }
 export const addEventButtons = (page) => {
   if (page === "home") {
-    loadPosts(showPosts, "")
-    setTimeout(() => { document.getElementById("post-form").addEventListener("submit", btnPost) }, 2000)
+    loadPosts(clearFeed, showPosts, "")
+    setTimeout(() => {
+      document.getElementById("post-form").addEventListener("submit", btnPost)
+    }, 2000)
     document.getElementById("ul-id").addEventListener("click", tagFilter)
   }
+}
+const clearFeed = () => {
+  document.getElementById("all-posts-container").innerHTML = ""
 }
 
 const tagFilter = (event) => {
@@ -57,10 +62,9 @@ const tagFilter = (event) => {
   if (tagValue === undefined) {
     tagValue = event.target.parentElement.name
   }
-  document.getElementById("all-posts-container").innerHTML = ""
-  loadPosts(showPosts, tagValue)
+  clearFeed()
+  loadPosts(clearFeed, showPosts, tagValue,)
 }
-
 
 const btnPost = (event) => {
   event.preventDefault();
@@ -71,7 +75,6 @@ const btnPost = (event) => {
     createPost(postText, tagValue)
     document.getElementById("post-text").value = ""
   }
-
 }
 
 const showPosts = (post) => {

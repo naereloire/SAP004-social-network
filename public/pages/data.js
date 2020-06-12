@@ -14,12 +14,11 @@ export const createPost = (textPost, tagOption) => {
     }
     const postsCollection = firebase.firestore().collection("posts")
     postsCollection.add(post).then(() => {
-        window.location.reload()
     }
     )
 }
 
-export const loadPosts = (callbackPosts, tagFilter) => {
+export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter) => {
     let postsCollection
     if (!tagFilter) {
         postsCollection = firebase.firestore().collection("posts").orderBy("timestamp", "desc")
@@ -27,7 +26,8 @@ export const loadPosts = (callbackPosts, tagFilter) => {
     else {
         postsCollection = firebase.firestore().collection("posts").where("tag", "==", tagFilter).orderBy("timestamp", "desc")
     }
-    postsCollection.get().then((snap) => {
+    postsCollection.onSnapshot((snap) => {
+        callbackPreProcess()
         snap.forEach((docs) => {
             callbackPosts(docs)
         })
