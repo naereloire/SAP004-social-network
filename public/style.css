@@ -151,7 +151,7 @@
 }
 
 .top-nav {
-    background-image:linear-gradient(#C6E1F8, #C2E4E3);
+    background-image: linear-gradient(#C6E1F8, #C2E4E3);
     flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
@@ -200,7 +200,7 @@
 }
 
 .bottom-nav {
-    background-image:linear-gradient(#C6E1F8, #C2E4E3);
+    background-image: linear-gradient(#C6E1F8, #C2E4E3);
     bottom: 0;
     margin: 0;
     overflow: hidden;
@@ -226,6 +226,15 @@
     margin-top: 0;
     padding: 0;
     text-align: center;
+}
+
+.icons-text {
+    font-size: 0.47em;
+}
+
+[aria-current] {
+    border-bottom: solid #F2C84B;
+    border-width: 0.125em;
 }
 
 .feed-container {
@@ -278,7 +287,7 @@
 
 .post-box {
     align-items: center;
-    background-color:#F2C84B;
+    background-color: #F2C84B;
     /* border: solid #8c0f54; */
     border-radius: 30px;
     display: flex;
@@ -359,7 +368,7 @@
 }
 
 .publication-title {
-    background-color:#F2C84B;
+    background-color: #F2C84B;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
     display: flex;
@@ -508,18 +517,18 @@
     .bio-infos {
         flex: 1;
     }
-    .post-box {
-        width: 70%;
+    .post-box, .form-container {
+        width: 60%;
     }
     .form-style {
         width: 100%;
     }
     .textarea-style {
-        /* padding: 1em; */
+        padding: 1em;
         width: 100%;
     }
-    .publication-box {
-        width: 100%;
+    .publication-box, .all-posts-box {
+        width: 80%;
     }
     .btn-style {
         padding: 2px;
@@ -528,11 +537,9 @@
         width: 100%;
     }
     .ul-style a {
-        display: flex;
-    }
-    .ul-style a {
         justify-content: space-between;
         margin: 10px;
+        margin-bottom: 2px;
     }
     .top-nav {
         align-items: center;
