@@ -140,8 +140,8 @@
 }
 
 .side-nav a:hover, .offcanvas a:focus {
-    color: red;
-}
+    color: #8c0f54 ;
+    }
 
 .side-nav, .close-btn {
     font-size: 36px;
@@ -297,7 +297,9 @@
     height: 100%;
     text-align: justify;
     width: 95%;
+    border-style: solid #8c0f54;
 }
+
 
 .btn-container {
     display: flex;
@@ -357,9 +359,16 @@
 
 .delete-post-btn {
     color: white;
-    font-size: 36px;
+    font-size: 26px;
     text-decoration: none;
+    
 }
+
+.delete-post-btn:hover, :focus  {
+   color: #8c0f54 ;
+   font-size: 30px;
+   transform: translate(1);
+    }
 
 .publi-area {
     padding-top: 3em;

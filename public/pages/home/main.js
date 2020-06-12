@@ -34,7 +34,7 @@ export default () => {
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
-        <button class="btn-style"><i class="fas fa-camera-retro fa-1.5x"></i></button>
+        <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
         <button type="submit" class="btn-style">Publicar</button>
       </div>
       </form>
