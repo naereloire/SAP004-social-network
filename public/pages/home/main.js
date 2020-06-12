@@ -31,10 +31,10 @@ export default () => {
     </select>
     <div>
      <form id="post-form" class="form-style">
-      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
+      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
-        <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
+        <button class="btn-style"><i class="fas fa-camera-retro fa-1.5x"></i></button>
         <button type="submit" class="btn-style">Publicar</button>
       </div>
       </form>
@@ -80,17 +80,21 @@ const showPosts = (post) => {
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
       <span class="publi-title-span"><br>
-        <p>Publicado por ${post.data().name}</p>
+        <p>[ ${post.data().name} ] postou: </p>
+        
       </span>
-      <a href="#" class="close-post-btn">&times;</a>
+      <a href="#" class="delete-post-btn">&times;</a>
     </div>
     <div class="publi-area">
-      <p class="text-style">${post.data().text}</p>
-      <p>${post.data().date}</p><hr>
-    </div>
+      <p class="text-style">${post.data().text}</p> <hr>
+      </div>
+      
+        
     <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-hand-spock fa-2x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
+      <button class="btn-style"><i class="fas fa-hand-spock fa-1.5x"></i></button>
+      <button class="btn-style"><i class="fas fa-share-alt fa-1.5x"></i></i></button>
+      
+      <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
   feddContainer.innerHTML += template_feed;
