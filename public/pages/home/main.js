@@ -3,12 +3,12 @@ import { createPost, loadPosts } from '../data.js';
 let limit = 5
 let tagValue = ""
 let tags = {
-  home: "Tag",
-  geek: "Geek",
-  tech: "Tech",
-  autocuidado: "Autocuidado",
-  seguranca: "Segurança",
-  oportunidades: "Oportunidades"
+  home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
+  geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
+  tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
+  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
+  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
+  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
 }
 
 export default () => {
@@ -112,14 +112,14 @@ const blockTag = (tagValue) => {
     for (let key of keyTags) {
       let keyValidated = (key) => key === "home" ? "" : key
       select.innerHTML +=
-        `<option value="${keyValidated}">${tags[key]}</option>`;
+        `<option value="${keyValidated}">${tags[key][0]}</option>`;
 
     }
 
   }
   else {
     select.innerHTML =
-      `<option value="${tagValue}">${tags[tagValue]}</option>`;
+      `<option value="${tagValue}">${tags[tagValue][0]}</option>`;
   }
 }
 
@@ -140,13 +140,13 @@ const showPosts = (post) => {
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
       <span class="publi-title-span"><br>
-        <p>Publicado por ${post.data().name}</p>
+        <p>Publicado por ${post.data().name} ${post.data().date}</p>
       </span>
+      <span>${tags[post.data().tag][1]}</span>
       <a href="#" class="close-post-btn">&times;</a>
     </div>
     <div class="publi-area">
-      <p class="text-style">${post.data().text}</p>
-      <p>${post.data().date}</p><hr>
+      <p class="text-style">${post.data().text}</p><hr>
     </div>
     <div class="publication-btns">
       <button class="btn-style"><i class="fas fa-hand-spock fa-2x"></i></button>
