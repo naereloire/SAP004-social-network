@@ -59,22 +59,28 @@ const clearFeed = () => {
 
 const clearAriaCurrent = () => {
   for (let element of document.getElementById("ul-id").children) {
-    element.firstElementChild.ariaCurrent = null
+    element.firstElementChild.removeAttribute('aria-current')
+    console.log(element.firstElementChild.ariaCurrent)
   }
 }
 
 const tagFilter = (event) => {
-  clearAriaCurrent()
-  let tagValue = event.target.name
-  if (tagValue === undefined && event.target.localName != "li") {
-    tagValue = event.target.parentElement.name
-    event.target.parentElement.ariaCurrent = "page"
+  let element_name = event.target.localName
+  if (element_name != 'li') {
+    clearAriaCurrent()
+    console.log(event.target)
+    let tagValue;
+    if (element_name === 'span') {
+      tagValue = event.target.parentElement.parentElement.name
+      event.target.parentElement.parentElement.ariaCurrent = "page"
+    }
+    else {
+      tagValue = event.target.parentElement.name
+      event.target.parentElement.ariaCurrent = "page"
+    }
+    clearFeed()
+    loadPosts(clearFeed, showPosts, tagValue)
   }
-  else {
-    event.target.ariaCurrent = "page"
-  }
-  clearFeed()
-  loadPosts(clearFeed, showPosts, tagValue,)
 }
 
 const btnPost = (event) => {
