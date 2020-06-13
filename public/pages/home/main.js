@@ -73,7 +73,7 @@ export const addEventButtons = (page) => {
 
 const changeLimitPosts = (event) => {
   limit += 5
-  loadPosts(clearFeed, showPosts, "", limit)
+  loadPosts(clearFeed, showPosts, tagValue, limit)
 
 }
 
@@ -113,7 +113,7 @@ const blockTag = (tagValue) => {
     let keyTags = ["home", "geek", "tech", "autocuidado", "seguranca", "oportunidades"]
     select.innerHTML = ""
     for (let key of keyTags) {
-      let keyValidated = (key) => key === "home" ? "" : key
+      let keyValidated = key === "home" ? "" : key
       select.innerHTML +=
         `<option value="${keyValidated}">${tags[key][0]}</option>`;
 
@@ -138,6 +138,7 @@ const btnPost = (event) => {
 }
 
 const showPosts = (post) => {
+  let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
   const feddContainer = document.getElementById("all-posts-container");
   const template_feed = `
     <section id="${post.id}" class="publication-box">
@@ -145,7 +146,7 @@ const showPosts = (post) => {
       <span class="publi-title-span"><br>
         <p>Publicado por ${post.data().name}<br>${post.data().date}</p>
       </span>
-      <span>${tags[post.data().tag][1]}</span>
+      <span>${tags[keyValidated][1]}</span>
       <a href="#" class="close-post-btn">&times;</a>
     </div>
     <div class="publi-area">
