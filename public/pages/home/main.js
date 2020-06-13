@@ -1,5 +1,9 @@
 import { createPost, loadPosts } from '../data.js';
 
+let limit = 5
+let tagValue = ""
+
+
 export default () => {
   const container = document.createElement("div");
   container.className = "feed-style"
@@ -40,19 +44,29 @@ export default () => {
       </form>
     </section>
     <div id="all-posts-container" class="all-posts-box"></div>
+    <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
   </div>`;
   container.innerHTML = template;
   return container
 }
+
 export const addEventButtons = (page) => {
   if (page === "home") {
-    loadPosts(clearFeed, showPosts, "")
+    loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
     }, 2000)
     document.getElementById("ul-id").addEventListener("click", tagFilter)
+    document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
   }
 }
+
+const changeLimitPosts = (event) => {
+  limit += 5
+  loadPosts(clearFeed, showPosts, "", limit)
+
+}
+
 const clearFeed = () => {
   document.getElementById("all-posts-container").innerHTML = ""
 }
@@ -65,11 +79,10 @@ const clearAriaCurrent = () => {
 }
 
 const tagFilter = (event) => {
+  limit = 5
   let element_name = event.target.localName
   if (element_name != 'li') {
     clearAriaCurrent()
-    console.log(event.target)
-    let tagValue;
     if (element_name === 'span') {
       tagValue = event.target.parentElement.parentElement.name
       event.target.parentElement.parentElement.ariaCurrent = "page"
@@ -79,7 +92,7 @@ const tagFilter = (event) => {
       event.target.parentElement.ariaCurrent = "page"
     }
     clearFeed()
-    loadPosts(clearFeed, showPosts, tagValue)
+    loadPosts(clearFeed, showPosts, tagValue, limit)
   }
 }
 
@@ -115,3 +128,6 @@ const showPosts = (post) => {
     </section>`;
   feddContainer.innerHTML += template_feed;
 }
+
+
+
