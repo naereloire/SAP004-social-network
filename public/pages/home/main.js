@@ -2,7 +2,14 @@ import { createPost, loadPosts } from '../data.js';
 
 let limit = 5
 let tagValue = ""
-
+let tags = {
+  home: "Tag",
+  geek: "Geek",
+  tech: "Tech",
+  autocuidado: "Autocuidado",
+  seguranca: "Segurança",
+  oportunidades: "Oportunidades"
+}
 
 export default () => {
   const container = document.createElement("div");
@@ -74,7 +81,6 @@ const clearFeed = () => {
 const clearAriaCurrent = () => {
   for (let element of document.getElementById("ul-id").children) {
     element.firstElementChild.removeAttribute('aria-current')
-    console.log(element.firstElementChild.ariaCurrent)
   }
 }
 
@@ -86,13 +92,34 @@ const tagFilter = (event) => {
     if (element_name === 'span') {
       tagValue = event.target.parentElement.parentElement.name
       event.target.parentElement.parentElement.ariaCurrent = "page"
+
     }
     else {
       tagValue = event.target.parentElement.name
       event.target.parentElement.ariaCurrent = "page"
     }
     clearFeed()
+    blockTag(tagValue)
     loadPosts(clearFeed, showPosts, tagValue, limit)
+  }
+}
+
+const blockTag = (tagValue) => {
+  let select = document.getElementById("select-id")
+  if (!tagValue) {
+    let keyTags = ["home", "geek", "tech", "autocuidado", "seguranca", "oportunidades"]
+    select.innerHTML = ""
+    for (let key of keyTags) {
+      let keyValidated = (key) => key === "home" ? "" : key
+      select.innerHTML +=
+        `<option value="${keyValidated}">${tags[key]}</option>`;
+
+    }
+
+  }
+  else {
+    select.innerHTML =
+      `<option value="${tagValue}">${tags[tagValue]}</option>`;
   }
 }
 
