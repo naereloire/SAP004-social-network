@@ -320,7 +320,7 @@
 }
 
 .btn-style {
-    padding: 1em 2em;
+    /* padding: 1em 2em; */
     background: rgb(217, 215, 223);
     border: 2px solid rgb(200, 191, 202);
     border-radius: 1em;
@@ -387,11 +387,12 @@
     display: none;
 }
 
-.select-container {
+.check-container {
+    align-items: center;
     display: flex;
-    align-items: flex-end;
+    flex-direction: row;
     flex-wrap: nowrap;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
 .footer-style {

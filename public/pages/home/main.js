@@ -31,7 +31,9 @@ export default () => {
   </div>
   <div id="feed-id" class="feed-container">
     <section class="post-box">
-    <div class="select-container">
+    <div class="check-container">
+    <input type="checkbox" id="privacy-check"></input>
+    <label for="privacy-check">Post Privado</label>
     <select id="select-id" class="btn-style">
     <option value="">Tag</option> 
     <option value="geek">Geek</option> 
@@ -40,6 +42,7 @@ export default () => {
     <option value="seguranca">Segurança</option> 
     <option value="oportunidades">Oportunidades</option> 
     </select>
+    </div>
     <div class="form-container">
      <form id="post-form" class="form-style">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
@@ -140,7 +143,7 @@ const showPosts = (post) => {
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
       <span class="publi-title-span"><br>
-        <p>Publicado por ${post.data().name} ${post.data().date}</p>
+        <p>Publicado por ${post.data().name}<br>${post.data().date}</p>
       </span>
       <span>${tags[post.data().tag][1]}</span>
       <a href="#" class="close-post-btn">&times;</a>
