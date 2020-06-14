@@ -83,7 +83,8 @@ const showPosts = (post) => {
         <p>[ ${post.data().name} ] postou: </p>
         
       </span>
-      <a href="#" class="delete-post-btn">&times;</a>
+      <a href="#" class="delete-post-btn" id="delete-post-btn">&times;</a>
+      
     </div>
     <div class="publi-area">
       <p class="text-style">${post.data().text}</p> <hr>
@@ -98,4 +99,40 @@ const showPosts = (post) => {
     </div>
     </section>`;
   feddContainer.innerHTML += template_feed;
-}
+
+
+  
+//DELETAR O POST
+
+// Exemplo vídeo Dani
+function deletePost(postId){
+
+    const postCollection = firebase.firestore().collection("posts")
+    postCollection.doc(postId).delete().then(doc=>{
+      console.log("apagou!");
+      /* loadPosts */
+      })
+    }
+
+    const btnDelete = document.querySelector("#delete-post-btn");
+    btnDelete.addEventListener('click', deletePost)
+  }
+   
+
+/*  // Exemplo tutorial
+
+const btnDelete = document.querySelector("#delete-post-btn");
+    btnDelete.addEventListener ('click', (e) => {
+  e.stopPropagation();
+  let id = e.target.parentElement.getAttribute ('data-id');
+  db.collection('posts').doc(id).delete();
+
+}) */
+
+
+//documento.getElementById("delete-post-btn").addEventListener('click',deletePost()) 
+
+ /* const btnDelete = document.querySelector("#delete-post-btn");
+btnDelete.addEventListener('click', deletePost())  */
+    
+
