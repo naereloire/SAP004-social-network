@@ -3,15 +3,15 @@ export default () => {
 
     const template = `
         <form class="form-profile">
-            <input type="text" placeholder="Nome *" required>
-            <input type="text" placeholder="Sobrenome *" required>
-            <input type="date" placeholder="Data de nascimento *" required>
-            <input id="email" type="email" placeholder="Email *" required>
-            <input id="password" type="password" placeholder="Senha *" required>
-            <input type="text" placeholder="Cidade *" required>
+            <input id="name-profile"type="text" placeholder="Nome">
+            <input id="last-name-profile"type="text" placeholder="Sobrenome">
+            <input id="date-of-birth-profile"type="date" placeholder="Data de nascimento">
+            <input id="email-profile" type="email" placeholder="Email">
+            <input id="password-profile" type="password" placeholder="Senha">
+            <input id="city-profile"type="text" placeholder="Cidade">
             <div class="btn-display">
-                <input id="back-btn" type="button" value="Voltar">
-                <input id="btn-register" type="button" value="Salvar">
+                <input id="back-btn-profile" type="button" value="Voltar">
+                <input id="save-btn" type="button" value="Salvar">
             </div>
         </form>
     `

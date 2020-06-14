@@ -1,6 +1,8 @@
 import routes from "./routes.js";
 import { addEventButtons } from "./pages/home/main.js"
 import auth from "./authentication/auth.js"
+import {  saveProfileUser,  getProfileUSer, getProfile } from "./pages/perfil/data.js"
+import { userRegister } from "./pages/registro/data.js"
 
 const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
@@ -15,15 +17,14 @@ const init = () => window.addEventListener("hashchange", renderPage)
 const renderPage = (event) => {
     main.innerHTML = " ";
     let page = validateHash(window.location.hash)
-    firebase.auth().onAuthStateChanged((usuario) => {
-        if(!usuario){
+    firebase.auth().onAuthStateChanged((user) => {
+        if(!user){
             if(page === "register") {
                 main.appendChild(routes['register']);
                 const btnRegister = document.querySelector("#btn-register");
-                btnRegister.addEventListener("click", function (event) {
-                    event.preventDefault()
-                    auth.createLogin()
-                })
+                btnRegister.addEventListener("click", userRegister)
+                
+                
                 const backBtn = document.querySelector("#back-btn");
                 backBtn.addEventListener("click", function(event) {
                     event.preventDefault()
@@ -41,12 +42,11 @@ const renderPage = (event) => {
             }
         }
         else {
+            console.log(page)
             if (page == 'login') {
                 page = 'home'
             }
-            if(page == 'profile') {
-                console.log(usuario.uid)
-            }
+            
             const navStyle = document.getElementsByClassName("hidden-nav")
             for (let element of navStyle) {
                 element.style.display = "flex"
@@ -54,10 +54,21 @@ const renderPage = (event) => {
 
             main.appendChild(routes[page]);
             addEventButtons(page);
+
+            if(page == 'profile') {
+                getProfile()
+                const sendBtn = document.getElementById("save-btn")
+                sendBtn.addEventListener("click", saveProfileUser)
+            }
+
+            if(page == "home") {
+                getProfileUSer()
+            }
         }
 
     })
 }
+
 
 window.addEventListener("hashchange", renderPage)
 const validateHash = (hash) => hash === "" ? "home" : hash.replace("#", "")
