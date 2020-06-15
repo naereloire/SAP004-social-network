@@ -1,7 +1,4 @@
-import {
-  createPost,
-  loadPosts
-} from '../data.js';
+import {createPost, loadPosts, deletePost} from '../data.js';
 
 export default () => {
   const container = document.createElement("div");
@@ -104,23 +101,13 @@ const showPosts = (post) => {
     </div>
     </section>`;
   feedContainer.innerHTML += template_feed;
-  /* const btnDelete = document.getElementById("delete-post-btn")  */
+  
   const btnDelete = document.querySelectorAll(".delete-post-btn")
-
-
-  const callback = (element) => element.addEventListener("click", function deletePost(event) {
-    const postCollection = firebase.firestore().collection("posts")
-    postCollection.doc(event.currentTarget.parentElement.parentElement.id).delete().then(doc => {
-
-      loadPosts(showPosts, '')
-
-    })
-
+  const catchBtn = (element) => element.addEventListener("click", function(event){
+   deletePost(event.currentTarget.parentElement.parentElement.id) 
   })
 
-  btnDelete.forEach(callback)
-  /*  [btn1, btn2, btn3].forEach( (element) => {element.addEventListener(…) }) */
-}
-
+  btnDelete.forEach(catchBtn)
+  }
 
 

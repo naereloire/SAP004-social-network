@@ -32,8 +32,13 @@ export const loadPosts = (callbackPosts, tagFilter) => {
             callbackPosts(docs)
         })
     })
-
-
-      
+     
 
 } 
+
+export function deletePost(postId) {
+    const postCollection = firebase.firestore().collection("posts")
+    postCollection.doc(postId).delete().then(doc => {
+        console.log('apagou ' + postId )
+   })
+}
