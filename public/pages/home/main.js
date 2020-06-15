@@ -75,7 +75,7 @@ const btnPost = (event) => {
 }
 
 const showPosts = (post) => {
-  const feddContainer = document.getElementById("all-posts-container");
+  const feedContainer = document.getElementById("all-posts-container");
   const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
@@ -98,28 +98,45 @@ const showPosts = (post) => {
       <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
-  feddContainer.innerHTML += template_feed;
-
-
-  
-//DELETAR O POST
-
-// Exemplo vídeo Dani
-function deletePost(postId){
-
-    const postCollection = firebase.firestore().collection("posts")
-    postCollection.doc(postId).delete().then(doc=>{
-      console.log("apagou!");
-      /* loadPosts */
+  feedContainer.innerHTML += template_feed;
+  const btnDelete = document.getElementById("delete-post-btn") 
+ /*  const btnDelete = document.querySelector("#delete-post-btn") */
+  btnDelete.addEventListener('click', function (event){
+    deletePost(post.id)
+  })
+}
+function deletePost(postId) {
+      const postCollection = firebase.firestore().collection("posts")
+      postCollection.doc(postId).delete().then(doc=>{
+      console.log("apagou mesmo?!");
+      loadPosts (showPosts, '') 
       })
     }
 
-    const btnDelete = document.querySelector("#delete-post-btn");
-    btnDelete.addEventListener('click', deletePost)
-  }
+function eventsPost (listPosts){
+  listPosts.querySelectorAll('delete-post-btn').forEach => (button.addEventListener (click,deletePost));
+}
+
+
+   //Tentativa usando where 
+  /*   function deletePost(postId) {
+    postCollection = firebase.firestore().collection('posts').where('postId','==',post.id);
+    postCollection.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        doc.ref.delete();
+        console.log("Foi?!");
+        loadPosts (showPosts, '')
+
+      });
+    });
+
+  } */
+
+
+  
    
 
-/*  // Exemplo tutorial
+/*  // Exemplo tutorial Youtube
 
 const btnDelete = document.querySelector("#delete-post-btn");
     btnDelete.addEventListener ('click', (e) => {
@@ -130,7 +147,7 @@ const btnDelete = document.querySelector("#delete-post-btn");
 }) */
 
 
-//documento.getElementById("delete-post-btn").addEventListener('click',deletePost()) 
+//document.getElementById("delete-post-btn").addEventListener('click',deletePost()) 
 
  /* const btnDelete = document.querySelector("#delete-post-btn");
 btnDelete.addEventListener('click', deletePost())  */
