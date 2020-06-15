@@ -1,4 +1,7 @@
-import { createPost, loadPosts } from '../data.js';
+import {
+  createPost,
+  loadPosts
+} from '../data.js';
 
 export default () => {
   const container = document.createElement("div");
@@ -47,7 +50,9 @@ export default () => {
 export const addEventButtons = (page) => {
   if (page === "home") {
     loadPosts(showPosts, "")
-    setTimeout(() => { document.getElementById("post-form").addEventListener("submit", btnPost) }, 2000)
+    setTimeout(() => {
+      document.getElementById("post-form").addEventListener("submit", btnPost)
+    }, 2000)
     document.getElementById("ul-id").addEventListener("click", tagFilter)
   }
 }
@@ -83,7 +88,7 @@ const showPosts = (post) => {
         <p>[ ${post.data().name} ] postou: </p>
         
       </span>
-      <a href="#" class="delete-post-btn" id="delete-post-btn">&times;</a>
+      <a href="#" class="delete-post-btn"> &times;</a>
       
     </div>
     <div class="publi-area">
@@ -99,57 +104,23 @@ const showPosts = (post) => {
     </div>
     </section>`;
   feedContainer.innerHTML += template_feed;
-  const btnDelete = document.getElementById("delete-post-btn") 
- /*  const btnDelete = document.querySelector("#delete-post-btn") */
-  btnDelete.addEventListener('click', function (event){
-    deletePost(post.id)
+  /* const btnDelete = document.getElementById("delete-post-btn")  */
+  const btnDelete = document.querySelectorAll(".delete-post-btn")
+
+
+  const callback = (element) => element.addEventListener("click", function deletePost(event) {
+    const postCollection = firebase.firestore().collection("posts")
+    postCollection.doc(event.currentTarget.parentElement.parentElement.id).delete().then(doc => {
+
+      loadPosts(showPosts, '')
+
+    })
+
   })
-}
-function deletePost(postId) {
-      const postCollection = firebase.firestore().collection("posts")
-      postCollection.doc(postId).delete().then(doc=>{
-      console.log("apagou mesmo?!");
-      loadPosts (showPosts, '') 
-      })
-    }
 
-function eventsPost (listPosts){
-  listPosts.querySelectorAll('delete-post-btn').forEach => (button.addEventListener (click,deletePost));
+  btnDelete.forEach(callback)
+  /*  [btn1, btn2, btn3].forEach( (element) => {element.addEventListener(…) }) */
 }
 
 
-   //Tentativa usando where 
-  /*   function deletePost(postId) {
-    postCollection = firebase.firestore().collection('posts').where('postId','==',post.id);
-    postCollection.get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        doc.ref.delete();
-        console.log("Foi?!");
-        loadPosts (showPosts, '')
-
-      });
-    });
-
-  } */
-
-
-  
-   
-
-/*  // Exemplo tutorial Youtube
-
-const btnDelete = document.querySelector("#delete-post-btn");
-    btnDelete.addEventListener ('click', (e) => {
-  e.stopPropagation();
-  let id = e.target.parentElement.getAttribute ('data-id');
-  db.collection('posts').doc(id).delete();
-
-}) */
-
-
-//document.getElementById("delete-post-btn").addEventListener('click',deletePost()) 
-
- /* const btnDelete = document.querySelector("#delete-post-btn");
-btnDelete.addEventListener('click', deletePost())  */
-    
 
