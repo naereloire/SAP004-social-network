@@ -68,7 +68,7 @@
 
 .text-profile {
     font-size: 28px;
-    font-family: 'Bellota', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     margin-bottom: 17px;
     text-align: center;
@@ -94,17 +94,9 @@
     width: 100%;
 }
 
-.btn-display {
+#btn-display {
     display: flex;
     justify-content: space-evenly;
-}
-
-#back-btn-profile {
-    margin-right: 5px;
-}
-
-#back-btn {
-    margin-right: 5px;
 }
 
 .form-profile input[type=submit] {

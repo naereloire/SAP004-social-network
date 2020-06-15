@@ -9,7 +9,7 @@ export default() => {
             <input id="last-name-register" type="text" placeholder="Sobrenome *" required>
             <input id="date-of-birth-register" type="date" placeholder="Data de nascimento *" required>
             <input id="email" type="email" placeholder="Email *" required>
-            <input id="password" type="password" placeholder="Senha *" required>
+            <input id="password" type="password" placeholder="Senha, minímo 6 caracteres *" required>
             <input id="city-register" type="text" placeholder="Cidade *" required>
             <div class="btn-display">
                 <input id="back-btn" type="button" value="Voltar">
