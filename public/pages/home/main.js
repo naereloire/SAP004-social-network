@@ -21,7 +21,7 @@ export default () => {
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="select-container">
-    <select id="select-id">
+    <select id="select-id" class="btn-style">
     <option value="">Tag</option> 
     <option value="geek">Geek</option> 
     <option value="tech">Tech</option> 
@@ -29,7 +29,7 @@ export default () => {
     <option value="seguranca">Segurança</option> 
     <option value="oportunidades">Oportunidades</option> 
     </select>
-    <div>
+    <div class="form-container">
      <form id="post-form" class="form-style">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
@@ -39,28 +39,49 @@ export default () => {
       </div>
       </form>
     </section>
-    <div id="all-posts-container"></div>
+    <div id="all-posts-container" class="all-posts-box"></div>
   </div>`;
   container.innerHTML = template;
   return container
 }
 export const addEventButtons = (page) => {
   if (page === "home") {
-    loadPosts(showPosts, "")
-    setTimeout(() => { document.getElementById("post-form").addEventListener("submit", btnPost) }, 2000)
+    loadPosts(clearFeed, showPosts, "")
+    setTimeout(() => {
+      document.getElementById("post-form").addEventListener("submit", btnPost)
+    }, 2000)
     document.getElementById("ul-id").addEventListener("click", tagFilter)
+  }
+}
+const clearFeed = () => {
+  document.getElementById("all-posts-container").innerHTML = ""
+}
+
+const clearAriaCurrent = () => {
+  for (let element of document.getElementById("ul-id").children) {
+    element.firstElementChild.removeAttribute('aria-current')
+    console.log(element.firstElementChild.ariaCurrent)
   }
 }
 
 const tagFilter = (event) => {
-  let tagValue = event.target.name
-  if (tagValue === undefined) {
-    tagValue = event.target.parentElement.name
+  let element_name = event.target.localName
+  if (element_name != 'li') {
+    clearAriaCurrent()
+    console.log(event.target)
+    let tagValue;
+    if (element_name === 'span') {
+      tagValue = event.target.parentElement.parentElement.name
+      event.target.parentElement.parentElement.ariaCurrent = "page"
+    }
+    else {
+      tagValue = event.target.parentElement.name
+      event.target.parentElement.ariaCurrent = "page"
+    }
+    clearFeed()
+    loadPosts(clearFeed, showPosts, tagValue)
   }
-  document.getElementById("all-posts-container").innerHTML = ""
-  loadPosts(showPosts, tagValue)
 }
-
 
 const btnPost = (event) => {
   event.preventDefault();
@@ -71,7 +92,6 @@ const btnPost = (event) => {
     createPost(postText, tagValue)
     document.getElementById("post-text").value = ""
   }
-
 }
 
 const showPosts = (post) => {

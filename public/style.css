@@ -118,7 +118,7 @@
 }
 
 .side-nav {
-    background-color: #f2c84b;
+    background-color: #F2C84B;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -140,8 +140,11 @@
 }
 
 .side-nav a:hover, .offcanvas a:focus {
+
+
     color: #8c0f54 ;
     }
+
 
 .side-nav, .close-btn {
     font-size: 36px;
@@ -151,8 +154,9 @@
 }
 
 .top-nav {
+
+
     background-color: #f2c84b;
-    ;
     flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
@@ -201,7 +205,7 @@
 }
 
 .bottom-nav {
-    background-color: #f2c84b;
+    background-color: #F2C84B;
     bottom: 0;
     margin: 0;
     overflow: hidden;
@@ -212,13 +216,18 @@
 }
 
 .bottom-nav a {
+
    /*  color: #8c0f54; */
-   color: black;
+    color: black;
     flex-direction: column;
     font-size: 0.800em;
     height: 100%;
     margin: 2px;
     text-decoration: none;
+}
+
+.nav-ul {
+    width: 100%;
 }
 
 .ul-style {
@@ -228,6 +237,17 @@
     margin-top: 0;
     padding: 0;
     text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.icons-text {
+    font-size: 0.47em;
+}
+
+[aria-current] {
+    border-bottom: solid #8c0f54;
+    border-width: 0.125em;
 }
 
 .feed-container {
@@ -280,6 +300,7 @@
 
 .post-box {
     align-items: center;
+
     border: solid #8c0f54;
     background-image: linear-gradient(to bottom, #C3C0ED, #95D4E7, #BDD9CA);
     border-radius: 30px;
@@ -294,6 +315,7 @@
 
 .textarea-style {
     border: double gray;
+    border-radius: 1em;
     height: 100%;
     text-align: justify;
     width: 95%;
@@ -344,7 +366,7 @@
     flex-direction: column;
     margin: 1em;
     text-align: justify;
-    width: 90%;
+    width: 91%;
 }
 .publication-btns{
     display: inline-flex;
@@ -375,7 +397,7 @@
 }
 
 .publication-title {
- /* background-color: #8c0f54;  */
+/* background-color: #8c0f54;  */
      background-image: linear-gradient(to bottom, #C3C0ED, #95D4E7, #BDD9CA); 
      border-top-left-radius: 30px;
    border-top-right-radius: 30px;
@@ -384,6 +406,7 @@
     margin: 3px 3px 0 3px;
    text-align: justify;
     width: 95%;
+
 }
 
 .capa-style {
@@ -529,18 +552,18 @@
     .bio-infos {
         flex: 1;
     }
-    .post-box {
-        width: 70%;
+    .post-box, .form-container {
+        width: 60%;
     }
     .form-style {
         width: 100%;
     }
     .textarea-style {
         padding: 1em;
-        width: 90%;
+        width: 100%;
     }
-    .publication-box {
-        width: 77%;
+    .publication-box, .all-posts-box {
+        width: 80%;
     }
     .btn-style {
         padding: 2px;
@@ -549,11 +572,9 @@
         width: 100%;
     }
     .ul-style a {
-        display: flex;
-    }
-    .ul-style a {
         justify-content: space-between;
         margin: 10px;
+        margin-bottom: 2px;
     }
     .top-nav {
         align-items: center;
