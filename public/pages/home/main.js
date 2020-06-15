@@ -145,7 +145,7 @@ const showPosts = (post) => {
     <div class="publication-title">
       <span class="publi-title-span"><br>
 
-        <p>Publicado por ${post.data().name}<br>${post.data().date}</p>
+        <p>Publicado por ${post.data().name}</p>
       </span>
       <span>${tags[keyValidated][1]}</span>
       <a href="#" class="close-post-btn">&times;</a>
