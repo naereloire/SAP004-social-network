@@ -45,7 +45,7 @@ export default () => {
     </div>
     <div class="form-container">
      <form id="post-form" class="form-style">
-      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="10"
+      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
         <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
@@ -144,6 +144,7 @@ const showPosts = (post) => {
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
       <span class="publi-title-span"><br>
+
         <p>Publicado por ${post.data().name}<br>${post.data().date}</p>
       </span>
       <span>${tags[keyValidated][1]}</span>
@@ -152,9 +153,12 @@ const showPosts = (post) => {
     <div class="publi-area">
       <p class="text-style">${post.data().text}</p><hr>
     </div>
+
     <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-hand-spock fa-2x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
+      <button class="btn-style"><i class="fas fa-hand-spock fa-1.5x"></i></button>
+      <button class="btn-style"><i class="fas fa-share-alt fa-1.5x"></i></i></button>
+      
+      <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
   feddContainer.innerHTML += template_feed;
