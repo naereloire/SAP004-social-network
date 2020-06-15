@@ -2,8 +2,6 @@ export const saveProfileUser = () => {
     const name = document.getElementById("name-profile").value;
     const lastName = document.getElementById("last-name-profile").value;
     const dateBirth = document.getElementById("date-of-birth-profile").value;
-    const email = document.getElementById("email-profile").value;
-    const password = document.getElementById("password-profile").value;
     const city = document.getElementById("city-profile").value;
 
     const userCollection = firebase.firestore().collection("users")
@@ -12,16 +10,17 @@ export const saveProfileUser = () => {
             name,
             lastName,
             dateBirth,
-            email,
-            password,
             city
-        }).then(() => {}).catch(error => {
+        }).then(() => {
+            alert("Informações salvas")
+            window.location.href = "/#"
+        }).catch(error => {
             console.log(error)
         })
     })
 }
 
-export const getProfileUSer = () => {
+export const getInformationUser = () => {
     const userName = document.getElementById("user-name");
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -29,12 +28,8 @@ export const getProfileUSer = () => {
         const userCollection = firebase.firestore().collection("users")
 
         userCollection.doc(user.uid).get().then(result => {
-
-            userName.innerText = `${
-                result.data().name
-            } ${
-                result.data().lastName
-            }`
+            userName.innerText = 
+            `${ result.data().name ? result.data().name : "" } ${ result.data().lastName  ? result.data().lastName : "" }`
         }).catch(error => {
             console.log(error)
         })
@@ -46,16 +41,38 @@ export const getProfile = () => {
 
         const userCollection = firebase.firestore().collection("users")
 
-        userCollection.doc(user.uid).get()
-            .then(result => {
+        userCollection.doc(user.uid).get().then(result => {
+            if(result.data().name) {
                 document.getElementById("name-profile").value = result.data().name;
+            }
+            
+            if(result.data().lastName){
                 document.getElementById("last-name-profile").value = result.data().lastName;
+            }
+            
+            if(result.data().dateBirth){
                 document.getElementById("date-of-birth-profile").value = result.data().dateBirth;
-                document.getElementById("email-profile").value = result.data().email;
-                document.getElementById("password-profile").value = result.data().password;
+            }
+
+            if(result.data().city){
                 document.getElementById("city-profile").value = result.data().city;
+            }
+
         }).catch(error => {
             console.log(error)
         })
     })
 }
+
+export const saveProviderUser = (uid, name) => {
+    const userCollection = firebase.firestore().collection("users")
+        userCollection.doc(uid).set({
+            name
+        })
+        .then(() => {
+
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }

@@ -6,8 +6,6 @@ export default () => {
             <input id="name-profile"type="text" placeholder="Nome">
             <input id="last-name-profile"type="text" placeholder="Sobrenome">
             <input id="date-of-birth-profile"type="date" placeholder="Data de nascimento">
-            <input id="email-profile" type="email" placeholder="Email">
-            <input id="password-profile" type="password" placeholder="Senha">
             <input id="city-profile"type="text" placeholder="Cidade">
             <div class="btn-display">
                 <input id="back-btn-profile" type="button" value="Voltar">

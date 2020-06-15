@@ -1,7 +1,7 @@
 import routes from "./routes.js";
 import { addEventButtons } from "./pages/home/main.js"
 import auth from "./authentication/auth.js"
-import {  saveProfileUser,  getProfileUSer, getProfile } from "./pages/perfil/data.js"
+import {  saveProfileUser,  getInformationUser, getProfile } from "./pages/perfil/data.js"
 import { userRegister } from "./pages/registro/data.js"
 
 const btnLogout = document.querySelector('#logout');
@@ -23,7 +23,6 @@ const renderPage = (event) => {
                 main.appendChild(routes['register']);
                 const btnRegister = document.querySelector("#btn-register");
                 btnRegister.addEventListener("click", userRegister)
-                
                 
                 const backBtn = document.querySelector("#back-btn");
                 backBtn.addEventListener("click", function(event) {
@@ -59,10 +58,16 @@ const renderPage = (event) => {
                 getProfile()
                 const sendBtn = document.getElementById("save-btn")
                 sendBtn.addEventListener("click", saveProfileUser)
+
+                const backBtnProfile = document.getElementById("back-btn-profile");
+                backBtnProfile.addEventListener("click", function(event){
+                    event.preventDefault()
+                    window.location.href = "/#"
+                })
             }
 
             if(page == "home") {
-                getProfileUSer()
+                getInformationUser()
             }
         }
 

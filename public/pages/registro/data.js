@@ -16,8 +16,6 @@ export const userRegister = (event) => {
                     name,
                     lastName,
                     dateBirth,
-                    email,
-                    password,
                     city
                 }).then(() => {
                     window.location.href = "/#"
