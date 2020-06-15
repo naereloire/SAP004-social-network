@@ -2,6 +2,7 @@ export default() => {
     const container = document.createElement("div");
 
     const template = `
+    <div class="feed-container"> 
         <h1 class="text-profile">Preencha os campos abaixo:</h1>
         <form class="form-profile">
             <input id="name-register" type="text" placeholder="Nome *" required>
@@ -15,6 +16,7 @@ export default() => {
                 <input id="btn-register" type="submit">
             </div>
         </form>
+    </div>
     `
     container.innerHTML = template;
     return container

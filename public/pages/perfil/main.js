@@ -2,6 +2,7 @@ export default () => {
     const container = document.createElement("div");
 
     const template = `
+    <div class="feed-container"> 
         <form class="form-profile">
             <input id="name-profile"type="text" placeholder="Nome">
             <input id="last-name-profile"type="text" placeholder="Sobrenome">
@@ -12,7 +13,8 @@ export default () => {
                 <input id="save-btn" type="button" value="Salvar">
             </div>
         </form>
-    `
+    </div>
+            `
     container.innerHTML = template;
     return container
 }
