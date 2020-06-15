@@ -292,6 +292,7 @@
 .text-style {
     margin: 0;
     text-align: justify;
+    font-family: "Gloria Hallelujah";
 }
 
 .title-align {
@@ -331,6 +332,7 @@
 }
 
 .btn-style {
+
     padding: 0.5em; 
     background: #f2c84b;
     border: 2px solid #f2c84b; 
@@ -413,11 +415,12 @@
     display: none;
 }
 
-.select-container {
+.check-container {
+    align-items: center;
     display: flex;
-    align-items: flex-end;
+    flex-direction: row;
     flex-wrap: nowrap;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
 .footer-style {
