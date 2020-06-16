@@ -1,3 +1,5 @@
+import { saveProviderUser } from "../pages/perfil/data.js" 
+
 export default {
     createBtnAuth: function () {
         let ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
@@ -5,6 +7,7 @@ export default {
         let config = {
             callbacks: {
                 signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                    saveProviderUser(authResult.user.uid, authResult.user.displayName)                  
                     window.location.href = "/#"
                     return true
                 }
@@ -55,7 +58,7 @@ export default {
             window.location.href = "/#"
         })
         .catch(error => {
-            console.log(error)
+            alert("Email já cadastrado")
         })
     }
 }
