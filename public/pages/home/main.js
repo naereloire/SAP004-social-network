@@ -150,16 +150,15 @@ const showPosts = (post) => {
       </span>
 
       <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="delete-post-btn">&times;</a>
+      <a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a>
     </div>
     <div class="publi-area">
       <p class="text-style">${post.data().text}</p><hr>
     </div>
 
     <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-hand-spock fa-1.5x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-1.5x"></i></i></button>
-      
+      <button class="btn-style"><i class="fas fa-star fa-2x"></i></button>
+      <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
       <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
