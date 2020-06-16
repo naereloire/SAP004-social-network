@@ -189,7 +189,18 @@ const showPosts = (post) => {
     }</p><br/><br/><br/>
     </div>
     </section>`;
-    feedContainer.innerHTML += template_feed;
+  
+  feedContainer.innerHTML += template_feed;
+  
+  const btnDelete = document.querySelectorAll(".delete-post-btn")
+  const catchBtn = (element) => element.addEventListener("click", function(event){
+    deletePost(event.currentTarget.parentElement.parentElement.id) 
+  })
+
+  btnDelete.forEach(catchBtn)
+  }
+
+
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
