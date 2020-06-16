@@ -1,5 +1,4 @@
-import {createPost, loadPosts, deletePost} from '../data.js';
-
+import { createPost, loadPosts, deletePost } from '../data.js';
 let limit = 5
 let tagValue = ""
 let tags = {
@@ -65,8 +64,8 @@ export default() => {
     <div id="all-posts-container" class="all-posts-box"></div>
     <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
   </div>`;
-    container.innerHTML = template;
-    return container
+  container.innerHTML = template;
+  return container
 }
 
 export const addEventButtons = (page) => {
@@ -189,16 +188,16 @@ const showPosts = (post) => {
     }</p><br/><br/><br/>
     </div>
     </section>`;
-  
+
   feedContainer.innerHTML += template_feed;
-  
+
   const btnDelete = document.querySelectorAll(".delete-post-btn")
-  const catchBtn = (element) => element.addEventListener("click", function(event){
-    deletePost(event.currentTarget.parentElement.parentElement.id) 
+  const catchBtn = (element) => element.addEventListener("click", function (event) {
+    deletePost(event.currentTarget.parentElement.parentElement.id)
   })
 
   btnDelete.forEach(catchBtn)
-  }
+}
 
 
 
