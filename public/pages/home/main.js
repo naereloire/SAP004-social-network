@@ -1,5 +1,3 @@
-import {createPost, loadPosts, deletePost} from '../data.js';
-
 let limit = 5
 let tagValue = ""
 let tags = {
@@ -18,14 +16,13 @@ export default () => {
     <div class="bio-container">
     <section class="bio-style">
       <div class="capa-style">
-        <img class="img-capa" src="./img/gilry-capa.jpg">
+        <img class="img-capa" src="./img/capa-inicial.jpg">
       </div>
-      <div class="img-perfil">
-        <img class="foto-style circular-square" src="./img/diana.jpeg">
+      <div id="profile-picture" class="img-perfil">
+        <img class="foto-style circular-square" src="./img/foto-inicial.jpg">
       </div>
       <div class="bio-infos">
-        <h1 class="text-style">Diana de Themyscira</h1>
-        <p class="text-style">Princesa e Heroína</p>
+        <h1 class="text-style" id="user-name"></h1>
       </div>
     </section>
   </div>
@@ -44,7 +41,7 @@ export default () => {
     </select>
     </div>
     <div class="form-container">
-     <form id="post-form" class="form-style">
+    <form id="post-form" class="form-style">
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
@@ -56,8 +53,8 @@ export default () => {
     <div id="all-posts-container" class="all-posts-box"></div>
     <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
   </div>`;
-  container.innerHTML = template;
-  return container
+    container.innerHTML = template;
+    return container
 }
 
 export const addEventButtons = (page) => {
@@ -164,6 +161,7 @@ const showPosts = (post) => {
       <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
+  
   feedContainer.innerHTML += template_feed;
   
   const btnDelete = document.querySelectorAll(".delete-post-btn")
@@ -173,6 +171,7 @@ const showPosts = (post) => {
 
   btnDelete.forEach(catchBtn)
   }
+
 
 
 
