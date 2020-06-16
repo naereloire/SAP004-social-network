@@ -1,4 +1,4 @@
-import { createPost, loadPosts } from '../data.js';
+import {createPost, loadPosts, deletePost} from '../data.js';
 
 let limit = 5
 let tagValue = ""
@@ -63,6 +63,7 @@ export default () => {
 export const addEventButtons = (page) => {
   let timeToRenderPage
   if (page === "home") {
+
     loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
@@ -139,8 +140,9 @@ const btnPost = (event) => {
 }
 
 const showPosts = (post) => {
+
   let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
-  const feddContainer = document.getElementById("all-posts-container");
+  const feedContainer = document.getElementById("all-posts-container");
   const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
@@ -148,8 +150,9 @@ const showPosts = (post) => {
 
         <p>Publicado por ${post.data().name}</p>
       </span>
+
       <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="close-post-btn">&times;</a>
+      <a href="#" class="delete-post-btn">&times;</a>
     </div>
     <div class="publi-area">
       <p class="text-style">${post.data().text}</p><hr>
@@ -162,8 +165,15 @@ const showPosts = (post) => {
       <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
-  feddContainer.innerHTML += template_feed;
-}
+  feedContainer.innerHTML += template_feed;
+  
+  const btnDelete = document.querySelectorAll(".delete-post-btn")
+  const catchBtn = (element) => element.addEventListener("click", function(event){
+   deletePost(event.currentTarget.parentElement.parentElement.id) 
+  })
+
+  btnDelete.forEach(catchBtn)
+  }
 
 
 
