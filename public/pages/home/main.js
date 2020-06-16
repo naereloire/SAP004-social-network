@@ -1,31 +1,30 @@
-import {createPost, loadPosts} from '../data.js';
+import {createPost, loadPosts, deletePost} from '../data.js';
 
 let limit = 5
 let tagValue = ""
 let tags = {
-  home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
-  geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
-  tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
-  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
-  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
-  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
+    home: [
+        "Tag", `<i class="fas fa-home fa-2x"></i>`
+    ],
+    geek: [
+        "Geek", `<i class="fas fa-robot fa-2x"></i>`
+    ],
+    tech: [
+        "Tech", `<i class="fas fa-laptop-code fa-2x"></i>`
+    ],
+    autocuidado: [
+        "Autocuidado", `<i class="fas fa-spa fa-2x"></i>`
+    ],
+    seguranca: [
+        "Segurança", `<i class="fas fa-people-carry fa-2x"></i>`
+    ],
+    oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
 }
 
-let limit = 5
-let tagValue = ""
-let tags = {
-  home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
-  geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
-  tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
-  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
-  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
-  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
-}
-
-export default () => {
-  const container = document.createElement("div");
-  container.className = "feed-style"
-  const template = `
+export default() => {
+    const container = document.createElement("div");
+    container.className = "feed-style"
+    const template = `
     <div class="bio-container">
     <section class="bio-style">
       <div class="capa-style">
@@ -71,108 +70,131 @@ export default () => {
 }
 
 export const addEventButtons = (page) => {
-  if (page === "home") {
-    loadPosts(clearFeed, showPosts, "", limit)
-    setTimeout(() => {
-      document.getElementById("post-form").addEventListener("submit", btnPost)
-    }, 2000)
-    document.getElementById("ul-id").addEventListener("click", tagFilter)
-    document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
-  }
+    if (page === "home") {
+
+        loadPosts(clearFeed, showPosts, "", limit)
+        setTimeout(() => {
+            document.getElementById("post-form").addEventListener("submit", btnPost)
+        }, 2000)
+        document.getElementById("ul-id").addEventListener("click", tagFilter)
+        document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
+    }
 }
 
 const changeLimitPosts = (event) => {
-  limit += 5
-  loadPosts(clearFeed, showPosts, tagValue, limit)
+    limit += 5
+    loadPosts(clearFeed, showPosts, tagValue, limit)
 
 }
 
 const clearFeed = () => {
-  document.getElementById("all-posts-container").innerHTML = ""
+    document.getElementById("all-posts-container").innerHTML = ""
 }
 
 const clearAriaCurrent = () => {
-  for (let element of document.getElementById("ul-id").children) {
-    element.firstElementChild.removeAttribute('aria-current')
-  }
+    for (let element of document.getElementById("ul-id").children) {
+        element.firstElementChild.removeAttribute('aria-current')
+    }
 }
 
 const tagFilter = (event) => {
-  limit = 5
-  let element_name = event.target.localName
-  if (element_name != 'li') {
-    clearAriaCurrent()
-    if (element_name === 'span') {
-      tagValue = event.target.parentElement.parentElement.name
-      event.target.parentElement.parentElement.ariaCurrent = "page"
+    limit = 5
+    let element_name = event.target.localName
+    if (element_name != 'li') {
+        clearAriaCurrent()
+        if (element_name === 'span') {
+            tagValue = event.target.parentElement.parentElement.name
+            event.target.parentElement.parentElement.ariaCurrent = "page"
 
+        } else {
+            tagValue = event.target.parentElement.name
+            event.target.parentElement.ariaCurrent = "page"
+        } clearFeed()
+        blockTag(tagValue)
+        loadPosts(clearFeed, showPosts, tagValue, limit)
     }
-    else {
-      tagValue = event.target.parentElement.name
-      event.target.parentElement.ariaCurrent = "page"
-    }
-    clearFeed()
-    blockTag(tagValue)
-    loadPosts(clearFeed, showPosts, tagValue, limit)
-  }
 }
 
 const blockTag = (tagValue) => {
-  let select = document.getElementById("select-id")
-  if (!tagValue) {
-    let keyTags = ["home", "geek", "tech", "autocuidado", "seguranca", "oportunidades"]
-    select.innerHTML = ""
-    for (let key of keyTags) {
-      let keyValidated = key === "home" ? "" : key
-      select.innerHTML +=
-        `<option value="${keyValidated}">${tags[key][0]}</option>`;
+    let select = document.getElementById("select-id")
+    if (! tagValue) {
+        let keyTags = [
+            "home",
+            "geek",
+            "tech",
+            "autocuidado",
+            "seguranca",
+            "oportunidades"
+        ]
+        select.innerHTML = ""
+        for (let key of keyTags) {
+            let keyValidated = key === "home" ? "" : key
+            select.innerHTML += `<option value="${keyValidated}">${
+                tags[key][0]
+            }</option>`;
 
+        }
+
+    } else {
+        select.innerHTML = `<option value="${tagValue}">${
+            tags[tagValue][0]
+        }</option>`;
     }
-
-  }
-  else {
-    select.innerHTML =
-      `<option value="${tagValue}">${tags[tagValue][0]}</option>`;
-  }
 }
 
 const btnPost = (event) => {
-  event.preventDefault();
-  const postText = document.getElementById("post-text").value
-  const tag = document.getElementById("select-id")
-  const tagValue = tag.options[tag.selectedIndex].value
-  if (postText) {
-    createPost(postText, tagValue)
-    document.getElementById("post-text").value = ""
-  }
+    event.preventDefault();
+    const postText = document.getElementById("post-text").value
+    const tag = document.getElementById("select-id")
+    const tagValue = tag.options[tag.selectedIndex].value
+    if (postText) {
+        createPost(postText, tagValue)
+        document.getElementById("post-text").value = ""
+    }
 }
 
 const showPosts = (post) => {
-  let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
-  const feddContainer = document.getElementById("all-posts-container");
-  const template_feed = `
-    <section id="${post.id}" class="publication-box">
+
+    let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
+    const feedContainer = document.getElementById("all-posts-container");
+    const template_feed = `
+    <section id="${
+        post.id
+    }" class="publication-box">
     <div class="publication-title">
       <span class="publi-title-span"><br>
 
-        <p>Publicado por ${post.data().name}</p>
+        <p>Publicado por ${
+        post.data().name
+    }</p>
       </span>
-      <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="close-post-btn">&times;</a>
+
+      <span>${
+        tags[keyValidated][1]
+    }</span>
+      <a href="#" class="delete-post-btn">&times;</a>
     </div>
     <div class="publi-area">
-      <p class="text-style">${post.data().text}</p><hr>
+      <p class="text-style">${
+        post.data().text
+    }</p><hr>
     </div>
 
     <div class="publication-btns">
       <button class="btn-style"><i class="fas fa-hand-spock fa-1.5x"></i></button>
       <button class="btn-style"><i class="fas fa-share-alt fa-1.5x"></i></i></button>
       
-      <p>${post.data().date}</p><br/><br/><br/>
+      <p>${
+        post.data().date
+    }</p><br/><br/><br/>
     </div>
     </section>`;
-    feddContainer.innerHTML += template_feed;
+    feedContainer.innerHTML += template_feed;
+
+    const btnDelete = document.querySelectorAll(".delete-post-btn")
+    const catchBtn = (element) => element.addEventListener("click", function (event) {
+        deletePost(event.currentTarget.parentElement.parentElement.id)
+    })
+
+    btnDelete.forEach(catchBtn)
 }
-
-
-

@@ -13,24 +13,28 @@ export const createPost = (textPost, tagOption) => {
 
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).then(() => {
-    }
-    )
+    postsCollection.add(post).then(() => {})
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit) => {
     let postsCollection
     if (!tagFilter) {
         postsCollection = firebase.firestore().collection("posts").limit(limit).orderBy("timestamp", "desc")
-    }
-    else {
+    } else {
         postsCollection = firebase.firestore().collection("posts").where("tag", "==", tagFilter).limit(limit).orderBy("timestamp", "desc")
-    }
-    postsCollection.onSnapshot((snap) => {
+    } postsCollection.onSnapshot((snap) => {
         callbackPreProcess()
         snap.forEach((docs) => {
             callbackPosts(docs)
         })
     })
 
-} 
+
+}
+
+export function deletePost(postId) {
+    const postCollection = firebase.firestore().collection("posts")
+    postCollection.doc(postId).delete().then(doc => {
+        console.log('apagou ' + postId)
+    })
+}
