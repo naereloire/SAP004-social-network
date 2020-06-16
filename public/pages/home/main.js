@@ -141,7 +141,7 @@ const btnPost = (event) => {
 const showPosts = (post) => {
 
   let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
-  const feddContainer = document.getElementById("all-posts-container");
+  const feedContainer = document.getElementById("all-posts-container");
   const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
