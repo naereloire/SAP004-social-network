@@ -11,6 +11,17 @@ let tags = {
   oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
 }
 
+let limit = 5
+let tagValue = ""
+let tags = {
+  home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
+  geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
+  tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
+  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
+  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
+  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
+}
+
 export default () => {
   const container = document.createElement("div");
   container.className = "feed-style"

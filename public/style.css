@@ -140,12 +140,12 @@
     transition: 0.3s
 }
 
+
 .side-nav a:hover,
 .offcanvas a:focus {
-
-
     color: #8c0f54;
 }
+
 
 
 .side-nav,
@@ -219,8 +219,6 @@
 }
 
 .bottom-nav a {
-
-    /*  color: #8c0f54; */
     color: black;
     flex-direction: column;
     font-size: 0.800em;
@@ -238,7 +236,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    padding: 0;
+    text-align: center;
     justify-content: space-around;
     width: 100%;
 }
@@ -335,6 +333,7 @@
 
 .btn-style {
 
+
     padding: 0.5em;
     background: #f2c84b;
     border: 2px solid #f2c84b;
@@ -372,6 +371,7 @@
     text-align: justify;
     width: 91%;
 }
+
 .publication-btns {
     display: inline-flex;
     justify-content: space-between;
@@ -387,20 +387,20 @@
     color: white;
     font-size: 26px;
     text-decoration: none;
-
 }
 
-.delete-post-btn:hover,:focus {
-    color: #8c0f54;
-    font-size: 30px;
-    transform: translate(1);
-}
+.delete-post-btn:hover, :focus  {
+   color: #8c0f54 ;
+   font-size: 30px;
+   transform: translate(1);
+    }
 
 .publi-area {
     padding-top: 3em;
 }
 
 .publication-title {
+
     /* background-color: #8c0f54;  */
     background-image: linear-gradient(to bottom, #C3C0ED, #95D4E7, #BDD9CA);
     border-top-left-radius: 30px;
@@ -558,6 +558,7 @@
     .bio-infos {
         flex: 1;
     }
+
     .post-box,
     .form-container {
         width: 60%;
@@ -569,6 +570,7 @@
         padding: 1em;
         width: 100%;
     }
+
     .publication-box,
     .all-posts-box {
         width: 80%;
@@ -582,6 +584,7 @@
     .ul-style a {
         justify-content: space-between;
         margin: 10px 10px 2px;
+
     }
     .top-nav {
         align-items: center;
