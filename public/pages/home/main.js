@@ -1,16 +1,3 @@
-import {createPost, loadPosts} from '../data.js';
-
-let limit = 5
-let tagValue = ""
-let tags = {
-  home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
-  geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
-  tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
-  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
-  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
-  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
-}
-
 let limit = 5
 let tagValue = ""
 let tags = {
@@ -72,6 +59,7 @@ export default () => {
 
 export const addEventButtons = (page) => {
   if (page === "home") {
+
     loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
@@ -148,8 +136,9 @@ const btnPost = (event) => {
 }
 
 const showPosts = (post) => {
+
   let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
-  const feddContainer = document.getElementById("all-posts-container");
+  const feedContainer = document.getElementById("all-posts-container");
   const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
@@ -157,8 +146,9 @@ const showPosts = (post) => {
 
         <p>Publicado por ${post.data().name}</p>
       </span>
+
       <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="close-post-btn">&times;</a>
+      <a href="#" class="delete-post-btn">&times;</a>
     </div>
     <div class="publi-area">
       <p class="text-style">${post.data().text}</p><hr>
@@ -171,8 +161,17 @@ const showPosts = (post) => {
       <p>${post.data().date}</p><br/><br/><br/>
     </div>
     </section>`;
-    feddContainer.innerHTML += template_feed;
-}
+  
+  feedContainer.innerHTML += template_feed;
+  
+  const btnDelete = document.querySelectorAll(".delete-post-btn")
+  const catchBtn = (element) => element.addEventListener("click", function(event){
+   deletePost(event.currentTarget.parentElement.parentElement.id) 
+  })
+
+  btnDelete.forEach(catchBtn)
+  }
+
 
 
 
