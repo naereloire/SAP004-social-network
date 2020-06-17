@@ -62,14 +62,18 @@ export default () => {
   return container
 }
 
+
 export const addRenderEvents = (page) => {
   let timeToRenderPage = 2000
+
   if (page === "home") {
 
     loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
+
     }, timeToRenderPage)
+
     document.getElementById("ul-id").addEventListener("click", tagFilter)
     document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
   }
