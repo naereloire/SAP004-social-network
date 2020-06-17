@@ -59,12 +59,13 @@ export default () => {
 }
 
 export const addEventButtons = (page) => {
+  let timeToRenderPage
   if (page === "home") {
 
     loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
-    }, 2000)
+    }, timeToRenderPage = 2000)
     document.getElementById("ul-id").addEventListener("click", tagFilter)
     document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
   }

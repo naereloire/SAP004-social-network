@@ -26,21 +26,6 @@
     width: auto;
 }
 
-/* .google-logo {
-    max-width: 30px;
-}
-.google-box {
-    align-items: center;
-    display: inline-flex;
-    border: 2px;
-    border-color: #305d6b;
-    border-radius: 5px;
-    border-style: solid;
-    height: 20px;
-    margin-top: 10px;
-    width: 160px;
-} */
-
 .title {
     color: #8c0f54;
     display: inline-flex;
@@ -210,7 +195,6 @@
 }
 
 .bottom-nav a {
-    /*  color: #8c0f54; */
     color: black;
     flex-direction: column;
     font-size: 0.800em;
@@ -285,7 +269,6 @@
 .text-style {
     margin: 0;
     text-align: justify;
-    font-family: "Gloria Hallelujah";
 }
 
 .title-align {
@@ -377,7 +360,7 @@
     text-decoration: none;
 }
 
-.delete-post-btn:hover, :focus {
+.delete-post-btn:hover {
     color: #8c0f54;
     font-size: 30px;
     transform: translate(1);
@@ -388,7 +371,6 @@
 }
 
 .publication-title {
-    /* background-color: #8c0f54;  */
     background-image: linear-gradient(to bottom, #C3C0ED, #95D4E7, #BDD9CA);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
