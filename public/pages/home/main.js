@@ -1,6 +1,9 @@
 import { createPost, loadPosts, deletePost } from './data.js';
 
+let limitTarget = 0
+let limitReal = 0
 let limit = 5
+let limitcopy = limit
 let tagValue = ""
 let tags = {
   home: ["Tag", `<i class="fas fa-home fa-1x"></i>`],
@@ -59,7 +62,7 @@ export default () => {
   return container
 }
 
-export const addEventButtons = (page) => {
+export const addRenderEvents = (page) => {
   let timeToRenderPage = 2000
   if (page === "home") {
 
@@ -74,9 +77,34 @@ export const addEventButtons = (page) => {
 
 const changeLimitPosts = (event) => {
   limit += 5
+  clearLimits()
   loadPosts(clearFeed, showPosts, tagValue, limit)
 
 }
+const clearLimits = () => {
+  limitcopy = limit
+  limitReal = 0
+  limitTarget = 0
+}
+
+
+const limitFix = () => {
+  limitTarget++
+  if (limitTarget === limitcopy) {
+    if (limit != limitReal) {
+      let difflimit = (limit - limitReal)
+      limitcopy += difflimit
+      limitReal = 0
+      limitTarget = 0
+      loadPosts(clearFeed, showPosts, tagValue, limitcopy)
+    }
+    else {
+      clearLimits()
+    }
+  }
+}
+
+
 
 const clearFeed = () => {
   document.getElementById("all-posts-container").innerHTML = ""
@@ -104,6 +132,7 @@ const tagFilter = (event) => {
     }
     clearFeed()
     blockTag(tagValue)
+    clearLimits()
     loadPosts(clearFeed, showPosts, tagValue, limit)
   }
 }
@@ -139,6 +168,7 @@ const btnPost = (event) => {
     document.getElementById("post-text").value = ""
   }
   document.getElementById("privacy-check").checked = false
+  clearLimits()
 }
 
 const showPosts = (post) => {
@@ -187,7 +217,9 @@ const showPosts = (post) => {
     })
 
     btnDelete.forEach(catchBtn)
+    limitReal++
   }
+  limitFix()
 }
 
 
