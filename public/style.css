@@ -282,11 +282,10 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    height: 90%;
-    margin: 1em;
     padding: 1em;
-    align-items: center;
+    margin-top: 1em;
     text-align: center;
+    width: 75vw;
 }
 
 .textarea-style {
@@ -310,6 +309,7 @@
     background: #f2c84b;
     border: 2px solid #f2c84b;
     border-radius: 1em;
+    margin: 0.2em;
     transform-style: preserve-3d;
     transition: all 175ms cubic-bezier(0, 0, 1, 1);
 }
@@ -339,15 +339,29 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    margin: 1em;
+    margin-top: 1em;
     text-align: justify;
-    width: 91%;
+    width: 85vw;
 }
 
 .publication-btns {
-    display: inline-flex;
-    justify-content: space-evenly;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+}
+
+.span-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.fa-trash-alt {
+    font-size: 0.6em;
 }
 
 .publication-title {
@@ -355,14 +369,13 @@
 }
 
 .delete-post-btn {
-    color: white;
+    color: #8c0f54;
     font-size: 26px;
     text-decoration: none;
 }
 
 .delete-post-btn:hover {
-    color: #8c0f54;
-    font-size: 30px;
+    color: #d80680;
     transform: translate(1);
 }
 
@@ -390,6 +403,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    padding-bottom: 0.5em;
     justify-content: space-between;
 }
 

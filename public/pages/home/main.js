@@ -191,27 +191,31 @@ const showPosts = (post) => {
     const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
-    <span>
-    <p><b>Post </b>${privacy}</p>
-    </span>
-      <span class="publi-title-span"><br>
-       <p>Publicado por ${postData.name}</p>
-      </span>
-
-      <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="delete-post-btn"><i class="fas fa-trash-alt fa-1g"></i></a>
+        <div class="span-container">
+            <span><p>Post${privacy}</p></span>
+            
+            <span>${tags[keyValidated][1]}</span>
+            <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
+        </div>
     </div>
     <div class="publi-area">
-      <p class="text-style">${postData.text}</p><hr>
+        <p class="text-style">${postData.text}</p>
+        <hr>
     </div>
-   
+
     <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
-      <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
-      <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
-      <p>${postData.date}</p><br/><br/><br/>
+    <span>
+     <p>Publicado por ${postData.name}</p>
+     <p>${postData.date}</p>
+    </span>
+      <div>
+        <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
+        <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
+        <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+      </div>
+     
     </div>
-    </section>`;
+</section>`;
 
     feedContainer.innerHTML += template_feed;
 
