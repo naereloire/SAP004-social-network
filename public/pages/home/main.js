@@ -3,21 +3,11 @@ import { createPost, loadPosts, deletePost } from '../data.js';
 let limit = 5
 let tagValue = ""
 let tags = {
-    home: [
-        "Tag", `<i class="fas fa-home fa-2x"></i>`
-    ],
-    geek: [
-        "Geek", `<i class="fas fa-robot fa-2x"></i>`
-    ],
-    tech: [
-        "Tech", `<i class="fas fa-laptop-code fa-2x"></i>`
-    ],
-    autocuidado: [
-        "Autocuidado", `<i class="fas fa-spa fa-2x"></i>`
-    ],
-    seguranca: [
-        "Segurança", `<i class="fas fa-people-carry fa-2x"></i>`
-    ],
+    home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
+    geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
+    tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
+    autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
+    seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
     oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
 }
 
@@ -27,11 +17,11 @@ export default() => {
     const template = `
     <div class="bio-container">
     <section class="bio-style">
-      <div class="capa-style">
-        <img class="img-capa" src="./img/capa-inicial.jpg">
+      <div id="cover-picture" class="capa-style">
+        <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
       </div>
       <div id="profile-picture" class="img-perfil">
-        <img class="foto-style circular-square" src="./img/foto-inicial.jpg">
+        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
       </div>
       <div class="bio-infos">
         <h1 class="text-style" id="user-name"></h1>
@@ -64,6 +54,8 @@ export default() => {
     </section>
     <div id="all-posts-container" class="all-posts-box"></div>
     <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
+    <input type="file" id="file-input">
+    <input type="file" id="file-cover-input">
   </div>`;
   container.innerHTML = template;
   return container
