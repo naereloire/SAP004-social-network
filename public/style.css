@@ -144,7 +144,7 @@
 }
 
 .top-nav a {
-    color: black;
+    color: #8c0f54;
     display: block;
     float: left;
     font-size: 17px;
@@ -154,7 +154,7 @@
 }
 
 .top-nav a:hover {
-    background-color: #ddd;
+    background-color: #d80680;
     color: black;
 }
 
@@ -345,7 +345,7 @@
 }
 
 .publication-btns {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
