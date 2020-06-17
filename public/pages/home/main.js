@@ -21,7 +21,7 @@ export default () => {
     <div class="bio-container">
     <section class="bio-style">
       <div class="capa-style">
-        <img class="img-capa" src="./img/capa-inicial.jpg">
+      <img class="img-capa" src="./img/capa-inicial.jpg">
       </div>
       <div id="profile-picture" class="img-perfil">
         <img class="foto-style circular-square" src="./img/foto-inicial.jpg">

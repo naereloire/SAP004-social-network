@@ -418,9 +418,6 @@
 }
 
 @media only screen and (min-width:768px) and (max-width:900px) {
-    .main-style {
-        margin-top: 150px;
-    }
     .span-style {
         padding: 1em;
     }
@@ -454,10 +451,7 @@
     .bio-container {
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        flex-direction: row;
-        
+        flex: 1;
     }
     .bio-infos {
         align-items: flex-start;
@@ -469,10 +463,12 @@
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: start;
-        
     }
     .feed-container {
-       margin-right: 1em;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 60%;
     }
     .post-box {
         width: 45vw;
@@ -485,7 +481,13 @@
         width: 90%;
     }
     .btn-style {
+        margin: 0.6em;
         padding: 2%;
+    }
+    .publication-title{
+        margin-top: 0;
+        width: 48.7vw;
+
     }
     .publication-title, .ul-style a {
         display: flex;
