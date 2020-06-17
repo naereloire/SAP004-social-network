@@ -1,13 +1,14 @@
 import { createPost, loadPosts, deletePost } from './data.js';
+
 let limit = 5
 let tagValue = ""
 let tags = {
-  home: ["Tag", `<i class="fas fa-home fa-2x"></i>`],
-  geek: ["Geek", `<i class="fas fa-robot fa-2x"></i>`],
-  tech: ["Tech", `<i class="fas fa-laptop-code fa-2x"></i>`],
-  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-2x"></i>`],
-  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-2x"></i>`],
-  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
+  home: ["Tag", `<i class="fas fa-home fa-1x"></i>`],
+  geek: ["Geek", `<i class="fas fa-robot fa-1x"></i>`],
+  tech: ["Tech", `<i class="fas fa-laptop-code fa-1x"></i>`],
+  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-1x"></i>`],
+  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-1x"></i>`],
+  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-1x"></i>`]
 }
 
 export default () => {
@@ -59,13 +60,13 @@ export default () => {
 }
 
 export const addEventButtons = (page) => {
-  let timeToRenderPage
+  let timeToRenderPage = 2000
   if (page === "home") {
 
     loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
-    }, timeToRenderPage = 2000)
+    }, timeToRenderPage)
     document.getElementById("ul-id").addEventListener("click", tagFilter)
     document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
   }
@@ -131,48 +132,73 @@ const btnPost = (event) => {
   const postText = document.getElementById("post-text").value
   const tag = document.getElementById("select-id")
   const tagValue = tag.options[tag.selectedIndex].value
+  const checkBox = document.getElementById("privacy-check").checked
+
   if (postText) {
-    createPost(postText, tagValue)
+    createPost(postText, tagValue, checkBox)
     document.getElementById("post-text").value = ""
   }
+  document.getElementById("privacy-check").checked = false
 }
 
 const showPosts = (post) => {
+  let privacy
+  let postData = post.data()
+  if (privacyValidation(postData) === "mostrar") {
+    if (post.data().privacy) {
+      privacy = 'Privado <i class="fas fa-lock"></i>'
+    }
+    else {
+      privacy = 'Publico <i class="fas fa-lock-open"></i>'
+    }
 
-  let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
-  const feedContainer = document.getElementById("all-posts-container");
-  const template_feed = `
+    let keyValidated = postData.tag === "" ? "home" : postData.tag;
+    const feedContainer = document.getElementById("all-posts-container");
+    const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
+    <span>
+    <p><b>Post </b>${privacy}</p>
+    </span>
       <span class="publi-title-span"><br>
-
-        <p>Publicado por ${post.data().name}</p>
+       <p>Publicado por ${postData.name}</p>
       </span>
 
       <span>${tags[keyValidated][1]}</span>
       <a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a>
     </div>
     <div class="publi-area">
-      <p class="text-style">${post.data().text}</p><hr>
+      <p class="text-style">${postData.text}</p><hr>
     </div>
 
     <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-star fa-2x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-2x"></i></i></button>
-      <p>${post.data().date}</p><br/><br/><br/>
+      <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
+      <button class="btn-style"><i class="fas fa-share-alt fa-1x"></i></i></button>
+      <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+      <p>${postData.date}</p><br/><br/><br/>
     </div>
     </section>`;
 
-  feedContainer.innerHTML += template_feed;
+    feedContainer.innerHTML += template_feed;
 
-  const btnDelete = document.querySelectorAll(".delete-post-btn")
-  const catchBtn = (element) => element.addEventListener("click", function (event) {
-    deletePost(event.currentTarget.parentElement.parentElement.id)
-  })
+    const btnDelete = document.querySelectorAll(".delete-post-btn")
+    const catchBtn = (element) => element.addEventListener("click", function (event) {
+      deletePost(event.currentTarget.parentElement.parentElement.id)
+    })
 
-  btnDelete.forEach(catchBtn)
+    btnDelete.forEach(catchBtn)
+  }
 }
 
 
 
+const privacyValidation = (postData) => {
+  let user = firebase.auth().currentUser;
+  if (postData.user_id === user.uid || !postData.privacy) {
+    return "mostrar"
+  }
+  else {
+    return "não mostrar"
+  }
 
+}
