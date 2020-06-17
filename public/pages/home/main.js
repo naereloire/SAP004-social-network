@@ -180,10 +180,10 @@ const showPosts = (post) => {
   let postData = post.data()
   if (privacyValidation(postData) === "mostrar") {
     if (post.data().privacy) {
-      privacy = 'Privado <i class="fas fa-lock"></i>'
+      privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
     }
     else {
-      privacy = 'Publico <i class="fas fa-lock-open"></i>'
+      privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
     }
 
     let keyValidated = postData.tag === "" ? "home" : postData.tag;
@@ -199,15 +199,15 @@ const showPosts = (post) => {
       </span>
 
       <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a>
+      <a href="#" class="delete-post-btn"><i class="fas fa-trash-alt fa-1g"></i></a>
     </div>
     <div class="publi-area">
       <p class="text-style">${postData.text}</p><hr>
     </div>
-
+   
     <div class="publication-btns">
       <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-1x"></i></i></button>
+      <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
       <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
       <p>${postData.date}</p><br/><br/><br/>
     </div>
