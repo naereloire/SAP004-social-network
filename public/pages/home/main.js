@@ -208,7 +208,7 @@ const showPosts = (post) => {
      <p>Publicado por ${postData.name}</p>
      <p>${postData.date}</p>
     </span>
-      <div>
+      <div class="btns-post-container">
         <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
         <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
         <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
