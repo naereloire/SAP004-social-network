@@ -414,6 +414,8 @@
     margin-top: 15%;
 }
 
+
+
 @media only screen and (min-width:768px) and (max-width:900px) {
     .span-style {
         padding: 1em;
@@ -503,7 +505,7 @@
         flex-wrap: nowrap;
         justify-content: space-evenly;
         margin-bottom: 0.5em;
-    }
+    }.fa-home:before,
     .fa-star:before, 
     .fa-comment-dots:before, 
     .fa-pencil-alt:before, 
@@ -643,7 +645,7 @@
         left: 30%;
         top: 0;
         width: 70%;
-    }
+    }.fa-home:before,
     .fa-star:before, 
     .fa-comment-dots:before, 
     .fa-pencil-alt:before, 
