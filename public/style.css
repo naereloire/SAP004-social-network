@@ -1,3 +1,13 @@
+.fa-stack-2x {
+    text-align: right;
+}
+
+.teste {
+    margin-right: 0.2vw;
+    margin-top: 0.5vw;
+    text-align: right;
+}
+
 .hidden-nav {
     display: none;
 }
@@ -414,8 +424,6 @@
     margin-top: 15%;
 }
 
-
-
 @media only screen and (min-width:768px) and (max-width:900px) {
     .span-style {
         padding: 1em;
@@ -505,17 +513,8 @@
         flex-wrap: nowrap;
         justify-content: space-evenly;
         margin-bottom: 0.5em;
-    }.fa-home:before,
-    .fa-star:before, 
-    .fa-comment-dots:before, 
-    .fa-pencil-alt:before, 
-    .fa-lock-open:before, 
-    .fa-robot:before, 
-    .fa-trash-alt:before, 
-    .fa-laptop-code:before, 
-    .fa-spa:before, 
-    .fa-people-carry:before, 
-    .fa-suitcase:before {
+    }
+    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
         font-size: 3vw;
         text-align: center;
     }
@@ -560,7 +559,8 @@
     }
     .capa-style {
         display: flex;
-        width: 100%;
+        flex-direction: column;
+        /* width: 100%; */
     }
     .img-capa {
         border-bottom: solid #8c0f54;
@@ -608,6 +608,11 @@
     .publication-box, .all-posts-box {
         width: 38vw;
     }
+    .publication-btns {
+        flex-direction: row-reverse;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
     .btn-container {
         justify-content: space-evenly;
     }
@@ -645,17 +650,8 @@
         left: 30%;
         top: 0;
         width: 70%;
-    }.fa-home:before,
-    .fa-star:before, 
-    .fa-comment-dots:before, 
-    .fa-pencil-alt:before, 
-    .fa-lock-open:before, 
-    .fa-robot:before, 
-    .fa-trash-alt:before, 
-    .fa-laptop-code:before, 
-    .fa-spa:before, 
-    .fa-people-carry:before, 
-    .fa-suitcase:before {
+    }
+    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
         font-size: 1.5vw;
         text-align: center;
     }
