@@ -1,13 +1,3 @@
-.fa-stack-2x {
-    text-align: right;
-}
-
-.teste {
-    margin-right: 0.2vw;
-    margin-top: 0.5vw;
-    text-align: right;
-}
-
 .hidden-nav {
     display: none;
 }
@@ -219,13 +209,14 @@
 
 .ul-style {
     display: flex;
+    font-size: 4.2vw;
     list-style-type: none;
     margin: 0;
     margin-top: 0;
     padding: 0;
     text-align: center;
-    justify-content: space-around;
-    width: 100%;
+    /* justify-content: space-around; */
+    /* width: 100%; */
 }
 
 .icons-text {
@@ -573,7 +564,7 @@
         justify-content: space-evenly;
         margin-bottom: 0.5em;
     }
-    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before, .fa-user-lock:before {
         font-size: 3vw;
         text-align: center;
     }
@@ -586,6 +577,7 @@
     .ul-style {
         justify-content: space-evenly;
         padding-bottom: 0.3em;
+        font-size: 1em;
     }
     .footer-style {
         display: flex;
@@ -679,6 +671,9 @@
         padding: 2px;
         margin: 0.6em;
     }
+    .ul-style {
+        font-size: 1em;
+    }
     .ul-style li {
         width: 100%;
     }
@@ -710,7 +705,7 @@
         top: 0;
         width: 70%;
     }
-    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before, .fa-user-lock:before {
         font-size: 1.5vw;
         text-align: center;
     }
