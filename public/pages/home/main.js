@@ -192,7 +192,7 @@ const showPosts = (post) => {
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
         <div class="span-container">
-            <span><p>Post${privacy}</p></span>
+            <span><p>Post ${privacy}</p></span>
             
             <span>${tags[keyValidated][1]}</span>
             <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
