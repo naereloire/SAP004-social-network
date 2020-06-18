@@ -450,7 +450,7 @@
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    background-color: #f2c84b;
 }
 
 .container:hover input~.checkmark {

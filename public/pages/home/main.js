@@ -35,7 +35,7 @@ export default () => {
     <section class="post-box">
     <div class="check-container">
     <label class="container">Privado
-  <input type="checkbox" id="privacy-check" checked="checked">
+  <input type="checkbox" id="privacy-check">
   <span class="checkmark"></span>
 </label>
     <select id="select-id" class="btn-style">
