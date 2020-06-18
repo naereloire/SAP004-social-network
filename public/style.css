@@ -154,7 +154,7 @@
 }
 
 .top-nav a:hover {
-    background-color: #d80680;
+    background-color: rgb(166, 157, 216);
     color: black;
 }
 
@@ -224,8 +224,8 @@
 }
 
 [aria-current] {
-    border-bottom: solid #8c0f54;
-    border-width: 0.125em;
+    border-bottom: solid rgb(166, 157, 216);
+    border-width: 0.3em;
 }
 
 .feed-container {
@@ -449,7 +449,7 @@
 }
 
 .container input:checked~.checkmark {
-    background-color: #d80680;
+    background-color: rgb(166, 157, 216);
 }
 
 .checkmark:after {
@@ -517,7 +517,7 @@
     .feed-style {
         align-items: center;
         display: flex;
-        flex-direction: row;
+        /* flex-direction: row; */
         flex-wrap: nowrap;
         justify-content: start;
     }
@@ -564,7 +564,7 @@
         justify-content: space-evenly;
         margin-bottom: 0.5em;
     }
-    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before, .fa-user-lock:before {
+    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
         font-size: 3vw;
         text-align: center;
     }
@@ -573,6 +573,9 @@
     }
     .top-nav a {
         font-size: 1.2em;
+    }
+    .bottom-nav a {
+        margin: 0;
     }
     .ul-style {
         justify-content: space-evenly;
@@ -617,7 +620,7 @@
         border-bottom: solid #8c0f54;
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
-        width: 26.1vw;
+        width: 100%;
     }
     .img-perfil {
         width: 50%;
@@ -631,7 +634,7 @@
     .bio-container {
         align-items: center;
         flex: 1;
-        margin-right: 1.5em;
+        /* margin-right: 1.5em; */
     }
     .bio-style {
         border: solid #8c0f54;
@@ -705,7 +708,7 @@
         top: 0;
         width: 70%;
     }
-    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before, .fa-user-lock:before {
+    .fa-lock:before, .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
         font-size: 1.5vw;
         text-align: center;
     }
