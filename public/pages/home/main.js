@@ -34,8 +34,10 @@ export default () => {
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="check-container">
-    <input type="checkbox" id="privacy-check class="btn-lock"></input>
-    <label for="privacy-check">Post Privado</label>
+    <label class="container">Privado
+  <input type="checkbox" id="privacy-check" checked="checked">
+  <span class="checkmark"></span>
+</label>
     <select id="select-id" class="btn-style">
     <option value="">Tag</option> 
     <option value="geek">Geek</option> 
