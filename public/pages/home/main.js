@@ -240,7 +240,7 @@ const showPosts = (post) => {
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
-      deletePost(event.currentTarget.parentElement.parentElement.id)
+      deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id)
     })
 
     btnDelete.forEach(catchBtn)
