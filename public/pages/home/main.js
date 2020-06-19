@@ -1,5 +1,5 @@
 import { createPost, loadPosts, deletePost } from './data.js';
-
+let privacy = false
 let limitTarget = 0
 let limitReal = 0
 let limit = 5
@@ -102,7 +102,7 @@ const limitFix = () => {
       limitcopy += difflimit
       limitReal = 0
       limitTarget = 0
-      loadPosts(clearFeed, showPosts, tagValue, limitcopy)
+      loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy)
     }
     else {
       clearLimits()
@@ -136,10 +136,18 @@ const tagFilter = (event) => {
       tagValue = event.target.parentElement.name
       event.target.parentElement.ariaCurrent = "page"
     }
-    clearFeed()
-    blockTag(tagValue)
-    clearLimits()
-    loadPosts(clearFeed, showPosts, tagValue, limit)
+    if (tagValue === "privados") {
+      privacy = true
+      blockTag()
+      clearLimits()
+      loadPosts(clearFeed, showPosts, "", limit, privacy)
+    }
+    else {
+      privacy = false
+      blockTag(tagValue)
+      clearLimits()
+      loadPosts(clearFeed, showPosts, tagValue, limit)
+    }
   }
 }
 
