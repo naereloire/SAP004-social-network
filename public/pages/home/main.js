@@ -175,17 +175,23 @@ const blockTag = (tagValue) => {
 
 const btnPost = (event) => {
   event.preventDefault();
+
   const postText = document.getElementById("post-text").value;
   const tag = document.getElementById("select-id");
   const tagValue = tag.options[tag.selectedIndex].value;
   const checkBox = document.getElementById("privacy-check").checked;
   let photoFile = document.getElementById("input-photo");
-  if (postText || photoFile.value) {
-    postPhoto(photoFile).then((url)=>{
-    console.log(url)
-    createPost(postText, tagValue, checkBox, url)
-    document.getElementById("post-text").value = ""
+
+  if (photoFile.value) {
+    postPhoto(photoFile).then((url) => {
+      console.log(url)
+      createPost(postText, tagValue, checkBox, url)
+      document.getElementById("post-text").value = ""
     })
+  }
+ else if (postText) {
+    createPost(postText, tagValue, checkBox, "")
+    document.getElementById("post-text").value = ""
   }
   if (!privacy) {
     document.getElementById("privacy-check").checked = false

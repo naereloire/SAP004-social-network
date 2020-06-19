@@ -1,6 +1,12 @@
-.img-feed{
-    height: 50%;
-    width:  50%;
+.img-feed {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding-left: 4em;
+    height: 60vw;
+    width: 50vw;
 }
 
 .btn-photo {
@@ -283,7 +289,7 @@
 
 .text-style {
     margin: 0;
-    text-align: justify;
+    text-align: center;
 }
 
 .title-align {
@@ -489,6 +495,10 @@
 }
 
 @media only screen and (min-width:768px) and (max-width:900px) {
+    .img-feed {
+        padding-left: 3em;
+        width: 40vw;
+    }
     .span-style {
         padding: 1em;
     }
@@ -604,6 +614,11 @@
 }
 
 @media only screen and (min-width:901px) {
+    .img-feed {
+        padding-left: 1em;
+        width: 35vw;
+        height: 50vw;
+    }
     .main-style {
         padding-top: 2em;
         display: flex;
