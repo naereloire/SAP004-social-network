@@ -138,12 +138,14 @@ const tagFilter = (event) => {
     }
     if (tagValue === "privados") {
       privacy = true
+      blockPrivacyBox(true)
       blockTag()
       clearLimits()
       loadPosts(clearFeed, showPosts, "", limit, privacy)
     }
     else {
       privacy = false
+      blockPrivacyBox(false)
       blockTag(tagValue)
       clearLimits()
       loadPosts(clearFeed, showPosts, tagValue, limit)
@@ -181,14 +183,16 @@ const btnPost = (event) => {
     createPost(postText, tagValue, checkBox)
     document.getElementById("post-text").value = ""
   }
-  document.getElementById("privacy-check").checked = false
+  if (!privacy) {
+    document.getElementById("privacy-check").checked = false
+  }
   clearLimits()
 }
 
 const showPosts = (post) => {
   let privacy
   let postData = post.data()
-  if (privacyValidation(postData) === "mostrar") {
+  if (privacyValidation(postData)) {
     if (post.data().privacy) {
       privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
     }
@@ -244,11 +248,20 @@ const showPosts = (post) => {
 
 const privacyValidation = (postData) => {
   let user = firebase.auth().currentUser;
-  if (postData.user_id === user.uid || !postData.privacy) {
-    return "mostrar"
+  return (postData.user_id === user.uid || !postData.privacy)
+}
+
+
+
+
+const blockPrivacyBox = (lock) => {
+  const checkBox = document.getElementById("privacy-check")
+  if (lock) {
+    checkBox.checked = true;
+    checkBox.disabled = true;
   }
   else {
-    return "não mostrar"
+    checkBox.checked = false;
+    checkBox.disabled = false;
   }
-
 }

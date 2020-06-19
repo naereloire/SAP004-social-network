@@ -20,6 +20,7 @@ export const createPost = (textPost, tagOption, privacyOption) => {
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
+    let snapshot
     let postsCollection
     if (!tagFilter) {
         postsCollection = (firebase.firestore().collection("posts")
@@ -36,13 +37,15 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
             .limit(limit).orderBy("timestamp", "desc"))
 
     }
-    postsCollection.onSnapshot((snap) => {
-        debugger
+    snapshot = postsCollection.onSnapshot((snap) => {
+        
+
         callbackPreProcess()
         snap.forEach((docs) => {
             callbackPosts(docs)
         })
     })
+
 }
 
 export function deletePost(postId) {
