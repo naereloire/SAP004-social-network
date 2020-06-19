@@ -246,6 +246,7 @@
 [aria-current] {
     border-bottom: solid rgb(166, 157, 216);
     border-width: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 .feed-container {
@@ -620,9 +621,11 @@
 
 @media only screen and (min-width:901px) {
     .img-feed {
-        padding-left: 1em;
-        width: 35vw;
-        height: 50vw;
+        width: 50%;
+        height: 5%;
+        object-fit: fill;
+        align-items: center;
+        padding-right: 4em;
     }
     .main-style {
         padding-top: 2em;
@@ -634,6 +637,7 @@
     }
     .span-style {
         font-size: 2em;
+        margin: 5px;
     }
     .feed-style {
         align-items: flex-start;
@@ -691,10 +695,16 @@
         width: 33vw;
     }
     .publication-title {
-        width: 37.6vw;
+        width: 37.4vw;
     }
     .publication-box, .all-posts-box {
         width: 38vw;
+    }
+    .img-feed-container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
     }
     .publication-btns {
         flex-direction: row-reverse;
@@ -743,7 +753,7 @@
         width: 70%;
     }
     .fa-lock:before, .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
-        font-size: 1.5vw;
+        font-size: 1em;
         text-align: center;
     }
     .container-login {
@@ -792,7 +802,7 @@
         justify-content: space-evenly;
         bottom: auto;
     }
-    .icons-text{
+    .icons-text {
         font-size: 0.6em;
     }
 }
