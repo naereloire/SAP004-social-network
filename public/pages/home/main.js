@@ -1,4 +1,4 @@
-import { createPost, loadPosts, deletePost } from './data.js';
+import { createPost, loadPosts, deletePost, saveImage } from './data.js';
 let privacy = false
 let limitTarget = 0
 let limitReal = 0
@@ -52,7 +52,8 @@ export default () => {
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
-        <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
+        <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
+        <label class="btn-style" for="input-photo"><i class="fas fa-camera-retro fa-2x"></i></label>
         <button type="submit" class="btn-style">Publicar</button>
       </div>
       </form>
@@ -174,12 +175,13 @@ const blockTag = (tagValue) => {
 
 const btnPost = (event) => {
   event.preventDefault();
-  const postText = document.getElementById("post-text").value
-  const tag = document.getElementById("select-id")
-  const tagValue = tag.options[tag.selectedIndex].value
-  const checkBox = document.getElementById("privacy-check").checked
-
-  if (postText) {
+  const postText = document.getElementById("post-text").value;
+  const tag = document.getElementById("select-id");
+  const tagValue = tag.options[tag.selectedIndex].value;
+  const checkBox = document.getElementById("privacy-check").checked;
+  let photoFile = document.getElementById("input-photo");
+  if (postText || photoFile.value) {
+    postPhoto(photoFile)
     createPost(postText, tagValue, checkBox)
     document.getElementById("post-text").value = ""
   }
@@ -251,9 +253,6 @@ const privacyValidation = (postData) => {
   return (postData.user_id === user.uid || !postData.privacy)
 }
 
-
-
-
 const blockPrivacyBox = (lock) => {
   const checkBox = document.getElementById("privacy-check")
   if (lock) {
@@ -264,4 +263,11 @@ const blockPrivacyBox = (lock) => {
     checkBox.checked = false;
     checkBox.disabled = false;
   }
+}
+
+const postPhoto = (photoElement) => {
+  let namePhotoFile = photoElement.value.split("\\").pop();
+  let photoFile = photoElement.files[0];
+  saveImage(namePhotoFile, photoFile)
+
 }

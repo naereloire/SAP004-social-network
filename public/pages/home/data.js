@@ -38,7 +38,7 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
 
     }
     snapshot = postsCollection.onSnapshot((snap) => {
-        
+
 
         callbackPreProcess()
         snap.forEach((docs) => {
@@ -48,9 +48,19 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
 
 }
 
+export const saveImage = (nameFile, file) => {
+    // debugger
+    let storageRef = firebase.storage().ref()
+    let postImage = storageRef.child(`postImage/${nameFile}`)
+    postImage.put(file).then((snapshot) => {
+        console.log("photo publicada" + snapshot)
+    })
+}
+
 export function deletePost(postId) {
     const postCollection = firebase.firestore().collection("posts")
     postCollection.doc(postId).delete().then(doc => {
         console.log('apagou ' + postId)
     })
 }
+
