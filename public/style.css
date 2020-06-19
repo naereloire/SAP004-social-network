@@ -1,3 +1,23 @@
+.img-feed {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding-left: 4em;
+    height: 60vw;
+    width: 50vw;
+}
+
+.btn-photo {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
 .hidden-nav {
     display: none;
 }
@@ -226,6 +246,7 @@
 [aria-current] {
     border-bottom: solid rgb(166, 157, 216);
     border-width: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 .feed-container {
@@ -269,7 +290,7 @@
 
 .text-style {
     margin: 0;
-    text-align: justify;
+    text-align: center;
 }
 
 .title-align {
@@ -303,6 +324,11 @@
     justify-content: space-between;
     width: 90%;
     margin: 5px;
+}
+
+.img-check {
+    background: #f2c84b;
+    border: 2px solid #f2c84b;
 }
 
 .btn-style {
@@ -475,6 +501,10 @@
 }
 
 @media only screen and (min-width:768px) and (max-width:900px) {
+    .img-feed {
+        padding-left: 3em;
+        width: 40vw;
+    }
     .span-style {
         padding: 1em;
     }
@@ -590,6 +620,13 @@
 }
 
 @media only screen and (min-width:901px) {
+    .img-feed {
+        width: 50%;
+        height: 5%;
+        object-fit: fill;
+        align-items: center;
+        padding-right: 4em;
+    }
     .main-style {
         padding-top: 2em;
         display: flex;
@@ -600,6 +637,7 @@
     }
     .span-style {
         font-size: 2em;
+        margin: 5px;
     }
     .feed-style {
         align-items: flex-start;
@@ -657,10 +695,16 @@
         width: 33vw;
     }
     .publication-title {
-        width: 37.6vw;
+        width: 37.4vw;
     }
     .publication-box, .all-posts-box {
         width: 38vw;
+    }
+    .img-feed-container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
     }
     .publication-btns {
         flex-direction: row-reverse;
@@ -709,7 +753,7 @@
         width: 70%;
     }
     .fa-lock:before, .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
-        font-size: 1.5vw;
+        font-size: 1em;
         text-align: center;
     }
     .container-login {
@@ -757,5 +801,8 @@
         flex-direction: row;
         justify-content: space-evenly;
         bottom: auto;
+    }
+    .icons-text {
+        font-size: 0.6em;
     }
 }

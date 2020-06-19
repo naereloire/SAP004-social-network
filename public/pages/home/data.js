@@ -1,4 +1,4 @@
-export const createPost = (textPost, tagOption, privacyOption) => {
+export const createPost = (textPost, tagOption, privacyOption, url) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
     const post = {
@@ -10,7 +10,8 @@ export const createPost = (textPost, tagOption, privacyOption) => {
         timestamp: date.getTime(),
         privacy: privacyOption,
         coments: [],
-        likes: 0
+        likes: 0,
+        urlImg:url
 
     }
     const postsCollection = firebase.firestore().collection("posts")
@@ -38,7 +39,7 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
 
     }
     snapshot = postsCollection.onSnapshot((snap) => {
-        
+
 
         callbackPreProcess()
         snap.forEach((docs) => {
@@ -48,9 +49,20 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
 
 }
 
+export const saveImage = (nameFile, file, getUrl) => {
+    let urlPhoto
+    let storageRef = firebase.storage().ref()
+    let postImage = storageRef.child(`postImage/${nameFile}`)
+    postImage.put(file).then((snapshot) => {
+        console.log("photo publicada" + snapshot)
+    })
+    return urlPhoto = postImage.getDownloadURL()
+}
+
 export function deletePost(postId) {
     const postCollection = firebase.firestore().collection("posts")
     postCollection.doc(postId).delete().then(doc => {
         console.log('apagou ' + postId)
     })
 }
+
