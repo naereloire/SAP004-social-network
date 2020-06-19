@@ -206,6 +206,13 @@ const showPosts = (post) => {
   let privacy
   let postData = post.data()
   let templateImg = ""
+  let templateDeletBtn = ""
+
+  if (firebase.auth().currentUser.uid === postData.user_id) {
+    templateDeletBtn = `
+  <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>`
+  }
+
   if (postData.urlImg) {
     templateImg = `<img src=${postData.urlImg} class='img-feed'>`
   }
@@ -224,9 +231,8 @@ const showPosts = (post) => {
         <div class="publication-title">
           <div class="span-container">
             <span><p>Post ${privacy}</p></span>
-
             <span>${tags[keyValidated][1]}</span>
-            <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
+            ${templateDeletBtn}
           </div>
         </div>
         <div class="publi-area">
@@ -249,7 +255,6 @@ const showPosts = (post) => {
 </section > `;
 
     feedContainer.innerHTML += template_feed;
-
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
       deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id)

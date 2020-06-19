@@ -721,6 +721,7 @@
         font-size: 1em;
     }
     .ul-style li {
+        margin: 0;
         width: 100%;
     }
     .ul-style a {
@@ -739,6 +740,9 @@
     .nav-style {
         width: 40%;
     }
+    .nav-ul {
+        overflow: hidden;
+    }
     .hidden-nav {
         display: none;
     }
@@ -750,6 +754,7 @@
         left: 30%;
         top: 0;
         width: 70%;
+        z-index: 1;
     }
     .fa-lock:before, .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
         font-size: 1em;
