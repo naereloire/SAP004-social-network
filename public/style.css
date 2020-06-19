@@ -274,6 +274,15 @@
     width: 40%;
 }
 
+#image-profile {
+    cursor: pointer;
+}
+
+#image-profile:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
 .foto-style {
     width: 90%;
 }
@@ -525,9 +534,16 @@
         border-bottom: solid #8c0f54;
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
+        cursor: pointer;
         height: 85%;
         width: 100%;
     }
+
+    .img-capa:hover {
+        opacity: 0.5;
+        transition: 0.5s;
+    }
+
     .img-perfil {
         width: 50%;
     }

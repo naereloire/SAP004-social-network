@@ -38,7 +38,6 @@ export const putImageProfile = () => {
 export const openImageCover = () => {
     const userCoverPicture = document.getElementById("cover-picture");
     userCoverPicture.addEventListener("click", function(){
-        console.log("Oi")
         let coverInput = document.getElementById('file-cover-input')
         coverInput.click()
     })
