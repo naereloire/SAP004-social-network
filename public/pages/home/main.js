@@ -74,6 +74,7 @@ export const addRenderEvents = (page) => {
     loadPosts(clearFeed, showPosts, "", limit)
     setTimeout(() => {
       document.getElementById("post-form").addEventListener("submit", btnPost)
+      document.getElementById("input-photo").addEventListener("change", changePhotoIcon)
 
     }, timeToRenderPage)
 
@@ -184,12 +185,14 @@ const btnPost = (event) => {
 
   if (photoFile.value) {
     postPhoto(photoFile).then((url) => {
-      console.log(url)
       createPost(postText, tagValue, checkBox, url)
       document.getElementById("post-text").value = ""
+
+      photoFile.value = ""
+      rollBackPhotoIcon(photoFile)
     })
   }
- else if (postText) {
+  else if (postText) {
     createPost(postText, tagValue, checkBox, "")
     document.getElementById("post-text").value = ""
   }
@@ -202,45 +205,48 @@ const btnPost = (event) => {
 const showPosts = (post) => {
   let privacy
   let postData = post.data()
+  let templateImg = ""
+  if (postData.urlImg) {
+   templateImg = `<img src=${postData.urlImg} class='img-feed'>`
+}
   if (privacyValidation(postData)) {
     if (post.data().privacy) {
-      privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
-    }
+        privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
+      }
     else {
-      privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
-    }
+        privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
+      }
 
     let keyValidated = postData.tag === "" ? "home" : postData.tag;
     const feedContainer = document.getElementById("all-posts-container");
     const template_feed = `
     <section id="${post.id}" class="publication-box">
-    <div class="publication-title">
-        <div class="span-container">
+        <div class="publication-title">
+          <div class="span-container">
             <span><p>Post ${privacy}</p></span>
-            
+
             <span>${tags[keyValidated][1]}</span>
             <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
+          </div>
         </div>
-    </div>
-    <div class="publi-area">
-        <img src=${postData.urlImg} class='img-feed'>
-        <p class="text-style">${postData.text}</p>
-        <hr>
-    </div>
-
-    <div class="publication-btns">
-    <span>
-     <p>Publicado por ${postData.name}</p>
-     <p>${postData.date}</p>
-    </span>
-      <div class="btns-post-container">
-        <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
-        <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
-        <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+        <div class="publi-area">
+             ${templateImg}<br>
+          <p class="text-style">${postData.text}</p>
+          <hr>
+        </div>
+        <div class="publication-btns">
+          <span>
+            <p>Publicado por ${postData.name}</p>
+            <p>${postData.date}</p>
+          </span>
+          <div class="btns-post-container">
+            <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
+            <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
+          <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
       </div>
      
     </div>
-</section>`;
+</section > `;
 
     feedContainer.innerHTML += template_feed;
 
@@ -280,4 +286,16 @@ const postPhoto = (photoElement) => {
   let photoFile = photoElement.files[0];
   urlImg = saveImage(namePhotoFile, photoFile)
   return urlImg
+}
+
+const changePhotoIcon = (event) => {
+  let labelInputPhoto = event.currentTarget.labels[0]
+  labelInputPhoto.className = "img-check"
+  labelInputPhoto.innerHTML = '<i class="img-check fas fa-check-square fa-2x"></i>'
+}
+
+const rollBackPhotoIcon = (photoElement) => {
+  let label = photoElement.labels[0]
+  label.className = "btn-style"
+  label.innerHTML = '<i class="fas fa-camera-retro fa-2x"></i>'
 }

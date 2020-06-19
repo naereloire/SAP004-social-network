@@ -325,6 +325,11 @@
     margin: 5px;
 }
 
+.img-check {
+    background: #f2c84b;
+    border: 2px solid #f2c84b;
+}
+
 .btn-style {
     padding: 0.5em;
     background: #f2c84b;
