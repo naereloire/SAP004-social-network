@@ -792,4 +792,7 @@
         justify-content: space-evenly;
         bottom: auto;
     }
+    .icons-text{
+        font-size: 0.6em;
+    }
 }

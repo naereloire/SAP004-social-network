@@ -86,7 +86,7 @@ export const addRenderEvents = (page) => {
 const changeLimitPosts = (event) => {
   limit += 5
   clearLimits()
-  loadPosts(clearFeed, showPosts, tagValue, limit)
+  loadPosts(clearFeed, showPosts, tagValue, limit, privacy)
 
 }
 const clearLimits = () => {
@@ -207,15 +207,15 @@ const showPosts = (post) => {
   let postData = post.data()
   let templateImg = ""
   if (postData.urlImg) {
-   templateImg = `<img src=${postData.urlImg} class='img-feed'>`
-}
+    templateImg = `<img src=${postData.urlImg} class='img-feed'>`
+  }
   if (privacyValidation(postData)) {
     if (post.data().privacy) {
-        privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
-      }
+      privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
+    }
     else {
-        privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
-      }
+      privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
+    }
 
     let keyValidated = postData.tag === "" ? "home" : postData.tag;
     const feedContainer = document.getElementById("all-posts-container");
