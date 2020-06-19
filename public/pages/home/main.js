@@ -181,9 +181,11 @@ const btnPost = (event) => {
   const checkBox = document.getElementById("privacy-check").checked;
   let photoFile = document.getElementById("input-photo");
   if (postText || photoFile.value) {
-    postPhoto(photoFile)
-    createPost(postText, tagValue, checkBox)
+    postPhoto(photoFile).then((url)=>{
+    console.log(url)
+    createPost(postText, tagValue, checkBox, url)
     document.getElementById("post-text").value = ""
+    })
   }
   if (!privacy) {
     document.getElementById("privacy-check").checked = false
@@ -215,6 +217,7 @@ const showPosts = (post) => {
         </div>
     </div>
     <div class="publi-area">
+        <img src=${postData.urlImg} class='img-feed'>
         <p class="text-style">${postData.text}</p>
         <hr>
     </div>
@@ -266,8 +269,9 @@ const blockPrivacyBox = (lock) => {
 }
 
 const postPhoto = (photoElement) => {
+  let urlImg
   let namePhotoFile = photoElement.value.split("\\").pop();
   let photoFile = photoElement.files[0];
-  saveImage(namePhotoFile, photoFile)
-
+  urlImg = saveImage(namePhotoFile, photoFile)
+  return urlImg
 }
