@@ -57,6 +57,7 @@ const renderPage = (event) => {
 
             if(page == 'profile') {
                 getProfile()
+                document.getElementById("side-navigation").style.width = "0";
                 const sendBtn = document.getElementById("save-btn")
                 sendBtn.addEventListener("click", saveProfileUser)
 

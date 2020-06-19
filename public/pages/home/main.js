@@ -1,5 +1,5 @@
 import { createPost, loadPosts, deletePost } from './data.js';
-
+let privacy = false
 let limitTarget = 0
 let limitReal = 0
 let limit = 5
@@ -21,7 +21,7 @@ export default () => {
     <div class="bio-container">
     <section class="bio-style">
       <div class="capa-style">
-        <img class="img-capa" src="./img/capa-inicial.jpg">
+      <img class="img-capa" src="./img/capa-inicial.jpg">
       </div>
       <div id="profile-picture" class="img-perfil">
         <img class="foto-style circular-square" src="./img/foto-inicial.jpg">
@@ -34,8 +34,10 @@ export default () => {
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="check-container">
-    <input type="checkbox" id="privacy-check"></input>
-    <label for="privacy-check">Post Privado</label>
+    <label class="container">Privado
+  <input type="checkbox" id="privacy-check">
+  <span class="checkmark"></span>
+</label>
     <select id="select-id" class="btn-style">
     <option value="">Tag</option> 
     <option value="geek">Geek</option> 
@@ -100,7 +102,7 @@ const limitFix = () => {
       limitcopy += difflimit
       limitReal = 0
       limitTarget = 0
-      loadPosts(clearFeed, showPosts, tagValue, limitcopy)
+      loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy)
     }
     else {
       clearLimits()
@@ -134,10 +136,20 @@ const tagFilter = (event) => {
       tagValue = event.target.parentElement.name
       event.target.parentElement.ariaCurrent = "page"
     }
-    clearFeed()
-    blockTag(tagValue)
-    clearLimits()
-    loadPosts(clearFeed, showPosts, tagValue, limit)
+    if (tagValue === "privados") {
+      privacy = true
+      blockPrivacyBox(true)
+      blockTag()
+      clearLimits()
+      loadPosts(clearFeed, showPosts, "", limit, privacy)
+    }
+    else {
+      privacy = false
+      blockPrivacyBox(false)
+      blockTag(tagValue)
+      clearLimits()
+      loadPosts(clearFeed, showPosts, tagValue, limit)
+    }
   }
 }
 
@@ -171,19 +183,21 @@ const btnPost = (event) => {
     createPost(postText, tagValue, checkBox)
     document.getElementById("post-text").value = ""
   }
-  document.getElementById("privacy-check").checked = false
+  if (!privacy) {
+    document.getElementById("privacy-check").checked = false
+  }
   clearLimits()
 }
 
 const showPosts = (post) => {
   let privacy
   let postData = post.data()
-  if (privacyValidation(postData) === "mostrar") {
+  if (privacyValidation(postData)) {
     if (post.data().privacy) {
-      privacy = 'Privado <i class="fas fa-lock"></i>'
+      privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
     }
     else {
-      privacy = 'Publico <i class="fas fa-lock-open"></i>'
+      privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
     }
 
     let keyValidated = postData.tag === "" ? "home" : postData.tag;
@@ -191,27 +205,31 @@ const showPosts = (post) => {
     const template_feed = `
     <section id="${post.id}" class="publication-box">
     <div class="publication-title">
-    <span>
-    <p><b>Post </b>${privacy}</p>
-    </span>
-      <span class="publi-title-span"><br>
-       <p>Publicado por ${postData.name}</p>
-      </span>
-
-      <span>${tags[keyValidated][1]}</span>
-      <a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a>
+        <div class="span-container">
+            <span><p>Post ${privacy}</p></span>
+            
+            <span>${tags[keyValidated][1]}</span>
+            <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
+        </div>
     </div>
     <div class="publi-area">
-      <p class="text-style">${postData.text}</p><hr>
+        <p class="text-style">${postData.text}</p>
+        <hr>
     </div>
 
     <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-1x"></i></i></button>
-      <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
-      <p>${postData.date}</p><br/><br/><br/>
+    <span>
+     <p>Publicado por ${postData.name}</p>
+     <p>${postData.date}</p>
+    </span>
+      <div class="btns-post-container">
+        <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
+        <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
+        <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+      </div>
+     
     </div>
-    </section>`;
+</section>`;
 
     feedContainer.innerHTML += template_feed;
 
@@ -230,11 +248,20 @@ const showPosts = (post) => {
 
 const privacyValidation = (postData) => {
   let user = firebase.auth().currentUser;
-  if (postData.user_id === user.uid || !postData.privacy) {
-    return "mostrar"
+  return (postData.user_id === user.uid || !postData.privacy)
+}
+
+
+
+
+const blockPrivacyBox = (lock) => {
+  const checkBox = document.getElementById("privacy-check")
+  if (lock) {
+    checkBox.checked = true;
+    checkBox.disabled = true;
   }
   else {
-    return "não mostrar"
+    checkBox.checked = false;
+    checkBox.disabled = false;
   }
-
 }
