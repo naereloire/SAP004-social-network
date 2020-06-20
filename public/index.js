@@ -1,5 +1,5 @@
 import routes from "./routes.js";
-import { addEventButtons } from "./pages/home/main.js"
+import { addRenderEvents } from "./pages/home/main.js"
 import auth from "./authentication/auth.js"
 import {  saveProfileUser,  getInformationUser, getProfile } from "./pages/perfil/data.js"
 import { userRegister } from "./pages/registro/data.js"
@@ -52,10 +52,11 @@ const renderPage = (event) => {
             }
 
             main.appendChild(routes[page]);
-            addEventButtons(page);
+            addRenderEvents(page);
 
             if(page == 'profile') {
                 getProfile()
+                document.getElementById("side-navigation").style.width = "0";
                 const sendBtn = document.getElementById("save-btn")
                 sendBtn.addEventListener("click", saveProfileUser)
 
