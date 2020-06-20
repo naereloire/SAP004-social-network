@@ -1,4 +1,4 @@
-import { createPost, loadPosts, deletePost, saveImage } from './data.js';
+import { createPost, loadPosts, deletePost, saveImage, savePostEdit } from './data.js';
 let privacy = false
 let limitTarget = 0
 let limitReal = 0
@@ -206,6 +206,17 @@ const showPosts = (post) => {
   let privacy
   let postData = post.data()
   let templateImg = ""
+  let templateDeletBtn = ""
+  let templateBtnEdit = ""
+
+  if (firebase.auth().currentUser.uid === postData.user_id) {
+    templateDeletBtn = `
+    <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>`
+    templateBtnEdit = `
+    <button id="edit-${post.id}" class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+    `
+  }
+
   if (postData.urlImg) {
     templateImg = `<img src=${postData.urlImg} class='img-feed'>`
   }
@@ -224,9 +235,8 @@ const showPosts = (post) => {
         <div class="publication-title">
           <div class="span-container">
             <span><p>Post ${privacy}</p></span>
-
             <span>${tags[keyValidated][1]}</span>
-            <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
+            ${templateDeletBtn}
           </div>
         </div>
         <div class="publi-area">
@@ -242,13 +252,18 @@ const showPosts = (post) => {
           <div class="btns-post-container">
             <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
             <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
-          <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+            ${templateBtnEdit}
       </div>
      
     </div>
 </section > `;
 
-    feedContainer.innerHTML += template_feed;
+    feedContainer.insertAdjacentHTML('beforeend', template_feed);
+    if (templateBtnEdit) {
+      document.getElementById(`edit-${post.id}`).addEventListener("click", (event) => {
+        editPost(event, post.id, postData.text)
+      })
+    }
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
@@ -257,6 +272,7 @@ const showPosts = (post) => {
 
     btnDelete.forEach(catchBtn)
     limitReal++
+
   }
   limitFix()
 }
@@ -298,4 +314,31 @@ const rollBackPhotoIcon = (photoElement) => {
   let label = photoElement.labels[0]
   label.className = "btn-style"
   label.innerHTML = '<i class="fas fa-camera-retro fa-2x"></i>'
+}
+
+const editPost = (event, postId, currentText) => {
+  let editedText
+  let textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1]
+  textArea.querySelector("p").style.display = "none"
+  let template_edit_area = `
+  <form id="post-form-edit" class="form-style">
+      <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
+      <div class="btn-edit">
+      <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
+      <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
+    </div>
+    </form>
+  `
+  textArea.insertAdjacentHTML('beforeend', template_edit_area);
+
+  document.getElementById("btn-cancel-edit").addEventListener("click", (event) => {
+    let form = document.getElementById("post-form-edit")
+    textArea.removeChild(form)
+    textArea.children[1].style.display = "block"
+  });
+
+  document.getElementById("btn-save-edit").addEventListener("click", (event) => {
+    editedText = document.getElementById("post-text-edit").value
+    savePostEdit(postId, editedText)
+  })
 }
