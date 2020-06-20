@@ -20,8 +20,8 @@ export default () => {
   const template = `
     <div class="bio-container">
     <section class="bio-style">
-      <div class="capa-style">
-      <img class="img-capa" src="./img/capa-inicial.jpg">
+      <div id="cover-picture" class="capa-style">
+      <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
       </div>
       <div id="profile-picture" class="img-perfil">
         <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
@@ -315,26 +315,6 @@ const postPhoto = (photoElement) => {
 const privacyValidation = (postData) => {
   let user = firebase.auth().currentUser;
   return (postData.user_id === user.uid || !postData.privacy)
-}
-
-const blockPrivacyBox = (lock) => {
-  const checkBox = document.getElementById("privacy-check")
-  if (lock) {
-    checkBox.checked = true;
-    checkBox.disabled = true;
-  }
-  else {
-    checkBox.checked = false;
-    checkBox.disabled = false;
-  }
-}
-
-const postPhoto = (photoElement) => {
-  let urlImg
-  let namePhotoFile = photoElement.value.split("\\").pop();
-  let photoFile = photoElement.files[0];
-  urlImg = saveImage(namePhotoFile, photoFile)
-  return urlImg
 }
 
 const changePhotoIcon = (event) => {
