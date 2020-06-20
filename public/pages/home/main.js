@@ -1,23 +1,17 @@
-import { createPost, loadPosts, deletePost } from '../data.js';
+import { createPost, loadPosts, deletePost, saveImage } from './data.js';
+let privacy = false
+let limitTarget = 0
+let limitReal = 0
 let limit = 5
+let limitcopy = limit
 let tagValue = ""
 let tags = {
-    home: [
-        "Tag", `<i class="fas fa-home fa-2x"></i>`
-    ],
-    geek: [
-        "Geek", `<i class="fas fa-robot fa-2x"></i>`
-    ],
-    tech: [
-        "Tech", `<i class="fas fa-laptop-code fa-2x"></i>`
-    ],
-    autocuidado: [
-        "Autocuidado", `<i class="fas fa-spa fa-2x"></i>`
-    ],
-    seguranca: [
-        "Segurança", `<i class="fas fa-people-carry fa-2x"></i>`
-    ],
-    oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-2x"></i>`]
+  home: ["Tag", `<i class="fas fa-home fa-1x"></i>`],
+  geek: ["Geek", `<i class="fas fa-robot fa-1x"></i>`],
+  tech: ["Tech", `<i class="fas fa-laptop-code fa-1x"></i>`],
+  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-1x"></i>`],
+  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-1x"></i>`],
+  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-1x"></i>`]
 }
 
 export default() => {
@@ -26,11 +20,11 @@ export default() => {
     const template = `
     <div class="bio-container">
     <section class="bio-style">
-      <div class="capa-style">
-        <img class="img-capa" src="./img/capa-inicial.jpg">
+      <div id="cover-picture" class="capa-style">
+        <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
       </div>
       <div id="profile-picture" class="img-perfil">
-        <img class="foto-style circular-square" src="./img/foto-inicial.jpg">
+        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
       </div>
       <div class="bio-infos">
         <h1 class="text-style" id="user-name"></h1>
@@ -40,8 +34,10 @@ export default() => {
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="check-container">
-    <input type="checkbox" id="privacy-check"></input>
-    <label for="privacy-check">Post Privado</label>
+    <label class="container">Privado
+  <input type="checkbox" id="privacy-check">
+  <span class="checkmark"></span>
+</label>
     <select id="select-id" class="btn-style">
     <option value="">Tag</option> 
     <option value="geek">Geek</option> 
@@ -56,35 +52,69 @@ export default() => {
       <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
-        <button class="btn-style"><i class="fas fa-camera-retro fa-2x"></i></button>
+        <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
+        <label class="btn-style" for="input-photo"><i class="fas fa-camera-retro fa-2x"></i></label>
         <button type="submit" class="btn-style">Publicar</button>
       </div>
       </form>
     </section>
     <div id="all-posts-container" class="all-posts-box"></div>
     <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
+    <input type="file" id="file-input">
+    <input type="file" id="file-cover-input">
   </div>`;
   container.innerHTML = template;
   return container
 }
 
-export const addEventButtons = (page) => {
-    if (page === "home") {
 
-        loadPosts(clearFeed, showPosts, "", limit)
-        setTimeout(() => {
-            document.getElementById("post-form").addEventListener("submit", btnPost)
-        }, 2000)
-        document.getElementById("ul-id").addEventListener("click", tagFilter)
-        document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
-    }
+export const addRenderEvents = (page) => {
+  let timeToRenderPage = 2000
+
+  if (page === "home") {
+
+    loadPosts(clearFeed, showPosts, "", limit)
+    setTimeout(() => {
+      document.getElementById("post-form").addEventListener("submit", btnPost)
+      document.getElementById("input-photo").addEventListener("change", changePhotoIcon)
+
+    }, timeToRenderPage)
+
+    document.getElementById("ul-id").addEventListener("click", tagFilter)
+    document.getElementById("btn-ver-mais").addEventListener("click", changeLimitPosts)
+  }
 }
 
 const changeLimitPosts = (event) => {
-    limit += 5
-    loadPosts(clearFeed, showPosts, tagValue, limit)
+  limit += 5
+  clearLimits()
+  loadPosts(clearFeed, showPosts, tagValue, limit, privacy)
 
 }
+const clearLimits = () => {
+  limitcopy = limit
+  limitReal = 0
+  limitTarget = 0
+}
+
+
+const limitFix = () => {
+  limitTarget++
+  if (limitTarget === limitcopy) {
+    if (limit != limitReal) {
+      let difflimit = (limit - limitReal)
+      limitcopy += difflimit
+      limitReal = 0
+      limitTarget = 0
+      loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy)
+    }
+    else {
+      clearLimits()
+    }
+  }
+}
+
+
 
 const clearFeed = () => {
     document.getElementById("all-posts-container").innerHTML = ""
@@ -112,7 +142,25 @@ const tagFilter = (event) => {
         blockTag(tagValue)
         loadPosts(clearFeed, showPosts, tagValue, limit)
     }
-}
+    else {
+      tagValue = event.target.parentElement.name
+      event.target.parentElement.ariaCurrent = "page"
+    }
+    if (tagValue === "privados") {
+      privacy = true
+      blockPrivacyBox(true)
+      blockTag()
+      clearLimits()
+      loadPosts(clearFeed, showPosts, "", limit, privacy)
+    }
+    else {
+      privacy = false
+      blockPrivacyBox(false)
+      blockTag(tagValue)
+      clearLimits()
+      loadPosts(clearFeed, showPosts, tagValue, limit)
+    }
+  }
 
 const blockTag = (tagValue) => {
     let select = document.getElementById("select-id")
@@ -142,68 +190,127 @@ const blockTag = (tagValue) => {
 }
 
 const btnPost = (event) => {
-    event.preventDefault();
-    const postText = document.getElementById("post-text").value
-    const tag = document.getElementById("select-id")
-    const tagValue = tag.options[tag.selectedIndex].value
-    if (postText) {
-        createPost(postText, tagValue)
-        document.getElementById("post-text").value = ""
-    }
+  event.preventDefault();
+
+  const postText = document.getElementById("post-text").value;
+  const tag = document.getElementById("select-id");
+  const tagValue = tag.options[tag.selectedIndex].value;
+  const checkBox = document.getElementById("privacy-check").checked;
+  let photoFile = document.getElementById("input-photo");
+
+  if (photoFile.value) {
+    postPhoto(photoFile).then((url) => {
+      createPost(postText, tagValue, checkBox, url)
+      document.getElementById("post-text").value = ""
+
+      photoFile.value = ""
+      rollBackPhotoIcon(photoFile)
+    })
+  }
+  else if (postText) {
+    createPost(postText, tagValue, checkBox, "")
+    document.getElementById("post-text").value = ""
+  }
+  if (!privacy) {
+    document.getElementById("privacy-check").checked = false
+  }
+  clearLimits()
 }
 
 const showPosts = (post) => {
+  let privacy
+  let postData = post.data()
+  let templateImg = ""
+  if (postData.urlImg) {
+    templateImg = `<img src=${postData.urlImg} class='img-feed'>`
+  }
+  if (privacyValidation(postData)) {
+    if (post.data().privacy) {
+      privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
+    }
+    else {
+      privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
+    }
 
-    let keyValidated = post.data().tag === "" ? "home" : post.data().tag;
+    let keyValidated = postData.tag === "" ? "home" : postData.tag;
     const feedContainer = document.getElementById("all-posts-container");
     const template_feed = `
-    <section id="${
-        post.id
-    }" class="publication-box">
-    <div class="publication-title">
-      <span class="publi-title-span"><br>
+    <section id="${post.id}" class="publication-box">
+        <div class="publication-title">
+          <div class="span-container">
+            <span><p>Post ${privacy}</p></span>
 
-        <p>Publicado por ${
-        post.data().name
-    }</p>
-      </span>
-
-      <span>${
-        tags[keyValidated][1]
-    }</span>
-      <a href="#" class="delete-post-btn">&times;</a>
+            <span>${tags[keyValidated][1]}</span>
+            <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>
+          </div>
+        </div>
+        <div class="publi-area">
+            ${templateImg}<br>
+          <p class="text-style">${postData.text}</p>
+          <hr>
+        </div>
+        <div class="publication-btns">
+          <span>
+            <p>Publicado por ${postData.name}</p>
+            <p>${postData.date}</p>
+          </span>
+          <div class="btns-post-container">
+            <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
+            <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
+          <button class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+      </div>
+    
     </div>
-    <div class="publi-area">
-      <p class="text-style">${
-        post.data().text
-    }</p><hr>
-    </div>
+</section > `;
 
-    <div class="publication-btns">
-      <button class="btn-style"><i class="fas fa-hand-spock fa-1.5x"></i></button>
-      <button class="btn-style"><i class="fas fa-share-alt fa-1.5x"></i></i></button>
-      
-      <p>${
-        post.data().date
-    }</p><br/><br/><br/>
-    </div>
-    </section>`;
+    feedContainer.innerHTML += template_feed;
 
-  feedContainer.innerHTML += template_feed;
+    const btnDelete = document.querySelectorAll(".delete-post-btn")
+    const catchBtn = (element) => element.addEventListener("click", function (event) {
+      deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id)
+    })
 
-  const btnDelete = document.querySelectorAll(".delete-post-btn")
-  const catchBtn = (element) => element.addEventListener("click", function (event) {
-    deletePost(event.currentTarget.parentElement.parentElement.id)
-  })
-
-  btnDelete.forEach(catchBtn)
+    btnDelete.forEach(catchBtn)
+    limitReal++
+  }
+  limitFix()
 }
 
 
 
-    const btnDelete = document.querySelectorAll(".delete-post-btn")
-    const catchBtn = (element) => element.addEventListener("click", function (event) {
-        deletePost(event.currentTarget.parentElement.parentElement.id)
-    })
+const privacyValidation = (postData) => {
+  let user = firebase.auth().currentUser;
+  return (postData.user_id === user.uid || !postData.privacy)
+}
 
-    btnDelete.forEach(catchBtn)
+const blockPrivacyBox = (lock) => {
+  const checkBox = document.getElementById("privacy-check")
+  if (lock) {
+    checkBox.checked = true;
+    checkBox.disabled = true;
+  }
+  else {
+    checkBox.checked = false;
+    checkBox.disabled = false;
+  }
+}
+
+const postPhoto = (photoElement) => {
+  let urlImg
+  let namePhotoFile = photoElement.value.split("\\").pop();
+  let photoFile = photoElement.files[0];
+  urlImg = saveImage(namePhotoFile, photoFile)
+  return urlImg
+}
+
+const changePhotoIcon = (event) => {
+  let labelInputPhoto = event.currentTarget.labels[0]
+  labelInputPhoto.className = "img-check"
+  labelInputPhoto.innerHTML = '<i class="img-check fas fa-check-square fa-2x"></i>'
+}
+
+const rollBackPhotoIcon = (photoElement) => {
+  let label = photoElement.labels[0]
+  label.className = "btn-style"
+  label.innerHTML = '<i class="fas fa-camera-retro fa-2x"></i>'
+}
