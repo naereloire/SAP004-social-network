@@ -207,10 +207,14 @@ const showPosts = (post) => {
   let postData = post.data()
   let templateImg = ""
   let templateDeletBtn = ""
+  let templateBtnEdit = ""
 
   if (firebase.auth().currentUser.uid === postData.user_id) {
     templateDeletBtn = `
     <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>`
+    templateBtnEdit = `
+    <button id="edit-${post.id}" class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+    `
   }
 
   if (postData.urlImg) {
@@ -248,17 +252,18 @@ const showPosts = (post) => {
           <div class="btns-post-container">
             <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
             <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
-          <button id="edit-${post.id}" class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+            ${templateBtnEdit}
       </div>
      
     </div>
 </section > `;
 
     feedContainer.insertAdjacentHTML('beforeend', template_feed);
-
-    document.getElementById(`edit-${post.id}`).addEventListener("click", (event) => {
-      editPost(event, post.id, postData.text)
-    })
+    if (templateBtnEdit) {
+      document.getElementById(`edit-${post.id}`).addEventListener("click", (event) => {
+        editPost(event, post.id, postData.text)
+      })
+    }
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
@@ -316,7 +321,7 @@ const editPost = (event, postId, currentText) => {
   let textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1]
   textArea.children[1].style.display = "none"
   let template_edit_area = `
-  <form id="post-form" class="form-style">
+  <form id="post-form-edit" class="form-style">
       <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
       <div class="btn-edit">
       <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
@@ -326,7 +331,12 @@ const editPost = (event, postId, currentText) => {
   `
   textArea.insertAdjacentHTML('beforeend', template_edit_area);
 
-  // document.getElementById("btn-cancel-edit").addEventListener("click",);
+  document.getElementById("btn-cancel-edit").addEventListener("click", (event) => {
+    let form = document.getElementById("post-form-edit")
+    textArea.removeChild(form)
+    textArea.children[1].style.display = "block"
+  });
+
   document.getElementById("btn-save-edit").addEventListener("click", (event) => {
     editedText = document.getElementById("post-text-edit").value
     savePostEdit(postId, editedText)
