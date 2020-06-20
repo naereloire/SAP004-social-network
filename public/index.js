@@ -3,7 +3,7 @@ import { addRenderEvents } from "./pages/home/main.js"
 import auth from "./authentication/auth.js"
 import {  saveProfileUser,  getInformationUser, getProfile } from "./pages/perfil/data.js"
 import { userRegister } from "./pages/registro/data.js"
-import { picture } from "./storage/main.js"
+import { openImageProfile, addImageProfile, putImageProfile, openImageCover, addCoverImage, putCoverImage } from "./storage/main.js"
 
 const btnLogout = document.querySelector('#logout');
 const main = document.querySelector("#root");
@@ -44,7 +44,6 @@ const renderPage = (event) => {
         else {
             if (page == 'login') {
                 page = 'home'
-                picture()
             }
             
             const navStyle = document.getElementsByClassName("hidden-nav")
@@ -70,7 +69,12 @@ const renderPage = (event) => {
 
             if(page == "home") {
                 getInformationUser()
-                picture()
+                openImageProfile()
+                addImageProfile()
+                putImageProfile()
+                openImageCover()
+                addCoverImage()
+                putCoverImage()
             }
         }
 
