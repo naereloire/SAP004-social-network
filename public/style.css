@@ -5,19 +5,32 @@
     align-items: center;
     text-align: center;
     flex-wrap: nowrap;
-    justify-content: center;
+    /* justify-content: space-evenly; */
     font-family: "Gloria Hallelujah";
     padding: 1em;
     /* width: 10%; */
 }
 
-.about-style-rules, .about-style-tags, .about-style-girly {
+select, button {
+    font-family: "Gloria Hallelujah";
+}
+
+.ul-about li {
+    list-style-type: square;
+    text-align: justify;
+    text-align: center;
+}
+
+.about-style-girly {
+    border: none;
+}
+
+.about-style-rules, .about-style-tags {
     background-color: #F2C84B;
     border: solid #8c0f54;
     border-radius: 30px;
-    padding: 1em;
+    padding: 2em;
     flex: 1;
-    list-style-type: symbols(*);
 }
 
 .header-style {

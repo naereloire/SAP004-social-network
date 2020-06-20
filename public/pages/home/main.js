@@ -157,8 +157,8 @@ const tagFilter = (event) => {
 
 const blockTag = (tagValue) => {
   let select = document.getElementById("select-id")
-  if(!select){
-  return
+  if (!select) {
+    return
   }
   if (!tagValue) {
     let keyTags = ["home", "geek", "tech", "autocuidado", "seguranca", "oportunidades"]
@@ -289,7 +289,7 @@ const privacyValidation = (postData) => {
 
 const blockPrivacyBox = (lock) => {
   const checkBox = document.getElementById("privacy-check")
-  if(!checkBox){
+  if (!checkBox) {
     return
   }
   if (lock) {
