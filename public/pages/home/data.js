@@ -10,7 +10,7 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
         timestamp: date.getTime(),
         privacy: privacyOption,
         coments: [],
-        likes: 0,
+        likes: [],
         urlImg: url
 
     }
@@ -72,3 +72,28 @@ export const savePostEdit = (postId, editedText) => {
         text: editedText
     })
 }
+
+/// *******************  Like **************************
+export function likePost(postId) {
+    const db = firebase.firestore().collection("posts")
+    const increment = firebase.firestore.FieldValue.increment(1);
+    console.log('clicou ' + postId)
+    db.doc(postId).update({
+        likes: increment
+        
+    }) 
+
+
+
+
+
+/* 
+     posts.likes.lenght = 0
+    posts.likes.find(item=> item === user.uid? null: remover(likes[]))
+
+    user: {
+        name: joao
+        uid: " ahdghgbdsahbf"  */
+    }
+
+    

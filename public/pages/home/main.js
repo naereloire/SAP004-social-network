@@ -1,4 +1,4 @@
-import { createPost, loadPosts, deletePost, saveImage, savePostEdit } from './data.js';
+import { createPost, loadPosts, deletePost, likePost, saveImage, savePostEdit } from './data.js';
 let privacy = false
 let limitTarget = 0
 let limitReal = 0
@@ -266,18 +266,29 @@ const showPosts = (post) => {
     }
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
-    const catchBtn = (element) => element.addEventListener("click", function (event) {
+    const catchBtnDlt = (element) => element.addEventListener("click", function (event) {
       deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id)
     })
 
-    btnDelete.forEach(catchBtn)
+    btnDelete.forEach(catchBtnDlt)
     limitReal++
 
   }
   limitFix()
+
+  /// *******************  Like **************************
+
+  const btnLike = document.querySelectorAll(".like-post-btn")
+  const catchBtnLk = (element) => element.addEventListener("click", function (event) {
+    likePost(event.currentTarget.parentElement.parentElement.parentElement.id)
+    event.preventDefault();
+  })
+
+  btnLike.forEach(catchBtnLk)
+  btnLike.disabled = true;
 }
 
-
+/// *******************  End of the section **************************
 
 const privacyValidation = (postData) => {
   let user = firebase.auth().currentUser;
@@ -341,4 +352,6 @@ const editPost = (event, postId, currentText) => {
     editedText = document.getElementById("post-text-edit").value
     savePostEdit(postId, editedText)
   })
+
+
 }
