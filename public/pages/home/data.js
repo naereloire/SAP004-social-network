@@ -11,7 +11,7 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
         privacy: privacyOption,
         coments: [],
         likes: 0,
-        urlImg:url
+        urlImg: url
 
     }
     const postsCollection = firebase.firestore().collection("posts")
@@ -66,3 +66,9 @@ export function deletePost(postId) {
     })
 }
 
+export const savePostEdit = (postId, editedText) => {
+    const postCollection = firebase.firestore().collection("posts")
+    postCollection.doc(postId).update({
+        text: editedText
+    })
+}
