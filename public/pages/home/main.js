@@ -319,7 +319,7 @@ const rollBackPhotoIcon = (photoElement) => {
 const editPost = (event, postId, currentText) => {
   let editedText
   let textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1]
-  textArea.children[1].style.display = "none"
+  textArea.querySelector("p").style.display = "none"
   let template_edit_area = `
   <form id="post-form-edit" class="form-style">
       <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
