@@ -1,4 +1,4 @@
-import { createPost, loadPosts, deletePost, saveImage, savePostEdit } from './data.js';
+import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit } from './data.js';
 let privacy = false
 let limitTarget = 0
 let limitReal = 0
@@ -256,7 +256,7 @@ const showPosts = (post) => {
             <p>${postData.date}</p>
           </span>
           <div class="btns-post-container">
-            <button class="btn-style"><i class="fas fa-star fa-1x"></i></button>
+          <button class="btn-style like-post-btn"><i class="fas fa-star fa-1x">${postData.user_like.length}</i></button>
             <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
             ${templateBtnEdit}
       </div>
@@ -278,6 +278,17 @@ const showPosts = (post) => {
 
     btnDelete.forEach(catchBtn)
     limitReal++
+
+    const btnLike = document.querySelectorAll(".like-post-btn")
+    const catchBtnLk = (element) => element.addEventListener("click", function (event) {
+    const user = firebase.auth().currentUser.uid 
+      saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user)
+      event.preventDefault();
+
+     })
+      
+    btnLike.forEach(catchBtnLk)
+  
 
   }
   limitFix()

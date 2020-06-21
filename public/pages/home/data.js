@@ -10,14 +10,12 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
         timestamp: date.getTime(),
         privacy: privacyOption,
         coments: [],
-        likes: 0,
+        user_like: [],
         urlImg: url
 
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).then(() => {
-    }
-    )
+    postsCollection.add(post).then(() => {})
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
@@ -26,8 +24,7 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
     if (!tagFilter) {
         postsCollection = (firebase.firestore().collection("posts")
             .limit(limit).orderBy("timestamp", "desc"))
-    }
-    else {
+    } else {
         postsCollection = (firebase.firestore().collection("posts")
             .where("tag", "==", tagFilter)
             .limit(limit).orderBy("timestamp", "desc"))
@@ -70,5 +67,30 @@ export const savePostEdit = (postId, editedText) => {
     const postCollection = firebase.firestore().collection("posts")
     postCollection.doc(postId).update({
         text: editedText
+    })
+}
+
+export function saveLike(postId, user_id) {
+    const postCollection = firebase.firestore().collection("posts")
+    const arrayUserAdd = firebase.firestore.FieldValue.arrayUnion(user_id);
+    const arrayUserDlt = firebase.firestore.FieldValue.arrayRemove(user_id)
+
+    postCollection.doc(postId).get().then(function (doc) {
+        console.log('clicou like, post Id: ' + postId)
+
+        if (doc.data().user_like.includes(user_id)) {
+            postCollection.doc(postId).update({
+
+                user_like: arrayUserDlt
+
+            })
+        } else {
+            postCollection.doc(postId).update({
+
+                user_like: arrayUserAdd
+
+            })
+
+        }
     })
 }
