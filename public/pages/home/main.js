@@ -163,29 +163,20 @@ const tagFilter = (event) => {
   }
 
 const blockTag = (tagValue) => {
-    let select = document.getElementById("select-id")
-    if (! tagValue) {
-        let keyTags = [
-            "home",
-            "geek",
-            "tech",
-            "autocuidado",
-            "seguranca",
-            "oportunidades"
-        ]
-        select.innerHTML = ""
-        for (let key of keyTags) {
-            let keyValidated = key === "home" ? "" : key
-            select.innerHTML += `<option value="${keyValidated}">${
-                tags[key][0]
-            }</option>`;
 
-        }
+  let select = document.getElementById("select-id")
+  if (!select) {
+    return
+  }
+  if (!tagValue) {
+    let keyTags = ["home", "geek", "tech", "autocuidado", "seguranca", "oportunidades"]
+    select.innerHTML = ""
+    for (let key of keyTags) {
+      let keyValidated = key === "home" ? "" : key
+      select.innerHTML +=
+        `<option value="${keyValidated}">${tags[key][0]}</option>`;
 
-    } else {
-        select.innerHTML = `<option value="${tagValue}">${
-            tags[tagValue][0]
-        }</option>`;
+
     }
 }
 
@@ -294,6 +285,9 @@ const showPosts = (post) => {
 
 const blockPrivacyBox = (lock) => {
   const checkBox = document.getElementById("privacy-check")
+  if (!checkBox) {
+    return
+  }
   if (lock) {
     checkBox.checked = true;
     checkBox.disabled = true;
