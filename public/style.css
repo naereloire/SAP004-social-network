@@ -1,3 +1,9 @@
+.fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    color: beige;
+}
+.icons-text{
+    color: beige;
+}
 .about-container {
     display: flex;
     flex: 1;
@@ -34,7 +40,7 @@ select, button {
 }
 
 .header-style {
-    background-color: #F2C84B;
+    background-color: #a16f68;
     position: fixed;
     height: 100%;
     z-index: 1;
@@ -173,7 +179,7 @@ select, button {
 }
 
 .side-nav {
-    background-color: #F2C84B;
+    background-color: #8ABCBC;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -186,7 +192,7 @@ select, button {
 }
 
 .side-nav a {
-    color: black;
+    color: beige;
     display: block;
     font-size: 25px;
     padding: 8px 8px 8px 32px;
@@ -206,7 +212,7 @@ select, button {
 }
 
 .top-nav {
-    background-color: #f2c84b;
+    background-color: #8ABCBC;
     flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
@@ -215,7 +221,7 @@ select, button {
 }
 
 .top-nav a {
-    color: #8c0f54;
+    color: beige;
     display: block;
     float: left;
     font-size: 1.8em;
@@ -248,6 +254,7 @@ select, button {
 .span-style {
     font-size: 1.70em;
     width: 80%;
+    color: beige;
 }
 
 .main-style {
@@ -255,7 +262,7 @@ select, button {
 }
 
 .bottom-nav {
-    background-color: #F2C84B;
+    background-color: #8ABCBC;
     bottom: 0;
     margin: 0;
     overflow: hidden;
@@ -301,7 +308,7 @@ select, button {
 }
 
 [aria-current] {
-    border-bottom: solid rgb(166, 157, 216);
+    border-bottom: solid beige;
     border-width: 0.3em;
     padding-bottom: 0.3em;
 }
@@ -399,9 +406,10 @@ select, button {
 
 .btn-style {
     padding: 0.5em;
-    background: #f2c84b;
-    border: 2px solid #f2c84b;
+    background: #A97B75;
+    border: 2px solid #A97B75;
     border-radius: 1em;
+    color: beige;
     margin: 0.2em;
     transform-style: preserve-3d;
     transition: all 175ms cubic-bezier(0, 0, 1, 1);
@@ -419,7 +427,7 @@ select, button {
 
 .publication-box {
     background-color: #FFFFFF;
-    border: solid #f2c84b;
+    border: solid #8c0f54;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -523,7 +531,7 @@ select, button {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #f2c84b;
+    background-color: #A97B75;
 }
 
 .container:hover input~.checkmark {
@@ -656,6 +664,7 @@ select, button {
     .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
         font-size: 3vw;
         text-align: center;
+        color: beige;
     }
     .top-nav {
         height: 10vw;
@@ -716,12 +725,10 @@ select, button {
         border-bottom: solid #8c0f54;
         width: 100%;
     }
-
     .img-capa:hover {
         opacity: 0.5;
         transition: 0.5s;
     }
-
     .img-perfil {
         width: 50%;
     }

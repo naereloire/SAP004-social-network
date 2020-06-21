@@ -15,7 +15,11 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
 
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).then(() => {})
+    postsCollection.add(post).catch(error=>{
+        return error
+        
+    }
+    )
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
