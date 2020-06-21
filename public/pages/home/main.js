@@ -178,7 +178,7 @@ const blockTag = (tagValue) => {
 
 
     }
-}
+}}
 
 const btnPost = (event) => {
   event.preventDefault();

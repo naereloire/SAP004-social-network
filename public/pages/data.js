@@ -8,12 +8,13 @@ export const createPost = (textPost, tagOption) => {
         tag: tagOption,
         date: date.toLocaleString(),
         timestamp: date.getTime(),
-        coments: [],
-        likes: 0
+        user_likes: [],
+        coments: []
+
 
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).then(() => {})
+    postsCollection.add(post).then(() => { })
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit) => {
