@@ -8,5 +8,4 @@ export default {
     login: login(),
     register: register(),
     profile: profile()
-
 }

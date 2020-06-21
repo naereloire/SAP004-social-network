@@ -20,11 +20,11 @@ export default () => {
   const template = `
     <div class="bio-container">
     <section class="bio-style">
-      <div class="capa-style">
-      <img class="img-capa" src="./img/capa-inicial.jpg">
+      <div id="cover-picture" class="capa-style">
+      <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
       </div>
       <div id="profile-picture" class="img-perfil">
-        <img class="foto-style circular-square" src="./img/foto-inicial.jpg">
+        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
       </div>
       <div class="bio-infos">
         <h1 class="text-style" id="user-name"></h1>
@@ -60,6 +60,8 @@ export default () => {
     </section>
     <div id="all-posts-container" class="all-posts-box"></div>
     <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
+    <input type="file" id="file-input">
+    <input type="file" id="file-cover-input">
   </div>`;
   container.innerHTML = template;
   return container
@@ -115,24 +117,30 @@ const limitFix = () => {
 
 
 const clearFeed = () => {
-  document.getElementById("all-posts-container").innerHTML = ""
+    document.getElementById("all-posts-container").innerHTML = ""
 }
 
 const clearAriaCurrent = () => {
-  for (let element of document.getElementById("ul-id").children) {
-    element.firstElementChild.removeAttribute('aria-current')
-  }
+    for (let element of document.getElementById("ul-id").children) {
+        element.firstElementChild.removeAttribute('aria-current')
+    }
 }
 
 const tagFilter = (event) => {
-  limit = 5
-  let element_name = event.target.localName
-  if (element_name != 'li') {
-    clearAriaCurrent()
-    if (element_name === 'span') {
-      tagValue = event.target.parentElement.parentElement.name
-      event.target.parentElement.parentElement.ariaCurrent = "page"
+    limit = 5
+    let element_name = event.target.localName
+    if (element_name != 'li') {
+        clearAriaCurrent()
+        if (element_name === 'span') {
+            tagValue = event.target.parentElement.parentElement.name
+            event.target.parentElement.parentElement.ariaCurrent = "page"
 
+        } else {
+            tagValue = event.target.parentElement.name
+            event.target.parentElement.ariaCurrent = "page"
+        } clearFeed()
+        blockTag(tagValue)
+        loadPosts(clearFeed, showPosts, tagValue, limit)
     }
     else {
       tagValue = event.target.parentElement.name
@@ -153,25 +161,32 @@ const tagFilter = (event) => {
       loadPosts(clearFeed, showPosts, tagValue, limit)
     }
   }
-}
 
 const blockTag = (tagValue) => {
-  let select = document.getElementById("select-id")
-  if (!tagValue) {
-    let keyTags = ["home", "geek", "tech", "autocuidado", "seguranca", "oportunidades"]
-    select.innerHTML = ""
-    for (let key of keyTags) {
-      let keyValidated = key === "home" ? "" : key
-      select.innerHTML +=
-        `<option value="${keyValidated}">${tags[key][0]}</option>`;
+    let select = document.getElementById("select-id")
+    if (! tagValue) {
+        let keyTags = [
+            "home",
+            "geek",
+            "tech",
+            "autocuidado",
+            "seguranca",
+            "oportunidades"
+        ]
+        select.innerHTML = ""
+        for (let key of keyTags) {
+            let keyValidated = key === "home" ? "" : key
+            select.innerHTML += `<option value="${keyValidated}">${
+                tags[key][0]
+            }</option>`;
 
+        }
+
+    } else {
+        select.innerHTML = `<option value="${tagValue}">${
+            tags[tagValue][0]
+        }</option>`;
     }
-
-  }
-  else {
-    select.innerHTML =
-      `<option value="${tagValue}">${tags[tagValue][0]}</option>`;
-  }
 }
 
 const btnPost = (event) => {
@@ -240,7 +255,7 @@ const showPosts = (post) => {
           </div>
         </div>
         <div class="publi-area">
-             ${templateImg}<br>
+            ${templateImg}<br>
           <p class="text-style">${postData.text}</p>
           <hr>
         </div>
@@ -254,7 +269,7 @@ const showPosts = (post) => {
             <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
             ${templateBtnEdit}
       </div>
-     
+    
     </div>
 </section > `;
 
@@ -315,6 +330,11 @@ const postPhoto = (photoElement) => {
   return urlImg
 }
 
+const privacyValidation = (postData) => {
+  let user = firebase.auth().currentUser;
+  return (postData.user_id === user.uid || !postData.privacy)
+}
+
 const changePhotoIcon = (event) => {
   let labelInputPhoto = event.currentTarget.labels[0]
   labelInputPhoto.className = "img-check"
@@ -352,6 +372,4 @@ const editPost = (event, postId, currentText) => {
     editedText = document.getElementById("post-text-edit").value
     savePostEdit(postId, editedText)
   })
-
-
 }
