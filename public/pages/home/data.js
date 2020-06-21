@@ -10,14 +10,12 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
         timestamp: date.getTime(),
         privacy: privacyOption,
         coments: [],
-        likes: 0,
+        user_like: [],
         urlImg: url
 
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).then(() => {
-    }
-    )
+    postsCollection.add(post).then(() => {})
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
@@ -26,8 +24,7 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
     if (!tagFilter) {
         postsCollection = (firebase.firestore().collection("posts")
             .limit(limit).orderBy("timestamp", "desc"))
-    }
-    else {
+    } else {
         postsCollection = (firebase.firestore().collection("posts")
             .where("tag", "==", tagFilter)
             .limit(limit).orderBy("timestamp", "desc"))
@@ -74,23 +71,22 @@ export const savePostEdit = (postId, editedText) => {
 }
 
 export function saveLike(postId, user_id) {
-    const db = firebase.firestore().collection("posts")
-    const like = firebase.firestore.FieldValue.increment(1);
-    const dislike = firebase.firestore.FieldValue.increment(-1);
-    let arrayUserAdd = firebase.firestore.FieldValue.arrayUnion(user_id);
-    let arrayUserDlt = firebase.firestore.FieldValue.arrayRemove(user_id)
-    db.doc(postId).get().then(function (doc) {
-        console.log('curtiu ' + postId)
+    const postCollection = firebase.firestore().collection("posts")
+    const arrayUserAdd = firebase.firestore.FieldValue.arrayUnion(user_id);
+    const arrayUserDlt = firebase.firestore.FieldValue.arrayRemove(user_id)
+
+    postCollection.doc(postId).get().then(function (doc) {
+        console.log('clicou like, post Id: ' + postId)
 
         if (doc.data().user_like.includes(user_id)) {
-            db.doc(postId).update({
-                likes: dislike,
+            postCollection.doc(postId).update({
+
                 user_like: arrayUserDlt
 
             })
         } else {
-            db.doc(postId).update({
-                likes: like,    
+            postCollection.doc(postId).update({
+
                 user_like: arrayUserAdd
 
             })

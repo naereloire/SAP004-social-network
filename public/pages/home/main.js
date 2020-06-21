@@ -265,7 +265,7 @@ const showPosts = (post) => {
             <p>${postData.date}</p>
           </span>
           <div class="btns-post-container">
-          <button class="btn-style like-post-btn"><i class="fas fa-star fa-1x">${postData.likes}</i></button>
+          <button class="btn-style like-post-btn"><i class="fas fa-star fa-1x">${postData.user_like.length}</i></button>
             <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
             ${templateBtnEdit}
       </div>
@@ -289,16 +289,15 @@ const showPosts = (post) => {
     limitReal++
 
     const btnLike = document.querySelectorAll(".like-post-btn")
-    
     const catchBtnLk = (element) => element.addEventListener("click", function (event) {
-      
-      let user = firebase.auth().currentUser.uid 
+    const user = firebase.auth().currentUser.uid 
       saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user)
       event.preventDefault();
-    })
+
+     })
       
     btnLike.forEach(catchBtnLk)
-    
+  
 
   }
   limitFix()
