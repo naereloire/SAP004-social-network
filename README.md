@@ -18,7 +18,7 @@ Esse projeto foi desenvolvido como parte do currículo do [Bootcamp da Laborató
 Desenvolvido por: 
 * [Daiane Vieira](https://github.com/daianevieira07)
 * [Evellyn Thamires](https://github.com/EvellynThamires)
-* [Naere Loire] (https://github.com/naereloire)
+* [Naere Loire](https://github.com/naereloire)
 
 > A estratégia de desenvolvimento usada foi pair programming e sub-divisão das histórias de usuário.
 
@@ -30,7 +30,7 @@ A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://.
 
 > Desejamos criar um ambiente seguro, para pessoas que se indentifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
 
-> As **caraterísticas técnicas** da aplicação são:
+As **caraterísticas técnicas** da aplicação são:
 
 * É uma Single-Page Application `SPA` - e foi implementado um sistema de rotas (sem uso de bibliotecas externas) para trocar de uma tela para outra de maneira dinâmica.
 
@@ -42,16 +42,16 @@ Recebemos um potótipo desejado para o layout da tela mobile e desktop, onde o t
 
 ### Tela mobile
 
-    ![mobile](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/rede_social_mobile.png)
+   ![mobile](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/rede_social_mobile.png)
 
 ### Tela Desktop
 
-    ![desktop](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/rede_social_desktop.png)
+   ![desktop](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/rede_social_desktop.png)
 
 
 
 ## 3. Planejamento
-Para realizar o nosso planejamento criamos um segundo protótipo para idealização do tema.  .
+Para realizar o nosso planejamento criamos um segundo protótipo para idealização do tema. 
 
  ![protótipo_girlyHub](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/prototipo-girly-feed.png)
 
