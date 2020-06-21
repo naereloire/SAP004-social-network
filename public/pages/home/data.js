@@ -72,3 +72,29 @@ export const savePostEdit = (postId, editedText) => {
         text: editedText
     })
 }
+
+export function saveLike(postId, user_id) {
+    const db = firebase.firestore().collection("posts")
+    const like = firebase.firestore.FieldValue.increment(1);
+    const dislike = firebase.firestore.FieldValue.increment(-1);
+    let arrayUserAdd = firebase.firestore.FieldValue.arrayUnion(user_id);
+    let arrayUserDlt = firebase.firestore.FieldValue.arrayRemove(user_id)
+    db.doc(postId).get().then(function (doc) {
+        console.log('curtiu ' + postId)
+
+        if (doc.data().user_like.includes(user_id)) {
+            db.doc(postId).update({
+                likes: dislike,
+                user_like: arrayUserDlt
+
+            })
+        } else {
+            db.doc(postId).update({
+                likes: like,    
+                user_like: arrayUserAdd
+
+            })
+
+        }
+    })
+}
