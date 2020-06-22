@@ -30,7 +30,7 @@ As **caraterísticas técnicas** da aplicação são:
 
 * É uma Single-Page Application `SPA` - e foi implementado um sistema de rotas (sem uso de bibliotecas externas) para trocar de uma tela para outra de maneira dinâmica.
 
-* Foi desenhada com enfoque `mobile first` , e apresenta design responsivo.
+* Foi desenhada e desenvolvida com enfoque `mobile first` , e apresenta design responsivo.
 
 * Permite a persistência de dados - a estrutura de dados foi desenhada de forma à consultá-los, atualizá-los, modificá-los e eliminá-los segundo os requerimentos do usuário. Para isto, foi utilizado `Firestore` do `Firebase` 
 
