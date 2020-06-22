@@ -1,92 +1,149 @@
-# girlyHub - Social Network
+<p align="center">
+<img src="./public/img/girly-logo.png" width="200" heigth="200" >
+</p>
+
+<h1 align="center"> [girlyHub] - Social Network</h1>
 
 ## Índice
 
 * [1. Apresentação](#1-apresentacao)
 * [2. Resumo do projeto](#2-resumo-do-projeto)
-* [3. Planejamento ](#3-planejamento )
-* [4. Histórias de Usuário](#4-historias-de-usuario)
-* [5. Entrega Final ](#5-entrega-final )
-
-
+* [3. Planejamento](#3-planejamento)
+* [4. Funcionalidades](#4-funcionalidades)
+* [5. Montagem do ambiente de desenvolvimento](#5-montagem-do-ambiente-de-desenvolvimento)
 
 ## 1. Apresentação   
-Esse projeto foi desenvolvido como parte do currículo do [Bootcamp da Laboratória Brasil](https://www.laboratoria.la/br) 
 
-> A aplicação consiste na criação de uma Rede Social. Foi desenvolvida em *JavaScript(ES6+)*, juntamente com *HTML5*, *CCS3* e [Firebase](https://firebase.google.com/) Hosting e Firestore para hospedagem e banco de dados.
+A aplicação consiste na criação de uma Rede Social. Foi desenvolvida em *JavaScript(ES6+)*, juntamente com *HTML5*, *CCS3* e [Firebase](https://firebase.google.com/) Hosting e Firestore para hospedagem e banco de dados.
 
-Desenvolvido por: 
-* [Daiane Vieira](https://github.com/daianevieira07)
-* [Evellyn Thamires](https://github.com/EvellynThamires)
-* [Naere Loire](https://github.com/naereloire)
-
-> A estratégia de desenvolvimento usada foi pair programming e sub-divisão das histórias de usuário.
-
+ A estratégia de desenvolvimento usada foi pair programming, code review e sub-divisão das histórias de usuário.
 
 ## 2. Resumo do projeto
+
 A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://.../)
 
-> `girlyHub` é uma rede social foi desenvolvida com base nos pricipios de sororidade, acolhimento e respeito.
+girlyHub é uma rede social, que foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
 
-> Desejamos criar um ambiente seguro, para pessoas que se indentifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
+Desejamos criar um ambiente seguro, para pessoas que se identifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
 
 As **caraterísticas técnicas** da aplicação são:
 
 * É uma Single-Page Application `SPA` - e foi implementado um sistema de rotas (sem uso de bibliotecas externas) para trocar de uma tela para outra de maneira dinâmica.
 
-* Foi desenhada com enfoque `mobile first`, e apresenta design responsivo.
+* Foi desenhada e desenvolvida com enfoque `mobile first` , e apresenta design responsivo.
 
-* Permite a persistência de dados - a estrutura de dados foi desenhada de forma à consultá-los, atualizá-los, modificá-los e eliminá-los segundo os requerimentos do usuário. Para isto, foi utilizado `Firestore` do `Firebase`
+* Permite a persistência de dados - a estrutura de dados foi desenhada de forma à consultá-los, atualizá-los, modificá-los e eliminá-los segundo os requerimentos do usuário. Para isto, foi utilizado `Firestore` do `Firebase` 
 
-Recebemos um potótipo desejado para o layout da tela mobile e desktop, onde o tema, conteúdo, funcionalidades extras, cores e fontes de texto foi de nossa escolha.
-
-### Tela mobile
-
-   ![mobile](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/rede_social_mobile.png)
-
-### Tela Desktop
-
-   ![desktop](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/rede_social_desktop.png)
-
-
+Recebemos um protótipo desejado para o layout da tela mobile e desktop, onde o tema, conteúdo, funcionalidades extras, cores e fontes de texto foi de nossa escolha.
 
 ## 3. Planejamento
-Para realizar o nosso planejamento criamos um segundo protótipo para idealização do tema. 
 
- ![protótipo_girlyHub](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/prototipo-girly-feed.png)
+Para realizar o nosso planejamento criamos um segundo protótipo para idealização do tema.
 
-## 4. Histórias de usuário  
+![protótipo_girlyHub](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/prototipo-girly-feed.png)
 
-Recebemos as **histórias de usuário** com os requisitos e funcionalidades que o usuário deseja, porém tivemos autonomia para incrementá-las:
+Foi utilizada a ferramenta trello, para execução do planejamento.
 
-* Como usuário novo, devo poder criar uma conta com email e senha válidos para poder iniciar uma sessão e ingressar na Rede Social.
+## 4. Funcionalidades
 
-* Como usuário novo, devo poder ter a opção de iniciar sessão com minha conta do Google para ingressar na Rede Social sem necessidade de criar uma conta de email válido.
+##### Na girlyHub, é possível:
 
-* Como usuário logado devo poder criar, guardar, modificar no mesmo lugar (in place) e deletar publicações (post) privadas ou públicas.
+* Cadastro e Login:
 
-* Como usuário logado devo poder ver todos os posts públicos e privados que criei até o momento, do mais recente para o mais antigo, assim como a opção de trocar a configuração de privacidade dos meus posts.
+> Criar sua conta, com email e senha ao clicar no botão "Criar Agora", sendo redirecionado para uma pagina de registro no primeiro acesso.
 
-* Eu como usuário logado, posso dar like e ver a contagem de likes em minhas publicações
+> Criar sua conta, com google ou gitHub.:octocat: 
 
-* Eu como usuário logado, posso escrever, salvar, editar ou deletar um comentário em minhas publicações.
+* Home Page:
 
-* Ao final devo poder ingressar na Rede Social e poder visualizar os dados de meu perfil criado e editá-los.
+> Criar posts com textos e imagens.
 
+> Aplicar a TAG relacionada ao assunto desejado.
 
-## 5. Entrega
+> Escolher a privacidade da sua postagem.
 
-Ilustramos aqui nossa entrega final.
+> Criar comentários.
 
+> Editar ou excluir a publicação/comentários.
 
+> Curtir publicações e desfazer a ação.
 
+* Outras Funcionalidades:
 
+> Filtrar publicações por TAG e privacidade.
 
+> Editar foto de perfil e capa.
 
+> Incluir ou remover informações na sessão de "perfil".
 
+> Ver orientações e mais informações sobre a girlyHub na sessão "sobre".
 
+## 5. Montagem do ambiente de desenvolvimento
 
+<p align="center">
+<img src="https://media.giphy.com/media/W4IY7zQdRh7Ow/giphy.gif" width="200" heigth="200"> 
+</p>
 
+> :warning: Será necessária a utilização:
 
+ -[Firebase](https://firebase.google.com/products/dynamic-links?gclid=EAIaIQobChMIo9Krk6-W6gIVARKRCh26pgTCEAAYASABEgLr-fD_BwE). :fire::fire::fire: 
+ 
+ -[Node.js](https://nodejs.org/) que contém o [npm](https://docs.npmjs.com/) para instalação das dependências.
 
+ * [Clone](https://help.github.com/articles/cloning-a-repository/) o projeto na sua máquina executando o seguinte comando no seu terminal:
+ 
+-https
 
+``` sh
+git clone 
+```
+
+* Instale as dependências do projeto com o comando:
+
+``` sh
+npm install
+```
+
+* Instale e execute o firebase:
+
+``` sh
+npm install -g firebase-tools
+```
+
+``` sh
+firebase login
+```
+
+``` sh
+firebase init
+```
+
+* Para vizualizar no seu local:
+
+``` sh
+firebase serve
+```
+
+**Testes** :clipboard:
+
+* Para executar os testes:
+
+``` sh
+npm test
+```
+
+**Deploy** :fire:  
+
+* Para executar deploy no firebase hosting:
+
+``` sh
+firebase deploy
+```
+
+Esse projeto faz parte do currículo do [Bootcamp da Laboratória Brasil](https://www.laboratoria.la/br) 
+
+Desenvolvido por: 
+
+* [Daiane Vieira](https://github.com/daianevieira07)
+* [Evellyn Thamires](https://github.com/EvellynThamires)
+* [Naere Loire](https://github.com/naereloire)
