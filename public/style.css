@@ -1,9 +1,7 @@
-.fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+.icons-text, .icons {
     color: beige;
 }
-.icons-text{
-    color: beige;
-}
+
 .about-container {
     display: flex;
     flex: 1;
@@ -226,6 +224,7 @@ select, button {
     float: left;
     font-size: 1.8em;
     padding: 14px 16px;
+    padding-top: 1em;
     text-align: center;
     text-decoration: none;
 }
@@ -252,8 +251,8 @@ select, button {
 }
 
 .span-style {
-    font-size: 1.70em;
-    width: 80%;
+    font-size: 2.4em;
+    width: 70%;
     color: beige;
 }
 
@@ -661,7 +660,7 @@ select, button {
         justify-content: space-evenly;
         margin-bottom: 0.5em;
     }
-    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    .icons {
         font-size: 3vw;
         text-align: center;
         color: beige;
@@ -828,7 +827,7 @@ select, button {
         width: 70%;
         z-index: 1;
     }
-    .fa-lock:before, .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    .icons {
         font-size: 1em;
         text-align: center;
     }

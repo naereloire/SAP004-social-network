@@ -1,4 +1,3 @@
-// importamos as funções que iremos testar
 import { greeting } from '../public/pages/home/data.js';
 
 describe('Greeting', () => {
