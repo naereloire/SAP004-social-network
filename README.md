@@ -132,7 +132,7 @@ firebase serve
 npm test
 ```
 
-**Deploy** :octocat: 
+**Deploy** :fire:  
 
 * Para executar deploy no firebase hosting:
 
