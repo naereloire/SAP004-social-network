@@ -22,9 +22,9 @@ A aplicação consiste na criação de uma Rede Social. Foi desenvolvida em *Jav
 
 A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://.../)
 
-> `girlyHub` é uma rede social foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
+girlyHub` é uma rede social foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
 
-> Desejamos criar um ambiente seguro, para pessoas que se identifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
+Desejamos criar um ambiente seguro, para pessoas que se identifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
 
 As **caraterísticas técnicas** da aplicação são:
 
