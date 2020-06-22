@@ -84,9 +84,10 @@ Foi utilizada a ferramenta trello, para execução do planejamento.
 <img src="https://media.giphy.com/media/W4IY7zQdRh7Ow/giphy.gif" width="200" heigth="200"> 
 </p>
 
-> :warning: Será necessária a utilização do:
+> :warning: Será necessária a utilização:
 
  -[Firebase](https://firebase.google.com/products/dynamic-links?gclid=EAIaIQobChMIo9Krk6-W6gIVARKRCh26pgTCEAAYASABEgLr-fD_BwE). :fire::fire::fire: 
+ 
  -[Node.js](https://nodejs.org/) que contém o [npm](https://docs.npmjs.com/) para instalação das dependências.
 
  * [Clone](https://help.github.com/articles/cloning-a-repository/) o projeto na sua máquina executando o seguinte comando no seu terminal:
