@@ -59,7 +59,7 @@ export default () => {
       </form>
     </section>
     <div id="all-posts-container" class="all-posts-box"></div>
-    <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
+    <button id="btn-ver-mais" class="btn-more btn-style">Ver Mais</button>
     <input type="file" id="file-input">
     <input type="file" id="file-cover-input">
   </div>`;
