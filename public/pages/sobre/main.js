@@ -7,7 +7,7 @@ export default () => {
       <section class="about-style-girly">
       <h1>[sejaBemVindaMuiée]</h1><br>
       <h2>[Sobre a girlyHub!]<h2><br>   
-      <p>Nossa rede foi desenvolvida com base nos pricipios de sororidade,acolhimento e respeito.</p><br>
+      <p>Nossa rede foi desenvolvida com base nos pricipios de sororidade, acolhimento e respeito.</p><br>
      <p>Desejamos criar um ambiente seguro, para pessoas que se indentifiquem como gênero feminino, onde possamos trocar
       conhecimento e apoio que envolvam temas diversos.</p><br>
       <p>Para que esse ambiente exista é importante seguirmos algumas regras.</p><br>
