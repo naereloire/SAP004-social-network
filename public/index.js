@@ -1,7 +1,7 @@
 import routes from "./routes.js";
 import { addRenderEvents } from "./pages/home/main.js"
 import auth from "./authentication/auth.js"
-import {  saveProfileUser,  getInformationUser, getProfile } from "./pages/perfil/data.js"
+import { saveProfileUser, getInformationUser, getProfile } from "./pages/perfil/data.js"
 import { userRegister } from "./pages/registro/data.js"
 import { openImageProfile, addImageProfile, putImageProfile, openImageCover, addCoverImage, putCoverImage } from "./storage/main.js"
 
@@ -19,23 +19,23 @@ const renderPage = (event) => {
     main.innerHTML = " ";
     let page = validateHash(window.location.hash)
     firebase.auth().onAuthStateChanged((user) => {
-        if(!user){
-            if(page === "register") {
+        if (!user) {
+            if (page === "register") {
                 main.appendChild(routes['register']);
                 const btnRegister = document.querySelector("#btn-register");
                 btnRegister.addEventListener("click", userRegister)
-                
+
                 const backBtn = document.querySelector("#back-btn");
-                backBtn.addEventListener("click", function(event) {
+                backBtn.addEventListener("click", function (event) {
                     event.preventDefault()
-                    window.location.href ="/#login"
+                    window.location.href = "/#login"
                 })
             }
             else {
                 main.appendChild(routes['login']);
                 auth.createBtnAuth()
                 const btnLogIn = document.querySelector("#login-btn");
-                btnLogIn.addEventListener('click', function(event){
+                btnLogIn.addEventListener('click', function (event) {
                     event.preventDefault()
                     auth.loginEmail()
                 })
@@ -45,7 +45,7 @@ const renderPage = (event) => {
             if (page == 'login') {
                 page = 'home'
             }
-            
+
             const navStyle = document.getElementsByClassName("hidden-nav")
             for (let element of navStyle) {
                 element.style.display = "flex"
@@ -53,21 +53,21 @@ const renderPage = (event) => {
 
             main.appendChild(routes[page]);
             addRenderEvents(page);
+            document.getElementById("side-navigation").style.width = "0";
 
-            if(page == 'profile') {
+            if (page == 'profile') {
                 getProfile()
-                document.getElementById("side-navigation").style.width = "0";
                 const sendBtn = document.getElementById("save-btn")
                 sendBtn.addEventListener("click", saveProfileUser)
 
                 const backBtnProfile = document.getElementById("back-btn-profile");
-                backBtnProfile.addEventListener("click", function(event){
+                backBtnProfile.addEventListener("click", function (event) {
                     event.preventDefault()
                     window.location.href = "/#"
                 })
             }
 
-            if(page == "home") {
+            if (page == "home") {
                 getInformationUser()
                 openImageProfile()
                 addImageProfile()

@@ -1,5 +1,46 @@
+.icons-text, .icons {
+    color: beige;
+}
+
+.about-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-wrap: nowrap;
+    font-family: "Gloria Hallelujah";
+    padding: 1em;
+}
+
+select, button {
+    font-family: "Gloria Hallelujah";
+}
+
+.ul-about li {
+    list-style-type: "*";
+    text-align: justify;
+    text-align: center;
+    list-style-position: inside;
+}
+
+.about-style-girly {
+    border: none;
+}
+
+.about-style-rules, .about-style-tags {
+    color: black;
+    background-color: #8ABCBC;
+    border: solid #8c0f54;
+    border-radius: 30px;
+    padding: 1em;
+    flex: 1;
+    width: 70vw;
+    font-size: 1.2em;
+}
+
 .header-style {
-    background-color: #F2C84B;
+    background-color: #a16f68;
     position: fixed;
     height: 100%;
     z-index: 1;
@@ -134,10 +175,11 @@
 .body-style {
     margin: 0;
     width: 100%;
+    font-family: "Gloria Hallelujah";
 }
 
 .side-nav {
-    background-color: #F2C84B;
+    background-color: #A97B75;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -150,7 +192,7 @@
 }
 
 .side-nav a {
-    color: black;
+    color: beige;
     display: block;
     font-size: 25px;
     padding: 8px 8px 8px 32px;
@@ -170,7 +212,7 @@
 }
 
 .top-nav {
-    background-color: #f2c84b;
+    background-color: #A97B75;
     flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
@@ -179,11 +221,12 @@
 }
 
 .top-nav a {
-    color: #8c0f54;
+    color: beige;
     display: block;
     float: left;
     font-size: 1.8em;
     padding: 14px 16px;
+    padding-top: 1em;
     text-align: center;
     text-decoration: none;
 }
@@ -210,8 +253,9 @@
 }
 
 .span-style {
-    font-size: 1.70em;
-    width: 80%;
+    font-size: 2.4em;
+    width: 70%;
+    color: beige;
 }
 
 .main-style {
@@ -219,7 +263,7 @@
 }
 
 .bottom-nav {
-    background-color: #F2C84B;
+    background-color: #A97B75;
     bottom: 0;
     margin: 0;
     overflow: hidden;
@@ -265,7 +309,7 @@
 }
 
 [aria-current] {
-    border-bottom: solid rgb(166, 157, 216);
+    border-bottom: solid beige;
     border-width: 0.3em;
     padding-bottom: 0.3em;
 }
@@ -360,12 +404,15 @@
     background: #f2c84b;
     border: 2px solid #f2c84b;
 }
-
+#btn-ver-mais{
+    margin-top: 3em;
+}
 .btn-style {
     padding: 0.5em;
-    background: #f2c84b;
-    border: 2px solid #f2c84b;
+    background: #A97B75;
+    border: 2px solid #A97B75;
     border-radius: 1em;
+    color: beige;
     margin: 0.2em;
     transform-style: preserve-3d;
     transition: all 175ms cubic-bezier(0, 0, 1, 1);
@@ -383,7 +430,7 @@
 
 .publication-box {
     background-color: #FFFFFF;
-    border: solid #f2c84b;
+    border: solid #8c0f54;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -457,8 +504,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     text-align: center;
-    margin-bottom: 60px;
-    margin-top: 15%;
+    margin-bottom: 5em;
 }
 
 .container {
@@ -487,7 +533,7 @@
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #f2c84b;
+    background-color: #A97B75;
 }
 
 .container:hover input~.checkmark {
@@ -617,9 +663,10 @@
         justify-content: space-evenly;
         margin-bottom: 0.5em;
     }
-    .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    .icons {
         font-size: 3vw;
         text-align: center;
+        color: beige;
     }
     .top-nav {
         height: 10vw;
@@ -680,12 +727,10 @@
         border-bottom: solid #8c0f54;
         width: 100%;
     }
-
     .img-capa:hover {
         opacity: 0.5;
         transition: 0.5s;
     }
-
     .img-perfil {
         width: 50%;
     }
@@ -785,7 +830,7 @@
         width: 70%;
         z-index: 1;
     }
-    .fa-lock:before, .fa-home:before, .fa-star:before, .fa-comment-dots:before, .fa-pencil-alt:before, .fa-lock-open:before, .fa-robot:before, .fa-trash-alt:before, .fa-laptop-code:before, .fa-spa:before, .fa-people-carry:before, .fa-suitcase:before {
+    .icons {
         font-size: 1em;
         text-align: center;
     }
@@ -838,7 +883,7 @@
     .icons-text {
         font-size: 0.6em;
     }
-    .side-nav{
+    .side-nav {
         z-index: 1;
     }
 }

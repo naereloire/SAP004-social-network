@@ -10,26 +10,26 @@
     <link rel="stylesheet" href="style.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
     <link href="https://fonts.googleapis.com/css2?family=Bellota:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Gloria+Hallelujah" />
     <title>[girlyHub]</title>
 </head>
 
 <body class="body-style">
 
-    <header>
+    <header class="header-style">
         <div id="side-navigation" class="side-nav">
             <a id="close-sidebar" class="close-btn">&times;</a>
-            <a href="#profile">Perfil</a>
-            <a href="#">Configurações</a>
-            <a href="#">Sobre</a>
-            <a href="#" id="logout">Sair</a>
+            <a href="#profile">[Perfil] <i class="icons fas fa-spin fa-cog"></i></a>
+            <a href="#about">[Sobre] <i class="icons fas fa-hand-point-right"></i></a>
+            <a href="#" id="logout">[Sair] <i class="icons fas fa-sign-out-alt"></i></a>
         </div>
         <nav class="hidden-nav top-nav">
-            <a href="#" id="open-sidebar"><i class="fa fa-bars fa-lg"></i></a>
+            <a id="open-sidebar"><i class="icons fa fa-bars fa-lg"></i></a>
             <div class="nav-style">
+                <span class="span-style">[girlyHub]</span>
                 <figure class="figure-style">
                     <img id="girly-img" src="./img/girly-logo.png" alt="girlylogo">
                 </figure>
-                <span class="span-style">[girlyHub]</span>
             </div>
         </nav>
     </header>
@@ -37,18 +37,19 @@
     <section class="bottom-nav hidden-nav">
         <nav class='nav-ul'>
             <ul id="ul-id" class="ul-style">
-                <li><a aria-current="page" href="/#"><i class="fas fa-home fa-2x"><br><span
+                <li><a aria-current="page" href="/#"><i class="icons fas fa-home fa-2x"><br><span
                                 class="icons-text">Home</span></i></a></li>
-                <li><a name="geek"><i class="fas fa-robot fa-2x"><br><span class="icons-text">Geek</span></i></a></li>
-                <li><a name="tech"><i class="fas fa-laptop-code fa-2x"><br><span class="icons-text">Tech</span></i></a>
+                <li><a name="geek"><i class="icons fas fa-robot fa-2x"><br><span class="icons-text">Geek</span></i></a></li>
+                <li><a name="tech"><i class="icons fas fa-laptop-code fa-2x"><br><span class="icons-text">Tech</span></i></a>
                 </li>
-                <li><a name="autocuidado"><i class="fas fa-spa fa-2x"><br><span
-                                class="icons-text">Autocuidado</span></i></a>
-                </li>
-                <li><a name="seguranca"><i class="fas fa-people-carry fa-2x"><br><span
+                <li><a name="autocuidado"><i class="icons fas fa-spa fa-2x"><br><span
+                                class="icons-text">Autocuidado</span></i></a></li>
+                <li><a name="seguranca"><i class="icons fas fa-people-carry fa-2x"><br><span
                                 class="icons-text">Segurança</span></i></a></li>
-                <li><a name="oportunidades"><i class="fas fa-suitcase fa-2x"><br><span
+                <li><a name="oportunidades"><i class="icons fas fa-suitcase fa-2x"><br><span
                                 class="icons-text">Oportunidades</span></i></a></li>
+                <li><a name="privados"><i class="icons fas fa-user-lock fa-2x"><br><span
+                                class="icons-text">Privados</span></i></a></li>
             </ul>
         </nav>
     </section>
@@ -62,7 +63,7 @@
     <script src="https://kit.fontawesome.com/2ab419e357.js" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/3.5.1/firebase-ui-auth__pt.js"></script>
     <script defer src="/__/firebase/7.14.6/firebase-app.js"></script>
-    <script defer src="/__/firebase/7.14.6/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
     <script defer src="/__/firebase/7.14.6/firebase-firestore.js"></script>
     <script defer src="/__/firebase/7.14.6/firebase-messaging.js"></script>
     <script defer src="/__/firebase/7.14.6/firebase-storage.js"></script>
