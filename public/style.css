@@ -1,3 +1,7 @@
+.icon-del {
+    color: #8c0f54;
+}
+
 .icons-text, .icons {
     color: beige;
 }
@@ -404,9 +408,11 @@ select, button {
     background: #f2c84b;
     border: 2px solid #f2c84b;
 }
-#btn-ver-mais{
+
+#btn-ver-mais {
     margin-top: 3em;
 }
+
 .btn-style {
     padding: 0.5em;
     background: #A97B75;

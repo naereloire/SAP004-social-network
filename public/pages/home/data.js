@@ -55,8 +55,8 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
 
 }
 
-export const saveImage = (nameFile, file, getUrl) => {
-    let urlPhoto
+export const saveImage = (nameFile, file) => {
+
     let storageRef = firebase.storage().ref()
     let postImage = storageRef.child(`postImage/${nameFile}`)
     postImage.put(file).then((snapshot) => {
@@ -67,7 +67,7 @@ export const saveImage = (nameFile, file, getUrl) => {
 
     }
     )
-    return urlPhoto = postImage.getDownloadURL().catch(error => {
+    return postImage.getDownloadURL().catch(error => {
         let errorObject = new errorDictionary(error)
         console.log(errorObject.translate(true))
 
