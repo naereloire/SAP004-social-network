@@ -1,3 +1,7 @@
+import {errorDictionary} from "./error.js"
+
+
+
 export const createPost = (textPost, tagOption, privacyOption, url) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
@@ -12,14 +16,15 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
         coments: [],
         user_like: [],
         urlImg: url
-
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).catch(error=>{
-        return error
-        
+    postsCollection.add(post).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(false))
+
     }
     )
+
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
