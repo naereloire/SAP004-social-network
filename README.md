@@ -50,7 +50,7 @@ Foi utilizada a ferramenta trello, para execução do planejamento.
 
 * Cadastro e Login:
 
-> Criar sua conta, com email e senha ao clicar no botão "Criar Agora", sendo redirecionado para uma pagina de registro no primeiro acesso.
+> Criar sua conta, com email e senha ao clicar no botão "Crar Agora", sendo redirecionado para uma pagina de registro no primeiro acesso.
 
 > Criar sua conta, com google <img src="./public/img/google.png" width="15"> ou gitHub.:octocat: 
 
