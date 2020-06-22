@@ -183,7 +183,7 @@ select, button {
 }
 
 .side-nav {
-    background-color: #8ABCBC;
+    background-color: #A97B75;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -216,7 +216,7 @@ select, button {
 }
 
 .top-nav {
-    background-color: #8ABCBC;
+    background-color: #A97B75;
     flex-wrap: nowrap;
     overflow: hidden;
     position: fixed;
@@ -267,7 +267,7 @@ select, button {
 }
 
 .bottom-nav {
-    background-color: #8ABCBC;
+    background-color: #A97B75;
     bottom: 0;
     margin: 0;
     overflow: hidden;
