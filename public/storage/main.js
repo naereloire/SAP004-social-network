@@ -1,3 +1,5 @@
+import {errorDictionary} from "../pages/home/error.js"
+
 export const openImageProfile = () => {
   const userPicture = document.getElementById("profile-picture");
   userPicture.addEventListener("click", function(){
@@ -18,7 +20,13 @@ export const addImageProfile = () => {
                   let img = document.getElementById("image-profile");
                   img.src = url
               });
-          })
+          }).catch(error => {
+            let errorObject = new errorDictionary(error)
+            console.log(errorObject.translate(true))
+    
+        }
+        )
+
       })
   })
 }
@@ -31,7 +39,12 @@ export const putImageProfile = () => {
               let photo = document.getElementById("image-profile");
               photo.src = url
           }
-      });
+      }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(true))
+
+    }
+    );
   })
 }
 
@@ -55,7 +68,12 @@ export const addCoverImage = () => {
                   let image = document.getElementById("cover-image");
                   image.src = url
               });
-          })
+          }).catch(error => {
+            let errorObject = new errorDictionary(error)
+            console.log(errorObject.translate(true))
+    
+        }
+        )
       })
   })
 }
@@ -68,6 +86,11 @@ export const putCoverImage = () => {
               let image = document.getElementById("cover-image");
               image.src = url
           }
-      });
+      }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(true))
+
+    }
+    );
   })
 }

@@ -1,3 +1,7 @@
+import { errorDictionary } from "./error.js"
+
+
+
 export const createPost = (textPost, tagOption, privacyOption, url) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
@@ -12,10 +16,15 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
         coments: [],
         user_like: [],
         urlImg: url
-
     }
     const postsCollection = firebase.firestore().collection("posts")
-    postsCollection.add(post).then(() => {})
+    postsCollection.add(post).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(false))
+
+    }
+    )
+
 }
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
@@ -52,22 +61,42 @@ export const saveImage = (nameFile, file, getUrl) => {
     let postImage = storageRef.child(`postImage/${nameFile}`)
     postImage.put(file).then((snapshot) => {
         console.log("photo publicada" + snapshot)
-    })
-    return urlPhoto = postImage.getDownloadURL()
+    }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(true))
+
+    }
+    )
+    return urlPhoto = postImage.getDownloadURL().catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(true))
+
+    }
+    )
 }
 
 export function deletePost(postId) {
     const postCollection = firebase.firestore().collection("posts")
     postCollection.doc(postId).delete().then(doc => {
         console.log('apagou ' + postId)
-    })
+    }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(false))
+
+    }
+    )
 }
 
 export const savePostEdit = (postId, editedText) => {
     const postCollection = firebase.firestore().collection("posts")
     postCollection.doc(postId).update({
         text: editedText
-    })
+    }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(false))
+
+    }
+    )
 }
 
 export function saveLike(postId, user_id) {
@@ -83,13 +112,23 @@ export function saveLike(postId, user_id) {
 
                 user_like: arrayUserDlt
 
-            })
+            }).catch(error => {
+                let errorObject = new errorDictionary(error)
+                console.log(errorObject.translate(false))
+
+            }
+            )
         } else {
             postCollection.doc(postId).update({
 
                 user_like: arrayUserAdd
 
-            })
+            }).catch(error => {
+                let errorObject = new errorDictionary(error)
+                console.log(errorObject.translate(false))
+
+            }
+            )
 
         }
     })

@@ -6,12 +6,12 @@ let limit = 5
 let limitcopy = limit
 let tagValue = ""
 let tags = {
-  home: ["Tag", `<i class="fas fa-home fa-1x"></i>`],
-  geek: ["Geek", `<i class="fas fa-robot fa-1x"></i>`],
-  tech: ["Tech", `<i class="fas fa-laptop-code fa-1x"></i>`],
-  autocuidado: ["Autocuidado", `<i class="fas fa-spa fa-1x"></i>`],
-  seguranca: ["Segurança", `<i class="fas fa-people-carry fa-1x"></i>`],
-  oportunidades: ["Oportunidades", `<i class="fas fa-suitcase fa-1x"></i>`]
+  home: ["Tag", `<i  class=" icons fas fa-home fa-1x"></i>`],
+  geek: ["Geek", `<i class="icons fas fa-robot fa-1x"></i>`],
+  tech: ["Tech", `<i class="icons fas fa-laptop-code fa-1x"></i>`],
+  autocuidado: ["Autocuidado", `<i class="icons fas fa-spa fa-1x"></i>`],
+  seguranca: ["Segurança", `<i class="icons fas fa-people-carry fa-1x"></i>`],
+  oportunidades: ["Oportunidades", `<i class="icons fas fa-suitcase fa-1x"></i>`]
 }
 
 export default () => {
@@ -53,13 +53,13 @@ export default () => {
         placeholder="Escreva uma mensagem."></textarea>
       <div class="btn-container">
         <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
-        <label class="btn-style" for="input-photo"><i class="fas fa-camera-retro fa-2x"></i></label>
+        <label class="btn-style" for="input-photo"><i class="icons fas fa-camera-retro fa-2x"></i></label>
         <button type="submit" class="btn-style">Publicar</button>
       </div>
       </form>
     </section>
     <div id="all-posts-container" class="all-posts-box"></div>
-    <button id="btn-ver-mais" class="btn-style">Ver Mais</button>
+    <button id="btn-ver-mais" class="btn-more btn-style">Ver Mais</button>
     <input type="file" id="file-input">
     <input type="file" id="file-cover-input">
   </div>`;
@@ -217,9 +217,9 @@ const showPosts = (post) => {
 
   if (firebase.auth().currentUser.uid === postData.user_id) {
     templateDeletBtn = `
-    <span><a href="#" class="delete-post-btn"><i class="fas fa-trash-alt"></i></a></span>`
+    <span><a href="#" class="delete-post-btn"><i class="icons fas fa-trash-alt"></i></a></span>`
     templateBtnEdit = `
-    <button id="edit-${post.id}" class="btn-style"><i class="fas fa-pencil-alt fa-1x"></i></i></button>
+    <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
     `
   }
 
@@ -228,10 +228,10 @@ const showPosts = (post) => {
   }
   if (privacyValidation(postData)) {
     if (post.data().privacy) {
-      privacy = 'Privado <i class="fas fa-lock fa-1x"></i>'
+      privacy = 'Privado <i class="icons fas fa-lock fa-1x"></i>'
     }
     else {
-      privacy = 'Publico <i class="fas fa-lock-open fa-1x"></i>'
+      privacy = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>'
     }
 
     let keyValidated = postData.tag === "" ? "home" : postData.tag;
@@ -256,8 +256,8 @@ const showPosts = (post) => {
             <p>${postData.date}</p>
           </span>
           <div class="btns-post-container">
-          <button class="btn-style like-post-btn"><i class="fas fa-star fa-1x">${postData.user_like.length}</i></button>
-            <button class="btn-style"><i class="far fa-comment-dots fa-1x"></i></i></button>
+          <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${postData.user_like.length}</i></button>
+            <button class="btn-style"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
             ${templateBtnEdit}
       </div>
     
@@ -325,13 +325,13 @@ const privacyValidation = (postData) => {
 const changePhotoIcon = (event) => {
   let labelInputPhoto = event.currentTarget.labels[0]
   labelInputPhoto.className = "img-check"
-  labelInputPhoto.innerHTML = '<i class="img-check fas fa-check-square fa-2x"></i>'
+  labelInputPhoto.innerHTML = '<i class="img-check icons fas fa-check-square fa-2x"></i>'
 }
 
 const rollBackPhotoIcon = (photoElement) => {
   let label = photoElement.labels[0]
   label.className = "btn-style"
-  label.innerHTML = '<i class="fas fa-camera-retro fa-2x"></i>'
+  label.innerHTML = '<i class="icons fas fa-camera-retro fa-2x"></i>'
 }
 
 const editPost = (event, postId, currentText) => {
