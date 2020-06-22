@@ -22,15 +22,15 @@ A aplicação consiste na criação de uma Rede Social. Foi desenvolvida em *Jav
 
 A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://.../)
 
-> `girlyHub` é uma rede social foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
+girlyHub é uma rede social, que foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
 
-> Desejamos criar um ambiente seguro, para pessoas que se identifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
+Desejamos criar um ambiente seguro, para pessoas que se identifiquem como gênero feminino, onde possamos trocar conhecimento e apoio que envolvam temas diversos como mundo geek, tecnologia, autocuidado, segurança, oportunidades, entre outros.
 
 As **caraterísticas técnicas** da aplicação são:
 
 * É uma Single-Page Application `SPA` - e foi implementado um sistema de rotas (sem uso de bibliotecas externas) para trocar de uma tela para outra de maneira dinâmica.
 
-* Foi desenhada com enfoque `mobile first` , e apresenta design responsivo.
+* Foi desenhada e desenvolvida com enfoque `mobile first` , e apresenta design responsivo.
 
 * Permite a persistência de dados - a estrutura de dados foi desenhada de forma à consultá-los, atualizá-los, modificá-los e eliminá-los segundo os requerimentos do usuário. Para isto, foi utilizado `Firestore` do `Firebase` 
 
@@ -84,9 +84,10 @@ Foi utilizada a ferramenta trello, para execução do planejamento.
 <img src="https://media.giphy.com/media/W4IY7zQdRh7Ow/giphy.gif" width="200" heigth="200"> 
 </p>
 
-> :warning: Será necessária a utilização do:
+> :warning: Será necessária a utilização:
 
  -[Firebase](https://firebase.google.com/products/dynamic-links?gclid=EAIaIQobChMIo9Krk6-W6gIVARKRCh26pgTCEAAYASABEgLr-fD_BwE). :fire::fire::fire: 
+ 
  -[Node.js](https://nodejs.org/) que contém o [npm](https://docs.npmjs.com/) para instalação das dependências.
 
  * [Clone](https://help.github.com/articles/cloning-a-repository/) o projeto na sua máquina executando o seguinte comando no seu terminal:
@@ -131,7 +132,7 @@ firebase serve
 npm test
 ```
 
-**Deploy** :octocat: 
+**Deploy** :fire:  
 
 * Para executar deploy no firebase hosting:
 
