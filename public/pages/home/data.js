@@ -51,12 +51,7 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
         snap.forEach((docs) => {
             callbackPosts(docs)
         })
-    }).catch(error => {
-        let errorObject = new errorDictionary(error)
-        console.log(errorObject.translate(false))
-
-    }
-    )
+    })
 
 }
 
