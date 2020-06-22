@@ -52,7 +52,7 @@ Foi utilizada a ferramenta trello, para execução do planejamento.
 
 > Criar sua conta, com email e senha ao clicar no botão "Criar Agora", sendo redirecionado para uma pagina de registro no primeiro acesso.
 
-> Criar sua conta, com google ou gitHub.:octocat: 
+> Criar sua conta, com google <img src="./public/img/seo-and-web.png" width="15"> ou gitHub.:octocat: 
 
 * Home Page:
 
