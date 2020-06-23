@@ -1,4 +1,4 @@
-/* global firebase, document, alert */
+/* global firebase, document, window */
 export default () => {};
 
 export const userRegister = (event) => {
