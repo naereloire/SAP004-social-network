@@ -1,8 +1,46 @@
-import { createPost,loadPosts,saveImage,deletePost,savePostEdit,saveLike } from '../public/pages/home/data.js';
+import { createPost} from '../public/pages/home/data.js';
+import FakeFirestore from "./mock_firebase.js"
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
-describe('Greeting', () => {
-  it('Deveria retornar "Oi Maria! Que bom ver você aqui!" quando passado "Maria" como parâmetros', () => {
-    const message = 'Oi Maria! Que bom ver você aqui!';
-    expect(greeting('Maria')).toEqual(message);
+let date = new Date()
+const post = {
+  name: "maria",
+  user_id: "abcdefg",
+  text: "textPost",
+  tag: "tagOption",
+  date: date.toLocaleString(),
+  timestamp: date.getTime(),
+  privacy: true,
+  coments: [],
+  user_like: [],
+  urlImg: ""
+}
+
+const currentUserFake = {
+  displayName: "maria",
+  uid: "abcdefg"
+
+}
+
+describe('createPost', () => {
+  const FakeFirestore = new FakeFirestore
+  beforeEach(() => {
+    firebase.firestore = firestoreMock
+    firebase.auth().currentUser = currentUserFake
+    firestoreMock.reset()
+  })
+
+  it('Deveria adiconar o post no firestore', () => {
+    createPost("textPost","tagOption",true,"").then(()=>{
+      expect(firestoreMock.mockCollection).toBeCalledWith('posts')
+    }
+
+    )
+    
+    
   });
 });
+
+
+// loadPosts, saveImage, deletePost, savePostEdit, saveLike 
