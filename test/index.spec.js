@@ -1,7 +1,8 @@
-// import { createPost } from '../public/pages/home/data.js';
-// import FakeFirestore from './mock_firebase.js';
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
+/* global describe, it, expect, beforeEach */
+import firebase from 'firebase/app';
+import { createPost } from '../public/pages/home/data.js';
+import FakeFirestore from './mock_firebase.js';
+import 'firebase/firestore';
 
 // const date = new Date();
 // const post = {
@@ -16,25 +17,25 @@
 //   user_like: [],
 //   urlImg: '',
 // };
+const firestoreMock
+const currentUserFake = {
+  displayName: 'maria',
+  uid: 'abcdefg',
+};
 
-// const currentUserFake = {
-//   displayName: 'maria',
-//   uid: 'abcdefg',
-// };
+describe('createPost', () => {
+  FakeFirestore = new FakeFirestore();
+  beforeEach(() => {
+    firebase.firestore = firestoreMock;
+    firebase.auth().currentUser = currentUserFake;
+    firestoreMock.reset();
+  });
 
-// describe('createPost', () => {
-//   const FakeFirestore = new FakeFirestore();
-//   beforeEach(() => {
-//     firebase.firestore = firestoreMock;
-//     firebase.auth().currentUser = currentUserFake;
-//     firestoreMock.reset();
-//   });
+  it('Deveria adiconar o post no firestore', () => {
+    createPost('textPost', 'tagOption', true, '').then(() => {
+      expect(firestoreMock.mockCollection).toBeCalledWith('posts');
+    });
+  });
+});
 
-//   it('Deveria adiconar o post no firestore', () => {
-//     createPost('textPost', 'tagOption', true, '').then(() => {
-//       expect(firestoreMock.mockCollection).toBeCalledWith('posts');
-//     });
-//   });
-// });
-
-// // loadPosts, saveImage, deconstePost, savePostEdit, saveLike
+// loadPosts, saveImage, deconstePost, savePostEdit, saveLike

@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* global firebase, firebaseui, document, window, alert */
 import { saveProviderUser } from '../pages/perfil/data.js';
 
@@ -7,7 +8,7 @@ export default {
 
     const config = {
       callbacks: {
-        signInSuccessWithAuthResult(authResult, redirectUrl) {
+        signInSuccessWithAuthResult(authResult) {
           saveProviderUser(authResult.user.uid, authResult.user.displayName);
           window.location.href = '/#';
           return true;
@@ -29,7 +30,7 @@ export default {
       .signOut()
       .then(() => {
         const navStyle = document.getElementsByClassName('hidden-nav');
-        for (let element of navStyle) {
+        for (const element of navStyle) {
           element.style.display = 'none';
         }
         document.getElementById('side-navigation').style.width = '0';
