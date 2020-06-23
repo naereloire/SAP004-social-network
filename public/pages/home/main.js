@@ -21,10 +21,10 @@ export default () => {
     <div class="bio-container">
     <section class="bio-style">
       <div id="cover-picture" class="capa-style">
-      <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
+      <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg"/>
       </div>
       <div id="profile-picture" class="img-perfil">
-        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
+        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg"/>
       </div>
       <div class="bio-infos">
         <h1 class="text-style" id="user-name"></h1>
@@ -269,11 +269,11 @@ const showPosts = (post) => {
       </div>
     </div>
     <div class="comment" id="box-comment-${post.id}">
-    <div id="user-comment-${post.id}">
+      <div id="user-comment-${post.id}">
 
-    </div>
-    <form class="form-style">
-    <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
+      </div>
+      <form class="form-style">
+      <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
           <div class="btn-edit">
             <button type="button" id="btn-cancel-comment-${post.id}" class="btn-style">Cancelar</button>
             <button type="button" id="btn-save-comment-${post.id}" class="btn-style">Salvar</button>
@@ -311,6 +311,7 @@ const showPosts = (post) => {
         document.getElementById(`textarea-comment-${post.id}`).value = ""
         showComments(post.id)
         .then(querySnapshot => {
+          document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
           console.log(querySnapshot)
             comments(querySnapshot, post.id)
         })
@@ -326,8 +327,8 @@ const showPosts = (post) => {
     const btnCancelComment = document.getElementById(`btn-cancel-comment-${post.id}`);
     btnCancelComment.addEventListener('click', (event) => {
       event.preventDefault()
-      document.getElementById(`box-comment-${post.id}`).classList.add('comment');
-    });
+      document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
+  });
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
@@ -409,7 +410,7 @@ const editPost = (event, postId, currentText) => {
   textArea.insertAdjacentHTML('beforeend', template_edit_area);
 
   document.getElementById("btn-cancel-edit").addEventListener("click", (event) => {
-   disableBtn.disabled = false
+  disableBtn.disabled = false
     let form = document.getElementById("post-form-edit")
     textArea.removeChild(form)
     textArea.children[1].style.display = "block"
