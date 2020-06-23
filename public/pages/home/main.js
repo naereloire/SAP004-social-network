@@ -202,8 +202,40 @@ const limitFix = () => {
   }
 };
 
+const comments = (querySnapshot, postId) => {
+  const div = document.getElementById(`user-comment-${postId}`);
+  div.innerHTML = '';
+  querySnapshot.forEach((doc) => {
+    div.innerHTML += `
+    <div class="container-comment">
+      <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}</p>
+      <a data-postcomment=${doc.id} href="#" class="delete-comment-btn"><i data-id=${
+      doc.id
+    } data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i></a>
+    </div>`;
+  });
+  const list = document.getElementsByClassName('delete-comment-btn');
+
+  for (const item of list) {
+    item.addEventListener('click', (event) => {
+      event.preventDefault();
+      const id = event.target.getAttribute('data-id');
+      const postDataId = event.target.getAttribute('data-post-id');
+      deleteComment(id, postDataId);
+
+      showComments(postDataId)
+        .then((querySnapshotData) => {
+          comments(querySnapshotData, postDataId);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    });
+  }
+};
+
 const showPosts = (post) => {
-  let postData = post.data();
+  const postData = post.data();
   let templateImg = '';
   let templateDeleteBtn = '';
   let templateBtnEdit = '';
@@ -300,9 +332,9 @@ const showPosts = (post) => {
     const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
     btnSaveComment.addEventListener('click', (event) => {
       event.preventDefault();
-      let inputComment = document.getElementById(`textarea-comment-${post.id}`).value;
+      const inputComment = document.getElementById(`textarea-comment-${post.id}`).value;
       addCommentUser(post.id, inputComment)
-        .then((resolve) => {
+        .then(() => {
           document.getElementById(`textarea-comment-${post.id}`).value = '';
           showComments(post.id)
             .then((querySnapshot) => {
@@ -412,37 +444,5 @@ export const addRenderEvents = (page) => {
 
     document.getElementById('ul-id').addEventListener('click', tagFilter);
     document.getElementById('btn-ver-mais').addEventListener('click', changeLimitPosts);
-  }
-};
-
-const comments = (querySnapshot, postId) => {
-  const div = document.getElementById(`user-comment-${postId}`);
-  div.innerHTML = '';
-  querySnapshot.forEach((doc) => {
-    div.innerHTML += `
-    <div class="container-comment">
-      <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}</p>
-      <a data-postcomment=${doc.id} href="#" class="delete-comment-btn"><i data-id=${
-      doc.id
-    } data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i></a>
-    </div>`;
-  });
-  let list = document.getElementsByClassName('delete-comment-btn');
-
-  for (let item of list) {
-    item.addEventListener('click', (event) => {
-      event.preventDefault();
-      let id = event.target.getAttribute('data-id');
-      let postId = event.target.getAttribute('data-post-id');
-      deleteComment(id, postId);
-
-      showComments(postId)
-        .then((querySnapshot) => {
-          comments(querySnapshot, postId);
-        })
-        .catch((erro) => {
-          console.log(erro);
-        });
-    });
   }
 };

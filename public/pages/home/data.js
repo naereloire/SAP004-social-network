@@ -153,7 +153,7 @@ export const addCommentUser = (idPost, comment) => {
             .add({
               idUser: user.uid,
               name: result.data().name,
-              comment: comment,
+              comment,
             })
             .then(() => {
               resolve();
@@ -188,11 +188,11 @@ export const deleteComment = (id, idPost) => {
     .collection('userComment')
     .doc(id)
     .delete()
-    .then((doc) => {
-      console.log('apagou ' + id);
+    .then(() => {
+      console.log(`apagou ${id}`);
     })
     .catch((error) => {
-      let errorObject = new errorDictionary(error);
+      const errorObject = new ErrorDictionary(error);
       console.log(errorObject.translate(false));
     });
 };
