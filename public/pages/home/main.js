@@ -234,6 +234,38 @@ const comments = (querySnapshot, postId) => {
   }
 };
 
+const saveComent = (postId) => {
+  const inputComment = document.getElementById(`textarea-comment-${postId}`).value;
+  addCommentUser(postId, inputComment)
+    .then(() => {
+      document.getElementById(`textarea-comment-${postId}`).value = '';
+      showComments(postId)
+        .then((querySnapshot) => {
+          console.log(querySnapshot);
+          comments(querySnapshot, postId);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const renderComents = (postId) => {
+  document.getElementById(`box-comment-${postId}`).classList.remove('comment');
+
+  showComments(postId)
+    .then((querySnapshot) => {
+      console.log(querySnapshot);
+      comments(querySnapshot, postId);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    });
+};
+
 const showPosts = (post) => {
   const postData = post.data();
   let templateImg = '';
@@ -318,36 +350,13 @@ const showPosts = (post) => {
 
     document.getElementById(`comments-${post.id}`).addEventListener('click', (event) => {
       event.preventDefault();
-      document.getElementById(`box-comment-${post.id}`).classList.remove('comment');
-      showComments(post.id)
-        .then((querySnapshot) => {
-          console.log(querySnapshot);
-          comments(querySnapshot, post.id);
-        })
-        .catch((erro) => {
-          console.log(erro);
-        });
+      renderComents(post.id);
     });
 
     const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
     btnSaveComment.addEventListener('click', (event) => {
       event.preventDefault();
-      const inputComment = document.getElementById(`textarea-comment-${post.id}`).value;
-      addCommentUser(post.id, inputComment)
-        .then(() => {
-          document.getElementById(`textarea-comment-${post.id}`).value = '';
-          showComments(post.id)
-            .then((querySnapshot) => {
-              console.log(querySnapshot);
-              comments(querySnapshot, post.id);
-            })
-            .catch((erro) => {
-              console.log(erro);
-            });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      saveComent(post.id);
     });
 
     const btnCancelComment = document.getElementById(`btn-cancel-comment-${post.id}`);
