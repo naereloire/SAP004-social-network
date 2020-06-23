@@ -713,6 +713,7 @@ select, button {
     .span-style {
         font-size: 2em;
         margin: 5px;
+        width: auto;
     }
     .feed-style {
         align-items: flex-start;
@@ -722,7 +723,7 @@ select, button {
         justify-content: center;
     }
     #girly-img {
-        width: 75%;
+        width: 20%;
     }
     .capa-style {
         display: flex;
@@ -748,7 +749,6 @@ select, button {
     .bio-container {
         align-items: center;
         flex: 1;
-        /* margin-right: 1.5em; */
     }
     .bio-style {
         border: solid #8c0f54;
@@ -832,7 +832,7 @@ select, button {
         justify-content: space-evenly;
         left: 30%;
         top: 0;
-        width: 70%;
+        width: 60%;
         z-index: 1;
     }
     .icons {
