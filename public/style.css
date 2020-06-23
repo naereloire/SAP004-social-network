@@ -362,9 +362,26 @@ select, button {
     width: 60%;
 }
 
+.comment{
+    display: none;
+    margin: 10px;
+}
+
+.textarea-comment{
+    background-color: #FFFAFA;
+    border: double gray;
+    border-radius: 1em;
+    border-style: solid #8c0f54;
+    height: 100%;
+    text-align: justify;
+    resize: none;
+    width: 97%;
+}
+
 .text-style {
     margin: 0;
     text-align: center;
+    margin-bottom: 2px;
 }
 
 .title-align {
@@ -725,6 +742,7 @@ select, button {
     }
     .img-capa {
         border-bottom: solid #8c0f54;
+        cursor: pointer;
         width: 100%;
     }
     .img-capa:hover {

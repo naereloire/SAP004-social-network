@@ -1,4 +1,4 @@
-import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit } from './data.js';
+import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit, addCommentUser, showComments } from './data.js';
 let privacy = false
 let limitTarget = 0
 let limitReal = 0
@@ -28,6 +28,7 @@ export default () => {
       </div>
       <div class="bio-infos">
         <h1 class="text-style" id="user-name"></h1>
+        <p id="user-city"></p>
       </div>
     </section>
   </div>
@@ -257,11 +258,19 @@ const showPosts = (post) => {
           </span>
           <div class="btns-post-container">
           <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${postData.user_like.length}</i></button>
-            <button class="btn-style"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
+            <button class="btn-style" id="comments-${post.id}"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
             ${templateBtnEdit}
       </div>
-    
     </div>
+    <div class="comment" id="box-comment-${post.id}">
+      <form class="form-style">
+        <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
+          <div class="btn-edit">
+            <button type="button" id="btn-cancel-comment-${post.id}" class="btn-style">Cancelar</button>
+            <button type="button" id="btn-save-comment-${post.id}" class="btn-style">Salvar</button>
+          </div>
+      </form>
+    </div>  
 </section > `;
 
     feedContainer.insertAdjacentHTML('beforeend', template_feed);
@@ -270,6 +279,25 @@ const showPosts = (post) => {
         editPost(event, post.id, postData.text)
       })
     }
+
+    document.getElementById(`comments-${post.id}`).addEventListener("click", (event) => {
+      event.preventDefault()
+      document.getElementById(`box-comment-${post.id}`).classList.remove('comment')
+      showComments(post.id)
+    })
+
+    const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
+    btnSaveComment.addEventListener("click", (event) => {
+      event.preventDefault()
+      let inputComment = document.getElementById(`textarea-comment-${post.id}`).value
+      addCommentUser(post.id, inputComment)
+      .then(resolve => {
+        document.getElementById(`textarea-comment-${post.id}`).value = ""
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    })
 
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
@@ -285,7 +313,7 @@ const showPosts = (post) => {
       saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user)
       event.preventDefault();
 
-     })
+    })
       
     btnLike.forEach(catchBtnLk)
   

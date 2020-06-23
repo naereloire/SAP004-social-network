@@ -1,7 +1,5 @@
 import { errorDictionary } from "./error.js"
 
-
-
 export const createPost = (textPost, tagOption, privacyOption, url) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
@@ -131,5 +129,38 @@ export function saveLike(postId, user_id) {
             )
 
         }
+    })
+}
+
+export const addCommentUser = (idPost, comment) => {
+    return new Promise((resolve, reject) => {
+        const userComment = firebase.firestore().collection(`comment`).doc(idPost)
+            firebase.auth().onAuthStateChanged((user) => {
+            userComment.collection('userComment').add({
+                idUser: user.uid,
+                comment: comment
+            }).then(() => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    })
+}
+
+export const showComments = (idPost) => {
+    const comments = firebase.firestore().collection("comment").doc(idPost)
+    const userCollection = firebase.firestore().collection("users")
+
+    comments.collection("userComment").get().then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+            // console.log(doc.id, " => ", doc.data());
+            userCollection.doc(doc.data().idUser).get().then(result => {
+                console.log({
+                    comment:doc.data().comment,
+                    user: result.data().name
+                })
+            })
+        });
     })
 }
