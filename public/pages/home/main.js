@@ -118,50 +118,50 @@ const limitFix = () => {
 
 
 const clearFeed = () => {
-    document.getElementById("all-posts-container").innerHTML = ""
+  document.getElementById("all-posts-container").innerHTML = ""
 }
 
 const clearAriaCurrent = () => {
-    for (let element of document.getElementById("ul-id").children) {
-        element.firstElementChild.removeAttribute('aria-current')
-    }
+  for (let element of document.getElementById("ul-id").children) {
+    element.firstElementChild.removeAttribute('aria-current')
+  }
 }
 
 const tagFilter = (event) => {
-    limit = 5
-    let element_name = event.target.localName
-    if (element_name != 'li') {
-        clearAriaCurrent()
-        if (element_name === 'span') {
-            tagValue = event.target.parentElement.parentElement.name
-            event.target.parentElement.parentElement.ariaCurrent = "page"
+  limit = 5
+  let element_name = event.target.localName
+  if (element_name != 'li') {
+    clearAriaCurrent()
+    if (element_name === 'span') {
+      tagValue = event.target.parentElement.parentElement.name
+      event.target.parentElement.parentElement.ariaCurrent = "page"
 
-        } else {
-            tagValue = event.target.parentElement.name
-            event.target.parentElement.ariaCurrent = "page"
-        } clearFeed()
-        blockTag(tagValue)
-        loadPosts(clearFeed, showPosts, tagValue, limit)
-    }
-    else {
+    } else {
       tagValue = event.target.parentElement.name
       event.target.parentElement.ariaCurrent = "page"
-    }
-    if (tagValue === "privados") {
-      privacy = true
-      blockPrivacyBox(true)
-      blockTag()
-      clearLimits()
-      loadPosts(clearFeed, showPosts, "", limit, privacy)
-    }
-    else {
-      privacy = false
-      blockPrivacyBox(false)
-      blockTag(tagValue)
-      clearLimits()
-      loadPosts(clearFeed, showPosts, tagValue, limit)
-    }
+    } clearFeed()
+    blockTag(tagValue)
+    loadPosts(clearFeed, showPosts, tagValue, limit)
   }
+  else {
+    tagValue = event.target.parentElement.name
+    event.target.parentElement.ariaCurrent = "page"
+  }
+  if (tagValue === "privados") {
+    privacy = true
+    blockPrivacyBox(true)
+    blockTag()
+    clearLimits()
+    loadPosts(clearFeed, showPosts, "", limit, privacy)
+  }
+  else {
+    privacy = false
+    blockPrivacyBox(false)
+    blockTag(tagValue)
+    clearLimits()
+    loadPosts(clearFeed, showPosts, tagValue, limit)
+  }
+}
 
 const blockTag = (tagValue) => {
 
@@ -179,7 +179,8 @@ const blockTag = (tagValue) => {
 
 
     }
-}}
+  }
+}
 
 const btnPost = (event) => {
   event.preventDefault();
@@ -215,13 +216,18 @@ const showPosts = (post) => {
   let templateImg = ""
   let templateDeletBtn = ""
   let templateBtnEdit = ""
+  let classIcon = ""
 
   if (firebase.auth().currentUser.uid === postData.user_id) {
+    classIcon = "span-container"
     templateDeletBtn = `
-    <span><a href="#" class="delete-post-btn"><i class="icons fas fa-trash-alt"></i></a></span>`
+    <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`
     templateBtnEdit = `
     <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
     `
+  }
+  else {
+    classIcon = "nova-class-icon"
   }
 
   if (postData.urlImg) {
@@ -240,7 +246,7 @@ const showPosts = (post) => {
     const template_feed = `
     <section id="${post.id}" class="publication-box">
         <div class="publication-title">
-          <div class="span-container">
+          <div class="${classIcon}">
             <span><p>Post ${privacy}</p></span>
             <span>${tags[keyValidated][1]}</span>
             ${templateDeletBtn}
@@ -333,14 +339,14 @@ const showPosts = (post) => {
 
     const btnLike = document.querySelectorAll(".like-post-btn")
     const catchBtnLk = (element) => element.addEventListener("click", function (event) {
-    const user = firebase.auth().currentUser.uid 
+      const user = firebase.auth().currentUser.uid
       saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user)
       event.preventDefault();
 
     })
-      
+    
     btnLike.forEach(catchBtnLk)
-  
+
 
   }
   limitFix()
@@ -387,6 +393,8 @@ const rollBackPhotoIcon = (photoElement) => {
 }
 
 const editPost = (event, postId, currentText) => {
+  let disableBtn = event.currentTarget
+  disableBtn.disabled = true
   let editedText
   let textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1]
   textArea.querySelector("p").style.display = "none"
@@ -402,6 +410,7 @@ const editPost = (event, postId, currentText) => {
   textArea.insertAdjacentHTML('beforeend', template_edit_area);
 
   document.getElementById("btn-cancel-edit").addEventListener("click", (event) => {
+   disableBtn.disabled = false
     let form = document.getElementById("post-form-edit")
     textArea.removeChild(form)
     textArea.children[1].style.display = "block"
