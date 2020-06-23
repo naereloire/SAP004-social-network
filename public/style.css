@@ -1,3 +1,10 @@
+.nova-class-icon {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5em;
+    width: 100%;
+}
+
 .icons-text, .icons {
     color: beige;
 }
@@ -404,9 +411,11 @@ select, button {
     background: #f2c84b;
     border: 2px solid #f2c84b;
 }
-#btn-ver-mais{
+
+#btn-ver-mais {
     margin-top: 3em;
 }
+
 .btn-style {
     padding: 0.5em;
     background: #A97B75;
@@ -454,15 +463,11 @@ select, button {
     align-items: center;
     justify-content: space-between;
     flex: 1;
-}
-
-.fa-trash-alt {
-    font-size: 0.6em;
+    padding: 0.5em;
 }
 
 .delete-post-btn {
     color: #8c0f54;
-    font-size: 26px;
     text-decoration: none;
 }
 
@@ -708,6 +713,7 @@ select, button {
     .span-style {
         font-size: 2em;
         margin: 5px;
+        width: auto;
     }
     .feed-style {
         align-items: flex-start;
@@ -717,7 +723,7 @@ select, button {
         justify-content: center;
     }
     #girly-img {
-        width: 75%;
+        width: 20%;
     }
     .capa-style {
         display: flex;
@@ -743,7 +749,6 @@ select, button {
     .bio-container {
         align-items: center;
         flex: 1;
-        /* margin-right: 1.5em; */
     }
     .bio-style {
         border: solid #8c0f54;
@@ -827,7 +832,7 @@ select, button {
         justify-content: space-evenly;
         left: 30%;
         top: 0;
-        width: 70%;
+        width: 60%;
         z-index: 1;
     }
     .icons {
