@@ -1,64 +1,73 @@
-import { saveProviderUser } from "../pages/perfil/data.js" 
+/* global firebase, firebaseui, document, window, alert */
+import { saveProviderUser } from '../pages/perfil/data.js';
 
 export default {
-    createBtnAuth: function () {
-        let ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+  createBtnAuth() {
+    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
 
-        let config = {
-            callbacks: {
-                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                    saveProviderUser(authResult.user.uid, authResult.user.displayName)                  
-                    window.location.href = "/#"
-                    return true
-                }
-            },
-            signInOptions: [
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.GithubAuthProvider.PROVIDER_ID
-            ],
-            signInFlow: 'popup'
-        };
+    const config = {
+      callbacks: {
+        signInSuccessWithAuthResult(authResult, redirectUrl) {
+          saveProviderUser(authResult.user.uid, authResult.user.displayName);
+          window.location.href = '/#';
+          return true;
+        },
+      },
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      ],
+      signInFlow: 'popup',
+    };
 
-        ui.start('#firebaseui-auth', config)
-    },
+    ui.start('#firebaseui-auth', config);
+  },
 
-    logout: function () {
-        firebase.auth().signOut().then(() => {
-            const navStyle = document.getElementsByClassName("hidden-nav")
-            for (let element of navStyle){
-                element.style.display = "none"
-            }
-            document.getElementById("side-navigation").style.width = "0";
-            window.location.href = "/#login"
-        }).catch(erro => {
-            return erro
-        })
+  logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        const navStyle = document.getElementsByClassName('hidden-nav');
+        for (let element of navStyle) {
+          element.style.display = 'none';
+        }
+        document.getElementById('side-navigation').style.width = '0';
+        window.location.href = '/#login';
+      })
+      .catch((erro) => {
+        return erro;
+      });
+  },
 
-    },
+  loginEmail() {
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
 
-    loginEmail: function () {
-        let email = document.querySelector("#email").value;
-        let password = document.querySelector("#password").value;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        window.location.href = '/#';
+      })
+      .catch(() => {
+        alert('Usuário ou Senha incorreta');
+      });
+  },
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-            window.location.href = "/#"
-        }).catch(erro => {
-            alert("Usuário ou Senha incorreta")
-        });;
-    },
+  createLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-    createLogin: function(){
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
-
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(user => {
-            alert("Usuário criado com sucesso!")
-            window.location.href = "/#"
-        })
-        .catch(error => {
-            alert("Email já cadastrado")
-        })
-    }
-}
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        alert('Usuário criado com sucesso!');
+        window.location.href = '/#';
+      })
+      .catch(() => {
+        alert('Email já cadastrado');
+      });
+  },
+};

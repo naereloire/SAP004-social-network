@@ -3,7 +3,7 @@
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
-// let date = new Date();
+// const date = new Date();
 // const post = {
 //   name: 'maria',
 //   user_id: 'abcdefg',
@@ -37,4 +37,4 @@
 //   });
 // });
 
-// // loadPosts, saveImage, deletePost, savePostEdit, saveLike
+// // loadPosts, saveImage, deconstePost, savePostEdit, saveLike

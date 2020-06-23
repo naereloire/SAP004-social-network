@@ -1,11 +1,12 @@
-import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit } from './data.js';
+/* global firebase, document */
+import { createPost, loadPosts, deconstePost, saveImage, saveLike, savePostEdit } from './data.js';
 let privacy = false;
 let limitTarget = 0;
 let limitReal = 0;
 let limit = 5;
 let limitcopy = limit;
 let tagValue = '';
-let tags = {
+const tags = {
   home: ['Tag', `<i  class=" icons fas fa-home fa-1x"></i>`],
   geek: ['Geek', `<i class="icons fas fa-robot fa-1x"></i>`],
   tech: ['Tech', `<i class="icons fas fa-laptop-code fa-1x"></i>`],
@@ -68,7 +69,7 @@ export default () => {
 };
 
 export const addRenderEvents = (page) => {
-  let timeToRenderPage = 2000;
+  const timeToRenderPage = 2000;
 
   if (page === 'home') {
     loadPosts(clearFeed, showPosts, '', limit);
@@ -82,7 +83,7 @@ export const addRenderEvents = (page) => {
   }
 };
 
-const changeLimitPosts = (event) => {
+const changeLimitPosts = () => {
   limit += 5;
   clearLimits();
   loadPosts(clearFeed, showPosts, tagValue, limit, privacy);
@@ -97,7 +98,7 @@ const limitFix = () => {
   limitTarget++;
   if (limitTarget === limitcopy) {
     if (limit != limitReal) {
-      let difflimit = limit - limitReal;
+      const difflimit = limit - limitReal;
       limitcopy += difflimit;
       limitReal = 0;
       limitTarget = 0;
@@ -120,7 +121,7 @@ const clearAriaCurrent = () => {
 
 const tagFilter = (event) => {
   limit = 5;
-  let element_name = event.target.localName;
+  const element_name = event.target.localName;
   if (element_name != 'li') {
     clearAriaCurrent();
     if (element_name === 'span') {
@@ -153,15 +154,15 @@ const tagFilter = (event) => {
 };
 
 const blockTag = (tagValue) => {
-  let select = document.getElementById('select-id');
+  const select = document.getElementById('select-id');
   if (!select) {
     return;
   }
   if (!tagValue) {
-    let keyTags = ['home', 'geek', 'tech', 'autocuidado', 'seguranca', 'oportunidades'];
+    const keyTags = ['home', 'geek', 'tech', 'autocuidado', 'seguranca', 'oportunidades'];
     select.innerHTML = '';
     for (let key of keyTags) {
-      let keyValidated = key === 'home' ? '' : key;
+      const keyValidated = key === 'home' ? '' : key;
       select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
   }
@@ -172,9 +173,9 @@ const btnPost = (event) => {
 
   const postText = document.getElementById('post-text').value;
   const tag = document.getElementById('select-id');
-  const tagValue = tag.options[tag.selectedIndex].value;
-  const checkBox = document.getElementById('privacy-check').checked;
-  let photoFile = document.getElementById('input-photo');
+  let tagValue = tag.options[tag.selectedIndex].value;
+  let checkBox = document.getElementById('privacy-check').checked;
+  const photoFile = document.getElementById('input-photo');
 
   if (photoFile.value) {
     postPhoto(photoFile).then((url) => {
@@ -196,14 +197,14 @@ const btnPost = (event) => {
 
 const showPosts = (post) => {
   let privacy;
-  let postData = post.data();
+  const postData = post.data();
   let templateImg = '';
-  let templateDeletBtn = '';
+  let templateDeconstBtn = '';
   let templateBtnEdit = '';
 
   if (firebase.auth().currentUser.uid === postData.user_id) {
-    templateDeletBtn = `
-    <span><a href="#" class="delete-post-btn"><i class="icon-del fas fa-trash-alt"></i></a></span>`;
+    templateDeconstBtn = `
+    <span><a href="#" class="deconste-post-btn"><i class="icon-del fas fa-trash-alt"></i></a></span>`;
     templateBtnEdit = `
     <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
     `;
@@ -219,7 +220,7 @@ const showPosts = (post) => {
       privacy = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
     }
 
-    let keyValidated = postData.tag === '' ? 'home' : postData.tag;
+    const keyValidated = postData.tag === '' ? 'home' : postData.tag;
     const feedContainer = document.getElementById('all-posts-container');
     const template_feed = `
     <section id="${post.id}" class="publication-box">
@@ -227,7 +228,7 @@ const showPosts = (post) => {
           <div class="span-container">
             <span><p>Post ${privacy}</p></span>
             <span>${tags[keyValidated][1]}</span>
-            ${templateDeletBtn}
+            ${templateDeconstBtn}
           </div>
         </div>
         <div class="publi-area">
@@ -256,13 +257,15 @@ const showPosts = (post) => {
       });
     }
 
-    const btnDelete = document.querySelectorAll('.delete-post-btn');
+    const btnDeconste = document.querySelectorAll('.deconste-post-btn');
     const catchBtn = (element) =>
       element.addEventListener('click', function (event) {
-        deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id);
+        deconstePost(
+          event.currentTarget.parentElement.parentElement.parentElement.parentElement.id
+        );
       });
 
-    btnDelete.forEach(catchBtn);
+    btnDeconste.forEach(catchBtn);
     limitReal++;
 
     const btnLike = document.querySelectorAll('.like-post-btn');
@@ -294,34 +297,34 @@ const blockPrivacyBox = (lock) => {
 
 const postPhoto = (photoElement) => {
   let urlImg;
-  let namePhotoFile = photoElement.value.split('\\').pop();
-  let photoFile = photoElement.files[0];
+  const namePhotoFile = photoElement.value.split('\\').pop();
+  const photoFile = photoElement.files[0];
   urlImg = saveImage(namePhotoFile, photoFile);
   return urlImg;
 };
 
 const privacyValidation = (postData) => {
-  let user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
   return postData.user_id === user.uid || !postData.privacy;
 };
 
 const changePhotoIcon = (event) => {
-  let labelInputPhoto = event.currentTarget.labels[0];
+  const labelInputPhoto = event.currentTarget.labels[0];
   labelInputPhoto.className = 'img-check';
   labelInputPhoto.innerHTML = '<i class="img-check icons fas fa-check-square fa-2x"></i>';
 };
 
 const rollBackPhotoIcon = (photoElement) => {
-  let label = photoElement.labels[0];
+  const label = photoElement.labels[0];
   label.className = 'btn-style';
   label.innerHTML = '<i class="icons fas fa-camera-retro fa-2x"></i>';
 };
 
 const editPost = (event, postId, currentText) => {
   let editedText;
-  let textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
+  const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
   textArea.querySelector('p').style.display = 'none';
-  let template_edit_area = `
+  const templateEditArea = `
   <form id="post-form-edit" class="form-style">
       <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
       <div class="btn-edit">
@@ -330,15 +333,15 @@ const editPost = (event, postId, currentText) => {
     </div>
     </form>
   `;
-  textArea.insertAdjacentHTML('beforeend', template_edit_area);
+  textArea.insertAdjacentHTML('beforeend', templateEditArea);
 
-  document.getElementById('btn-cancel-edit').addEventListener('click', (event) => {
-    let form = document.getElementById('post-form-edit');
+  document.getElementById('btn-cancel-edit').addEventListener('click', () => {
+    const form = document.getElementById('post-form-edit');
     textArea.removeChild(form);
     textArea.children[1].style.display = 'block';
   });
 
-  document.getElementById('btn-save-edit').addEventListener('click', (event) => {
+  document.getElementById('btn-save-edit').addEventListener('click', () => {
     editedText = document.getElementById('post-text-edit').value;
     savePostEdit(postId, editedText);
   });

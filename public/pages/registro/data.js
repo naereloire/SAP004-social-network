@@ -1,3 +1,4 @@
+/* global firebase, document, alert */
 export default () => {};
 
 export const userRegister = (event) => {
@@ -12,7 +13,7 @@ export const userRegister = (event) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then((user) => {
+    .then(() => {
       const userCollectionRegister = firebase.firestore().collection('users');
       firebase.auth().onAuthStateChanged((user) => {
         userCollectionRegister
@@ -31,7 +32,7 @@ export const userRegister = (event) => {
           });
       });
     })
-    .catch((error) => {
+    .catch(() => {
       alert('Email já cadastrado');
     });
 };

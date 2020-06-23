@@ -1,6 +1,6 @@
 export default () => {};
 
-export function errorDictionary(error) {
+export function ErrorDictionary(error) {
   this.error = error;
   this.storageErrorCode = {
     'storage/unknown': 'Ocorreu um erro desconhecido.',
@@ -40,8 +40,7 @@ export function errorDictionary(error) {
   this.translate = function (baseStorage) {
     if (baseStorage) {
       return this.storageErrorCode[this.error.code];
-    } else {
-      return this.torageErrorCode[this.error.code];
     }
+    return this.torageErrorCode[this.error.code];
   };
 }

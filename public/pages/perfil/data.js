@@ -1,3 +1,4 @@
+/* global firebase, document */
 export const saveProfileUser = () => {
   const name = document.getElementById('name-profile').value;
   const lastName = document.getElementById('last-name-profile').value;

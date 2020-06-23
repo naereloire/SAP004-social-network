@@ -1,3 +1,4 @@
+/* global document */
 export default () => {
   const container = document.createElement('div');
 

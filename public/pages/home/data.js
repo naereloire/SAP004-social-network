@@ -1,10 +1,10 @@
 /* global firebase */
 
-import { errorDictionary } from './error.js';
+import { ErrorDictionary } from './error.js';
 
 export const createPost = (textPost, tagOption, privacyOption, url) => {
-  let date = new Date();
-  let user = firebase.auth().currentUser;
+  const date = new Date();
+  const user = firebase.auth().currentUser;
   const post = {
     name: user.displayName,
     user_id: user.uid,
@@ -19,14 +19,14 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
   };
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.add(post).catch((error) => {
-    let errorObject = new errorDictionary(error);
+    const errorObject = new ErrorDictionary(error);
     console.log(errorObject.translate(false));
   });
 };
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
-  let snapshot;
-  let postsCollection;
+  const snapshot;
+  const postsCollection;
   if (!tagFilter) {
     postsCollection = firebase
       .firestore()
@@ -58,33 +58,33 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
 };
 
 export const saveImage = (nameFile, file) => {
-  let storageRef = firebase.storage().ref();
-  let postImage = storageRef.child(`postImage/${nameFile}`);
+  const storageRef = firebase.storage().ref();
+  const postImage = storageRef.child(`postImage/${nameFile}`);
   postImage
     .put(file)
     .then((snapshot) => {
       console.log('photo publicada' + snapshot);
     })
     .catch((error) => {
-      let errorObject = new errorDictionary(error);
+      const errorObject = new ErrorDictionary(error);
       console.log(errorObject.translate(true));
     });
   return postImage.getDownloadURL().catch((error) => {
-    let errorObject = new errorDictionary(error);
+    const errorObject = new ErrorDictionary(error);
     console.log(errorObject.translate(true));
   });
 };
 
-export function deletePost(postId) {
+export function deconstePost(postId) {
   const postCollection = firebase.firestore().collection('posts');
   postCollection
     .doc(postId)
-    .delete()
+    .deconste()
     .then((doc) => {
       console.log('apagou ' + postId);
     })
     .catch((error) => {
-      let errorObject = new errorDictionary(error);
+      const errorObject = new ErrorDictionary(error);
       console.log(errorObject.translate(false));
     });
 }
@@ -97,7 +97,7 @@ export const savePostEdit = (postId, editedText) => {
       text: editedText,
     })
     .catch((error) => {
-      let errorObject = new errorDictionary(error);
+      const errorObject = new ErrorDictionary(error);
       console.log(errorObject.translate(false));
     });
 };
@@ -120,7 +120,7 @@ export function saveLike(postId, user_id) {
             user_like: arrayUserDlt,
           })
           .catch((error) => {
-            let errorObject = new errorDictionary(error);
+            const errorObject = new ErrorDictionary(error);
             console.log(errorObject.translate(false));
           });
       } else {
@@ -130,7 +130,7 @@ export function saveLike(postId, user_id) {
             user_like: arrayUserAdd,
           })
           .catch((error) => {
-            let errorObject = new errorDictionary(error);
+            const errorObject = new ErrorDictionary(error);
             console.log(errorObject.translate(false));
           });
       }

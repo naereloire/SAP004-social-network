@@ -1,3 +1,4 @@
+/* global window, document, firebase */
 import routes from './routes.js';
 import { addRenderEvents } from './pages/home/main.js';
 import auth from './authentication/auth.js';
@@ -22,9 +23,9 @@ btnLogout.addEventListener('click', function () {
 
 const init = () => window.addEventListener('hashchange', renderPage);
 
-const renderPage = (event) => {
+const renderPage = () => {
   main.innerHTML = ' ';
-  let page = validateHash(window.location.hash);
+  const page = validateHash(window.location.hash);
   firebase.auth().onAuthStateChanged((user) => {
     if (!user) {
       if (page === 'register') {
