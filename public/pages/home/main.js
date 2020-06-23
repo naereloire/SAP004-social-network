@@ -1,5 +1,9 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-param-reassign */
 /* global firebase, document */
+
 import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit } from './data.js';
+
 let privacy = false;
 let limitTarget = 0;
 let limitReal = 0;
@@ -68,92 +72,23 @@ export default () => {
   return container;
 };
 
-export const addRenderEvents = (page) => {
-  const timeToRenderPage = 2000;
-
-  if (page === 'home') {
-    loadPosts(clearFeed, showPosts, '', limit);
-    setTimeout(() => {
-      document.getElementById('post-form').addEventListener('submit', btnPost);
-      document.getElementById('input-photo').addEventListener('change', changePhotoIcon);
-    }, timeToRenderPage);
-
-    document.getElementById('ul-id').addEventListener('click', tagFilter);
-    document.getElementById('btn-ver-mais').addEventListener('click', changeLimitPosts);
-  }
+const clearFeed = () => {
+  document.getElementById('all-posts-container').innerHTML = '';
 };
 
-const changeLimitPosts = () => {
-  limit += 5;
-  clearLimits();
-  loadPosts(clearFeed, showPosts, tagValue, limit, privacy);
-};
 const clearLimits = () => {
   limitcopy = limit;
   limitReal = 0;
   limitTarget = 0;
 };
 
-const limitFix = () => {
-  limitTarget++;
-  if (limitTarget === limitcopy) {
-    if (limit != limitReal) {
-      const difflimit = limit - limitReal;
-      limitcopy += difflimit;
-      limitReal = 0;
-      limitTarget = 0;
-      loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy);
-    } else {
-      clearLimits();
-    }
-  }
-};
-
-const clearFeed = () => {
-  document.getElementById('all-posts-container').innerHTML = '';
-};
-
 const clearAriaCurrent = () => {
-  for (let element of document.getElementById('ul-id').children) {
+  for (const element of document.getElementById('ul-id').children) {
     element.firstElementChild.removeAttribute('aria-current');
   }
 };
 
-const tagFilter = (event) => {
-  limit = 5;
-  const element_name = event.target.localName;
-  if (element_name != 'li') {
-    clearAriaCurrent();
-    if (element_name === 'span') {
-      tagValue = event.target.parentElement.parentElement.name;
-      event.target.parentElement.parentElement.ariaCurrent = 'page';
-    } else {
-      tagValue = event.target.parentElement.name;
-      event.target.parentElement.ariaCurrent = 'page';
-    }
-    clearFeed();
-    blockTag(tagValue);
-    loadPosts(clearFeed, showPosts, tagValue, limit);
-  } else {
-    tagValue = event.target.parentElement.name;
-    event.target.parentElement.ariaCurrent = 'page';
-  }
-  if (tagValue === 'privados') {
-    privacy = true;
-    blockPrivacyBox(true);
-    blockTag();
-    clearLimits();
-    loadPosts(clearFeed, showPosts, '', limit, privacy);
-  } else {
-    privacy = false;
-    blockPrivacyBox(false);
-    blockTag(tagValue);
-    clearLimits();
-    loadPosts(clearFeed, showPosts, tagValue, limit);
-  }
-};
-
-const blockTag = (tagValue) => {
+const blockTag = () => {
   const select = document.getElementById('select-id');
   if (!select) {
     return;
@@ -161,11 +96,24 @@ const blockTag = (tagValue) => {
   if (!tagValue) {
     const keyTags = ['home', 'geek', 'tech', 'autocuidado', 'seguranca', 'oportunidades'];
     select.innerHTML = '';
-    for (let key of keyTags) {
-      let keyValidated = key === 'home' ? '' : key;
+    for (const key of keyTags) {
+      const keyValidated = key === 'home' ? '' : key;
       select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
   }
+};
+
+const postPhoto = (photoElement) => {
+  const namePhotoFile = photoElement.value.split('\\').pop();
+  const photoFile = photoElement.files[0];
+  const urlImg = saveImage(namePhotoFile, photoFile);
+  return urlImg;
+};
+
+const rollBackPhotoIcon = (photoElement) => {
+  const label = photoElement.labels[0];
+  label.className = 'btn-style';
+  label.innerHTML = '<i class="icons fas fa-camera-retro fa-2x"></i>';
 };
 
 const btnPost = (event) => {
@@ -173,7 +121,7 @@ const btnPost = (event) => {
 
   const postText = document.getElementById('post-text').value;
   const tag = document.getElementById('select-id');
-  const tagValue = tag.options[tag.selectedIndex].value;
+  tagValue = tag.options[tag.selectedIndex].value;
   const checkBox = document.getElementById('privacy-check').checked;
   const photoFile = document.getElementById('input-photo');
 
@@ -195,8 +143,55 @@ const btnPost = (event) => {
   clearLimits();
 };
 
+const privacyValidation = (postData) => {
+  const user = firebase.auth().currentUser;
+  return postData.user_id === user.uid || !postData.privacy;
+};
+
+const editPost = (event, postId, currentText) => {
+  let editedText;
+  const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
+  textArea.querySelector('p').style.display = 'none';
+  const templateEditArea = `
+  <form id="post-form-edit" class="form-style">
+      <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
+      <div class="btn-edit">
+      <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
+      <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
+    </div>
+    </form>
+  `;
+  textArea.insertAdjacentHTML('beforeend', templateEditArea);
+
+  document.getElementById('btn-cancel-edit').addEventListener('click', () => {
+    const form = document.getElementById('post-form-edit');
+    textArea.removeChild(form);
+    textArea.children[1].style.display = 'block';
+  });
+
+  document.getElementById('btn-save-edit').addEventListener('click', () => {
+    editedText = document.getElementById('post-text-edit').value;
+    savePostEdit(postId, editedText);
+  });
+};
+
+const limitFix = () => {
+  limitTarget += 1;
+  if (limitTarget === limitcopy) {
+    if (limit !== limitReal) {
+      const difflimit = limit - limitReal;
+      limitcopy += difflimit;
+      limitReal = 0;
+      limitTarget = 0;
+      // eslint-disable-next-line no-use-before-define
+      loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy);
+    } else {
+      clearLimits();
+    }
+  }
+};
+
 const showPosts = (post) => {
-  let privacy;
   const postData = post.data();
   let templateImg = '';
   let templateDeconstBtn = '';
@@ -259,16 +254,16 @@ const showPosts = (post) => {
 
     const btnDeconste = document.querySelectorAll('.deconste-post-btn');
     const catchBtn = (element) =>
-      element.addEventListener('click', function (event) {
+      element.addEventListener('click', function callBackDelete(event) {
         deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id);
       });
 
     btnDeconste.forEach(catchBtn);
-    limitReal++;
+    limitReal += 1;
 
     const btnLike = document.querySelectorAll('.like-post-btn');
     const catchBtnLk = (element) =>
-      element.addEventListener('click', function (event) {
+      element.addEventListener('click', function callBackSaveLike(event) {
         const user = firebase.auth().currentUser.uid;
         saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user);
         event.preventDefault();
@@ -277,6 +272,12 @@ const showPosts = (post) => {
     btnLike.forEach(catchBtnLk);
   }
   limitFix();
+};
+
+const changePhotoIcon = (event) => {
+  const labelInputPhoto = event.currentTarget.labels[0];
+  labelInputPhoto.className = 'img-check';
+  labelInputPhoto.innerHTML = '<i class="img-check icons fas fa-check-square fa-2x"></i>';
 };
 
 const blockPrivacyBox = (lock) => {
@@ -293,54 +294,57 @@ const blockPrivacyBox = (lock) => {
   }
 };
 
-const postPhoto = (photoElement) => {
-  const urlImg;
-  const namePhotoFile = photoElement.value.split('\\').pop();
-  const photoFile = photoElement.files[0];
-  urlImg = saveImage(namePhotoFile, photoFile);
-  return urlImg;
+const tagFilter = (event) => {
+  limit = 5;
+  const elementName = event.target.localName;
+  if (elementName !== 'li') {
+    clearAriaCurrent();
+    if (elementName === 'span') {
+      tagValue = event.target.parentElement.parentElement.name;
+      event.target.parentElement.parentElement.ariaCurrent = 'page';
+    } else {
+      tagValue = event.target.parentElement.name;
+      event.target.parentElement.ariaCurrent = 'page';
+    }
+    clearFeed();
+    blockTag();
+    loadPosts(clearFeed, showPosts, tagValue, limit);
+  } else {
+    tagValue = event.target.parentElement.name;
+    event.target.parentElement.ariaCurrent = 'page';
+  }
+  if (tagValue === 'privados') {
+    privacy = true;
+    blockPrivacyBox(true);
+    blockTag();
+    clearLimits();
+    loadPosts(clearFeed, showPosts, '', limit, privacy);
+  } else {
+    privacy = false;
+    blockPrivacyBox(false);
+    blockTag();
+    clearLimits();
+    loadPosts(clearFeed, showPosts, tagValue, limit);
+  }
 };
 
-const privacyValidation = (postData) => {
-  const user = firebase.auth().currentUser;
-  return postData.user_id === user.uid || !postData.privacy;
+const changeLimitPosts = () => {
+  limit += 5;
+  clearLimits();
+  loadPosts(clearFeed, showPosts, tagValue, limit, privacy);
 };
 
-const changePhotoIcon = (event) => {
-  const labelInputPhoto = event.currentTarget.labels[0];
-  labelInputPhoto.className = 'img-check';
-  labelInputPhoto.innerHTML = '<i class="img-check icons fas fa-check-square fa-2x"></i>';
-};
+export const addRenderEvents = (page) => {
+  const timeToRenderPage = 2000;
 
-const rollBackPhotoIcon = (photoElement) => {
-  const label = photoElement.labels[0];
-  label.className = 'btn-style';
-  label.innerHTML = '<i class="icons fas fa-camera-retro fa-2x"></i>';
-};
+  if (page === 'home') {
+    loadPosts(clearFeed, showPosts, '', limit);
+    setTimeout(() => {
+      document.getElementById('post-form').addEventListener('submit', btnPost);
+      document.getElementById('input-photo').addEventListener('change', changePhotoIcon);
+    }, timeToRenderPage);
 
-const editPost = (event, postId, currentText) => {
-  let editedText;
-  const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
-  textArea.querySelector('p').style.display = 'none';
-  const templateEditArea = `
-  <form id="post-form-edit" class="form-style">
-      <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
-      <div class="btn-edit">
-      <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
-      <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
-    </div>
-    </form>
-  `;
-  textArea.insertAdjacentHTML('beforeend', templateEditArea);
-
-  document.getElementById('btn-cancel-edit').addEventListener('click', () => {
-    const form = document.getElementById('post-form-edit');
-    textArea.removeChild(form);
-    textArea.children[1].style.display = 'block';
-  });
-
-  document.getElementById('btn-save-edit').addEventListener('click', () => {
-    editedText = document.getElementById('post-text-edit').value;
-    savePostEdit(postId, editedText);
-  });
+    document.getElementById('ul-id').addEventListener('click', tagFilter);
+    document.getElementById('btn-ver-mais').addEventListener('click', changeLimitPosts);
+  }
 };
