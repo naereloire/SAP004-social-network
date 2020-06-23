@@ -25,8 +25,7 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
 };
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
-  const snapshot;
-  const postsCollection;
+  let postsCollection;
   if (!tagFilter) {
     postsCollection = firebase
       .firestore()
@@ -49,7 +48,7 @@ export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, p
       .limit(limit)
       .orderBy('timestamp', 'desc');
   }
-  snapshot = postsCollection.onSnapshot((snap) => {
+  postsCollection.onSnapshot((snap) => {
     callbackPreProcess();
     snap.forEach((docs) => {
       callbackPosts(docs);
@@ -80,7 +79,7 @@ export function deconstePost(postId) {
   postCollection
     .doc(postId)
     .deconste()
-    .then((doc) => {
+    .then(() => {
       console.log('apagou ' + postId);
     })
     .catch((error) => {
