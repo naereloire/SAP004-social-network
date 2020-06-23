@@ -134,33 +134,52 @@ export function saveLike(postId, user_id) {
 
 export const addCommentUser = (idPost, comment) => {
     return new Promise((resolve, reject) => {
-        const userComment = firebase.firestore().collection(`comment`).doc(idPost)
-            firebase.auth().onAuthStateChanged((user) => {
-            userComment.collection('userComment').add({
-                idUser: user.uid,
-                comment: comment
-            }).then(() => {
-                resolve()
-            }).catch(error => {
-                reject(error)
+        console.log("cheguei")
+        const userComment = firebase.firestore().collection("comment").doc(idPost)
+        
+        firebase.auth().onAuthStateChanged((user) => {
+            const userCollection = firebase.firestore().collection("users")
+            userCollection.doc(user.uid).get().then(result => { 
+                console.log(result.data().name)
+                userComment.collection('userComment').add({
+                    idUser: user.uid,
+                    name: result.data().name,
+                    comment: comment
+                })
+                .then(() => {
+                    resolve()
+                })
+                .catch(error => {
+                    reject(error)
+                });
             })
-        })
-    })
-}
+            .catch(erro => reject(erro))
+        });
+    });
+};
 
 export const showComments = (idPost) => {
-    const comments = firebase.firestore().collection("comment").doc(idPost)
-    const userCollection = firebase.firestore().collection("users")
-
-    comments.collection("userComment").get().then(querySnapshot => {
-        querySnapshot.forEach(function(doc) {
-            // console.log(doc.id, " => ", doc.data());
-            userCollection.doc(doc.data().idUser).get().then(result => {
-                console.log({
-                    comment:doc.data().comment,
-                    user: result.data().name
-                })
-            })
-        });
+    return new Promise((resolve, reject) =>{
+        const comments = firebase.firestore().collection("comment").doc(idPost)
+        comments.collection("userComment").get()
+        .then(querySnapshot => {
+            resolve(querySnapshot)
+        })
+        .catch(erro => {
+            reject(erro)
+        })
     })
+    
+}
+
+export const deleteComment = (id, idPost) => {
+    const commentCollection = firebase.firestore().collection("comment").doc(idPost)
+    commentCollection.collection('userComment').doc(id).delete().then(doc => {
+        console.log('apagou ' + id)
+    }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(false))
+
+    }
+    )
 }

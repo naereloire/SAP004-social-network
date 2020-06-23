@@ -373,9 +373,22 @@ select, button {
     border-radius: 1em;
     border-style: solid #8c0f54;
     height: 100%;
+    margin: 5px;
     text-align: justify;
     resize: none;
     width: 97%;
+}
+
+.container-comment{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-comment-btn {
+    color: #A97B75;
+    font-size: 3vw;
+    text-align: center;
+    text-decoration: none;
 }
 
 .text-style {
