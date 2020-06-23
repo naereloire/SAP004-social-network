@@ -220,7 +220,7 @@ const showPosts = (post) => {
   if (firebase.auth().currentUser.uid === postData.user_id) {
     classIcon = "span-container"
     templateDeletBtn = `
-    <span><a href="#" class="delete-post-btn"><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`
+    <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`
     templateBtnEdit = `
     <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
     `

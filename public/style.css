@@ -5,56 +5,59 @@
     width: 100%;
 }
 
-.icons-text, .icons {
+.icons-text,
+.icons {
     color: beige;
+    /*  font-size: 30px; */
 }
 
 .about-container {
-    display: flex;
+    align-items: center;
     flex: 1;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
     flex-wrap: nowrap;
-    font-family: "Gloria Hallelujah";
+    font-family: "Gloria Hallelujah";
     padding: 1em;
+    text-align: center;
+    display: flex;
 }
 
-select, button {
-    font-family: "Gloria Hallelujah";
+select,
+button {
+    cursor: pointer;
 }
 
 .ul-about li {
-    list-style-type: "*";
-    text-align: justify;
-    text-align: center;
     list-style-position: inside;
+    list-style-type: "*";
+    text-align: center;
+    text-align: justify;
 }
 
 .about-style-girly {
     border: none;
 }
 
-.about-style-rules, .about-style-tags {
-    color: black;
-    background-color: #8ABCBC;
+.about-style-rules,
+.about-style-tags {
+    background-color: #A97B75;
     border: solid #8c0f54;
     border-radius: 30px;
-    padding: 1em;
+    color: black;
     flex: 1;
-    width: 70vw;
     font-size: 1.2em;
+    padding: 1em;
+    width: 70vw;
 }
 
 .header-style {
-    background-color: #a16f68;
-    position: fixed;
     height: 100%;
+    position: fixed;
     z-index: 1;
+    background-color: #a16f68;
 }
 
 .img-feed {
-    align-items: center;
     display: flex;
     flex-wrap: nowrap;
     height: 60vw;
@@ -62,15 +65,14 @@ select, button {
     padding-left: 4em;
     text-align: center;
     width: 50vw;
+    align-items: center;
 }
 
 .btn-photo {
-    width: 0.1px;
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
-    position: absolute;
-    z-index: -1;
+    width: 0.1px;
 }
 
 .hidden-nav {
@@ -78,7 +80,6 @@ select, button {
 }
 
 .container-login {
-    align-items: center;
     border: 10px;
     display: flex;
     flex-direction: column;
@@ -86,6 +87,7 @@ select, button {
     margin-top: 5px;
     padding: 5px;
     text-align: center;
+    align-items: center;
 }
 
 .login-form {
@@ -95,9 +97,9 @@ select, button {
 }
 
 .logo-img {
+    height: auto;
     max-height: 150px;
     max-width: 200px;
-    height: auto;
     width: auto;
 }
 
@@ -116,7 +118,8 @@ select, button {
     height: 20px;
 }
 
-.email-input, .password-input {
+.email-input,
+.password-input {
     border-color: #ba7fc2;
     border-radius: 30px;
     height: 30px;
@@ -125,7 +128,7 @@ select, button {
 }
 
 .login-btn {
-    background-color: #f2c84b;
+    background-color: #A97B75;
     border-color: #8c0f54;
     border-radius: 30px;
     height: 30px;
@@ -166,15 +169,15 @@ select, button {
 }
 
 .form-profile input[type=submit] {
-    background-color: #8bd3f8;
-    border-color: #8bd3f8;
+    background-color: #A97B75;
+    border-color: #A97B75;
     color: #fff;
     width: 120px;
 }
 
 .form-profile input[type=button] {
-    background-color: #8bd3f8;
-    border-color: #8bd3f8;
+    background-color: #A97B75;
+    border-color: #A97B75;
     color: #fff;
     width: 120px;
 }
@@ -182,7 +185,7 @@ select, button {
 .body-style {
     margin: 0;
     width: 100%;
-    font-family: "Gloria Hallelujah";
+    /* font-family: "Gloria Hallelujah"; */
 }
 
 .side-nav {
@@ -207,12 +210,13 @@ select, button {
     transition: 0.3s
 }
 
-.side-nav a:hover, .offcanvas a:focus {
+.side-nav a:hover,
+.offcanvas a:focus {
     color: #8c0f54;
 }
 
 .close-btn {
-    font-size: 36px;
+    width: 30px;
     position: absolute;
     right: 25px;
     top: 0;
@@ -256,13 +260,14 @@ select, button {
 }
 
 #girly-img {
+    width: 11vw;
     width: 100%;
 }
 
 .span-style {
-    font-size: 2.4em;
-    width: 70%;
     color: beige;
+    font-size: 2.0em;
+    width: 70%;
 }
 
 .main-style {
@@ -311,9 +316,6 @@ select, button {
     margin: 0 20px;
 }
 
-.icons-text {
-    font-size: 0.47em;
-}
 
 [aria-current] {
     border-bottom: solid beige;
@@ -346,6 +348,7 @@ select, button {
 
 #image-profile {
     cursor: pointer;
+    max-height: 25%;
 }
 
 #image-profile:hover {
@@ -359,6 +362,7 @@ select, button {
 
 .circular-square {
     border-radius: 50%;
+    /* max-height: 25%; */
 }
 
 .bio-infos {
@@ -370,6 +374,7 @@ select, button {
 }
 
 .text-style {
+    font: 18px "Gloria Hallelujah";
     margin: 0;
     text-align: center;
 }
@@ -392,24 +397,28 @@ select, button {
 }
 
 .textarea-style {
-    border: double gray;
     border-radius: 1em;
+    border-style: solid #8c0f54;
     height: 100%;
     text-align: justify;
     width: 95%;
-    border-style: solid #8c0f54;
+
 }
 
 .btn-container {
     display: flex;
     justify-content: space-between;
-    width: 90%;
     margin: 5px;
+    width: 90%;
 }
 
 .img-check {
-    background: #f2c84b;
-    border: 2px solid #f2c84b;
+    background: #A97B75;
+    border: 2px solid #A97B75;
+}
+
+#btn-ver-mais {
+    margin-top: 3em;
 }
 
 #btn-ver-mais {
@@ -417,12 +426,12 @@ select, button {
 }
 
 .btn-style {
-    padding: 0.5em;
     background: #A97B75;
     border: 2px solid #A97B75;
     border-radius: 1em;
     color: beige;
     margin: 0.2em;
+    padding: 0.5em;
     transform-style: preserve-3d;
     transition: all 175ms cubic-bezier(0, 0, 1, 1);
 }
@@ -450,17 +459,18 @@ select, button {
 }
 
 .publication-btns {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
 }
 
 .span-container {
+    align-items: center;
     display: flex;
+    flex: 1;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
     justify-content: space-between;
     flex: 1;
     padding: 0.5em;
@@ -482,10 +492,10 @@ select, button {
 
 .publication-title {
     background-image: linear-gradient(to bottom, #C3C0ED, #95D4E7, #BDD9CA);
-    padding: 5px;
     display: flex;
     justify-content: space-between;
     margin-top: 0;
+    padding: 5px;
     text-align: justify;
     width: 82vw;
 }
@@ -512,6 +522,7 @@ select, button {
     margin-bottom: 5em;
 }
 
+/*************************************************/
 .container {
     display: block;
     position: relative;
@@ -525,6 +536,7 @@ select, button {
 }
 
 .container input {
+    font: "Gloria Hallelujah";
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -542,7 +554,7 @@ select, button {
 }
 
 .container:hover input~.checkmark {
-    background-color: #f2c84b;
+    background-color: #C3C0ED;
 }
 
 .container input:checked~.checkmark {
@@ -576,12 +588,16 @@ select, button {
         padding-left: 3em;
         width: 40vw;
     }
+
     .span-style {
+        font-size: 2.4em;
         padding: 1em;
     }
+
     .fa-bars:before {
         font-size: 1.3em;
     }
+
     #open-sidebar {
         align-items: center;
         display: flex;
@@ -589,69 +605,89 @@ select, button {
         margin: 15px;
         padding: 0;
     }
+
     .img-perfil {
         justify-content: flex-end;
     }
+
     .figure-style {
         width: 100%;
+        z-index: 1;
     }
+
     #girly-img {
-        width: 10vw;
+        width: 11vw;
+        z-index: 1;
     }
+
     .span-style {
         width: 50%;
         font-size: 2.40em;
     }
+
     .foto-style {
         padding: 1.5em;
         width: 40%;
     }
+
     .bio-container {
         display: flex;
         align-items: center;
         flex: 1;
     }
+
     .bio-infos {
         align-items: flex-start;
         width: 60%;
     }
+
     .feed-style {
         align-items: center;
         display: flex;
         flex-wrap: nowrap;
         justify-content: start;
     }
+
     .feed-container {
         align-items: center;
         display: flex;
         flex-direction: column;
         width: 60%;
     }
+
     .post-box {
         width: 45vw;
     }
+
     .publication-box {
         width: 50vw;
     }
+
     .publi-title-span {
         text-align: center;
         width: 90%;
     }
+
     .btn-style {
         margin: 0.6em;
         padding: 2%;
     }
+
     .btn-style:hover {
         background: rgb(166, 157, 216);
         transform: translate(0em, 0.75em);
     }
+
     .publication-title {
         margin-top: 0;
         width: 48.7vw;
     }
-    .publication-title, .ul-style a {
+
+    .publication-title,
+    .ul-style a {
         display: flex;
     }
+
     .btns-post-container {
         display: flex;
         flex-direction: row;
@@ -660,6 +696,7 @@ select, button {
         align-items: center;
         justify-content: space-between;
     }
+
     .publication-btns {
         align-items: center;
         flex: 1;
@@ -668,25 +705,31 @@ select, button {
         justify-content: space-evenly;
         margin-bottom: 0.5em;
     }
+
     .icons {
         font-size: 3vw;
         text-align: center;
         color: beige;
     }
+
     .top-nav {
         height: 10vw;
     }
+
     .top-nav a {
         font-size: 1.2em;
     }
+
     .bottom-nav a {
         margin: 0;
     }
+
     .ul-style {
         justify-content: space-evenly;
         padding-bottom: 0.3em;
         font-size: 1em;
     }
+
     .footer-style {
         display: flex;
         flex-direction: row;
@@ -702,19 +745,23 @@ select, button {
         align-items: center;
         padding-right: 4em;
     }
+
     .main-style {
         padding-top: 2em;
         display: flex;
         justify-content: center;
     }
+
     .text-style {
         text-align: center;
     }
+
     .span-style {
         font-size: 2em;
         margin: 5px;
         width: auto;
     }
+
     .feed-style {
         align-items: flex-start;
         display: flex;
@@ -722,34 +769,42 @@ select, button {
         width: 70%;
         justify-content: center;
     }
+
     #girly-img {
         width: 20%;
     }
+
     .capa-style {
         display: flex;
         flex-direction: column;
     }
+
     .img-capa {
         border-bottom: solid #8c0f54;
         width: 100%;
     }
+
     .img-capa:hover {
         opacity: 0.5;
         transition: 0.5s;
     }
+
     .img-perfil {
         width: 50%;
     }
+
     .feed-container {
         align-items: center;
         display: flex;
         flex-direction: column;
         width: 60%;
     }
+
     .bio-container {
         align-items: center;
         flex: 1;
     }
+
     .bio-style {
         border: solid #8c0f54;
         border-radius: 30px;
@@ -758,55 +813,71 @@ select, button {
         margin-top: 2em;
         overflow: hidden;
     }
+
     .bio-infos {
         flex: 1;
     }
-    .post-box, .form-container {
+
+    .post-box,
+    .form-container {
         width: 35vw;
     }
+
     .form-style {
         width: 100%;
     }
+
     .textarea-style {
         padding: 1em;
         width: 33vw;
     }
+
     .publication-title {
         width: 37.4vw;
     }
-    .publication-box, .all-posts-box {
+
+    .publication-box,
+    .all-posts-box {
         width: 38vw;
     }
+
     .img-feed-container {
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
     }
+
     .publication-btns {
         flex-direction: row-reverse;
         flex-wrap: nowrap;
         justify-content: space-evenly;
     }
+
     .btn-container {
         justify-content: space-evenly;
     }
+
     .btn-style {
         padding: 2px;
         margin: 0.6em;
     }
+
     .ul-style {
         font-size: 0.8em;
     }
+
     .ul-style li {
         margin: 0;
         width: 100%;
     }
+
     .ul-style a {
         justify-content: space-between;
         margin: 10px;
         margin-bottom: 2px;
     }
+
     .top-nav {
         align-items: center;
         flex-direction: row;
@@ -816,15 +887,19 @@ select, button {
         padding-top: 10px;
         position: fixed;
     }
+
     .nav-style {
         width: 40%;
     }
+
     .nav-ul {
         overflow: hidden;
     }
+
     .hidden-nav {
         display: none;
     }
+
     .bottom-nav {
         background-color: none;
         bottom: auto;
@@ -835,10 +910,12 @@ select, button {
         width: 60%;
         z-index: 1;
     }
+
     .icons {
         font-size: 1em;
         text-align: center;
     }
+
     .container-login {
         border: 10px;
         display: flex;
@@ -847,14 +924,16 @@ select, button {
         text-align: center;
         width: 100%;
     }
+
     .logo-img {
         height: auto;
         max-height: 2000px;
         max-width: 1200px;
         width: 400px;
     }
+
     .title {
-        color: #305d6b;
+        color: #8c0f54;
         display: inline-flex;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 40px;
@@ -862,32 +941,35 @@ select, button {
         margin-bottom: 20px;
         margin-top: 60px;
     }
-    h3 {
-        font-size: 20px;
-    }
-    .email-input, .password-input {
+
+    .email-input,
+    .password-input {
         border-color: rgb(186, 127, 194);
         border-radius: 30px;
         height: 30px;
         margin: 5px 0 5px 0;
         width: 200px;
     }
+
     .login-btn {
-        background-color: #8bd3f8;
-        border-color: #8bd3f8;
+        background-color: #A97B75;
+        border-color: #A97B75;
         border-radius: 30px;
         height: 30px;
         width: 150px;
     }
+
     .footer-style {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         bottom: auto;
     }
+
     .icons-text {
-        font-size: 0.6em;
+        font-size: 0.7em;
     }
+
     .side-nav {
         z-index: 1;
     }
