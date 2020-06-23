@@ -292,6 +292,7 @@ const showPosts = (post) => {
     document.getElementById(`comments-${post.id}`).addEventListener("click", (event) => {
       event.preventDefault()
       document.getElementById(`box-comment-${post.id}`).classList.remove('comment');
+      document.getElementById(`textarea-comment-${post.id}`).classList.remove('comment');
       showComments(post.id)
       .then(querySnapshot => {
         console.log(querySnapshot)
