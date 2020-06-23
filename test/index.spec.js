@@ -1,26 +1,26 @@
-/* global describe, it, expect, beforeEach */
 import firebase from 'firebase/app';
 import { createPost } from '../public/pages/home/data.js';
 import FakeFirestore from './mock_firebase.js';
 import 'firebase/firestore';
 
-// const date = new Date();
-// const post = {
-//   name: 'maria',
-//   user_id: 'abcdefg',
-//   text: 'textPost',
-//   tag: 'tagOption',
-//   date: date.toLocaleString(),
-//   timestamp: date.getTime(),
-//   privacy: true,
-//   coments: [],
-//   user_like: [],
-//   urlImg: '',
-// };
+const date = new Date();
+const post = {
+  name: 'maria',
+  user_id: 'abcdefg',
+  text: 'textPost',
+  tag: 'tagOption',
+  date: date.toLocaleString(),
+  timestamp: date.getTime(),
+  privacy: true,
+  coments: [],
+  user_like: [],
+  urlImg: '',
+};
+
 const firestoreMock
 const currentUserFake = {
   displayName: 'maria',
-  uid: 'abcdefg',
+  uid: 'abcdefg'
 };
 
 describe('createPost', () => {
