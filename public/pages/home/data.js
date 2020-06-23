@@ -1,7 +1,5 @@
 import { errorDictionary } from "./error.js"
 
-
-
 export const createPost = (textPost, tagOption, privacyOption, url) => {
     let date = new Date()
     let user = firebase.auth().currentUser;
@@ -132,4 +130,56 @@ export function saveLike(postId, user_id) {
 
         }
     })
+}
+
+export const addCommentUser = (idPost, comment) => {
+    return new Promise((resolve, reject) => {
+        console.log("cheguei")
+        const userComment = firebase.firestore().collection("comment").doc(idPost)
+        
+        firebase.auth().onAuthStateChanged((user) => {
+            const userCollection = firebase.firestore().collection("users")
+            userCollection.doc(user.uid).get().then(result => { 
+                console.log(result.data().name)
+                userComment.collection('userComment').add({
+                    idUser: user.uid,
+                    name: result.data().name,
+                    comment: comment
+                })
+                .then(() => {
+                    resolve()
+                })
+                .catch(error => {
+                    reject(error)
+                });
+            })
+            .catch(erro => reject(erro))
+        });
+    });
+};
+
+export const showComments = (idPost) => {
+    return new Promise((resolve, reject) =>{
+        const comments = firebase.firestore().collection("comment").doc(idPost)
+        comments.collection("userComment").get()
+        .then(querySnapshot => {
+            resolve(querySnapshot)
+        })
+        .catch(erro => {
+            reject(erro)
+        })
+    })
+    
+}
+
+export const deleteComment = (id, idPost) => {
+    const commentCollection = firebase.firestore().collection("comment").doc(idPost)
+    commentCollection.collection('userComment').doc(id).delete().then(doc => {
+        console.log('apagou ' + id)
+    }).catch(error => {
+        let errorObject = new errorDictionary(error)
+        console.log(errorObject.translate(false))
+
+    }
+    )
 }

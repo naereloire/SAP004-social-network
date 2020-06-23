@@ -1,4 +1,4 @@
-import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit } from './data.js';
+import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit, addCommentUser, showComments, deleteComment } from './data.js';
 let privacy = false
 let limitTarget = 0
 let limitReal = 0
@@ -28,6 +28,7 @@ export default () => {
       </div>
       <div class="bio-infos">
         <h1 class="text-style" id="user-name"></h1>
+        <p id="user-city"></p>
       </div>
     </section>
   </div>
@@ -263,11 +264,22 @@ const showPosts = (post) => {
           </span>
           <div class="btns-post-container">
           <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${postData.user_like.length}</i></button>
-            <button class="btn-style"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
+            <button class="btn-style" id="comments-${post.id}"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
             ${templateBtnEdit}
       </div>
-    
     </div>
+    <div class="comment" id="box-comment-${post.id}">
+    <div id="user-comment-${post.id}">
+
+    </div>
+    <form class="form-style">
+    <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
+          <div class="btn-edit">
+            <button type="button" id="btn-cancel-comment-${post.id}" class="btn-style">Cancelar</button>
+            <button type="button" id="btn-save-comment-${post.id}" class="btn-style">Salvar</button>
+          </div>
+      </form>
+    </div>  
 </section > `;
 
     feedContainer.insertAdjacentHTML('beforeend', template_feed);
@@ -277,10 +289,50 @@ const showPosts = (post) => {
       })
     }
 
+    document.getElementById(`comments-${post.id}`).addEventListener("click", (event) => {
+      event.preventDefault()
+      document.getElementById(`box-comment-${post.id}`).classList.remove('comment');
+      showComments(post.id)
+      .then(querySnapshot => {
+        console.log(querySnapshot)
+          comments(querySnapshot, post.id)
+      })
+      .catch(erro => {
+        console.log(erro)
+      })
+    });
+
+    const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
+    btnSaveComment.addEventListener("click", (event) => {
+      event.preventDefault()
+      let inputComment = document.getElementById(`textarea-comment-${post.id}`).value
+      addCommentUser(post.id, inputComment)
+      .then(resolve => {
+        document.getElementById(`textarea-comment-${post.id}`).value = ""
+        showComments(post.id)
+        .then(querySnapshot => {
+          console.log(querySnapshot)
+            comments(querySnapshot, post.id)
+        })
+        .catch(erro => {
+          console.log(erro)
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      });
+    });
+
+    const btnCancelComment = document.getElementById(`btn-cancel-comment-${post.id}`);
+    btnCancelComment.addEventListener('click', (event) => {
+      event.preventDefault()
+      document.getElementById(`box-comment-${post.id}`).classList.add('comment');
+    });
+
     const btnDelete = document.querySelectorAll(".delete-post-btn")
     const catchBtn = (element) => element.addEventListener("click", function (event) {
       deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id)
-    })
+    });
 
     btnDelete.forEach(catchBtn)
     limitReal++
@@ -292,7 +344,7 @@ const showPosts = (post) => {
       event.preventDefault();
 
     })
-
+    
     btnLike.forEach(catchBtnLk)
 
 
@@ -369,3 +421,36 @@ const editPost = (event, postId, currentText) => {
     savePostEdit(postId, editedText)
   })
 }
+
+const comments = (querySnapshot, postId) => {
+  let div = document.getElementById(`user-comment-${postId}`)
+  div.innerHTML = ""
+  querySnapshot.forEach((doc) => {
+    div.innerHTML += `
+    <div class="container-comment">
+      <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}</p>
+      <a data-postcomment=${doc.id} href="#" class="delete-comment-btn"><i data-id=${doc.id} data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i></a>
+    </div>`
+  });
+  let list = document.getElementsByClassName('delete-comment-btn')
+
+  for (let item of list) {
+    item.addEventListener('click', (event) => {
+        event.preventDefault()
+        let id = event.target.getAttribute("data-id")
+        let postId = event.target.getAttribute("data-post-id")
+        deleteComment(id, postId)
+
+        showComments(postId)
+        .then(querySnapshot => {
+            comments(querySnapshot, postId)
+        })
+        .catch(erro => {
+          console.log(erro)
+        });
+    });
+  };
+};
+
+
+

@@ -373,10 +373,40 @@ button {
     width: 60%;
 }
 
+.comment{
+    display: none;
+    margin: 10px;
+}
+
+.textarea-comment{
+    background-color: #FFFAFA;
+    border: double gray;
+    border-radius: 1em;
+    border-style: solid #8c0f54;
+    height: 100%;
+    margin: 5px;
+    text-align: justify;
+    resize: none;
+    width: 97%;
+}
+
+.container-comment{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-comment-btn {
+    color: #A97B75;
+    font-size: 3vw;
+    text-align: center;
+    text-decoration: none;
+}
+
 .text-style {
     font: 18px "Gloria Hallelujah";
     margin: 0;
     text-align: center;
+    margin-bottom: 2px;
 }
 
 .title-align {
@@ -781,6 +811,7 @@ button {
 
     .img-capa {
         border-bottom: solid #8c0f54;
+        cursor: pointer;
         width: 100%;
     }
 
