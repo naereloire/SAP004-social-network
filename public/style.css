@@ -1,7 +1,8 @@
 .nova-class-icon {
     display: flex;
-    align-items: center;
     justify-content: space-evenly;
+    padding: 0.5em;
+    width: 100%;
 }
 
 .icons-text, .icons {
@@ -462,15 +463,11 @@ select, button {
     align-items: center;
     justify-content: space-between;
     flex: 1;
-}
-
-.fa-trash-alt {
-    font-size: 0.6em;
+    padding: 0.5em;
 }
 
 .delete-post-btn {
     color: #8c0f54;
-    font-size: 26px;
     text-decoration: none;
 }
 
