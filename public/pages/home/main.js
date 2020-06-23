@@ -345,6 +345,7 @@ const showPosts = (post) => {
       event.preventDefault();
 
     })
+    
     btnLike.forEach(catchBtnLk)
 
 
