@@ -341,6 +341,7 @@ button {
 
 #image-profile {
     cursor: pointer;
+    max-height: 25%;
 }
 
 #image-profile:hover {
@@ -354,6 +355,7 @@ button {
 
 .circular-square {
     border-radius: 50%;
+    /* max-height: 25%; */
 }
 
 .bio-infos {
@@ -411,7 +413,9 @@ button {
 #btn-ver-mais {
     margin-top: 3em;
 }
-
+#btn-ver-mais{
+    margin-top: 3em;
+}
 .btn-style {
     background: #A97B75;
     border: 2px solid #A97B75;
@@ -694,9 +698,8 @@ button {
         justify-content: space-evenly;
         margin-bottom: 0.5em;
     }
-
     .icons {
-        font-size: 0.7em;
+        font-size: 3vw;
         text-align: center;
         color: beige;
     }
@@ -771,12 +774,10 @@ button {
         border-bottom: solid #8c0f54;
         width: 100%;
     }
-
     .img-capa:hover {
         opacity: 0.5;
         transition: 0.5s;
     }
-
     .img-perfil {
         width: 50%;
     }
@@ -899,7 +900,6 @@ button {
         width: 70%;
         z-index: 1;
     }
-
     .icons {
         font-size: 1em;
         text-align: center;
