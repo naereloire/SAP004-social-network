@@ -19,8 +19,8 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
   };
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.add(post).catch((error) => {
-    const errorObject = new ErrorDictionary(error);
-    console.log(errorObject.translate(false));
+    const ErrorObject = new ErrorDictionary(error);
+    console.log(ErrorObject.translate(false));
   });
 };
 
@@ -74,11 +74,11 @@ export const saveImage = (nameFile, file) => {
   });
 };
 
-export function deconstePost(postId) {
+export function deletePost(postId) {
   const postCollection = firebase.firestore().collection('posts');
   postCollection
     .doc(postId)
-    .deconste()
+    .delete()
     .then(() => {
       console.log('apagou ' + postId);
     })

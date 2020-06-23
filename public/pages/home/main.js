@@ -1,5 +1,5 @@
 /* global firebase, document */
-import { createPost, loadPosts, deconstePost, saveImage, saveLike, savePostEdit } from './data.js';
+import { createPost, loadPosts, deletePost, saveImage, saveLike, savePostEdit } from './data.js';
 let privacy = false;
 let limitTarget = 0;
 let limitReal = 0;
@@ -162,7 +162,7 @@ const blockTag = (tagValue) => {
     const keyTags = ['home', 'geek', 'tech', 'autocuidado', 'seguranca', 'oportunidades'];
     select.innerHTML = '';
     for (let key of keyTags) {
-      const keyValidated = key === 'home' ? '' : key;
+      let keyValidated = key === 'home' ? '' : key;
       select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
   }
@@ -173,8 +173,8 @@ const btnPost = (event) => {
 
   const postText = document.getElementById('post-text').value;
   const tag = document.getElementById('select-id');
-  let tagValue = tag.options[tag.selectedIndex].value;
-  let checkBox = document.getElementById('privacy-check').checked;
+  const tagValue = tag.options[tag.selectedIndex].value;
+  const checkBox = document.getElementById('privacy-check').checked;
   const photoFile = document.getElementById('input-photo');
 
   if (photoFile.value) {
@@ -222,7 +222,7 @@ const showPosts = (post) => {
 
     const keyValidated = postData.tag === '' ? 'home' : postData.tag;
     const feedContainer = document.getElementById('all-posts-container');
-    const template_feed = `
+    const templateFeed = `
     <section id="${post.id}" class="publication-box">
         <div class="publication-title">
           <div class="span-container">
@@ -250,7 +250,7 @@ const showPosts = (post) => {
     </div>
 </section > `;
 
-    feedContainer.insertAdjacentHTML('beforeend', template_feed);
+    feedContainer.insertAdjacentHTML('beforeend', templateFeed);
     if (templateBtnEdit) {
       document.getElementById(`edit-${post.id}`).addEventListener('click', (event) => {
         editPost(event, post.id, postData.text);
@@ -260,9 +260,7 @@ const showPosts = (post) => {
     const btnDeconste = document.querySelectorAll('.deconste-post-btn');
     const catchBtn = (element) =>
       element.addEventListener('click', function (event) {
-        deconstePost(
-          event.currentTarget.parentElement.parentElement.parentElement.parentElement.id
-        );
+        deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id);
       });
 
     btnDeconste.forEach(catchBtn);
@@ -296,7 +294,7 @@ const blockPrivacyBox = (lock) => {
 };
 
 const postPhoto = (photoElement) => {
-  let urlImg;
+  const urlImg;
   const namePhotoFile = photoElement.value.split('\\').pop();
   const photoFile = photoElement.files[0];
   urlImg = saveImage(namePhotoFile, photoFile);
