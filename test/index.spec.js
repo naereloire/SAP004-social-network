@@ -38,4 +38,4 @@ describe('createPost', () => {
   });
 });
 
-// loadPosts, saveImage, deconstePost, savePostEdit, saveLike
+// loadPosts, saveImage, deletePost, savePostEdit, saveLike

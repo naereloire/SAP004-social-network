@@ -27,6 +27,7 @@ export const saveProfileUser = () => {
 
 export const getInformationUser = () => {
   const userName = document.getElementById('user-name');
+  const userCity = document.getElementById('user-city');
 
   firebase.auth().onAuthStateChanged((user) => {
     const userCollection = firebase.firestore().collection('users');
@@ -38,6 +39,7 @@ export const getInformationUser = () => {
         userName.innerText = `${result.data().name ? result.data().name : ''} ${
           result.data().lastName ? result.data().lastName : ''
         }`;
+        userCity.innerText = `${result.data().city ? result.data().city : ''}`;
       })
       .catch((error) => {
         console.log(error);

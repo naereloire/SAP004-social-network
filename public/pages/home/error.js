@@ -37,7 +37,7 @@ export function ErrorDictionary(error) {
     'firestore/unauthenticated':
       'não autenticado: a solicitação não possui credenciais de autenticação válidas para a operação.',
   };
-  this.translate = function (baseStorage) {
+  this.translate = function callBack(baseStorage) {
     if (baseStorage) {
       return this.storageErrorCode[this.error.code];
     }
