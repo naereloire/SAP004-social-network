@@ -163,15 +163,17 @@ button {
     width: 100%;
 }
 
-#btn-display {
+.btn-display {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
+
 
 .form-profile input[type=submit] {
     background-color: #A97B75;
     border-color: #A97B75;
     color: #fff;
+    margin-left: 5px;
     width: 120px;
 }
 
@@ -179,6 +181,7 @@ button {
     background-color: #A97B75;
     border-color: #A97B75;
     color: #fff;
+    margin-left: 5px;
     width: 120px;
 }
 
