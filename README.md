@@ -40,7 +40,9 @@ Recebemos um protótipo desejado para o layout da tela mobile e desktop, onde o 
 
 Para realizar o nosso planejamento criamos um segundo protótipo para idealização do tema.
 
-![protótipo_girlyHub](https://raw.githubusercontent.com/daianevieira07/SAP004-social-network/readme_branch/public/img/prototipo-girly-feed.png)
+<p align="center">
+<img src="./public/img/prototipo-girly-feed.png" width="200" heigth="200">
+</p>
 
 Foi utilizada a ferramenta trello, para execução do planejamento.
 
