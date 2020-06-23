@@ -341,6 +341,8 @@ const rollBackPhotoIcon = (photoElement) => {
 }
 
 const editPost = (event, postId, currentText) => {
+  let disableBtn = event.currentTarget
+  disableBtn.disabled = true
   let editedText
   let textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1]
   textArea.querySelector("p").style.display = "none"
@@ -356,6 +358,7 @@ const editPost = (event, postId, currentText) => {
   textArea.insertAdjacentHTML('beforeend', template_edit_area);
 
   document.getElementById("btn-cancel-edit").addEventListener("click", (event) => {
+   disableBtn.disabled = false
     let form = document.getElementById("post-form-edit")
     textArea.removeChild(form)
     textArea.children[1].style.display = "block"
