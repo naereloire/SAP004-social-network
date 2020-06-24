@@ -39,40 +39,40 @@ const tags = {
     oportunidades: ['Oportunidades', `<i class="icons fas fa-suitcase fa-1x"></i>`]
 };
 
-export default() => {
-    const container = document.createElement('div');
-    container.className = 'feed-style';
-    const template = `
-      <div class="bio-container">
-      <section class="bio-style">
-        <div id="cover-picture" class="capa-style">
-        <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
-        </div>
-        <div id="profile-picture" class="img-perfil">
-          <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
-        </div>
-        <div class="bio-infos">
-          <h1 class="text-style" id="user-name"></h1>
-          <p id="user-city"></p>
-        </div>
-      </section>
+export default () => {
+  const container = document.createElement('div');
+  container.className = 'feed-style';
+  const template = `
+  <div class="bio-container">
+  <section class="bio-style">
+    <div id="cover-picture" class="cover-container">
+    <img id="cover-image" class="cover-img" src="./img/capa-inicial.jpg">
     </div>
-    <div id="feed-id" class="feed-container">
-      <section class="post-box">
-      <div class="check-container">
-      <label class="container">Privado
-    <input type="checkbox" id="privacy-check">
-    <span class="checkmark"></span>
-  </label>
-      <select id="select-id" class="btn-style">
-      <option value="">Tag</option> 
-      <option value="geek">Geek</option> 
-      <option value="tech">Tech</option> 
-      <option value="autocuidado">Autocuidado</option> 
-      <option value="seguranca">Segurança</option> 
-      <option value="oportunidades">Oportunidades</option> 
-      </select>
-      </div>
+    <div id="profile-picture" class="profile-container">
+      <img id="image-profile" class="profile-img" src="./img/foto-inicial.jpg">
+    </div>
+    <div class="bio-infos">
+      <h1 class="text-style" id="user-name"></h1>
+      <p class="text-style" id="user-city"></p>
+    </div>
+  </section>
+</div>
+  <div id="feed-id" class="feed-container">
+    <section class="post-box">
+    <div class="check-container">
+    <label class="container">Privado
+  <input type="checkbox" id="privacy-check">
+  <span class="checkmark"></span>
+</label>
+    <select id="select-id" class="btn-style">
+    <option value="">Tag</option> 
+    <option value="geek">Geek</option> 
+    <option value="tech">Tech</option> 
+    <option value="autocuidado">Autocuidado</option> 
+    <option value="seguranca">Segurança</option> 
+    <option value="oportunidades">Oportunidades</option> 
+    </select>
+    </div>
       <div class="form-container">
       <form id="post-form" class="form-style">
         <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
