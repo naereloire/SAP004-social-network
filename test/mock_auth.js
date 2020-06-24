@@ -31,9 +31,6 @@ const signInWithRedirect = jest.fn(() => {
   return Promise.resolve('result of signInWithRedirect');
 });
 
-// firebase.auth.FacebookAuthProvider = jest.fn(() => {});
-// firebase.auth.GoogleAuthProvider = jest.fn(() => {});
-
 export const initializeAppMock = () => {
   return {
     auth: () => {
@@ -58,9 +55,10 @@ export const auth = () => {
   return {
     onAuthStateChanged,
     currentUser: {
-      displayName: 'testDisplayName',
-      email: 'test@test.com',
+      email: 'redirectTest@test.com',
       emailVerified: true,
+      displayName: 'maria',
+      uid: 'abcdefg',
     },
     getRedirectResult,
     sendPasswordResetEmail,

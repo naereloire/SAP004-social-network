@@ -28,17 +28,21 @@ describe('createPost', () => {
     });
   });
 
-  // it('Deveria adiconar o post no firestore collection', () => {
-  //   async function call() {
-  //     createPost('textPost', 'tagOption', true, '');
-  //   }
-  //   call().then(() => {
-  //     expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
-  //   });
-  // });
+  it('Deveria adiconar o post no firestore collection', (done) => {
+    async function testCollection() {
+      createPost('textPost', 'tagOption', true, '');
+    }
+    testCollection().then(() => {
+      expect(fakeFirestore.mockCollection).toBeCalledWith('poster');
+      done();
+    });
+  });
 
   it('Deveria receber post como parametro', (done) => {
-    createPost('text', 'tagOption', true, '').then(() => {
+    async function testAddParam() {
+      createPost('text', 'tagOption', true, '');
+    }
+    testAddParam().then(() => {
       expect(fakeFirestore.mockAdd).toBeCalledWith(post);
       done();
     });
