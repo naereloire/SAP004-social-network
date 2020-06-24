@@ -39,7 +39,9 @@ export const getInformationUser = () => {
         userName.innerText = `${result.data().name ? result.data().name : ''} ${
           result.data().lastName ? result.data().lastName : ''
         }`;
-        userCity.innerText = `${result.data().city ? result.data().city : ''}`;
+        userCity.innerHTML = `${
+          result.data().city ? result.data().city : ''
+        } <i class="fas fa-map-marker-alt"></i>`;
       })
       .catch((error) => {
         console.log(error);

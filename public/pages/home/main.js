@@ -33,20 +33,21 @@ export default () => {
   const container = document.createElement('div');
   container.className = 'feed-style';
   const template = `
-    <div class="bio-container">
-    <section class="bio-style">
-      <div id="cover-picture" class="capa-style">
-      <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
-      </div>
-      <div id="profile-picture" class="img-perfil">
-        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
-      </div>
-      <div class="bio-infos">
-        <h1 class="text-style" id="user-name"></h1>
-        <p id="user-city"></p>
-      </div>
-    </section>
-  </div>
+  <div class="bio-container">
+  <section class="bio-style">
+    <div id="cover-picture" class="cover-container">
+    <img id="cover-image" class="cover-img" src="./img/capa-inicial.jpg">
+    </div>
+    <div id="profile-picture" class="profile-container">
+      <img id="image-profile" class="profile-img" src="./img/foto-inicial.jpg">
+    </div>
+    <div class="bio-infos">
+      <h1 class="text-style" id="user-name"></h1>
+      <p class="text-style" id="user-city"></p>
+    </div>
+  </section>
+</div>
+
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="check-container">
@@ -63,22 +64,22 @@ export default () => {
     <option value="oportunidades">Oportunidades</option> 
     </select>
     </div>
-    <div class="form-container">
-    <form id="post-form" class="form-style">
-      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
-        placeholder="Escreva uma mensagem."></textarea>
-      <div class="btn-container">
-        <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
-        <label class="btn-style" for="input-photo"><i class="icons fas fa-camera-retro fa-2x"></i></label>
-        <button type="submit" class="btn-style">Publicar</button>
-      </div>
-      </form>
-    </section>
-    <div id="all-posts-container" class="all-posts-box"></div>
-    <button id="btn-ver-mais" class="btn-more btn-style">Ver Mais</button>
-    <input type="file" id="file-input">
-    <input type="file" id="file-cover-input">
-  </div>`;
+      <div class="form-container">
+      <form id="post-form" class="form-style">
+        <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
+          placeholder="Escreva uma mensagem."></textarea>
+        <div class="btn-container">
+          <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
+          <label class="btn-style" for="input-photo"><i class="icons fas fa-camera-retro fa-2x"></i></label>
+          <button type="submit" class="btn-style">Publicar</button>
+        </div>
+        </form>
+      </section>
+      <div id="all-posts-container" class="all-posts-box"></div>
+      <button id="btn-ver-mais" class="btn-more btn-style">Ver Mais</button>
+      <input type="file" id="file-input">
+      <input type="file" id="file-cover-input">
+    </div>`;
   container.innerHTML = template;
   return container;
 };
@@ -137,13 +138,17 @@ const btnPost = (event) => {
   const photoFile = document.getElementById('input-photo');
 
   if (photoFile.value) {
-    postPhoto(photoFile).then((url) => {
-      createPost(postText, tagValue, checkBox, url);
-      document.getElementById('post-text').value = '';
+    postPhoto(photoFile)
+      .then((url) => {
+        createPost(postText, tagValue, checkBox, url);
+        document.getElementById('post-text').value = '';
 
-      photoFile.value = '';
-      rollBackPhotoIcon(photoFile);
-    });
+        photoFile.value = '';
+        rollBackPhotoIcon(photoFile);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } else if (postText) {
     createPost(postText, tagValue, checkBox, '');
     document.getElementById('post-text').value = '';
@@ -164,14 +169,14 @@ const editPost = (event, postId, currentText) => {
   const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
   textArea.querySelector('p').style.display = 'none';
   const templateEditArea = `
-  <form id="post-form-edit" class="form-style">
-      <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
-      <div class="btn-edit">
-      <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
-      <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
+    <form id="post-form-edit" class="form-style">
+        <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
+        <div class="btn-edit">
+        <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
+        <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
     </div>
     </form>
-  `;
+    `;
   textArea.insertAdjacentHTML('beforeend', templateEditArea);
 
   document.getElementById('btn-cancel-edit').addEventListener('click', () => {
@@ -204,34 +209,44 @@ const limitFix = () => {
 
 const comments = (querySnapshot, postId) => {
   const div = document.getElementById(`user-comment-${postId}`);
-  div.innerHTML = '';
-  querySnapshot.forEach((doc) => {
-    div.innerHTML += `
-    <div class="container-comment">
-      <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}</p>
-      <a data-postcomment=${doc.id} href="#" class="delete-comment-btn"><i data-id=${
-      doc.id
-    } data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i></a>
-    </div>`;
-  });
-  const list = document.getElementsByClassName('delete-comment-btn');
-
-  for (const item of list) {
-    item.addEventListener('click', (event) => {
-      event.preventDefault();
-      const id = event.target.getAttribute('data-id');
-      const postDataId = event.target.getAttribute('data-post-id');
-      deleteComment(id, postDataId);
-
-      showComments(postDataId)
-        .then((querySnapshotData) => {
-          comments(querySnapshotData, postDataId);
-        })
-        .catch((erro) => {
-          console.log(erro);
-        });
+  firebase.auth().onAuthStateChanged((user) => {
+    div.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      div.innerHTML += `
+                <div class="container-comment">
+                    <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}
+                    </p>
+                    
+                    ${
+                      user.uid === doc.data().idUser
+                        ? `
+                                <a data-postcomment=${doc.id} href="#" class="delete-comment-btn">
+                                    <i data-id=${doc.id} data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i>
+                                </a>
+                            `
+                        : ''
+                    }
+                </div>`;
     });
-  }
+    const list = document.getElementsByClassName('delete-comment-btn');
+
+    for (const item of list) {
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
+        const id = event.target.getAttribute('data-id');
+        const postDataId = event.target.getAttribute('data-post-id');
+        deleteComment(id, postDataId);
+
+        showComments(postDataId)
+          .then((querySnapshotData) => {
+            comments(querySnapshotData, postDataId);
+          })
+          .catch((erro) => {
+            console.log(erro);
+          });
+      });
+    }
+  });
 };
 
 const saveComent = (postId) => {
@@ -267,6 +282,7 @@ const renderComents = (postId) => {
 };
 
 const showPosts = (post) => {
+  let privacyPost;
   const postData = post.data();
   let templateImg = '';
   let templateDeleteBtn = '';
@@ -276,10 +292,10 @@ const showPosts = (post) => {
   if (firebase.auth().currentUser.uid === postData.user_id) {
     classIcon = 'span-container';
     templateDeleteBtn = `
-    <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`;
+      <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`;
     templateBtnEdit = `
-    <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
-    `;
+      <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
+      `;
   } else {
     classIcon = 'nova-class-icon';
   }
@@ -289,51 +305,51 @@ const showPosts = (post) => {
   }
   if (privacyValidation(postData)) {
     if (post.data().privacy) {
-      privacy = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
+      privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
     } else {
-      privacy = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
+      privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
     }
 
     const keyValidated = postData.tag === '' ? 'home' : postData.tag;
     const feedContainer = document.getElementById('all-posts-container');
     const templateFeed = `
-    <section id="${post.id}" class="publication-box">
-        <div class="publication-title">
-          <div class="${classIcon}">
-            <span><p>Post ${privacy}</p></span>
-            <span>${tags[keyValidated][1]}</span>
-            ${templateDeleteBtn}
+      <section id="${post.id}" class="publication-box">
+          <div class="publication-title">
+            <div class="${classIcon}">
+              <span><p>Post ${privacyPost}</p></span>
+              <span>${tags[keyValidated][1]}</span>
+              ${templateDeleteBtn}
+            </div>
           </div>
+          <div class="publi-area">
+              ${templateImg}<br>
+            <p class="text-style">${postData.text}</p>
+            <hr>
+          </div>
+          <div class="publication-btns">
+            <span>
+              <p>Publicado por ${postData.name}</p>
+              <p>${postData.date}</p>
+            </span>
+            <div class="btns-post-container">
+            <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${postData.user_like.length}</i></button>
+              <button class="btn-style" id="comments-${post.id}"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
+              ${templateBtnEdit}
         </div>
-        <div class="publi-area">
-            ${templateImg}<br>
-          <p class="text-style">${postData.text}</p>
-          <hr>
-        </div>
-        <div class="publication-btns">
-          <span>
-            <p>Publicado por ${postData.name}</p>
-            <p>${postData.date}</p>
-          </span>
-          <div class="btns-post-container">
-          <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${postData.user_like.length}</i></button>
-            <button class="btn-style" id="comments-${post.id}"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
-            ${templateBtnEdit}
       </div>
-    </div>
-    <div class="comment" id="box-comment-${post.id}">
-    <div id="user-comment-${post.id}">
-
-    </div>
-    <form class="form-style">
-    <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
-          <div class="btn-edit">
-            <button type="button" id="btn-cancel-comment-${post.id}" class="btn-style">Cancelar</button>
-            <button type="button" id="btn-save-comment-${post.id}" class="btn-style">Salvar</button>
-          </div>
-      </form>
-    </div>  
-</section > `;
+      <div class="comment" id="box-comment-${post.id}">
+      <div id="user-comment-${post.id}">
+  
+      </div>
+      <form class="form-style">
+      <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
+            <div class="btn-edit">
+                <button type="button" id="btn-cancel-comment-${post.id}" class="btn-style">Cancelar</button>
+                <button type="button" id="btn-save-comment-${post.id}" class="btn-style">Salvar</button>
+            </div>
+        </form>
+        </div>  
+    </section > `;
 
     feedContainer.insertAdjacentHTML('beforeend', templateFeed);
     if (templateBtnEdit) {
@@ -350,19 +366,32 @@ const showPosts = (post) => {
 
     document.getElementById(`comments-${post.id}`).addEventListener('click', (event) => {
       event.preventDefault();
+      document.getElementById(`textarea-comment-${post.id}`).classList.remove('comment');
+      document.getElementById(`btn-cancel-comment-${post.id}`).classList.remove('comment');
+      document.getElementById(`btn-save-comment-${post.id}`).classList.remove('comment');
       renderComents(post.id);
     });
 
     const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
     btnSaveComment.addEventListener('click', (event) => {
       event.preventDefault();
-      saveComent(post.id);
+      const textarea = document.getElementById(`textarea-comment-${post.id}`);
+      if (textarea.value !== '') {
+        document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
+        document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment');
+        document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment');
+        saveComent(post.id);
+      } else {
+        textarea.classList.add('alert-comment');
+      }
     });
 
     const btnCancelComment = document.getElementById(`btn-cancel-comment-${post.id}`);
     btnCancelComment.addEventListener('click', (event) => {
       event.preventDefault();
-      document.getElementById(`box-comment-${post.id}`).classList.add('comment');
+      document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
+      document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment');
+      document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment');
     });
 
     btnDelete.forEach(catchBtn);
@@ -416,10 +445,8 @@ const tagFilter = (event) => {
     clearFeed();
     blockTag();
     loadPosts(clearFeed, showPosts, tagValue, limit);
-  } else {
-    tagValue = event.target.parentElement.name;
-    event.target.parentElement.ariaCurrent = 'page';
   }
+
   if (tagValue === 'privados') {
     privacy = true;
     blockPrivacyBox(true);
