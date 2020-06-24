@@ -1,7 +1,8 @@
+/* global document */
 export default () => {
-    const container = document.createElement("div");
+  const container = document.createElement('div');
 
-    const template = `
+  const template = `
     <div class="feed-container"> 
         <form class="form-profile">
             <input id="name-profile"type="text" placeholder="Nome">
@@ -14,8 +15,7 @@ export default () => {
             </div>
         </form>
     </div>
-            `
-    container.innerHTML = template;
-    return container
-}
-
+            `;
+  container.innerHTML = template;
+  return container;
+};

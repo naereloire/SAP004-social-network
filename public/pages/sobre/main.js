@@ -1,7 +1,9 @@
+/* global document */
+
 export default () => {
-    const container = document.createElement("div");
-    container.className = "about-style"
-    const template = `
+  const container = document.createElement('div');
+  container.className = 'about-style';
+  const template = `
       <div class="about-container">
       
       <section class="about-style-girly">
@@ -35,6 +37,6 @@ export default () => {
       
      
     </div>`;
-    container.innerHTML = template;
-    return container
-}
+  container.innerHTML = template;
+  return container;
+};
