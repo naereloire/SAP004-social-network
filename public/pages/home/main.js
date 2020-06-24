@@ -3,15 +3,15 @@
 /* global firebase, document */
 
 import {
-    createPost,
-    loadPosts,
-    deletePost,
-    saveImage,
-    saveLike,
-    savePostEdit,
-    addCommentUser,
-    showComments,
-    deleteComment
+  createPost,
+  loadPosts,
+  deletePost,
+  saveImage,
+  saveLike,
+  savePostEdit,
+  addCommentUser,
+  showComments,
+  deleteComment,
 } from './data.js';
 
 let privacy = false;
@@ -21,22 +21,12 @@ let limit = 5;
 let limitcopy = limit;
 let tagValue = '';
 const tags = {
-    home: [
-        'Tag', `<i  class=" icons fas fa-home fa-1x"></i>`
-    ],
-    geek: [
-        'Geek', `<i class="icons fas fa-robot fa-1x"></i>`
-    ],
-    tech: [
-        'Tech', `<i class="icons fas fa-laptop-code fa-1x"></i>`
-    ],
-    autocuidado: [
-        'Autocuidado', `<i class="icons fas fa-spa fa-1x"></i>`
-    ],
-    seguranca: [
-        'Segurança', `<i class="icons fas fa-people-carry fa-1x"></i>`
-    ],
-    oportunidades: ['Oportunidades', `<i class="icons fas fa-suitcase fa-1x"></i>`]
+  home: ['Tag', `<i  class=" icons fas fa-home fa-1x"></i>`],
+  geek: ['Geek', `<i class="icons fas fa-robot fa-1x"></i>`],
+  tech: ['Tech', `<i class="icons fas fa-laptop-code fa-1x"></i>`],
+  autocuidado: ['Autocuidado', `<i class="icons fas fa-spa fa-1x"></i>`],
+  seguranca: ['Segurança', `<i class="icons fas fa-people-carry fa-1x"></i>`],
+  oportunidades: ['Oportunidades', `<i class="icons fas fa-suitcase fa-1x"></i>`],
 };
 
 export default () => {
@@ -90,100 +80,91 @@ export default () => {
       <input type="file" id="file-input">
       <input type="file" id="file-cover-input">
     </div>`;
-    container.innerHTML = template;
-    return container;
+  container.innerHTML = template;
+  return container;
 };
 
 const clearFeed = () => {
-    document.getElementById('all-posts-container').innerHTML = '';
+  document.getElementById('all-posts-container').innerHTML = '';
 };
 
 const clearLimits = () => {
-    limitcopy = limit;
-    limitReal = 0;
-    limitTarget = 0;
+  limitcopy = limit;
+  limitReal = 0;
+  limitTarget = 0;
 };
 
 const clearAriaCurrent = () => {
-    for (const element of document.getElementById('ul-id').children) {
-        element.firstElementChild.removeAttribute('aria-current');
-    }
+  for (const element of document.getElementById('ul-id').children) {
+    element.firstElementChild.removeAttribute('aria-current');
+  }
 };
 
 const blockTag = () => {
-    const select = document.getElementById('select-id');
-    if (! select) {
-        return;
+  const select = document.getElementById('select-id');
+  if (!select) {
+    return;
+  }
+  if (!tagValue) {
+    const keyTags = ['home', 'geek', 'tech', 'autocuidado', 'seguranca', 'oportunidades'];
+    select.innerHTML = '';
+    for (const key of keyTags) {
+      const keyValidated = key === 'home' ? '' : key;
+      select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
-    if (! tagValue) {
-        const keyTags = [
-            'home',
-            'geek',
-            'tech',
-            'autocuidado',
-            'seguranca',
-            'oportunidades'
-        ];
-        select.innerHTML = '';
-        for (const key of keyTags) {
-            const keyValidated = key === 'home' ? '' : key;
-            select.innerHTML += `<option value="${keyValidated}">${
-                tags[key][0]
-            }</option>`;
-        }
-    }
+  }
 };
 
 const postPhoto = (photoElement) => {
-    const namePhotoFile = photoElement.value.split('\\').pop();
-    const photoFile = photoElement.files[0];
-    const urlImg = saveImage(namePhotoFile, photoFile);
-    return urlImg;
+  const namePhotoFile = photoElement.value.split('\\').pop();
+  const photoFile = photoElement.files[0];
+  const urlImg = saveImage(namePhotoFile, photoFile);
+  return urlImg;
 };
 
 const rollBackPhotoIcon = (photoElement) => {
-    const label = photoElement.labels[0];
-    label.className = 'btn-style';
-    label.innerHTML = '<i class="icons fas fa-camera-retro fa-2x"></i>';
+  const label = photoElement.labels[0];
+  label.className = 'btn-style';
+  label.innerHTML = '<i class="icons fas fa-camera-retro fa-2x"></i>';
 };
 
 const btnPost = (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const postText = document.getElementById('post-text').value;
-    const tag = document.getElementById('select-id');
-    tagValue = tag.options[tag.selectedIndex].value;
-    const checkBox = document.getElementById('privacy-check').checked;
-    const photoFile = document.getElementById('input-photo');
+  const postText = document.getElementById('post-text').value;
+  const tag = document.getElementById('select-id');
+  tagValue = tag.options[tag.selectedIndex].value;
+  const checkBox = document.getElementById('privacy-check').checked;
+  const photoFile = document.getElementById('input-photo');
 
-    if (photoFile.value) {
-        postPhoto(photoFile).then((url) => {
-            createPost(postText, tagValue, checkBox, url);
-            document.getElementById('post-text').value = '';
+  if (photoFile.value) {
+    postPhoto(photoFile).then((url) => {
+      createPost(postText, tagValue, checkBox, url);
+      document.getElementById('post-text').value = '';
 
-            photoFile.value = '';
-            rollBackPhotoIcon(photoFile);
-        });
-    } else if (postText) {
-        createPost(postText, tagValue, checkBox, '');
-        document.getElementById('post-text').value = '';
-    }
-    if (! privacy) {
-        document.getElementById('privacy-check').checked = false;
-    }
-    clearLimits();
+      photoFile.value = '';
+      rollBackPhotoIcon(photoFile);
+    });
+  } else if (postText) {
+    createPost(postText, tagValue, checkBox, '');
+    document.getElementById('post-text').value = '';
+  }
+  if (!privacy) {
+    document.getElementById('privacy-check').checked = false;
+  }
+  clearLimits();
 };
 
 const privacyValidation = (postData) => {
-    const user = firebase.auth().currentUser;
-    return postData.user_id === user.uid || !postData.privacy;
+  const user = firebase.auth().currentUser;
+  return postData.user_id === user.uid || !postData.privacy;
 };
 
 const editPost = (event, postId, currentText) => {
-    let editedText;
-    const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
-    textArea.querySelector('p').style.display = 'none';
-    const templateEditArea = `
+  let editedText;
+  const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
+  textArea.querySelector('p').style.display = 'none';
+  const templateEditArea = `
     <form id="post-form-edit" class="form-style">
         <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
         <div class="btn-edit">
@@ -192,333 +173,308 @@ const editPost = (event, postId, currentText) => {
     </div>
     </form>
     `;
-    textArea.insertAdjacentHTML('beforeend', templateEditArea);
+  textArea.insertAdjacentHTML('beforeend', templateEditArea);
 
-    document.getElementById('btn-cancel-edit').addEventListener('click', () => {
-        const form = document.getElementById('post-form-edit');
-        textArea.removeChild(form);
-        textArea.children[1].style.display = 'block';
-    });
+  document.getElementById('btn-cancel-edit').addEventListener('click', () => {
+    const form = document.getElementById('post-form-edit');
+    textArea.removeChild(form);
+    textArea.children[1].style.display = 'block';
+  });
 
-    document.getElementById('btn-save-edit').addEventListener('click', () => {
-        editedText = document.getElementById('post-text-edit').value;
-        savePostEdit(postId, editedText);
-    });
+  document.getElementById('btn-save-edit').addEventListener('click', () => {
+    editedText = document.getElementById('post-text-edit').value;
+    savePostEdit(postId, editedText);
+  });
 };
 
 const limitFix = () => {
-    limitTarget += 1;
-    if (limitTarget === limitcopy) {
-        if (limit !== limitReal) {
-            const difflimit = limit - limitReal;
-            limitcopy += difflimit;
-            limitReal = 0;
-            limitTarget = 0;
-            // eslint-disable-next-line no-use-before-define
-            loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy);
-        } else {
-            clearLimits();
-        }
+  limitTarget += 1;
+  if (limitTarget === limitcopy) {
+    if (limit !== limitReal) {
+      const difflimit = limit - limitReal;
+      limitcopy += difflimit;
+      limitReal = 0;
+      limitTarget = 0;
+      // eslint-disable-next-line no-use-before-define
+      loadPosts(clearFeed, showPosts, tagValue, limitcopy, privacy);
+    } else {
+      clearLimits();
     }
+  }
 };
 
 const comments = (querySnapshot, postId) => {
-    const div = document.getElementById(`user-comment-${postId}`);
-    firebase.auth().onAuthStateChanged((user) => {
-        div.innerHTML = '';
-        querySnapshot.forEach((doc) => {
-            div.innerHTML += `
+  const div = document.getElementById(`user-comment-${postId}`);
+  firebase.auth().onAuthStateChanged((user) => {
+    div.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      div.innerHTML += `
                 <div class="container-comment">
-                    <p class="textarea-comment">${
-                        doc.data().name}: ${doc.data().comment}
+                    <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}
                     </p>
                     
                     ${
-                        user.uid == doc.data().idUser
-                        ?
-                            `
+                      user.uid == doc.data().idUser
+                        ? `
                                 <a data-postcomment=${doc.id} href="#" class="delete-comment-btn">
                                     <i data-id=${doc.id} data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i>
                                 </a>
                             `
-                        : 
-                            ''
+                        : ''
                     }
                 </div>`;
-        });
-        const list = document.getElementsByClassName('delete-comment-btn');
-
-        for (const item of list) {
-            item.addEventListener('click', (event) => {
-                event.preventDefault();
-                const id = event.target.getAttribute('data-id');
-                const postDataId = event.target.getAttribute('data-post-id');
-                deleteComment(id, postDataId);
-
-                showComments(postDataId).then((querySnapshotData) => {
-                    comments(querySnapshotData, postDataId);
-                }).catch((erro) => {
-                    console.log(erro);
-                });
-            });
-        }
     });
+    const list = document.getElementsByClassName('delete-comment-btn');
+
+    for (const item of list) {
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
+        const id = event.target.getAttribute('data-id');
+        const postDataId = event.target.getAttribute('data-post-id');
+        deleteComment(id, postDataId);
+
+        showComments(postDataId)
+          .then((querySnapshotData) => {
+            comments(querySnapshotData, postDataId);
+          })
+          .catch((erro) => {
+            console.log(erro);
+          });
+      });
+    }
+  });
 };
 
 const saveComent = (postId) => {
-    const inputComment = document.getElementById(`textarea-comment-${postId}`).value;
-    addCommentUser(postId, inputComment).then(() => {
-        document.getElementById(`textarea-comment-${postId}`).value = '';
-        showComments(postId).then((querySnapshot) => {
-            console.log(querySnapshot);
-            comments(querySnapshot, postId);
-        }).catch((erro) => {
-            console.log(erro);
+  const inputComment = document.getElementById(`textarea-comment-${postId}`).value;
+  addCommentUser(postId, inputComment)
+    .then(() => {
+      document.getElementById(`textarea-comment-${postId}`).value = '';
+      showComments(postId)
+        .then((querySnapshot) => {
+          console.log(querySnapshot);
+          comments(querySnapshot, postId);
+        })
+        .catch((erro) => {
+          console.log(erro);
         });
-    }).catch((error) => {
-        console.log(error);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
 
 const renderComents = (postId) => {
-    document.getElementById(`box-comment-${postId}`).classList.remove('comment');
+  document.getElementById(`box-comment-${postId}`).classList.remove('comment');
 
-    showComments(postId).then((querySnapshot) => {
-        console.log(querySnapshot);
-        comments(querySnapshot, postId);
-    }).catch((erro) => {
-        console.log(erro);
+  showComments(postId)
+    .then((querySnapshot) => {
+      console.log(querySnapshot);
+      comments(querySnapshot, postId);
+    })
+    .catch((erro) => {
+      console.log(erro);
     });
 };
 
 const showPosts = (post) => {
-    let privacyPost;
-    const postData = post.data();
-    let templateImg = '';
-    let templateDeleteBtn = '';
-    let templateBtnEdit = '';
-    let classIcon = '';
+  let privacyPost;
+  const postData = post.data();
+  let templateImg = '';
+  let templateDeleteBtn = '';
+  let templateBtnEdit = '';
+  let classIcon = '';
 
-    if (firebase.auth().currentUser.uid === postData.user_id) {
-        classIcon = 'span-container';
-        templateDeleteBtn = `
+  if (firebase.auth().currentUser.uid === postData.user_id) {
+    classIcon = 'span-container';
+    templateDeleteBtn = `
       <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`;
-        templateBtnEdit = `
-      <button id="edit-${
-            post.id
-        }" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
+    templateBtnEdit = `
+      <button id="edit-${post.id}" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
       `;
+  } else {
+    classIcon = 'nova-class-icon';
+  }
+
+  if (postData.urlImg) {
+    templateImg = `<img src=${postData.urlImg} class='img-feed'>`;
+  }
+  if (privacyValidation(postData)) {
+    if (post.data().privacy) {
+      privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
     } else {
-        classIcon = 'nova-class-icon';
+      privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
     }
 
-    if (postData.urlImg) {
-        templateImg = `<img src=${
-            postData.urlImg
-        } class='img-feed'>`;
-    }
-    if (privacyValidation(postData)) {
-        if (post.data().privacy) {
-            privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
-        } else {
-            privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
-        }
-
-        const keyValidated = postData.tag === '' ? 'home' : postData.tag;
-        const feedContainer = document.getElementById('all-posts-container');
-        const templateFeed = `
-      <section id="${
-            post.id
-        }" class="publication-box">
+    const keyValidated = postData.tag === '' ? 'home' : postData.tag;
+    const feedContainer = document.getElementById('all-posts-container');
+    const templateFeed = `
+      <section id="${post.id}" class="publication-box">
           <div class="publication-title">
             <div class="${classIcon}">
               <span><p>Post ${privacyPost}</p></span>
-              <span>${
-            tags[keyValidated][1]
-        }</span>
+              <span>${tags[keyValidated][1]}</span>
               ${templateDeleteBtn}
             </div>
           </div>
           <div class="publi-area">
               ${templateImg}<br>
-            <p class="text-style">${
-            postData.text
-        }</p>
+            <p class="text-style">${postData.text}</p>
             <hr>
           </div>
           <div class="publication-btns">
             <span>
-              <p>Publicado por ${
-            postData.name
-        }</p>
-              <p>${
-            postData.date
-        }</p>
+              <p>Publicado por ${postData.name}</p>
+              <p>${postData.date}</p>
             </span>
             <div class="btns-post-container">
-            <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${
-            postData.user_like.length
-        }</i></button>
-              <button class="btn-style" id="comments-${
-            post.id
-        }"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
+            <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${postData.user_like.length}</i></button>
+              <button class="btn-style" id="comments-${post.id}"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
               ${templateBtnEdit}
         </div>
       </div>
-      <div class="comment" id="box-comment-${
-            post.id
-        }">
-      <div id="user-comment-${
-            post.id
-        }">
+      <div class="comment" id="box-comment-${post.id}">
+      <div id="user-comment-${post.id}">
   
       </div>
       <form class="form-style">
-      <textarea id="textarea-comment-${
-            post.id
-        }" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
+      <textarea id="textarea-comment-${post.id}" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
             <div class="btn-edit">
-                <button type="button" id="btn-cancel-comment-${
-            post.id
-        }" class="btn-style">Cancelar</button>
-                <button type="button" id="btn-save-comment-${
-            post.id
-        }" class="btn-style">Salvar</button>
+                <button type="button" id="btn-cancel-comment-${post.id}" class="btn-style">Cancelar</button>
+                <button type="button" id="btn-save-comment-${post.id}" class="btn-style">Salvar</button>
             </div>
         </form>
         </div>  
     </section > `;
 
-        feedContainer.insertAdjacentHTML('beforeend', templateFeed);
-        if (templateBtnEdit) {
-            document.getElementById(`edit-${
-                post.id
-            }`).addEventListener('click', (event) => {
-                editPost(event, post.id, postData.text);
-            });
-        }
-
-        const btnDelete = document.querySelectorAll('.delete-post-btn');
-        const catchBtn = (element) => element.addEventListener('click', function callBackDelete(event) {
-            deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id);
-        });
-
-        document.getElementById(`comments-${post.id}`).addEventListener('click', (event) => {
-            event.preventDefault();
-            document.getElementById(`textarea-comment-${post.id}`).classList.remove('comment');
-            document.getElementById(`btn-cancel-comment-${post.id}`).classList.remove('comment'); 
-            document.getElementById(`btn-save-comment-${post.id}`).classList.remove('comment'); 
-            renderComents(post.id);
-        });
-
-        const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
-        btnSaveComment.addEventListener('click', (event) => {
-            event.preventDefault();
-            let textarea = document.getElementById(`textarea-comment-${post.id}`)
-            if(textarea.value != "") {
-                document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
-                document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment'); 
-                document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment'); 
-                saveComent(post.id);
-            }
-            else  {
-                textarea.classList.add('alert-comment')
-            }
-        });
-
-        const btnCancelComment = document.getElementById(`btn-cancel-comment-${post.id}`);
-        btnCancelComment.addEventListener('click', (event) => {
-            event.preventDefault();
-            document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
-            document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment'); 
-            document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment'); 
-        });
-
-        btnDelete.forEach(catchBtn);
-        limitReal += 1;
-
-        const btnLike = document.querySelectorAll('.like-post-btn');
-        const catchBtnLk = (element) => element.addEventListener('click', function callBackSaveLike(event) {
-            const user = firebase.auth().currentUser.uid;
-            saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user);
-            event.preventDefault();
-        });
-
-        btnLike.forEach(catchBtnLk);
+    feedContainer.insertAdjacentHTML('beforeend', templateFeed);
+    if (templateBtnEdit) {
+      document.getElementById(`edit-${post.id}`).addEventListener('click', (event) => {
+        editPost(event, post.id, postData.text);
+      });
     }
-    limitFix();
+
+    const btnDelete = document.querySelectorAll('.delete-post-btn');
+    const catchBtn = (element) =>
+      element.addEventListener('click', function callBackDelete(event) {
+        deletePost(event.currentTarget.parentElement.parentElement.parentElement.parentElement.id);
+      });
+
+    document.getElementById(`comments-${post.id}`).addEventListener('click', (event) => {
+      event.preventDefault();
+      document.getElementById(`textarea-comment-${post.id}`).classList.remove('comment');
+      document.getElementById(`btn-cancel-comment-${post.id}`).classList.remove('comment');
+      document.getElementById(`btn-save-comment-${post.id}`).classList.remove('comment');
+      renderComents(post.id);
+    });
+
+    const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
+    btnSaveComment.addEventListener('click', (event) => {
+      event.preventDefault();
+      let textarea = document.getElementById(`textarea-comment-${post.id}`);
+      if (textarea.value != '') {
+        document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
+        document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment');
+        document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment');
+        saveComent(post.id);
+      } else {
+        textarea.classList.add('alert-comment');
+      }
+    });
+
+    const btnCancelComment = document.getElementById(`btn-cancel-comment-${post.id}`);
+    btnCancelComment.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
+      document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment');
+      document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment');
+    });
+
+    btnDelete.forEach(catchBtn);
+    limitReal += 1;
+
+    const btnLike = document.querySelectorAll('.like-post-btn');
+    const catchBtnLk = (element) =>
+      element.addEventListener('click', function callBackSaveLike(event) {
+        const user = firebase.auth().currentUser.uid;
+        saveLike(event.currentTarget.parentElement.parentElement.parentElement.id, user);
+        event.preventDefault();
+      });
+
+    btnLike.forEach(catchBtnLk);
+  }
+  limitFix();
 };
 
 const changePhotoIcon = (event) => {
-    const labelInputPhoto = event.currentTarget.labels[0];
-    labelInputPhoto.className = 'img-check';
-    labelInputPhoto.innerHTML = '<i class="img-check icons fas fa-check-square fa-2x"></i>';
+  const labelInputPhoto = event.currentTarget.labels[0];
+  labelInputPhoto.className = 'img-check';
+  labelInputPhoto.innerHTML = '<i class="img-check icons fas fa-check-square fa-2x"></i>';
 };
 
 const blockPrivacyBox = (lock) => {
-    const checkBox = document.getElementById('privacy-check');
-    if (! checkBox) {
-        return;
-    }
-    if (lock) {
-        checkBox.checked = true;
-        checkBox.disabled = true;
-    } else {
-        checkBox.checked = false;
-        checkBox.disabled = false;
-    }
+  const checkBox = document.getElementById('privacy-check');
+  if (!checkBox) {
+    return;
+  }
+  if (lock) {
+    checkBox.checked = true;
+    checkBox.disabled = true;
+  } else {
+    checkBox.checked = false;
+    checkBox.disabled = false;
+  }
 };
 
 const tagFilter = (event) => {
-    limit = 5;
-    const elementName = event.target.localName;
-    if (elementName !== 'li') {
-        clearAriaCurrent();
-        if (elementName === 'span') {
-            tagValue = event.target.parentElement.parentElement.name;
-            event.target.parentElement.parentElement.ariaCurrent = 'page';
-        } else {
-            tagValue = event.target.parentElement.name;
-            event.target.parentElement.ariaCurrent = 'page';
-        } clearFeed();
-        blockTag();
-        loadPosts(clearFeed, showPosts, tagValue, limit);
+  limit = 5;
+  const elementName = event.target.localName;
+  if (elementName !== 'li') {
+    clearAriaCurrent();
+    if (elementName === 'span') {
+      tagValue = event.target.parentElement.parentElement.name;
+      event.target.parentElement.parentElement.ariaCurrent = 'page';
     } else {
-        tagValue = event.target.parentElement.name;
-        event.target.parentElement.ariaCurrent = 'page';
+      tagValue = event.target.parentElement.name;
+      event.target.parentElement.ariaCurrent = 'page';
     }
-    if (tagValue === 'privados') {
-        privacy = true;
-        blockPrivacyBox(true);
-        blockTag();
-        clearLimits();
-        loadPosts(clearFeed, showPosts, '', limit, privacy);
-    } else {
-        privacy = false;
-        blockPrivacyBox(false);
-        blockTag();
-        clearLimits();
-        loadPosts(clearFeed, showPosts, tagValue, limit);
-    }
+    clearFeed();
+    blockTag();
+    loadPosts(clearFeed, showPosts, tagValue, limit);
+  }
+
+  if (tagValue === 'privados') {
+    privacy = true;
+    blockPrivacyBox(true);
+    blockTag();
+    clearLimits();
+    loadPosts(clearFeed, showPosts, '', limit, privacy);
+  } else {
+    privacy = false;
+    blockPrivacyBox(false);
+    blockTag();
+    clearLimits();
+    loadPosts(clearFeed, showPosts, tagValue, limit);
+  }
 };
 
 const changeLimitPosts = () => {
-    limit += 5;
-    clearLimits();
-    loadPosts(clearFeed, showPosts, tagValue, limit, privacy);
+  limit += 5;
+  clearLimits();
+  loadPosts(clearFeed, showPosts, tagValue, limit, privacy);
 };
 
 export const addRenderEvents = (page) => {
-    const timeToRenderPage = 2000;
+  const timeToRenderPage = 2000;
 
-    if (page === 'home') {
-        loadPosts(clearFeed, showPosts, '', limit);
-        setTimeout(() => {
-            document.getElementById('post-form').addEventListener('submit', btnPost);
-            document.getElementById('input-photo').addEventListener('change', changePhotoIcon);
-        }, timeToRenderPage);
+  if (page === 'home') {
+    loadPosts(clearFeed, showPosts, '', limit);
+    setTimeout(() => {
+      document.getElementById('post-form').addEventListener('submit', btnPost);
+      document.getElementById('input-photo').addEventListener('change', changePhotoIcon);
+    }, timeToRenderPage);
 
-        document.getElementById('ul-id').addEventListener('click', tagFilter);
-        document.getElementById('btn-ver-mais').addEventListener('click', changeLimitPosts);
-    }
+    document.getElementById('ul-id').addEventListener('click', tagFilter);
+    document.getElementById('btn-ver-mais').addEventListener('click', changeLimitPosts);
+  }
 };
