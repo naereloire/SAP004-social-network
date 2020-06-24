@@ -1,4 +1,4 @@
-.icon-del {
+teste teste teste .icon-del {
   color: #8c0f54;
 }
 
@@ -11,7 +11,6 @@
 
 .icons-text, .icons {
   color: beige;
-  /*  font-size: 30px; */
 }
 
 .about-container {
@@ -19,7 +18,6 @@
   flex: 1;
   flex-direction: column;
   flex-wrap: nowrap;
-  font-family: "Gloria Hallelujah";
   padding: 1em;
   text-align: center;
   display: flex;
@@ -189,7 +187,6 @@ select, button {
 .body-style {
   margin: 0;
   width: 100%;
-  /* font-family: "Gloria Hallelujah"; */
 }
 
 .side-nav {
@@ -246,7 +243,7 @@ select, button {
 }
 
 .top-nav a:hover {
-  background-color: rgb(166, 157, 216);
+  background-color: #a69dd8;
   color: black;
 }
 
@@ -345,30 +342,24 @@ select, button {
   display: flex;
 }
 
-.img-perfil {
-  align-items: center;
+.profile-container {
   display: flex;
-  justify-content: center;
-  width: 40%;
+  align-items: center;
 }
 
-#image-profile {
+.profile-img {
+  border-radius: 50%;
   cursor: pointer;
-  max-height: 25%;
+  height: 150px;
+  margin-right: 10px;
+  width: 120px;
+  overflow: hidden;
+  object-fit: fill;
 }
 
-#image-profile:hover {
+.profile-img:hover {
   opacity: 0.5;
   transition: 0.5s;
-}
-
-.foto-style {
-  width: 90%;
-}
-
-.circular-square {
-  border-radius: 50%;
-  /* max-height: 25%; */
 }
 
 .bio-infos {
@@ -409,7 +400,7 @@ select, button {
 }
 
 .text-style {
-  font: 18px "Gloria Hallelujah";
+  font: 18px;
   margin: 0;
   text-align: center;
   margin-bottom: 2px;
@@ -535,7 +526,7 @@ select, button {
   width: 82vw;
 }
 
-.capa-style {
+.cover-container {
   display: none;
 }
 
@@ -557,36 +548,33 @@ select, button {
   margin-bottom: 5em;
 }
 
-/*************************************************/
-
 .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
   cursor: pointer;
+  display: block;
   font-size: 22px;
-  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  padding-left: 35px;
+  position: relative;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .container input {
-  font: "Gloria Hallelujah";
-  position: absolute;
-  opacity: 0;
   cursor: pointer;
   height: 0;
+  opacity: 0;
+  position: absolute;
   width: 0;
 }
 
 .checkmark {
+  background-color: #a97b75;
+  height: 25px;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  height: 25px;
   width: 25px;
-  background-color: #a97b75;
 }
 
 .container:hover input~.checkmark {
@@ -599,8 +587,8 @@ select, button {
 
 .checkmark:after {
   content: '';
-  position: absolute;
   display: none;
+  position: absolute;
 }
 
 .container input:checked~.checkmark:after {
@@ -608,15 +596,15 @@ select, button {
 }
 
 .container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
   border: solid black;
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
+  height: 10px;
+  left: 9px;
   -ms-transform: rotate(45deg);
+  top: 5px;
   transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 5px;
 }
 
 @media only screen and (min-width:768px) and (max-width:900px) {
@@ -638,7 +626,7 @@ select, button {
     margin: 15px;
     padding: 0;
   }
-  .img-perfil {
+  .profile-container {
     justify-content: flex-end;
   }
   .figure-style {
@@ -650,16 +638,15 @@ select, button {
     z-index: 1;
   }
   .span-style {
-    width: 50%;
     font-size: 2.40em;
+    width: 50%;
   }
-  .foto-style {
+  .profile-img {
     padding: 1.5em;
-    width: 40%;
   }
   .bio-container {
-    display: flex;
     align-items: center;
+    display: flex;
     flex: 1;
   }
   .bio-infos {
@@ -704,11 +691,11 @@ select, button {
     display: flex;
   }
   .btns-post-container {
+    align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     font-size: 1em;
-    align-items: center;
     justify-content: space-between;
   }
   .publication-btns {
@@ -720,9 +707,9 @@ select, button {
     margin-bottom: 0.5em;
   }
   .icons {
+    color: beige;
     font-size: 3vw;
     text-align: center;
-    color: beige;
   }
   .top-nav {
     height: 10vw;
@@ -734,9 +721,9 @@ select, button {
     margin: 0;
   }
   .ul-style {
+    font-size: 1em;
     justify-content: space-evenly;
     padding-bottom: 0.3em;
-    font-size: 1em;
   }
   .footer-style {
     display: flex;
@@ -747,11 +734,11 @@ select, button {
 
 @media only screen and (min-width:901px) {
   .img-feed {
-    width: 50%;
+    align-items: center;
     height: 5%;
     object-fit: fill;
-    align-items: center;
     padding-right: 4em;
+    width: 50%;
   }
   .main-style {
     padding-top: 2em;
@@ -776,20 +763,23 @@ select, button {
   #girly-img {
     width: 20%;
   }
-  .capa-style {
+  .cover-container {
     display: flex;
     flex-direction: column;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 20px;
   }
-  .img-capa {
-    border-bottom: solid #8c0f54;
+  .cover-img {
     cursor: pointer;
     width: 100%;
+    object-fit: cover;
   }
-  .img-capa:hover {
+  .cover-img:hover {
     opacity: 0.5;
     transition: 0.5s;
   }
-  .img-perfil {
+  .profile-container {
     width: 50%;
   }
   .feed-container {
@@ -807,7 +797,7 @@ select, button {
     border-radius: 30px;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 2em;
+    margin-top: 1em;
     overflow: hidden;
   }
   .bio-infos {
