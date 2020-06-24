@@ -20,7 +20,7 @@ A aplicação consiste na criação de uma Rede Social. Foi desenvolvida em *Jav
 
 ## 2. Resumo do projeto
 
-A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://.../)
+A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://social-network-12571.web.app/)
 
 girlyHub é uma rede social, que foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
 
@@ -97,7 +97,7 @@ Foi utilizada a ferramenta trello, para execução do planejamento.
 -https
 
 ``` sh
-git clone 
+git clone https://github.com/naereloire/SAP004-social-network.git 
 ```
 
 * Instale as dependências do projeto com o comando:
