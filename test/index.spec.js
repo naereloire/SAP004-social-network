@@ -48,4 +48,11 @@ describe('createPost', () => {
       done();
     });
   });
+
+  it('should throw TypeError when invoked with wrong argument types', () => {
+    expect(() => createPost()).toThrow(TypeError);
+    expect(() => createPost(true, true, 'string', true)).toThrow(TypeError);
+    expect(() => createPost('string', [], [], {})).toThrow(TypeError);
+    expect(() => createPost('string', 'string', 0, {})).toThrow(TypeError);
+  });
 });
