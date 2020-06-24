@@ -38,10 +38,9 @@ describe('createPost', () => {
   // });
 
   it('Deveria receber post como parametro', (done) => {
-    async function call() {
-      createPost('text', 'tagOption', true, '');
+    createPost('text', 'tagOption', true, '').then(() => {
       expect(fakeFirestore.mockAdd).toBeCalledWith(post);
       done();
-    }
+    });
   });
 });
