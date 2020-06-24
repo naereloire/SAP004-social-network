@@ -18,13 +18,13 @@ const post = {
 };
 
 describe('createPost', () => {
-  // let fakeFirestore = new FakeFirestore();
+  let fakeFirestore = new FakeFirestore();
   beforeAll(() => {
     jest.mock('firebase');
     jest.spyOn(firebase, 'initializeApp').mockImplementation(initializeAppMock);
     jest.spyOn(firebase, 'auth').mockImplementation(auth);
     jest.spyOn(firebase, 'firestore').mockImplementation(() => {
-      return new FakeFirestore();
+      return fakeFirestore;
     });
   });
 
