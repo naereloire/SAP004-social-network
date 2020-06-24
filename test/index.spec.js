@@ -3,14 +3,14 @@ import FakeFirestore from './mock_firestore.js';
 import { initializeAppMock, auth } from './mock_auth.js';
 import { createPost } from '../public/pages/home/data.js';
 
-const date = new Date();
+const mockDate = new Date(1466424490000);
 const post = {
   name: 'maria',
   user_id: 'abcdefg',
   text: 'textPost',
   tag: 'tagOption',
-  date: date.toLocaleString(),
-  timestamp: date.getTime(),
+  date: mockDate.toLocaleString(),
+  timestamp: mockDate.getTime(),
   privacy: true,
   coments: [],
   user_like: [],
@@ -26,21 +26,22 @@ describe('createPost', () => {
     jest.spyOn(firebase, 'firestore').mockImplementation(() => {
       return fakeFirestore;
     });
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
   });
 
-  it('Deveria adiconar o post no firestore collection', (done) => {
+  it('Deveria adiconar o post no firestore collection `posts`', (done) => {
     async function testCollection() {
       createPost('textPost', 'tagOption', true, '');
     }
     testCollection().then(() => {
-      expect(fakeFirestore.mockCollection).toBeCalledWith('poster');
+      expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
       done();
     });
   });
 
   it('Deveria receber post como parametro', (done) => {
     async function testAddParam() {
-      createPost('text', 'tagOption', true, '');
+      createPost('textPost', 'tagOption', true, '');
     }
     testAddParam().then(() => {
       expect(fakeFirestore.mockAdd).toBeCalledWith(post);
