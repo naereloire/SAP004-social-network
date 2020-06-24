@@ -274,23 +274,34 @@ const renderComents = (postId) => {
 };
 
 const showPosts = (post) => {
-    const postData = post.data();
-    let templateImg = '';
-    let templateDeleteBtn = '';
-    let templateBtnEdit = '';
-    let classIcon = '';
+  let privacyPost;
+  const postData = post.data();
+  let templateImg = '';
+  let templateDeleteBtn = '';
+  let templateBtnEdit = '';
+  let classIcon = '';
 
-    if (firebase.auth().currentUser.uid === postData.user_id) {
-        classIcon = 'span-container';
-        templateDeleteBtn = `
+  if (firebase.auth().currentUser.uid === postData.user_id) {
+    classIcon = 'span-container';
+    templateDeleteBtn = `
     <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`;
         templateBtnEdit = `
     <button id="edit-${
             post.id
         }" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
     `;
+  } else {
+    classIcon = 'nova-class-icon';
+  }
+
+  if (postData.urlImg) {
+    templateImg = `<img src=${postData.urlImg} class='img-feed'>`;
+  }
+  if (privacyValidation(postData)) {
+    if (post.data().privacy) {
+      privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
     } else {
-        classIcon = 'nova-class-icon';
+      privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
     }
 
     if (postData.urlImg) {
@@ -313,10 +324,8 @@ const showPosts = (post) => {
         }" class="publication-box">
         <div class="publication-title">
           <div class="${classIcon}">
-            <span><p>Post ${privacy}</p></span>
-            <span>${
-            tags[keyValidated][1]
-        }</span>
+            <span><p>Post ${privacyPost}</p></span>
+            <span>${tags[keyValidated][1]}</span>
             ${templateDeleteBtn}
           </div>
         </div>
