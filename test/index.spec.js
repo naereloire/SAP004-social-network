@@ -17,11 +17,6 @@ const post = {
   urlImg: '',
 };
 
-const currentUserFake = {
-  displayName: 'maria',
-  uid: 'abcdefg',
-};
-
 describe('createPost', () => {
   // let fakeFirestore = new FakeFirestore();
   beforeAll(() => {
@@ -31,15 +26,23 @@ describe('createPost', () => {
     jest.spyOn(firebase, 'firestore').mockImplementation(() => {
       return new FakeFirestore();
     });
-    firebase = require('firebase/app');
-    return firebase;
   });
 
   it('Deveria adiconar o post no firestore collection', () => {
-    createPost('textPost', 'tagOption', true, '').then(() => {
+    async function call() {
+      createPost('textPost', 'tagOption', true, '');
+    }
+    call().then(() => {
       expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
     });
   });
-});
 
-// loadPosts, saveImage, deletePost, savePostEdit, saveLike
+  it('Deveria receber post como parametro', () => {
+    async function call() {
+      createPost('text', 'tagOption', true, '');
+    }
+    call().then(() => {
+      expect(fakeFirestore.mockAdd).toBeCalledWith(post);
+    });
+  });
+});

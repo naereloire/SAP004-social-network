@@ -8,11 +8,6 @@
     "firebase",
     "jest"
   ],
-  "jest": {
-    "verbose": true,
-    "globalSetup": firebase,
-  },
-  "type": "module",
   "license": "MIT",
   "scripts": {
     "htmlhint": "htmlhint dist/*.html ",

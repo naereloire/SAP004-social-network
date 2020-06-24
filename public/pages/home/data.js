@@ -1,4 +1,5 @@
-/* global firebase */
+// /* global firebase */
+import firebase from 'firebase';
 
 import { ErrorDictionary } from './error.js';
 
@@ -18,7 +19,7 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
     urlImg: url,
   };
   const postsCollection = firebase.firestore().collection('posts');
-  return postsCollection.add(post).catch((error) => {
+  postsCollection.add(post).catch((error) => {
     const ErrorObject = new ErrorDictionary(error);
     console.log(ErrorObject.translate(false));
   });

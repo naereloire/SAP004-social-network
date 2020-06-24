@@ -5,9 +5,10 @@ const onAuthStateChanged = jest.fn();
 const getRedirectResult = jest.fn(() => {
   return Promise.resolve({
     user: {
-      displayName: 'redirectResultTestDisplayName',
       email: 'redirectTest@test.com',
       emailVerified: true,
+      displayName: 'maria',
+      uid: 'abcdefg',
     },
   });
 });
