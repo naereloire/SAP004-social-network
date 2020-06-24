@@ -383,6 +383,10 @@ select, button {
   margin: 10px;
 }
 
+.alert-comment{
+  border: 1px solid red !important;
+}
+
 .textarea-comment {
   background-color: #FFFAFA;
   border: double gray;
