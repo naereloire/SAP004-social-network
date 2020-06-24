@@ -21,11 +21,21 @@ let limit = 5;
 let limitcopy = limit;
 let tagValue = '';
 const tags = {
-    home: ['Tag', `<i  class=" icons fas fa-home fa-1x"></i>`],
-    geek: ['Geek', `<i class="icons fas fa-robot fa-1x"></i>`],
-    tech: ['Tech', `<i class="icons fas fa-laptop-code fa-1x"></i>`],
-    autocuidado: ['Autocuidado', `<i class="icons fas fa-spa fa-1x"></i>`],
-    seguranca: ['Segurança', `<i class="icons fas fa-people-carry fa-1x"></i>`],
+    home: [
+        'Tag', `<i  class=" icons fas fa-home fa-1x"></i>`
+    ],
+    geek: [
+        'Geek', `<i class="icons fas fa-robot fa-1x"></i>`
+    ],
+    tech: [
+        'Tech', `<i class="icons fas fa-laptop-code fa-1x"></i>`
+    ],
+    autocuidado: [
+        'Autocuidado', `<i class="icons fas fa-spa fa-1x"></i>`
+    ],
+    seguranca: [
+        'Segurança', `<i class="icons fas fa-people-carry fa-1x"></i>`
+    ],
     oportunidades: ['Oportunidades', `<i class="icons fas fa-suitcase fa-1x"></i>`]
 };
 
@@ -33,52 +43,52 @@ export default() => {
     const container = document.createElement('div');
     container.className = 'feed-style';
     const template = `
-    <div class="bio-container">
-    <section class="bio-style">
+      <div class="bio-container">
+      <section class="bio-style">
         <div id="cover-picture" class="capa-style">
-        <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg"/>
+        <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
         </div>
         <div id="profile-picture" class="img-perfil">
-        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg"/>
-    </div>
-    <div class="bio-infos">
-        <h1 class="text-style" id="user-name"></h1>
-        <p id="user-city"></p>
-    </div>
-    </section>
+          <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
+        </div>
+        <div class="bio-infos">
+          <h1 class="text-style" id="user-name"></h1>
+          <p id="user-city"></p>
+        </div>
+      </section>
     </div>
     <div id="feed-id" class="feed-container">
-    <section class="post-box">
-    <div class="check-container">
-    <label class="container">Privado
+      <section class="post-box">
+      <div class="check-container">
+      <label class="container">Privado
     <input type="checkbox" id="privacy-check">
     <span class="checkmark"></span>
-</label>
-    <select id="select-id" class="btn-style">
-    <option value="">Tag</option> 
-    <option value="geek">Geek</option> 
-    <option value="tech">Tech</option> 
-    <option value="autocuidado">Autocuidado</option> 
-    <option value="seguranca">Segurança</option> 
-    <option value="oportunidades">Oportunidades</option> 
-    </select>
-    </div>
-    <div class="form-container">
-    <form id="post-form" class="form-style">
-      <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
-        placeholder="Escreva uma mensagem."></textarea>
-      <div class="btn-container">
-        <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
-        <label class="btn-style" for="input-photo"><i class="icons fas fa-camera-retro fa-2x"></i></label>
-        <button type="submit" class="btn-style">Publicar</button>
+  </label>
+      <select id="select-id" class="btn-style">
+      <option value="">Tag</option> 
+      <option value="geek">Geek</option> 
+      <option value="tech">Tech</option> 
+      <option value="autocuidado">Autocuidado</option> 
+      <option value="seguranca">Segurança</option> 
+      <option value="oportunidades">Oportunidades</option> 
+      </select>
       </div>
-      </form>
-    </section>
-    <div id="all-posts-container" class="all-posts-box"></div>
-    <button id="btn-ver-mais" class="btn-more btn-style">Ver Mais</button>
-    <input type="file" id="file-input">
-    <input type="file" id="file-cover-input">
-  </div>`;
+      <div class="form-container">
+      <form id="post-form" class="form-style">
+        <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
+          placeholder="Escreva uma mensagem."></textarea>
+        <div class="btn-container">
+          <input name="post-img" type="file" id="input-photo" class="btn-photo"></input>
+          <label class="btn-style" for="input-photo"><i class="icons fas fa-camera-retro fa-2x"></i></label>
+          <button type="submit" class="btn-style">Publicar</button>
+        </div>
+        </form>
+      </section>
+      <div id="all-posts-container" class="all-posts-box"></div>
+      <button id="btn-ver-mais" class="btn-more btn-style">Ver Mais</button>
+      <input type="file" id="file-input">
+      <input type="file" id="file-cover-input">
+    </div>`;
     container.innerHTML = template;
     return container;
 };
@@ -173,14 +183,14 @@ const editPost = (event, postId, currentText) => {
     const textArea = event.currentTarget.parentNode.parentNode.parentNode.children[1];
     textArea.querySelector('p').style.display = 'none';
     const templateEditArea = `
-  <form id="post-form-edit" class="form-style">
-      <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
-      <div class="btn-edit">
-      <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
-      <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
-    </div>
-    </form>
-  `;
+    <form id="post-form-edit" class="form-style">
+        <textarea id="post-text-edit" name="post" class="textarea-style" rows="5" cols="30">${currentText}</textarea>
+        <div class="btn-edit">
+        <button type="button" id="btn-cancel-edit" class="btn-style">Cancelar</button>
+        <button type="button" id="btn-save-edit" class="btn-style">Salvar</button>
+      </div>
+      </form>
+    `;
     textArea.insertAdjacentHTML('beforeend', templateEditArea);
 
     document.getElementById('btn-cancel-edit').addEventListener('click', () => {
@@ -216,18 +226,18 @@ const comments = (querySnapshot, postId) => {
     div.innerHTML = '';
     querySnapshot.forEach((doc) => {
         div.innerHTML += `
-    <div class="container-comment">
-      <p class="textarea-comment">${
+      <div class="container-comment">
+        <p class="textarea-comment">${
             doc.data().name
         }: ${
             doc.data().comment
         }</p>
-      <a data-postcomment=${
+        <a data-postcomment=${
             doc.id
         } href="#" class="delete-comment-btn"><i data-id=${
             doc.id
         } data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i></a>
-    </div>`;
+      </div>`;
     });
     const list = document.getElementsByClassName('delete-comment-btn');
 
@@ -274,34 +284,24 @@ const renderComents = (postId) => {
 };
 
 const showPosts = (post) => {
-  let privacyPost;
-  const postData = post.data();
-  let templateImg = '';
-  let templateDeleteBtn = '';
-  let templateBtnEdit = '';
-  let classIcon = '';
+    let privacyPost;
+    const postData = post.data();
+    let templateImg = '';
+    let templateDeleteBtn = '';
+    let templateBtnEdit = '';
+    let classIcon = '';
 
-  if (firebase.auth().currentUser.uid === postData.user_id) {
-    classIcon = 'span-container';
-    templateDeleteBtn = `
-    <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`;
+    if (firebase.auth().currentUser.uid === postData.user_id) {
+        classIcon = 'span-container';
+        templateDeleteBtn = `
+      <span><a href="#" class="delete-post-btn" ><i class="icons fas fa-trash-alt fa-1x" style="color:#8c0f54;"></i></a></span>`;
         templateBtnEdit = `
-    <button id="edit-${
+      <button id="edit-${
             post.id
         }" class="btn-style"><i class="icons fas fa-pencil-alt fa-1x"></i></i></button>
-    `;
-  } else {
-    classIcon = 'nova-class-icon';
-  }
-
-  if (postData.urlImg) {
-    templateImg = `<img src=${postData.urlImg} class='img-feed'>`;
-  }
-  if (privacyValidation(postData)) {
-    if (post.data().privacy) {
-      privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
+      `;
     } else {
-      privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
+        classIcon = 'nova-class-icon';
     }
 
     if (postData.urlImg) {
@@ -311,73 +311,75 @@ const showPosts = (post) => {
     }
     if (privacyValidation(postData)) {
         if (post.data().privacy) {
-            privacy = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
+            privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
         } else {
-            privacy = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
+            privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
         }
 
         const keyValidated = postData.tag === '' ? 'home' : postData.tag;
         const feedContainer = document.getElementById('all-posts-container');
         const templateFeed = `
-    <section id="${
+      <section id="${
             post.id
         }" class="publication-box">
-        <div class="publication-title">
-          <div class="${classIcon}">
-            <span><p>Post ${privacyPost}</p></span>
-            <span>${tags[keyValidated][1]}</span>
-            ${templateDeleteBtn}
+          <div class="publication-title">
+            <div class="${classIcon}">
+              <span><p>Post ${privacyPost}</p></span>
+              <span>${
+            tags[keyValidated][1]
+        }</span>
+              ${templateDeleteBtn}
+            </div>
           </div>
-        </div>
-        <div class="publi-area">
-            ${templateImg}<br>
-          <p class="text-style">${
+          <div class="publi-area">
+              ${templateImg}<br>
+            <p class="text-style">${
             postData.text
         }</p>
-          <hr>
-        </div>
-        <div class="publication-btns">
-          <span>
-            <p>Publicado por ${
+            <hr>
+          </div>
+          <div class="publication-btns">
+            <span>
+              <p>Publicado por ${
             postData.name
         }</p>
-            <p>${
+              <p>${
             postData.date
         }</p>
-          </span>
-          <div class="btns-post-container">
-          <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${
+            </span>
+            <div class="btns-post-container">
+            <button class="btn-style like-post-btn"><i class="icons fas fa-star fa-1x">${
             postData.user_like.length
         }</i></button>
-            <button class="btn-style" id="comments-${
+              <button class="btn-style" id="comments-${
             post.id
         }"><i class="icons far fa-comment-dots fa-1x"></i></i></button>
-            ${templateBtnEdit}
+              ${templateBtnEdit}
+        </div>
       </div>
-    </div>
-    <div class="comment" id="box-comment-${
+      <div class="comment" id="box-comment-${
             post.id
         }">
       <div id="user-comment-${
             post.id
         }">
-
+  
       </div>
       <form class="form-style">
       <textarea id="textarea-comment-${
             post.id
         }" name="content-comment" class="textarea-comment" rows="5" cols="30"></textarea>
-          <div class="btn-edit">
-            <button type="button" id="btn-cancel-comment-${
+            <div class="btn-edit">
+              <button type="button" id="btn-cancel-comment-${
             post.id
         }" class="btn-style">Cancelar</button>
-            <button type="button" id="btn-save-comment-${
+              <button type="button" id="btn-save-comment-${
             post.id
         }" class="btn-style">Salvar</button>
-          </div>
-      </form>
-    </div>  
-</section > `;
+            </div>
+        </form>
+      </div>  
+  </section > `;
 
         feedContainer.insertAdjacentHTML('beforeend', templateFeed);
         if (templateBtnEdit) {
@@ -412,8 +414,8 @@ const showPosts = (post) => {
             post.id
         }`);
         btnCancelComment.addEventListener('click', (event) => {
-            event.preventDefault()
-            document.getElementById(`textarea-comment-${
+            event.preventDefault();
+            document.getElementById(`box-comment-${
                 post.id
             }`).classList.add('comment');
         });
