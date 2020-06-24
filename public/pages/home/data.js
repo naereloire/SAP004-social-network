@@ -1,5 +1,4 @@
 /* global firebase */
-
 import { ErrorDictionary } from './error.js';
 
 export const createPost = (textPost, tagOption, privacyOption, url) => {
@@ -137,6 +136,7 @@ export function saveLike(postId, userId) {
 }
 
 export const addCommentUser = (idPost, comment) => {
+  
   return new Promise((resolve, reject) => {
     console.log('cheguei');
     const userComment = firebase.firestore().collection('comment').doc(idPost);
