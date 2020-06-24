@@ -1,7 +1,17 @@
-/* global firebase */
+// /* global firebase */
+// import firebase from 'firebase';
+
 import { ErrorDictionary } from './error.js';
 
 export const createPost = (textPost, tagOption, privacyOption, url) => {
+  if (
+    (typeof textPost !== 'string' || textPost.length === 0,
+    typeof tagOption !== 'string' || tagOption === 0,
+    typeof privacyOption !== 'boolean' || privacyOption.length === 0,
+    typeof url !== 'string')
+  ) {
+    throw new TypeError('parâmetro invalido');
+  }
   const date = new Date();
   const user = firebase.auth().currentUser;
   const post = {
