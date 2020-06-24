@@ -1,7 +1,8 @@
+import FakeFirestore from './mock_firestore.js';
 import firebase from 'firebase/app';
 import { createPost } from '../public/pages/home/data.js';
-import FakeFirestore from './mock_firebase.js';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 const date = new Date();
 const post = {
@@ -17,23 +18,31 @@ const post = {
   urlImg: '',
 };
 
-const firestoreMock
 const currentUserFake = {
   displayName: 'maria',
-  uid: 'abcdefg'
+  uid: 'abcdefg',
 };
 
+// describe('createPost', () => {
+//   const firestoreMock = new FirestoreMock()
+//   beforeEach(() => {
+//       firebase.firestore = firestoreMock
+//       firestoreMock.reset()
+//   })
+
 describe('createPost', () => {
-  FakeFirestore = new FakeFirestore();
+  let fakeFirestore = new FakeFirestore();
   beforeEach(() => {
-    firebase.firestore = firestoreMock;
-    firebase.auth().currentUser = currentUserFake;
-    firestoreMock.reset();
+    firebase.firestore = fakeFirestore;
+    firebase.auth = function () {
+      currentUser = currentUserFake;
+    };
+    fakeFirestore.reset();
   });
 
   it('Deveria adiconar o post no firestore', () => {
     createPost('textPost', 'tagOption', true, '').then(() => {
-      expect(firestoreMock.mockCollection).toBeCalledWith('posts');
+      expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
     });
   });
 });

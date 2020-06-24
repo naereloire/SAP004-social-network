@@ -1,10 +1,10 @@
 /* global firebase */
-
 import { ErrorDictionary } from './error.js';
 
 export const createPost = (textPost, tagOption, privacyOption, url) => {
   const date = new Date();
-  const user = firebase.auth().currentUser;
+  // const user = firebase.auth().currentUser;
+  const user = { displayName: 'name', uid: 'asd' };
   const post = {
     name: user.displayName,
     user_id: user.uid,

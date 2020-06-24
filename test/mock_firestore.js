@@ -13,9 +13,9 @@ export default class FakeFirestore {
     // eslint-disable-next-line no-unused-vars
     this.mockOnSnaptshot = jest.fn((success, error) => success(this.mockOnSnaptshotSuccess));
     // return values
-    this.mockAddReturn = null;
-    this.mockGetReturn = null;
-    this.mockOnSnaptshotSuccess = null;
+    this.intMockAddReturn = null;
+    this.intMockGetReturn = null;
+    this.intMockOnSnaptshotSuccess = null;
   }
 
   collection(collectionName) {
@@ -47,22 +47,22 @@ export default class FakeFirestore {
   }
 
   set mockAddReturn(val) {
-    this.mockAddReturn = val;
+    this.intMockAddReturn = val;
   }
 
   set mockGetReturn(val) {
-    this.mockGetReturn = val;
+    this.intMockGetReturn = val;
   }
 
   set mockOnSnaptshotSuccess(val) {
-    this.mockOnSnaptshotSuccess = val;
+    this.intMockOnSnaptshotSuccess = val;
   }
 
   reset() {
     // reset all the mocked returns
-    this.mockAddReturn = null;
-    this.mockGetReturn = null;
-    this.mockOnSnaptshotSuccess = null;
+    this.intMockAddReturn = null;
+    this.intMockGetReturn = null;
+    this.intMockOnSnaptshotSuccess = null;
     // reset all the mocked functions
     this.mockCollection.mockClear();
     this.mockWhere.mockClear();
