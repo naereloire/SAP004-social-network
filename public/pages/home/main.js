@@ -33,20 +33,20 @@ export default () => {
   const container = document.createElement('div');
   container.className = 'feed-style';
   const template = `
-    <div class="bio-container">
-    <section class="bio-style">
-      <div id="cover-picture" class="capa-style">
-      <img id="cover-image" class="img-capa" src="./img/capa-inicial.jpg">
-      </div>
-      <div id="profile-picture" class="img-perfil">
-        <img id="image-profile" class="foto-style circular-square" src="./img/foto-inicial.jpg">
-      </div>
-      <div class="bio-infos">
-        <h1 class="text-style" id="user-name"></h1>
-        <p id="user-city"></p>
-      </div>
-    </section>
-  </div>
+  <div class="bio-container">
+  <section class="bio-style">
+    <div id="cover-picture" class="cover-container">
+    <img id="cover-image" class="cover-img" src="./img/capa-inicial.jpg">
+    </div>
+    <div id="profile-picture" class="profile-container">
+      <img id="image-profile" class="profile-img" src="./img/foto-inicial.jpg">
+    </div>
+    <div class="bio-infos">
+      <h1 class="text-style" id="user-name"></h1>
+      <p class="text-style" id="user-city"></p>
+    </div>
+  </section>
+</div>
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="check-container">
