@@ -1,8 +1,7 @@
+import firebase from 'firebase';
 import FakeFirestore from './mock_firestore.js';
-import firebase from 'firebase/app';
+import { initializeAppMock, auth } from './mock_auth.js';
 import { createPost } from '../public/pages/home/data.js';
-import 'firebase/firestore';
-import 'firebase/auth';
 
 const date = new Date();
 const post = {
@@ -23,24 +22,20 @@ const currentUserFake = {
   uid: 'abcdefg',
 };
 
-// describe('createPost', () => {
-//   const firestoreMock = new FirestoreMock()
-//   beforeEach(() => {
-//       firebase.firestore = firestoreMock
-//       firestoreMock.reset()
-//   })
-
 describe('createPost', () => {
-  let fakeFirestore = new FakeFirestore();
-  beforeEach(() => {
-    firebase.firestore = fakeFirestore;
-    firebase.auth = function () {
-      currentUser = currentUserFake;
-    };
-    fakeFirestore.reset();
+  // let fakeFirestore = new FakeFirestore();
+  beforeAll(() => {
+    jest.mock('firebase');
+    jest.spyOn(firebase, 'initializeApp').mockImplementation(initializeAppMock);
+    jest.spyOn(firebase, 'auth').mockImplementation(auth);
+    jest.spyOn(firebase, 'firestore').mockImplementation(() => {
+      return new FakeFirestore();
+    });
+    firebase = require('firebase/app');
+    return firebase;
   });
 
-  it('Deveria adiconar o post no firestore', () => {
+  it('Deveria adiconar o post no firestore collection', () => {
     createPost('textPost', 'tagOption', true, '').then(() => {
       expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
     });

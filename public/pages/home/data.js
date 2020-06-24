@@ -1,10 +1,10 @@
 /* global firebase */
+
 import { ErrorDictionary } from './error.js';
 
 export const createPost = (textPost, tagOption, privacyOption, url) => {
   const date = new Date();
-  // const user = firebase.auth().currentUser;
-  const user = { displayName: 'name', uid: 'asd' };
+  const user = firebase.auth().currentUser;
   const post = {
     name: user.displayName,
     user_id: user.uid,
@@ -18,7 +18,7 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
     urlImg: url,
   };
   const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.add(post).catch((error) => {
+  return postsCollection.add(post).catch((error) => {
     const ErrorObject = new ErrorDictionary(error);
     console.log(ErrorObject.translate(false));
   });

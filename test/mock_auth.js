@@ -1,6 +1,5 @@
-import * as firebase from 'firebase';
+/* eslint-disable no-undef */
 
-export default class FakeAuth{
 const onAuthStateChanged = jest.fn();
 
 const getRedirectResult = jest.fn(() => {
@@ -31,7 +30,10 @@ const signInWithRedirect = jest.fn(() => {
   return Promise.resolve('result of signInWithRedirect');
 });
 
-const initializeApp = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+// firebase.auth.FacebookAuthProvider = jest.fn(() => {});
+// firebase.auth.GoogleAuthProvider = jest.fn(() => {});
+
+export const initializeAppMock = () => {
   return {
     auth: () => {
       return {
@@ -43,10 +45,15 @@ const initializeApp = jest.spyOn(firebase, 'initializeApp').mockImplementation((
         signInWithRedirect,
       };
     },
+    firestore: {
+      collect: () => {
+        return '';
+      },
+    },
   };
-});
+};
 
-jest.spyOn(firebase, 'auth').mockImplementation(() => {
+export const auth = () => {
   return {
     onAuthStateChanged,
     currentUser: {
@@ -57,8 +64,4 @@ jest.spyOn(firebase, 'auth').mockImplementation(() => {
     getRedirectResult,
     sendPasswordResetEmail,
   };
-});
-
-firebase.auth.FacebookAuthProvider = jest.fn(() => {});
-firebase.auth.GoogleAuthProvider = jest.fn(() => {});
-}
+};
