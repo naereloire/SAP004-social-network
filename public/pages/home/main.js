@@ -138,13 +138,17 @@ const btnPost = (event) => {
   const photoFile = document.getElementById('input-photo');
 
   if (photoFile.value) {
-    postPhoto(photoFile).then((url) => {
-      createPost(postText, tagValue, checkBox, url);
-      document.getElementById('post-text').value = '';
+    postPhoto(photoFile)
+      .then((url) => {
+        createPost(postText, tagValue, checkBox, url);
+        document.getElementById('post-text').value = '';
 
-      photoFile.value = '';
-      rollBackPhotoIcon(photoFile);
-    });
+        photoFile.value = '';
+        rollBackPhotoIcon(photoFile);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } else if (postText) {
     createPost(postText, tagValue, checkBox, '');
     document.getElementById('post-text').value = '';
@@ -214,7 +218,7 @@ const comments = (querySnapshot, postId) => {
                     </p>
                     
                     ${
-                      user.uid == doc.data().idUser
+                      user.uid === doc.data().idUser
                         ? `
                                 <a data-postcomment=${doc.id} href="#" class="delete-comment-btn">
                                     <i data-id=${doc.id} data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i>
