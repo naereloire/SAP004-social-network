@@ -57,6 +57,7 @@ export default () => {
     </div>
   </section>
 </div>
+
   <div id="feed-id" class="feed-container">
     <section class="post-box">
     <div class="check-container">
