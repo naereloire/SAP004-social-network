@@ -375,8 +375,8 @@ const showPosts = (post) => {
     const btnSaveComment = document.getElementById(`btn-save-comment-${post.id}`);
     btnSaveComment.addEventListener('click', (event) => {
       event.preventDefault();
-      let textarea = document.getElementById(`textarea-comment-${post.id}`);
-      if (textarea.value != '') {
+      const textarea = document.getElementById(`textarea-comment-${post.id}`);
+      if (textarea.value !== '') {
         document.getElementById(`textarea-comment-${post.id}`).classList.add('comment');
         document.getElementById(`btn-cancel-comment-${post.id}`).classList.add('comment');
         document.getElementById(`btn-save-comment-${post.id}`).classList.add('comment');
