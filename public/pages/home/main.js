@@ -74,22 +74,6 @@ export default () => {
     <option value="oportunidades">Oportunidades</option> 
     </select>
     </div>
-    <div id="feed-id" class="feed-container">
-      <section class="post-box">
-      <div class="check-container">
-      <label class="container">Privado
-    <input type="checkbox" id="privacy-check">
-    <span class="checkmark"></span>
-  </label>
-      <select id="select-id" class="btn-style">
-      <option value="">Tag</option> 
-      <option value="geek">Geek</option> 
-      <option value="tech">Tech</option> 
-      <option value="autocuidado">Autocuidado</option> 
-      <option value="seguranca">Segurança</option> 
-      <option value="oportunidades">Oportunidades</option> 
-      </select>
-      </div>
       <div class="form-container">
       <form id="post-form" class="form-style">
         <textarea id="post-text" name="post" class="textarea-style" rows="5" cols="30"
