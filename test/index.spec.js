@@ -34,7 +34,7 @@ describe('createPost', () => {
       createPost('textPost', 'tagOption', true, '');
     }
     testCollection().then(() => {
-      expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
+      expect(fakeFirestore.mockCollection).toBeCalledWith('post');
       done();
     });
   });
