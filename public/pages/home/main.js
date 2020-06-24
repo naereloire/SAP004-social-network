@@ -267,6 +267,7 @@ const renderComents = (postId) => {
 };
 
 const showPosts = (post) => {
+  let privacyPost;
   const postData = post.data();
   let templateImg = '';
   let templateDeleteBtn = '';
@@ -289,9 +290,9 @@ const showPosts = (post) => {
   }
   if (privacyValidation(postData)) {
     if (post.data().privacy) {
-      privacy = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
+      privacyPost = 'Privado <i class="icons fas fa-lock fa-1x"></i>';
     } else {
-      privacy = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
+      privacyPost = 'Publico <i class="icons fas fa-lock-open fa-1x"></i>';
     }
 
     const keyValidated = postData.tag === '' ? 'home' : postData.tag;
@@ -300,7 +301,7 @@ const showPosts = (post) => {
     <section id="${post.id}" class="publication-box">
         <div class="publication-title">
           <div class="${classIcon}">
-            <span><p>Post ${privacy}</p></span>
+            <span><p>Post ${privacyPost}</p></span>
             <span>${tags[keyValidated][1]}</span>
             ${templateDeleteBtn}
           </div>
