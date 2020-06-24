@@ -1,5 +1,4 @@
 /* global firebase */
-
 import { ErrorDictionary } from './error.js';
 
 export const createPost = (textPost, tagOption, privacyOption, url) => {
