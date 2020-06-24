@@ -136,6 +136,7 @@ export function saveLike(postId, userId) {
 }
 
 export const addCommentUser = (idPost, comment) => {
+  
   return new Promise((resolve, reject) => {
     console.log('cheguei');
     const userComment = firebase.firestore().collection('comment').doc(idPost);

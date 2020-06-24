@@ -161,23 +161,26 @@ select, button {
   width: 100%;
 }
 
-#btn-display {
-  display: flex;
-  justify-content: space-evenly;
+.btn-display {
+    display: flex;
+    justify-content: space-between;
 }
 
+
 .form-profile input[type=submit] {
-  background-color: #A97B75;
-  border-color: #A97B75;
-  color: #fff;
-  width: 120px;
+    background-color: #A97B75;
+    border-color: #A97B75;
+    color: #fff;
+    margin-left: 5px;
+    width: 120px;
 }
 
 .form-profile input[type=button] {
-  background-color: #A97B75;
-  border-color: #A97B75;
-  color: #fff;
-  width: 120px;
+    background-color: #A97B75;
+    border-color: #A97B75;
+    color: #fff;
+    margin-left: 5px;
+    width: 120px;
 }
 
 .body-style {
@@ -371,6 +374,10 @@ select, button {
   margin: 10px;
 }
 
+.alert-comment{
+  border: 1px solid red !important;
+}
+
 .textarea-comment {
   background-color: #FFFAFA;
   border: double gray;
@@ -389,10 +396,10 @@ select, button {
 }
 
 .delete-comment-btn {
-  color: #A97B75;
-  font-size: 3vw;
-  text-align: center;
-  text-decoration: none;
+    color: #A97B75;
+    font-size: 2vw;
+    text-align: center;
+    text-decoration: none;
 }
 
 .text-style {
