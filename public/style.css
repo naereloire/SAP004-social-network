@@ -2,6 +2,24 @@ teste teste teste .icon-del {
   color: #8c0f54;
 }
 
+.btn-accept-style {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: beige;
+  border: 2px solid beige;
+  border-radius: 1em;
+  color: black;
+  margin: 0.2em;
+  padding: 0.5em;
+  transform-style: preserve-3d;
+  transition: all 175ms cubic-bezier(0, 0, 1, 1);
+}
+
+.container-confirm-gender {
+  display: flex;
+}
+
 .nova-class-icon {
   display: flex;
   justify-content: space-evenly;
@@ -9,7 +27,8 @@ teste teste teste .icon-del {
   width: 100%;
 }
 
-.icons-text, .icons {
+.icons-text,
+.icons {
   color: beige;
 }
 
@@ -23,13 +42,14 @@ teste teste teste .icon-del {
   display: flex;
 }
 
-select, button {
+select,
+button {
   cursor: pointer;
 }
 
 .ul-about li {
   list-style-position: inside;
-  list-style-type: "*";
+  list-style-type: '*';
   text-align: center;
   text-align: justify;
 }
@@ -38,8 +58,9 @@ select, button {
   border: none;
 }
 
-.about-style-rules, .about-style-tags {
-  background-color: #A97B75;
+.about-style-rules,
+.about-style-tags {
+  background-color: #a97b75;
   border: solid #8c0f54;
   border-radius: 30px;
   color: black;
@@ -117,7 +138,8 @@ select, button {
   height: 20px;
 }
 
-.email-input, .password-input {
+.email-input,
+.password-input {
   border-color: #ba7fc2;
   border-radius: 30px;
   height: 30px;
@@ -126,7 +148,7 @@ select, button {
 }
 
 .login-btn {
-  background-color: #A97B75;
+  background-color: #a97b75;
   border-color: #8c0f54;
   border-radius: 30px;
   height: 30px;
@@ -162,25 +184,24 @@ select, button {
 }
 
 .btn-display {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-
-.form-profile input[type=submit] {
-    background-color: #A97B75;
-    border-color: #A97B75;
-    color: #fff;
-    margin-left: 5px;
-    width: 120px;
+.form-profile input[type='submit'] {
+  background-color: #a97b75;
+  border-color: #a97b75;
+  color: #fff;
+  margin-left: 5px;
+  width: 120px;
 }
 
-.form-profile input[type=button] {
-    background-color: #A97B75;
-    border-color: #A97B75;
-    color: #fff;
-    margin-left: 5px;
-    width: 120px;
+.form-profile input[type='button'] {
+  background-color: #a97b75;
+  border-color: #a97b75;
+  color: #fff;
+  margin-left: 5px;
+  width: 120px;
 }
 
 .body-style {
@@ -210,7 +231,8 @@ select, button {
   transition: 0.3s;
 }
 
-.side-nav a:hover, .offcanvas a:focus {
+.side-nav a:hover,
+.offcanvas a:focus {
   color: #8c0f54;
 }
 
@@ -226,6 +248,7 @@ select, button {
   flex-wrap: nowrap;
   overflow: hidden;
   position: fixed;
+  max-height: 12%;
   width: 100%;
   top: 0;
 }
@@ -250,6 +273,7 @@ select, button {
   align-items: center;
   display: flex;
   justify-content: center;
+  max-height: 5em;
 }
 
 .figure-style {
@@ -265,7 +289,7 @@ select, button {
 
 .span-style {
   color: beige;
-  font-size: 2.0em;
+  font-size: 2em;
   width: 70%;
 }
 
@@ -277,6 +301,7 @@ select, button {
   background-color: #a97b75;
   bottom: 0;
   margin: 0;
+  max-height: 5em;
   overflow: hidden;
   padding-bottom: 5px;
   padding-top: 10px;
@@ -374,12 +399,12 @@ select, button {
   margin: 10px;
 }
 
-.alert-comment{
+.alert-comment {
   border: 1px solid red !important;
 }
 
 .textarea-comment {
-  background-color: #FFFAFA;
+  background-color: #fffafa;
   border: double gray;
   border-radius: 1em;
   border-style: solid #8c0f54;
@@ -396,10 +421,10 @@ select, button {
 }
 
 .delete-comment-btn {
-    color: #A97B75;
-    font-size: 2vw;
-    text-align: center;
-    text-decoration: none;
+  color: #a97b75;
+  font-size: 2vw;
+  text-align: center;
+  text-decoration: none;
 }
 
 .text-style {
@@ -442,8 +467,8 @@ select, button {
 }
 
 .img-check {
-  background: #A97B75;
-  border: 2px solid #A97B75;
+  background: #a97b75;
+  border: 2px solid #a97b75;
 }
 
 #btn-ver-mais {
@@ -455,8 +480,8 @@ select, button {
 }
 
 .btn-style {
-  background: #A97B75;
-  border: 2px solid #A97B75;
+  background: #a97b75;
+  border: 2px solid #a97b75;
   border-radius: 1em;
   color: beige;
   margin: 0.2em;
@@ -520,7 +545,7 @@ select, button {
 }
 
 .publication-title {
-  background-image: linear-gradient(to bottom, #C3C0ED, #95D4E7, #BDD9CA);
+  background-image: linear-gradient(to bottom, #c3c0ed, #95d4e7, #bdd9ca);
   display: flex;
   justify-content: space-between;
   margin-top: 0;
@@ -548,7 +573,7 @@ select, button {
   flex-direction: column;
   flex-wrap: nowrap;
   text-align: center;
-  margin-bottom: 5em;
+  margin: 2em 0 5em 0;
 }
 
 .container {
@@ -580,11 +605,11 @@ select, button {
   width: 25px;
 }
 
-.container:hover input~.checkmark {
-  background-color: #C3C0ED;
+.container:hover input ~ .checkmark {
+  background-color: #c3c0ed;
 }
 
-.container input:checked~.checkmark {
+.container input:checked ~ .checkmark {
   background-color: rgb(166, 157, 216);
 }
 
@@ -594,7 +619,7 @@ select, button {
   position: absolute;
 }
 
-.container input:checked~.checkmark:after {
+.container input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -610,7 +635,7 @@ select, button {
   width: 5px;
 }
 
-@media only screen and (min-width:768px) and (max-width:900px) {
+@media only screen and (min-width: 768px) and (max-width: 900px) {
   .img-feed {
     padding-left: 3em;
     width: 40vw;
@@ -641,7 +666,7 @@ select, button {
     z-index: 1;
   }
   .span-style {
-    font-size: 2.40em;
+    font-size: 2.4em;
     width: 50%;
   }
   .profile-img {
@@ -690,7 +715,8 @@ select, button {
     margin-top: 0;
     width: 48.7vw;
   }
-  .publication-title, .ul-style a {
+  .publication-title,
+  .ul-style a {
     display: flex;
   }
   .btns-post-container {
@@ -735,7 +761,7 @@ select, button {
   }
 }
 
-@media only screen and (min-width:901px) {
+@media only screen and (min-width: 901px) {
   .img-feed {
     align-items: center;
     height: 5%;
@@ -806,7 +832,8 @@ select, button {
   .bio-infos {
     flex: 1;
   }
-  .post-box, .form-container {
+  .post-box,
+  .form-container {
     width: 35vw;
   }
   .form-style {
@@ -819,7 +846,8 @@ select, button {
   .publication-title {
     width: 37.4vw;
   }
-  .publication-box, .all-posts-box {
+  .publication-box,
+  .all-posts-box {
     width: 38vw;
   }
   .img-feed-container {
@@ -907,7 +935,8 @@ select, button {
     margin-bottom: 20px;
     margin-top: 60px;
   }
-  .email-input, .password-input {
+  .email-input,
+  .password-input {
     border-color: rgb(186, 127, 194);
     border-radius: 30px;
     height: 30px;
@@ -915,8 +944,8 @@ select, button {
     width: 200px;
   }
   .login-btn {
-    background-color: #A97B75;
-    border-color: #A97B75;
+    background-color: #a97b75;
+    border-color: #a97b75;
     border-radius: 30px;
     height: 30px;
     width: 150px;

@@ -43,13 +43,18 @@ const renderPage = () => {
         });
       }
     } else {
+      const navStyle = document.getElementsByClassName('hidden-nav');
+      if (page === 'policy') {
+        for (const element of navStyle) {
+          element.style.display = 'none';
+        }
+      } else {
+        for (const element of navStyle) {
+          element.style.display = 'flex';
+        }
+      }
       if (page === 'login') {
         page = 'home';
-      }
-
-      const navStyle = document.getElementsByClassName('hidden-nav');
-      for (const element of navStyle) {
-        element.style.display = 'flex';
       }
 
       main.appendChild(routes[page]);

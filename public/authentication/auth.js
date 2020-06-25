@@ -10,7 +10,7 @@ export default {
       callbacks: {
         signInSuccessWithAuthResult(authResult) {
           saveProviderUser(authResult.user.uid, authResult.user.displayName);
-          window.location.href = '/#';
+          window.location.href = '/#policy';
           return true;
         },
       },
@@ -65,7 +65,7 @@ export default {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         alert('Usuário criado com sucesso!');
-        window.location.href = '/#';
+        window.location.href = '/#policy';
       })
       .catch(() => {
         alert('Email já cadastrado');
