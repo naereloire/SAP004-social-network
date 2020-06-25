@@ -1,4 +1,16 @@
-/* global document */
+/* global document, window */
+
+const verifyGenderCheck = (event) => {
+  if (event.currentTarget.checked) {
+    document.getElementById('btn-accept').disabled = false;
+  } else {
+    document.getElementById('btn-accept').disabled = true;
+  }
+};
+
+const btnAccept = () => {
+  window.location.href = '/#';
+};
 
 export default () => {
   const container = document.createElement('div');
@@ -34,8 +46,23 @@ export default () => {
       <li>Atos Discriminatórios.</li><br>
       </ul>
       </section><hr>
+
+      <section class="about-style-rules">
+      <h3>Política da Rede:</h3><br>
+      <ul class="ul-about">
+      <li>Ao entrar nesse rede, declaro que sou parte da comunidade feminina e estou ciente
+      das políticas e regras da girlyHub</li><br>
+      </ul>
+      <div class="container-confirm-gender">
+      <input type="checkbox" id="confirm-gender" class="input-gender" name="confirm-gender">
+      <label for="confirm-gender" class="label-gender"> Me indentifico como genêro feminino.</label><br>
+      </div><br>
+      <button id="btn-accept" class="btn-accept-style"  disabled="">Aceitar e Continuar </button>
+     </section>
      
     </div>`;
   container.innerHTML = template;
+  container.querySelector('#confirm-gender').addEventListener('change', verifyGenderCheck);
+  container.querySelector('#btn-accept').addEventListener('click', btnAccept);
   return container;
 };

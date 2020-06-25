@@ -2,6 +2,20 @@ teste teste teste .icon-del {
   color: #8c0f54;
 }
 
+.btn-accept-style {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: beige;
+  border: 2px solid beige;
+  border-radius: 1em;
+  color: black;
+  margin: 0.2em;
+  padding: 0.5em;
+  transform-style: preserve-3d;
+  transition: all 175ms cubic-bezier(0, 0, 1, 1);
+}
+
 .container-confirm-gender {
   display: flex;
 }

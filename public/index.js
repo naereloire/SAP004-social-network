@@ -43,15 +43,20 @@ const renderPage = () => {
         });
       }
     } else {
-      if (page === 'login') {
-        page = 'home';
-      }
-      if (page !== 'about') {
-        const navStyle = document.getElementsByClassName('hidden-nav');
+      const navStyle = document.getElementsByClassName('hidden-nav');
+      if (page === 'policy') {
+        for (const element of navStyle) {
+          element.style.display = 'none';
+        }
+      } else {
         for (const element of navStyle) {
           element.style.display = 'flex';
         }
       }
+      if (page === 'login') {
+        page = 'home';
+      }
+
       main.appendChild(routes[page]);
       addRenderEvents(page);
       document.getElementById('side-navigation').style.width = '0';
