@@ -25,7 +25,7 @@ export const userRegister = (event) => {
             city,
           })
           .then(() => {
-            window.location.href = '/#';
+            window.location.href = '/#about';
           })
           .catch((error) => {
             console.log(error);

@@ -34,7 +34,17 @@ export default () => {
       <li>Atos Discriminatórios.</li><br>
       </ul>
       </section><hr>
-      
+
+      <section class="about-style-rules">
+      <ul class="ul-about">
+      <li>Ao entrar nesse rede, declaro que sou parte da comunidade feminina e estou ciente
+      das políticas e regras da girlyHub</li><br>
+      </ul>
+      <div class="container-confirm-gender">
+      <input type="checkbox" id="confirm-gender" name="confirm-gender">
+      <label for="confirm-gender"> Me indentifico como genêro feminino.</label>
+     </div>
+     </section>
      
     </div>`;
   container.innerHTML = template;

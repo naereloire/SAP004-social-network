@@ -64,8 +64,9 @@ export default {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
+        debugger;
         alert('Usuário criado com sucesso!');
-        window.location.href = '/#';
+        window.location.href = '/#about';
       })
       .catch(() => {
         alert('Email já cadastrado');

@@ -2,6 +2,10 @@ teste teste teste .icon-del {
   color: #8c0f54;
 }
 
+.container-confirm-gender {
+  display: flex;
+}
+
 .nova-class-icon {
   display: flex;
   justify-content: space-evenly;
@@ -162,25 +166,24 @@ select, button {
 }
 
 .btn-display {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-
 .form-profile input[type=submit] {
-    background-color: #A97B75;
-    border-color: #A97B75;
-    color: #fff;
-    margin-left: 5px;
-    width: 120px;
+  background-color: #A97B75;
+  border-color: #A97B75;
+  color: #fff;
+  margin-left: 5px;
+  width: 120px;
 }
 
 .form-profile input[type=button] {
-    background-color: #A97B75;
-    border-color: #A97B75;
-    color: #fff;
-    margin-left: 5px;
-    width: 120px;
+  background-color: #A97B75;
+  border-color: #A97B75;
+  color: #fff;
+  margin-left: 5px;
+  width: 120px;
 }
 
 .body-style {
@@ -226,6 +229,7 @@ select, button {
   flex-wrap: nowrap;
   overflow: hidden;
   position: fixed;
+  max-width: 12%;
   width: 100%;
   top: 0;
 }
@@ -277,6 +281,7 @@ select, button {
   background-color: #a97b75;
   bottom: 0;
   margin: 0;
+  min-height: 10%;
   overflow: hidden;
   padding-bottom: 5px;
   padding-top: 10px;
@@ -374,7 +379,7 @@ select, button {
   margin: 10px;
 }
 
-.alert-comment{
+.alert-comment {
   border: 1px solid red !important;
 }
 
@@ -396,10 +401,10 @@ select, button {
 }
 
 .delete-comment-btn {
-    color: #A97B75;
-    font-size: 2vw;
-    text-align: center;
-    text-decoration: none;
+  color: #A97B75;
+  font-size: 2vw;
+  text-align: center;
+  text-decoration: none;
 }
 
 .text-style {
@@ -548,7 +553,7 @@ select, button {
   flex-direction: column;
   flex-wrap: nowrap;
   text-align: center;
-  margin-bottom: 5em;
+  margin: 2em 0 5em 0;
 }
 
 .container {
