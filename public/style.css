@@ -27,8 +27,7 @@ teste teste teste .icon-del {
   width: 100%;
 }
 
-.icons-text,
-.icons {
+.icons-text, .icons {
   color: beige;
 }
 
@@ -42,8 +41,7 @@ teste teste teste .icon-del {
   display: flex;
 }
 
-select,
-button {
+select, button {
   cursor: pointer;
 }
 
@@ -58,8 +56,7 @@ button {
   border: none;
 }
 
-.about-style-rules,
-.about-style-tags {
+.about-style-rules, .about-style-tags {
   background-color: #a97b75;
   border: solid #8c0f54;
   border-radius: 30px;
@@ -138,8 +135,7 @@ button {
   height: 20px;
 }
 
-.email-input,
-.password-input {
+.email-input, .password-input {
   border-color: #ba7fc2;
   border-radius: 30px;
   height: 30px;
@@ -231,8 +227,7 @@ button {
   transition: 0.3s;
 }
 
-.side-nav a:hover,
-.offcanvas a:focus {
+.side-nav a:hover, .offcanvas a:focus {
   color: #8c0f54;
 }
 
@@ -605,11 +600,11 @@ button {
   width: 25px;
 }
 
-.container:hover input ~ .checkmark {
+.container:hover input~.checkmark {
   background-color: #c3c0ed;
 }
 
-.container input:checked ~ .checkmark {
+.container input:checked~.checkmark {
   background-color: rgb(166, 157, 216);
 }
 
@@ -619,7 +614,7 @@ button {
   position: absolute;
 }
 
-.container input:checked ~ .checkmark:after {
+.container input:checked~.checkmark:after {
   display: block;
 }
 
@@ -715,8 +710,7 @@ button {
     margin-top: 0;
     width: 48.7vw;
   }
-  .publication-title,
-  .ul-style a {
+  .publication-title, .ul-style a {
     display: flex;
   }
   .btns-post-container {
@@ -767,7 +761,7 @@ button {
     height: 5%;
     object-fit: fill;
     padding-right: 4em;
-    width: 50%;
+    width: 80%;
   }
   .main-style {
     padding-top: 2em;
@@ -832,8 +826,7 @@ button {
   .bio-infos {
     flex: 1;
   }
-  .post-box,
-  .form-container {
+  .post-box, .form-container {
     width: 35vw;
   }
   .form-style {
@@ -846,8 +839,7 @@ button {
   .publication-title {
     width: 37.4vw;
   }
-  .publication-box,
-  .all-posts-box {
+  .publication-box, .all-posts-box {
     width: 38vw;
   }
   .img-feed-container {
@@ -935,8 +927,7 @@ button {
     margin-bottom: 20px;
     margin-top: 60px;
   }
-  .email-input,
-  .password-input {
+  .email-input, .password-input {
     border-color: rgb(186, 127, 194);
     border-radius: 30px;
     height: 30px;
