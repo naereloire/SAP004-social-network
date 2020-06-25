@@ -10,7 +10,7 @@ export default {
       callbacks: {
         signInSuccessWithAuthResult(authResult) {
           saveProviderUser(authResult.user.uid, authResult.user.displayName);
-          window.location.href = '/#';
+          window.location.href = '/#policy';
           return true;
         },
       },
