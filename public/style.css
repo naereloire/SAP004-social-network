@@ -229,7 +229,7 @@ select, button {
   flex-wrap: nowrap;
   overflow: hidden;
   position: fixed;
-  max-width: 12%;
+  /* max-width: 12%; */
   width: 100%;
   top: 0;
 }
@@ -281,7 +281,7 @@ select, button {
   background-color: #a97b75;
   bottom: 0;
   margin: 0;
-  min-height: 10%;
+  /* min-height: 10%; */
   overflow: hidden;
   padding-bottom: 5px;
   padding-top: 10px;
