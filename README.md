@@ -126,6 +126,14 @@ firebase init
 firebase serve
 ```
 
+:warning: Neste projeto a regras de [ESLint](https://eslint.org/) foram criadas de acordo com [Airbnb JavaScript Style Guide](https://github.com/armoucar/javascript-style-guide)
+
+* Para verificar erros do ESLint:
+
+``` sh
+npm run pretest
+```
+
 **Testes** :clipboard:
 
 * Para executar os testes:
