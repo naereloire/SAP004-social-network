@@ -63,7 +63,7 @@ select, button {
   color: black;
   font-size: 1em;
   padding: 1em;
-  width: 30vw;
+  width: 70vw;
   text-align: center;
   font-weight: bold;
 }
@@ -765,6 +765,9 @@ select, button {
     flex-direction: row;
     justify-content: space-evenly;
   }
+  .policy-alert {
+    width: 50vw;
+  }
 }
 
 @media only screen and (min-width: 901px) {
@@ -964,5 +967,8 @@ select, button {
   }
   .side-nav {
     z-index: 1;
+  }
+  .policy-alert {
+    width: 30vw;
   }
 }
