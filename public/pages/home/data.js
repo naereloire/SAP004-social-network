@@ -1,5 +1,4 @@
-// /* global firebase */
-// import firebase from 'firebase';
+/* global firebase */
 
 import { ErrorDictionary } from './error.js';
 
