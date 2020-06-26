@@ -29,11 +29,11 @@ export default () => {
       </section><hr>
       
       <section class="about-style-tags">
-      <h3>Uso dae TAGS de conteúdo:</h3><br>
+      <h3>Uso de TAGS de conteúdo:</h3><br>
       <ul class="ul-about">
       <li>Utilize a TAG correspondente ao conteúdo que deseja compartilhar.</li><br>
-      <li>As TAGS não podem ser editadas</li><br>
-      <li>Utilize os filtros para encontra posts de assuntos específicos.</li><br>
+      <li>As TAGS não podem ser editadas mas você pode apagar seu post e refazer com outra TAG</li><br>
+      <li>Utilize os filtros para encontrar seus posts privados ou de assuntos específicos.</li><br>
       </ul>
       </section><hr>
 

@@ -56,6 +56,18 @@ select, button {
   border: none;
 }
 
+.policy-alert {
+  background-color: #a97b75;
+  border: solid #8c0f54;
+  border-radius: 30px;
+  color: black;
+  font-size: 1em;
+  padding: 1em;
+  width: 30vw;
+  text-align: center;
+  font-weight: bold;
+}
+
 .about-style-rules, .about-style-tags {
   background-color: #a97b75;
   border: solid #8c0f54;

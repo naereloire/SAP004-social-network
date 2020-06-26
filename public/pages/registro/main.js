@@ -3,6 +3,12 @@ export default () => {
   const container = document.createElement('div');
 
   const template = `
+  <section class="policy-alert">
+   <h1> <i class="fas fa-exclamation-circle fa-2x" style="color: yellow"></i>Alerta:</h1><br>
+      <ul class="ul-about">
+      <li>Esta rede é destinada a pessoas que se indentifiquem como sendo do gênero feminino.</li><br>
+      </ul>
+  </section><hr><br><br>
     <div class="feed-container"> 
         <h1 class="text-profile">Preencha os campos abaixo:</h1>
         <form class="form-profile">
