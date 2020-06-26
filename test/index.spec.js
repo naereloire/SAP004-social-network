@@ -1,8 +1,8 @@
 import FakeFirestore from './mock_firestore.js';
 import { auth } from './mock_auth.js';
-import { createPost } from '../public/pages/home/data.js';
+import { createPost, loadPosts } from '../public/pages/home/data.js';
 
-let fakeFirestore = new FakeFirestore();
+const fakeFirestore = new FakeFirestore();
 
 global.firebase = {
   firestore: () => {
@@ -30,7 +30,11 @@ describe('createPost', () => {
     jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
   });
 
-  it('Deveria adiconar o post no firestore collection `posts`', (done) => {
+  it('is a function', () => {
+    expect(typeof createPost).toBe('function');
+  });
+
+  it('Should receive as a collection parameter `posts`', (done) => {
     async function testCollection() {
       createPost('textPost', 'tagOption', true, '');
     }
@@ -40,7 +44,7 @@ describe('createPost', () => {
     });
   });
 
-  it('Deveria receber post como parametro', (done) => {
+  it('Should receive as a parameter for add to collection `object with data posts`', (done) => {
     async function testAddParam() {
       createPost('textPost', 'tagOption', true, '');
     }
@@ -55,5 +59,15 @@ describe('createPost', () => {
     expect(() => createPost(true, true, 'string', true)).toThrow(TypeError);
     expect(() => createPost('string', [], [], {})).toThrow(TypeError);
     expect(() => createPost('string', 'string', 0, {})).toThrow(TypeError);
+  });
+});
+
+describe('loadPosts', () => {
+  it('is a function', () => {
+    expect(typeof loadPosts).toBe('function');
+  });
+
+  it('should throw TypeError when invoked with wrong argument types', () => {
+    expect(() => createPost()).toThrow(TypeError);
   });
 });
