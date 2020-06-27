@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-param-reassign */
 /* global firebase, document */
