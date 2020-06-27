@@ -24,7 +24,7 @@ const renderPage = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (!user) {
       if (page === 'register') {
-        main.appendChild(routes.register);
+        main.appendChild(routes.register());
         const btnRegister = document.querySelector('#btn-register');
         btnRegister.addEventListener('click', userRegister);
 
@@ -34,7 +34,7 @@ const renderPage = () => {
           window.location.href = '/#login';
         });
       } else {
-        main.appendChild(routes.login);
+        main.appendChild(routes.login());
         auth.createBtnAuth();
         const btnLogIn = document.querySelector('#login-btn');
         btnLogIn.addEventListener('click', function callBackF(event) {
@@ -57,7 +57,7 @@ const renderPage = () => {
         page = 'home';
       }
 
-      main.appendChild(routes[page]);
+      main.appendChild(routes[page]());
       addRenderEvents(page);
       document.getElementById('side-navigation').style.width = '0';
 

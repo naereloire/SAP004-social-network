@@ -102,6 +102,7 @@ const clearAriaCurrent = () => {
 };
 
 const blockTag = (tagValueBlock) => {
+  // debugger;
   const select = document.getElementById('select-id');
   if (!select) {
     return;
@@ -114,7 +115,7 @@ const blockTag = (tagValueBlock) => {
       select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
   } else {
-    select.innerHTML = `<option value="${tagValueBlock}">${tags[tagValueBlock][0]}</option>`;
+    select.innerHTML = `<option value="${tagValueBlock}">${tags[tagValueBlock]}</option>`;
   }
 };
 
@@ -431,7 +432,7 @@ const blockPrivacyBox = (lock) => {
 const tagFilter = (event) => {
   limit = 5;
   const elementName = event.target.localName;
-  // debugger;
+
   if (elementName !== 'li' && elementName !== 'ul') {
     clearAriaCurrent();
     if (elementName === 'span') {

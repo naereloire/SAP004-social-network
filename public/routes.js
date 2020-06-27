@@ -6,10 +6,10 @@ import about from './pages/sobre/main.js';
 import policy from './pages/sobre/policy.js';
 
 export default {
-  home: home(),
-  login: login(),
-  register: register(),
-  profile: profile(),
-  about: about(),
-  policy: policy(),
+  home,
+  login,
+  register,
+  profile,
+  about,
+  policy,
 };
