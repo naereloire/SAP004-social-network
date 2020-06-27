@@ -62,15 +62,16 @@ describe('createPost', () => {
   });
 });
 
-const callBackLoadUm = () => {
+const callBackLoadOne = jest.fn(() => {
   return 'fake return pre process';
-};
-const callBackLoadTwo = (docs) => {
-  return docs.data();
-};
+});
+
+const callBackLoadTwo = jest.fn((docs) => {
+  return docs.data;
+});
 
 describe('loadPosts', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     fakeFirestore.reset();
   });
 
@@ -83,13 +84,70 @@ describe('loadPosts', () => {
       { id: 'test-id', data: { name: 'maria', user_id: 'abcdefg' } },
     ];
     async function testLoadAll() {
-      loadPosts(callBackLoadUm, callBackLoadTwo, '', 5, false);
+      loadPosts(callBackLoadOne, callBackLoadTwo, '', 5, false);
     }
     testLoadAll().then(() => {
       expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
       expect(fakeFirestore.mockWhere).toHaveBeenCalledTimes(0);
-      expect(fakeFirestore.mockLimit(5));
-      expect(fakeFirestore.mockOrderBy('timestamp', 'desc'));
+      expect(fakeFirestore.mockLimit).toBeCalledWith(5);
+      expect(fakeFirestore.mockOrderBy).toBeCalledWith('timestamp', 'desc');
+      done();
+    });
+  });
+
+  it('Deveria acessar o firestore e retornar a coleção filtrada por ´tags´', (done) => {
+    fakeFirestore.mockOnSnaptshotSuccess = [
+      { id: 'test-id', data: { name: 'maria', user_id: 'abcdefg' } },
+    ];
+    async function testLoadFilterTag() {
+      loadPosts(callBackLoadOne, callBackLoadTwo, 'geek', 5, false);
+    }
+    testLoadFilterTag().then(() => {
+      expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
+      expect(fakeFirestore.mockWhere).toBeCalledWith('tag', '==', 'geek');
+      expect(fakeFirestore.mockLimit).toBeCalledWith(5);
+      expect(fakeFirestore.mockOrderBy).toBeCalledWith('timestamp', 'desc');
+      done();
+    });
+  });
+
+  it('Deveria acessar o firestore e retornar a coleção filtrada por ´privacy´', (done) => {
+    fakeFirestore.mockOnSnaptshotSuccess = [
+      { id: 'test-id', data: { name: 'maria', user_id: 'abcdefg' } },
+    ];
+    async function testLoadFilterPrivacy() {
+      loadPosts(callBackLoadOne, callBackLoadTwo, 'geek', 5, true);
+    }
+    testLoadFilterPrivacy().then(() => {
+      expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
+      expect(fakeFirestore.mockWhere).toBeCalledWith('privacy', '==', true);
+      expect(fakeFirestore.mockLimit).toBeCalledWith(5);
+      expect(fakeFirestore.mockOrderBy).toBeCalledWith('timestamp', 'desc');
+      done();
+    });
+  });
+
+  it('Deveria utilizar função callbackLoadTwo para tratar docs', (done) => {
+    fakeFirestore.reset();
+    callBackLoadTwo.mockClear();
+    fakeFirestore.mockOnSnaptshotSuccess = [
+      { id: 'test-id', data: { name: 'joão', user_id: 'abcdefg' } },
+      { id: 'test-id', data: { name: 'Luciano', user_id: 'abcdefg' } },
+    ];
+    async function testLoadForEach() {
+      loadPosts(callBackLoadOne, callBackLoadTwo, 'geek', 5, true);
+    }
+    testLoadForEach().then(() => {
+      expect(callBackLoadTwo).toHaveBeenCalledTimes(2);
+      expect(callBackLoadTwo).toHaveBeenNthCalledWith(1, {
+        id: 'test-id',
+        data: { name: 'joão', user_id: 'abcdefg' },
+      });
+      expect(callBackLoadTwo).toHaveBeenNthCalledWith(2, {
+        id: 'test-id',
+        data: { name: 'Luciano', user_id: 'abcdefg' },
+      });
+
       done();
     });
   });
