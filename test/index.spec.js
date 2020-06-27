@@ -62,9 +62,32 @@ describe('createPost', () => {
   });
 });
 
+const callBackLoadUm = () => {
+  return 'fake return pre process';
+};
+const callBackLoadTwo = (docs) => {
+  return docs.data();
+};
+
 describe('loadPosts', () => {
   it('is a function', () => {
     expect(typeof loadPosts).toBe('function');
+  });
+
+  it('Deveria acessar o firestore e retornar toda a coleção ´posts´', (done) => {
+    fakeFirestore.mockOnSnaptshotSuccess = [
+      { id: 'test-id', data: { name: 'maria', user_id: 'abcdefg' } },
+    ];
+    async function testLoadAll() {
+      loadPosts(callBackLoadUm, callBackLoadTwo, '', 5, false);
+    }
+    testLoadAll().then(() => {
+      expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
+      expect(fakeFirestore.mockWhere).toBeCalledWith('');
+      expect(fakeFirestore.mockLimit(5));
+      expect(fakeFirestore.mockOrderBy('timestamp', 'desc'));
+      done();
+    });
   });
 
   it('should throw TypeError when invoked with wrong argument types', () => {
