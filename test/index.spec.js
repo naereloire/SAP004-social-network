@@ -156,29 +156,3 @@ describe('loadPosts', () => {
     expect(() => createPost()).toThrow(TypeError);
   });
 });
-
-describe('deletePost', () => {
-  beforeEach(() => {
-    fakeFirestore.reset();
-  });
-
-  it('is a function', () => {
-    expect(typeof deletePost).toBe('function');
-  });
-
-  it('Deveria remover post da coleção utilizando como parametro ´postId´', (done) => {
-    fakeFirestore.mockOnSnaptshotSuccess = { postId: 'test-postId' };
-    async function testDeletePost() {
-      deletPosts(postId);
-    }
-    testDeletePost().then(() => {
-      expect(fakeFirestore.mockCollection).toBeCalledWith('postsId');
-      expect(fakeFirestore.delete()).toBeCalledWith();
-      done();
-    });
-  });
-
-  it('should throw TypeError when invoked with wrong argument types', () => {
-    expect(() => deletePost()).toThrow(TypeError);
-  });
-});
