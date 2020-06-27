@@ -70,6 +70,10 @@ const callBackLoadTwo = (docs) => {
 };
 
 describe('loadPosts', () => {
+  beforeAll(() => {
+    fakeFirestore.reset();
+  });
+
   it('is a function', () => {
     expect(typeof loadPosts).toBe('function');
   });
@@ -83,7 +87,7 @@ describe('loadPosts', () => {
     }
     testLoadAll().then(() => {
       expect(fakeFirestore.mockCollection).toBeCalledWith('posts');
-      expect(fakeFirestore.mockWhere).toBeCalledWith('');
+      expect(fakeFirestore.mockWhere).toHaveBeenCalledTimes(0);
       expect(fakeFirestore.mockLimit(5));
       expect(fakeFirestore.mockOrderBy('timestamp', 'desc'));
       done();

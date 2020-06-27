@@ -11,7 +11,8 @@ export default class FakeFirestore {
     this.mockGet = jest.fn(() => Promise.resolve(this.mockGetReturn));
     // listener
     // eslint-disable-next-line no-unused-vars
-    this.mockOnSnaptshot = jest.fn((success, error) => success(this.mockOnSnaptshotSuccess));
+    this.mockOnSnaptshot = jest.fn(() => Promise.resolve(this.mockOnSnaptshotSuccess));
+
     // return values
     this.intMockAddReturn = null;
     this.intMockGetReturn = null;
