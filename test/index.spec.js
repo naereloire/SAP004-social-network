@@ -1,6 +1,6 @@
 import FakeFirestore from './mock_firestore.js';
 import { auth } from './mock_auth.js';
-import { createPost, loadPosts } from '../public/pages/home/data.js';
+import { createPost, loadPosts, deletePost } from '../public/pages/home/data.js';
 
 const fakeFirestore = new FakeFirestore();
 
@@ -154,5 +154,31 @@ describe('loadPosts', () => {
 
   it('should throw TypeError when invoked with wrong argument types', () => {
     expect(() => createPost()).toThrow(TypeError);
+  });
+});
+
+describe('deletePost', () => {
+  beforeEach(() => {
+    fakeFirestore.reset();
+  });
+
+  it('is a function', () => {
+    expect(typeof deletePost).toBe('function');
+  });
+
+  it('Deveria remover post da coleção utilizando como parametro ´postId´', (done) => {
+    fakeFirestore.mockOnSnaptshotSuccess = { postId: 'test-postId' };
+    async function testDeletePost() {
+      deletPosts(postId);
+    }
+    testDeletePost().then(() => {
+      expect(fakeFirestore.mockCollection).toBeCalledWith('postsId');
+      expect(fakeFirestore.delete()).toBeCalledWith();
+      done();
+    });
+  });
+
+  it('should throw TypeError when invoked with wrong argument types', () => {
+    expect(() => deletePost()).toThrow(TypeError);
   });
 });

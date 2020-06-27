@@ -102,7 +102,6 @@ const clearAriaCurrent = () => {
 };
 
 const blockTag = (tagValueBlock) => {
-  // debugger;
   const select = document.getElementById('select-id');
   if (!select) {
     return;
@@ -115,7 +114,7 @@ const blockTag = (tagValueBlock) => {
       select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
   } else {
-    select.innerHTML = `<option value="${tagValueBlock}">${tags[tagValueBlock]}</option>`;
+    select.innerHTML = `<option value="${tagValueBlock}">${tags[tagValueBlock][0]}</option>`;
   }
 };
 
@@ -430,6 +429,7 @@ const blockPrivacyBox = (lock) => {
 };
 
 const tagFilter = (event) => {
+  // debugger;
   limit = 5;
   const elementName = event.target.localName;
 
@@ -442,23 +442,20 @@ const tagFilter = (event) => {
       tagValue = event.target.parentElement.name;
       event.target.parentElement.ariaCurrent = 'page';
     }
-    clearFeed();
-    blockTag(tagValue);
-    loadPosts(clearFeed, showPosts, tagValue, limit);
-  }
 
-  if (tagValue === 'privados') {
-    privacy = true;
-    blockPrivacyBox(true);
-    blockTag();
     clearLimits();
-    loadPosts(clearFeed, showPosts, '', limit, privacy);
-  } else {
-    privacy = false;
-    blockPrivacyBox(false);
-    blockTag(tagValue);
-    clearLimits();
-    loadPosts(clearFeed, showPosts, tagValue, limit);
+    clearFeed();
+    if (tagValue === 'privados') {
+      privacy = true;
+      blockPrivacyBox(true);
+      blockTag();
+      loadPosts(clearFeed, showPosts, '', limit, privacy);
+    } else {
+      privacy = false;
+      blockPrivacyBox(false);
+      blockTag(tagValue);
+      loadPosts(clearFeed, showPosts, tagValue, limit);
+    }
   }
 };
 
