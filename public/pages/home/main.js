@@ -100,7 +100,7 @@ const clearAriaCurrent = () => {
   }
 };
 
-const blockTag = () => {
+const blockTag = (tagValue) => {
   const select = document.getElementById('select-id');
   if (!select) {
     return;
@@ -443,20 +443,20 @@ const tagFilter = (event) => {
       event.target.parentElement.ariaCurrent = 'page';
     }
     clearFeed();
-    blockTag();
+    blockTag(tagValue);
     loadPosts(clearFeed, showPosts, tagValue, limit);
   }
 
   if (tagValue === 'privados') {
     privacy = true;
     blockPrivacyBox(true);
-    blockTag();
+    blockTag(tagValue);
     clearLimits();
     loadPosts(clearFeed, showPosts, '', limit, privacy);
   } else {
     privacy = false;
     blockPrivacyBox(false);
-    blockTag();
+    blockTag(tagValue);
     clearLimits();
     loadPosts(clearFeed, showPosts, tagValue, limit);
   }
