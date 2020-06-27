@@ -213,22 +213,17 @@ const comments = (querySnapshot, postId) => {
   firebase.auth().onAuthStateChanged((user) => {
     div.innerHTML = '';
     querySnapshot.forEach((doc) => {
-      div.innerHTML += `
-                <div class="container-comment">
+      const commentHtml =
+        user.uid === doc.data().idUser
+          ? `<a data-postcomment=${doc.id} href="#" class="delete-comment-btn"> <i data-id=${doc.id} data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i></a>`
+          : '';
+      div.innerHTML += `<div class="container-comment">
                     <p class="textarea-comment">${doc.data().name}: ${doc.data().comment}
                     </p>
-                    
-                    ${
-                      user.uid === doc.data().idUser
-                        ? `
-                                <a data-postcomment=${doc.id} href="#" class="delete-comment-btn">
-                                    <i data-id=${doc.id} data-post-id=${postId} class="fas fa-trash-alt" aria-hidden="true"></i>
-                                </a>
-                            `
-                        : ''
-                    }
+                    ${commentHtml}
                 </div>`;
     });
+
     const list = document.getElementsByClassName('delete-comment-btn');
 
     for (const item of list) {
