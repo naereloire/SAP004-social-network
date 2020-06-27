@@ -431,7 +431,8 @@ const blockPrivacyBox = (lock) => {
 const tagFilter = (event) => {
   limit = 5;
   const elementName = event.target.localName;
-  if (elementName !== 'li') {
+  // debugger;
+  if (elementName !== 'li' && elementName !== 'ul') {
     clearAriaCurrent();
     if (elementName === 'span') {
       tagValue = event.target.parentElement.parentElement.name;
