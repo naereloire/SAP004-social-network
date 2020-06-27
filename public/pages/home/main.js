@@ -101,18 +101,20 @@ const clearAriaCurrent = () => {
   }
 };
 
-const blockTag = (tagValue) => {
+const blockTag = (tagValueBlock) => {
   const select = document.getElementById('select-id');
   if (!select) {
     return;
   }
-  if (!tagValue) {
+  if (!tagValueBlock) {
     const keyTags = ['home', 'geek', 'tech', 'autocuidado', 'seguranca', 'oportunidades'];
     select.innerHTML = '';
     for (const key of keyTags) {
       const keyValidated = key === 'home' ? '' : key;
       select.innerHTML += `<option value="${keyValidated}">${tags[key][0]}</option>`;
     }
+  } else {
+    select.innerHTML = `<option value="${tagValueBlock}">${tags[tagValueBlock][0]}</option>`;
   }
 };
 
@@ -134,14 +136,14 @@ const btnPost = (event) => {
 
   const postText = document.getElementById('post-text').value;
   const tag = document.getElementById('select-id');
-  tagValue = tag.options[tag.selectedIndex].value;
+  const tagValuePost = tag.options[tag.selectedIndex].value;
   const checkBox = document.getElementById('privacy-check').checked;
   const photoFile = document.getElementById('input-photo');
 
   if (photoFile.value) {
     postPhoto(photoFile)
       .then((url) => {
-        createPost(postText, tagValue, checkBox, url);
+        createPost(postText, tagValuePost, checkBox, url);
         document.getElementById('post-text').value = '';
 
         photoFile.value = '';
@@ -151,7 +153,7 @@ const btnPost = (event) => {
         console.log(error);
       });
   } else if (postText) {
-    createPost(postText, tagValue, checkBox, '');
+    createPost(postText, tagValuePost, checkBox, '');
     document.getElementById('post-text').value = '';
   }
   if (!privacy) {
@@ -446,7 +448,7 @@ const tagFilter = (event) => {
   if (tagValue === 'privados') {
     privacy = true;
     blockPrivacyBox(true);
-    blockTag(tagValue);
+    blockTag();
     clearLimits();
     loadPosts(clearFeed, showPosts, '', limit, privacy);
   } else {
