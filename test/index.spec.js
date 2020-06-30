@@ -1,6 +1,6 @@
 import FakeFirestore from './mock_firestore.js';
 import { auth } from './mock_auth.js';
-import { createPost, loadPosts, deletePost } from '../public/pages/home/data.js';
+import { createPost, loadPosts } from '../public/pages/home/data.js';
 
 const fakeFirestore = new FakeFirestore();
 
