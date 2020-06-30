@@ -1,4 +1,7 @@
 /* global firebase, document, window, alert */
+
+import { ErrorDictionary } from '../home/error.js';
+
 export default () => {};
 
 export const userRegister = (event) => {
@@ -26,13 +29,11 @@ export const userRegister = (event) => {
           })
           .then(() => {
             window.location.href = '/#policy';
-          })
-          .catch((error) => {
-            console.log(error);
           });
       });
     })
-    .catch(() => {
-      alert('Email já cadastrado');
+    .catch((error) => {
+      const errorObject = new ErrorDictionary(error);
+      alert(errorObject.translate());
     });
 };
