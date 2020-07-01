@@ -1,7 +1,5 @@
 /* global firebase */
 
-// import { ErrorDictionary } from './error.js';
-
 export const createPost = (textPost, tagOption, privacyOption, url) => {
   if (
     (typeof textPost !== 'string' || textPost.length === 0,
@@ -27,10 +25,6 @@ export const createPost = (textPost, tagOption, privacyOption, url) => {
   };
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.add(post);
-  // .catch((error) => {
-  //   const ErrorObject = new ErrorDictionary(error);
-  //   console.log(ErrorObject.translate(false));
-  // });
 };
 
 export const loadPosts = (callbackPreProcess, callbackPosts, tagFilter, limit, privacy = false) => {
@@ -69,25 +63,13 @@ export const saveImage = (nameFile, file) => {
   const storageRef = firebase.storage().ref();
   const postImage = storageRef.child(`postImage/${nameFile}`);
   postImage.put(file);
-  // .catch((error) => {
-  //   const errorObject = new ErrorDictionary(error);
-  //   console.log(errorObject.translate(true));
-  // });
+
   return postImage.getDownloadURL();
-  // .catch((error) => {
-  //   const errorObject = new ErrorDictionary(error);
-  //   console.log(errorObject.translate(true));
-  // });
 };
 
 export function deletePost(postId) {
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(postId).delete();
-
-  // .catch((error) => {
-  //   const errorObject = new ErrorDictionary(error);
-  //   console.log(errorObject.translate(false));
-  // });
 }
 
 export const savePostEdit = (postId, editedText) => {
@@ -95,10 +77,6 @@ export const savePostEdit = (postId, editedText) => {
   postCollection.doc(postId).update({
     text: editedText,
   });
-  // .catch((error) => {
-  //   const errorObject = new ErrorDictionary(error);
-  //   console.log(errorObject.translate(false));
-  // });
 };
 
 export function saveLike(postId, userId) {
@@ -114,18 +92,10 @@ export function saveLike(postId, userId) {
         postCollection.doc(postId).update({
           user_like: arrayUserDlt,
         });
-        // .catch((error) => {
-        //   const errorObject = new ErrorDictionary(error);
-        //   console.log(errorObject.translate(false));
-        // });
       } else {
         postCollection.doc(postId).update({
           user_like: arrayUserAdd,
         });
-        // .catch((error) => {
-        //   const errorObject = new ErrorDictionary(error);
-        //   console.log(errorObject.translate(false));
-        // });
       }
     });
 }
@@ -168,9 +138,4 @@ export const showComments = (idPost) => {
 export const deleteComment = (id, idPost) => {
   const commentCollection = firebase.firestore().collection('comment').doc(idPost);
   commentCollection.collection('userComment').doc(id).delete();
-
-  // .catch((error) => {
-  //   const errorObject = new ErrorDictionary(error);
-  //   console.log(errorObject.translate(false));
-  // });
 };
