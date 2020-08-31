@@ -20,10 +20,10 @@ A estratégia de desenvolvimento usada foi pair programming, code review e sub-d
 
 ## 2. Resumo do projeto
 
-A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://social-network-12571.web.app/)
+A página da aplicação pode ser acessada atraves do Link: [girlyHub](https://social-network-12571.web.app/)  
 É possível navegar com **_usuário de teste:_**
 
-> **_E-mail_**: usuario@teste.com
+> **_E-mail_**: usuario@teste.com  
 > **_Senha_**: 123456
 
 girlyHub é uma rede social, que foi desenvolvida com base nos princípios de sororidade, acolhimento e respeito.
